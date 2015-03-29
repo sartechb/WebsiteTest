@@ -1,26 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- Parse.js -->
-<script src="//www.parsecdn.com/js/parse-1.4.0.min.js"></script>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap 101 Template</title>
- 
- <!-- Handlebars.js -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
- 
-   <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/blog.css" rel="stylesheet">
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/admin.js"></script>
- 
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/blog.css" rel="stylesheet">
+    <link href="css/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,14 +18,13 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
- <body>
-
+  <body>
     <div class="blog-masthead">
       <div class="container">
-       <nav class="blog-nav">
-    <a class="blog-nav-item" href="index.html">Home</a>
-    <a class="blog-nav-item active" href="admin.html">Admin</a>
-</nav>
+        <nav class="blog-nav">
+          <a class="blog-nav-item" href="index.html">Home</a>
+          <a class="blog-nav-item active" href="admin.html">Admin</a>
+        </nav>
       </div>
     </div>
 
@@ -48,22 +37,11 @@
 
       <div class="row">
 
-    <div class="col-sm-8 blog-main">
-    <div class="main-container">
-<script id="login-tpl" type="text/x-handlebars-template">
-    <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
-        <input type="password" name="password" class="form-control" placeholder="Password" required="">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
-</script>
- 
-<script id="welcome-tpl" type="text/x-handlebars-template">
-    <h2>Welcome, {{username}}!</h2>
-</script>
-	</div>
-</div>
+        <div class="col-sm-8 blog-main">
+
+          <div class="main-container"></div>
+
+        </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
@@ -101,21 +79,53 @@
 
     </div><!-- /.container -->
 
-    <footer class="blog-footer">
+    <div class="blog-footer">
       <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
       <p>
         <a href="#">Back to top</a>
       </p>
-    </footer>
+    </div>
 
+    <script id="login-tpl" type="text/x-handlebars-template">
+    <form class="form-signin" role="form">
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+      <input type="password" name="password" class="form-control" placeholder="Password" required="">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    </script>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script id="welcome-tpl" type="text/x-handlebars-template">
+    <h2>Welcome, {{username}}!</h2>
+    <button class="add-blog btn btn-lg btn-primary">Add a New Blog</button>
+    </script>
+
+    <script type="text/template" id="add-tpl">
+    <h2>Adding a New Blog</h2>
+
+    <form class="form-add" role="form">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" class="form-control" id="title" placeholder="Enter Your Blog Title">
+      </div>
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea name="content" class="form-control" rows="20"></textarea>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </form>
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Parse.js -->
+    <script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+    <!-- Handlebars.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/wysihtml5-0.3.0.min.js"></script>
+    <script src="js/bootstrap-wysihtml5-0.0.2.min.js"></script>
+    <script src="js/admin.js"></script>
   </body>
-
 </html>
