@@ -19,7 +19,7 @@
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
-<script src="js/blog.js"></script>
+<script src="js/admin.js"></script>
  
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,8 +33,8 @@
     <div class="blog-masthead">
       <div class="container">
        <nav class="blog-nav">
-    <a class="blog-nav-item active" href="index.html">Home</a>
-    <a class="blog-nav-item" href="admin.html">Admin</a>
+    <a class="blog-nav-item" href="index.html">Home</a>
+    <a class="blog-nav-item active" href="admin.html">Admin</a>
 </nav>
       </div>
     </div>
@@ -50,14 +50,17 @@
 
     <div class="col-sm-8 blog-main">
     <div class="main-container">
-	<script id="blogs-tpl" type="text/x-handlebars-template">
-    {{#each blog}}
-    <div class="blog-post">
-        <h2 class="blog-post-title"><a href="#">{{title}}</a></h2>
-        <p class="blog-post-meta">At time by an author</p>
-        <div>{{{content}}}</div>
-    </div>
-    {{/each}}
+<script id="login-tpl" type="text/x-handlebars-template">
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+        <input type="password" name="password" class="form-control" placeholder="Password" required="">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</script>
+ 
+<script id="welcome-tpl" type="text/x-handlebars-template">
+    <h2>Welcome, {{username}}!</h2>
 </script>
 	</div>
 </div>
