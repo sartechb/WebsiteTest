@@ -3,7 +3,7 @@
  */
 
 body {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Calibri, "Calibri", Calibri, sans-serif;
   color: #555;
 }
 
@@ -14,7 +14,7 @@ h4, .h4,
 h5, .h5,
 h6, .h6 {
   margin-top: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Calibri, "Calibri", Calibri, sans-serif;
   font-weight: normal;
   color: #333;
 }
@@ -35,12 +35,19 @@ h6, .h6 {
  * Masthead for nav
  */
 
+ #logo-white{
+ 
+ height: 80px;
+ 
+ }
+ 
 .blog-masthead {
-  background-color: #428bca;
+  background-color: #8bc34a;
+  height: 80px;
   -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
 }
-
+ 
 /* Nav links */
 .blog-nav-item {
   position: relative;
