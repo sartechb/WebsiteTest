@@ -24,12 +24,16 @@ h6, .h6 {
  * Override Bootstrap's default container.
  */
 
-@media (min-width: 1200px) {
+@media{
   .container {
-    width: 970px;
+    width: 100%;
   }
 }
 
+#navbar{
+	background-color: grey;
+	height: 806px;
+}
 
 /*
  * Masthead for nav
@@ -206,3 +210,6 @@ h6, .h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+/* sidebar */
+
