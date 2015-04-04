@@ -37,34 +37,17 @@
 			<div id = "navbar" class = "col-md-2">
 				THIS IS THE NAV BAR
 			</div>
-			
+			 <script id="blogs-tpl" type="text/x-handlebars-template">
 			<div id = "postfeed" class="col-md-10">
+			<div class="blog-post">
+				{{#each blog}}
 				<div class="blog-header">
-					<h1 class="blog-title">Morphosyntactic what???</h1>
-					<p class="lead blog-description">This ling 210 homework makes no sense </p>
+				<h1 class="blog-title">{{title}}</h1>
+				<p class="lead blog-description">{{{content}}}</p>
 				</div>
-				
-				<div class="blog-header">
-					<h1 class="blog-title">Branch and Bound</h1>
-					<p class="lead blog-description">EECS 281 went completely over my head today. Anyone want to go over the slides with me? </p>
-				</div>
-				
-				<div class="blog-header">
-					<h1 class="blog-title">True sorrow...</h1>
-					<p class="lead blog-description">...lies in the psych exam tomorrow. </p>
-				</div>
-				
-				<div class="blog-header">
-					<h1 class="blog-title">oH MY GOD WE HAVE A QUIZ TOMORROW??!?!?</h1>
-					<p class="lead blog-description">I'm screwed. Anyone want to save me? Will provide chipotle and endless gratitude</p>
-				</div>
-				
-				<div class="blog-header">
-					<h1 class="blog-title">Tinder but for Homework</h1>
-					<p class="lead blog-description">;) </p>
-				</div>
-
+</div>
 			</div> <!-- col -->
+			</script>
 		</div>
     </div><!-- /.container -->
 
@@ -75,7 +58,7 @@
       </p>
     </div-->
 
-    <script id="blogs-tpl" type="text/x-handlebars-template">	
+    <!--script id="blogs-tpl" type="text/x-handlebars-template">	
 
     {{#each blog}}
     <div class="blog-post">
@@ -85,7 +68,7 @@
     </div>
     {{/each}}
 
-    </script>
+    </script-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
