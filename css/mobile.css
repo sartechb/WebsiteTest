@@ -2,7 +2,9 @@
 		/*
  * Globals
  */
-
+.container{
+	width: 100%;
+}
  
 body {
   font-family: Calibri, "Calibri", Calibri, sans-serif;
@@ -38,12 +40,10 @@ h6, .h6 {
 	z-index:2;
 	-webkit-box-shadow: inset 0 0 5px grey;
           box-shadow: inset 0 0 5px grey);
-	margin-left: -1.9em;
+
 }
 
 #body{
-	margin: auto;
-	padding: auto;
 
 }
 
