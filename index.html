@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/blog.css" rel="stylesheet">
+	<link href="css/mobile.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,9 +23,10 @@
   
 
     <div class="blog-masthead">
+	<div class = "row">
 	<!--<img id = "logo-white"; src = "assets/logoWhite.png"/> -->
-	StudyBuddy
-	<input id="search" placeholder="Search">
+	<div class = "col-md-3 col-sm-12" id="titletext">StudyBuddy</div>
+	<div class = "col-md-9 col-sm-12"><input id="search" placeholder="Search"></div>
       <div class="container">
         <nav class="blog-nav">
         <!--  <a class="blog-nav-item active" href="index.html">Home</a>
@@ -32,14 +34,15 @@
         </nav>
       </div>
     </div>
+	</div>
 
     <div class="container">
-		<div class ="row">
-			<div id = "navbar" class = "col-md-2">
+		<div class ="row" id="body">
+			<div class ="col-sm-12 col-md-2" id = "navbar">
 				THIS IS THE NAV BAR
 			</div>
 			
-			<div id = "postfeed" class="col-md-10">
+			<div class="col-sm-12 col-md-10" id = "postfeed">
 				<div class="blog-header">
 					<h1 class="blog-title">Morphosyntactic what???</h1>
 					<p class="lead blog-description">This ling 210 homework makes no sense </p>
