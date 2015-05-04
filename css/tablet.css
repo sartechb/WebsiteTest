@@ -32,7 +32,7 @@ h6, .h6 {
  * Override Bootstrap's default container.
  */
 
-#navbar{
+#sidebar{
 	background-color: #e7e7e7;
 	margin-top: 50px;
 	height: 11.3em;
