@@ -25,6 +25,10 @@ h6, .h6 {
 }
 
 
+#navlogo{
+  height: 35px;
+  padding-bottom: 10px;
+ } 
 /*
  * Override Bootstrap's default container.
  */
@@ -38,7 +42,7 @@ h6, .h6 {
 
 
 #navbar{
-	background-color: #eae9e9;
+	background-color: #e7e7e7;
 	height: 100%;
 	position: fixed;
 	z-index:2;
