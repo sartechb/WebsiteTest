@@ -1,0 +1,7 @@
+.dividerish {
+	margin: 0 auto;
+	height: 300px;
+	width: 8px;
+	background-color: #FFC107;
+	display: block;
+}
