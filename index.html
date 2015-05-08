@@ -33,7 +33,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img id = "navlogo" src = "assets/LogoColorcrp.png"/></a>
+      <a class="navbar-brand" href="#"><img id = "navlogo" src = "assets/logoColorcrp.png"/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -66,8 +66,25 @@
     <div class="container">
 		<div class ="row" id="body">
 			<div class ="hidden-xs col-sm-12 col-md-2" id = "sidebar">
-				THIS IS THE SIDE BAR. THIS CONTAINS THE USER'S PROFILE PICTURE, UNIVERSITY, AND SAVED CLASSES/TOPICS, AS WELL AS THE BUTTON TO
-          CREATE A NEW POST AND SEE PAST POSTS. (DO WE WANT A SEPERATE ACCOUNT PAGE, TOO?)
+				<div id = "photo-container">
+            <img id = "user-photo" src = "assets/profile6.png"/> 
+            <p id="user-name">Studyman Buddyson</p>
+            <p id="user-school">University of Michigan</p>
+        </div>
+
+        <div id = "faves">
+          <div id = "heart"> </div> <div id = "classcontainer"><p id = "class">EECS 370</p></div>
+        </div>
+        <div id = "faves">
+          <div id = "heart"> </div> <div id = "classcontainer"><p id = "class">EECS 475</p></div>
+        </div>
+        <div id = "faves">
+          <div id = "heart"> </div> <div id = "classcontainer"><p id = "class">EECS 485</p></div>
+        </div>
+        <div id = "faves">
+          <div id = "heart"> </div> <div id = "classcontainer"><p id = "class">LING 341</p></div>
+        </div>
+
 			</div>
 			
 			<div class="col-xs-12 col-sm-12 col-md-10" id = "postfeed">
@@ -76,6 +93,7 @@
 					<p class="lead blog-description">Does anyone understand dynamic memory? [this needs to be tagged with the class EECS 280, and
             potentially with "dynamic memory"?] we also need timestamp and location</p>
 				</div>
+        
         <div class="blog-header">
           <h1 class="blog-title">Sample Title</h1>
           <p class="lead blog-description">Sample Text</p>
