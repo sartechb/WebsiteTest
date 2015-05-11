@@ -5,3 +5,18 @@
 	background-color: #FFC107;
 	display: block;
 }
+
+body.log {
+	background-image: url("bg.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+
+}
+
+.well {
+	background-color: rgba(245,245,245,0.8);
+}
+
+input, button {
+	background-color: rgba(245,245,245,1);
+}
