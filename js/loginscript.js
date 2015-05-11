@@ -19,6 +19,7 @@ $("#signerup").submit(
         user.signUp(null, {
           success: function (user) { 
             resp = user;
+            window.location.href ="http://sartechb.github.io/WebsiteTest/";
            // console.log("Did it!");
            // alert("did it");
           },
@@ -36,7 +37,7 @@ $("#logerin").submit(
         success: function (user) {
           resp = user;
           console.log("success!");
-          window.location.href ="http://www.apoorvagupta.com";//need to add new page here
+          window.location.href ="http://sartechb.github.io/WebsiteTest/";//need to add new page here
         },
         error: function (user, error) {
             console.log(error.code, error.message);
