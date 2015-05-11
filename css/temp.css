@@ -7,10 +7,15 @@
 }
 
 body.log {
-	background-image: url("bg.jpg");
-	background-size: cover;
-	background-repeat: no-repeat;
+	background: transparent;
+}
 
+html { 
+  background: url("bg.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .well {
@@ -19,4 +24,24 @@ body.log {
 
 input, button {
 	background-color: rgba(245,245,245,1);
+}
+
+footer {
+	background-color: #333;
+	color: #aaa;
+	margin-top: 50px;
+	padding-top: 20px; 
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+
+footer h3, footer a, footer a:visited {
+	color: #ccc;
+}
+
+footer a:hover, footer a:focus {
+	color: #aaa;
+}
+
+footer h3, p {
+	font-family: Calibri, "Calibri", Calibri, sans-serif;
 }
