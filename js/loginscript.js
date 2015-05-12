@@ -12,8 +12,9 @@ $("#signerup").submit(
 
     var user = new Parse.User();
        
-        user.set("username", e.currentTarget[0].value);
+        user.set("name", e.currentTarget[0].value);
         user.set("email", e.currentTarget[1].value);
+        user.set("username", e.currentTarget[1].value);
         user.set("password", e.currentTarget[2].value);
 
         user.signUp(null, {
