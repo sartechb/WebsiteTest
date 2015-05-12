@@ -45,6 +45,7 @@ opacity:1;
     height: 28px;
     margin-left: 20px;
     float:left;
+
 }
 #heart:before,
 #heart:after {
@@ -143,14 +144,14 @@ margin:0;
 
 #new-post{
   text-align:center;
-  background-color:rgb(255, 193, 7);
   font-size:30px;
   opacity:.8;
+  height:20px;
+  color:rgb(139, 195, 74);
 }
 #new-post:hover{
   text-align:center;
-  background-color:grey;
-  color:rgb(139, 195, 74);
+  color:rgb(255, 193, 7);
   font-size:30px;
   opacity:1;
 }
@@ -196,7 +197,6 @@ z-index:3;
 #user-photo{
 width:100%;
 position:relative;
-
 }
 
 

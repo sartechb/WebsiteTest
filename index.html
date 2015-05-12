@@ -69,15 +69,19 @@
 
     <div class="container">
 		<div class ="row" id="body">
-			<div class ="hidden-xs col-sm-12 col-md-2" id = "sidebar">
-				<div id = "photo-container">
+			<div class ="hidden-xs col-sm-12 col-md-2" class = "row" id = "sidebar" >
+				<div class = "hidden-xs col-sm-4 col-md-12" id = "photo-container">
             <img id = "user-photo" src = "assets/profile6.png"/> 
+        </div>
+        <div id = "user-info" class = "hidden-xs col-sm-4 col-md-12">
             <p id="user-name">Studyman Buddyson</p>
             <p id="user-school">University of Michigan<br></p>
             <p src = "#" id="user-posts"><br>My Posts</p>
-            <p id = "new-post">+new post</p>
-        </div>
-        <div id = "favorites">
+             <p id = "new-post"> +new post </p>
+             <br>
+          </div>
+     
+        <div id = "favorites" class = "hidden-xs col-sm-4 col-md-12">
         <div id = "faves">
           <div id = "heart"> </div> <div id = "classcontainer"><p id = "class">&nbsp&nbspEECS 370</p></div>
         </div>
@@ -92,7 +96,10 @@
         </div>
       </div>
 
+     
+
 			</div>
+
 			
 			<div class="col-xs-12 col-sm-12 col-md-10" id = "postfeed">
 				<div class="blog-header">
