@@ -26,7 +26,9 @@ $("#signerup").submit(
           },
           error: function (user, error) {
             console.log(error.code, error.message);
-            $("#signerup h1").after(errorAlert+error.message+"</div>")
+            if($("#signerup").find("div.alert.alert-danger").length == 0) {
+              $("#signerup h1").after(errorAlert+error.message+"</div>")
+            }
           }
         });
 });
@@ -42,7 +44,9 @@ $("#logerin").submit(
         },
         error: function (user, error) {
             console.log(error.code, error.message);
-            $("#logerin h1").after(errorAlert+error.message+"</div>")
+            if($("#logerin").find("div.alert.alert-danger").length == 0) {
+              $("#logerin h1").after(errorAlert+error.message+"</div>")
+            }
         }
     });
 });
