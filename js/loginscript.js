@@ -4,6 +4,14 @@ var errorAlert = "<div class='alert alert-danger'><a href='#'' class='close' dat
 $("#signerup").submit(
   function (e) {
     e.preventDefault();
+   // console.log(e);
+    for(var i = 0; i < $("#signerup input").length; ++i) {
+      if(e.currentTarget[i].value == "") {
+        if($("#signerup").find("div.alert.alert-danger").length == 0) 
+          $("#signerup h1").after(errorAlert+"Oops! You missed something below..."+"</div>");
+        return;
+      }
+    }
    //  console.log(e);
    //  var info = $("#signerup").serialize();
    //  console.log(e.currentTarget[0].value);
