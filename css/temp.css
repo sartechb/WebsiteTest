@@ -31,7 +31,7 @@ footer {
 	color: #aaa;
 	margin-top: 50px;
 	padding-top: 20px; 
-	font-family: 'Open Sans', Arial, sans-serif;
+	/*font-family: 'Open Sans', Arial, sans-serif;*/
 }
 
 footer h3, footer a, footer a:visited {
@@ -44,4 +44,8 @@ footer a:hover, footer a:focus {
 
 footer h3, p {
 	font-family: Calibri, "Calibri", Calibri, sans-serif;
+}
+
+#greeting {
+	color:#ccc;
 }
