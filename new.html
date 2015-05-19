@@ -19,48 +19,39 @@
   <body>
   
 
- <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"><img id = "navlogo" src = "assets/logoColorcrp.png"/></a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="this-is-the-nav-bar">
-
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-    
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 
  <div class="container">
+    <div class = "row">
+      <div class = "col-md-12" id = "this-is-the-navbar"></div> <!--Navbar-->
+    </div>
     <div class ="row" id="body">      
-      <div class="hidden-xs col-sm-12 col-md-2 col-lg-2 row" id="sidebar">
-        <img class="col-sm-3 col-md-12 col-lg-12" src="assets/profile6.png" id="userphoto"/>
-        <div class="col-sm-1 hidden-md hidden-lg hidden-xl"></div>
-        <div class="row col-sm-4 col-md-12" id="userinfo">
-          <p class="col-sm-12" id="name"> Studyman Buddyson </p>
-          <p class="col-sm-12" id="school">University of Michigan</p>
-          <p class="col-sm-12" id="activeposts">My Active Posts</p>
-        </div><!--userinfo-->
-
-        <div class="col-sm-4 col-md-12" id="faves">
-          <p> <3 </p>
-          <ul>
-            <li> CLASS 123 </li>
-            <li> CLASS 234 </li>
-            <li> CLASS 345 </li>
-            <li> CLASS 456 </li>
-          </ul>
+      <div class="hidden-xs hidden-sm col-md-2 row" id="sidebar">
+        <div class = "col-md-12" id="user-photo"><img id="user-photo"src="assets/puppy.jpg"/></div> <!--user photo-->
+        <div class = "col-md-12" id="empty"></div>
+        <div class = "col-md-12" id="user-name"><h1>Studydog Puppyson</h1></div>
+        <div class = "col-md-12" id="user-school"><h3>University of Adorable</h3></div>
+        <div class = "col-md-12" id="empty"></div>
+        <hr align="center" width="70%" color="white">
+        <div class = "col-md-12" id="active-posts">
+          <div class ="row">
+            <h3>My Active Posts</h3>
+            <div class = "col-md-12" id="empty"></div>
+            <div class ="col-md-12" id="active"><h1>sample 1</h1></div>
+            <div class ="col-md-12" id="active"><h1>sample 2</h1></div>
+          </div><!--active posts row-->
         </div>
-
+        <div class = "col-md-12" id="empty"></div>
+         <hr align="center" width="70%" color="white">
+         <h3>My Filters</h3>
+         <div class = "col-md-12" id="empty"></div>
+         <div class = "row" id="filter-group">
+            <div class ="col-md-12" id="filter" ><h4>EECS 370</h4></div>
+            <div class ="col-md-12" id="filter"><h4>EECS 475</h4></div>
+            <div class ="col-md-12" id="filter"><h4>EECS 485</h4></div>
+            <div class ="col-md-12" id="filter"><h4>LING 341</h4></div>
+         </div>
+         <div class = "col-md-12" id="empty"></div>
+         <div class ="col-md-12" id="active"><h2>+Filter</h2></div>
       </div> <!--sidebar-->
     </div><!--body-->
     </div><!-- /.container -->
@@ -75,5 +66,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/blog.js"></script>
+    <script src="js/test.js"></script>
   </body>
 </html>
