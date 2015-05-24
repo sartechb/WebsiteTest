@@ -21,13 +21,15 @@
   z-index: 3;
 }
 
+#logo{
+	height:90%;
+	margin-top:3px;
+}
 
-#navlogo{
-  height:134%;
-  margin-left: 10px;
-  margin-bottom: 0px;
- } 
-
+#actions{
+	float:right;
+	margin-top: 15px;
+}
 .container {
     width: 100%;
   }
