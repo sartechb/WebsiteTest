@@ -84,19 +84,21 @@ h3{
 }
 
 h4{
-	font-size:1.5em;
-	font-weight: bold;
-	text-align:center;
-	padding:0;
-	margin:0;
+	font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  color: rgb(0, 162, 234);
 }
 
 h4:hover{
-	font-size:1.5em;
+	font-size:1.3em;
 	font-weight: bold;
 	text-align:center;
 	padding:0;
 	margin:0;
+	background-color:white;
 }
 
 h5{
@@ -107,12 +109,14 @@ h5{
 	margin:0;
 }
 
-.clicked{
-	font-size:1.5em;
+.filtered{
+	font-size: 1.4em;
 	font-weight: bold;
-	text-align:center;
-	padding:0;
-	margin:0;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	background-color: rgb(255, 255, 255);
+	background-image: url("clicked.jpg");
 }
 
 #active-posts{
@@ -177,6 +181,30 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 #posttext{
 	font-weight: normal;
 	padding:20px;
+}
+
+label {
+    display: block;
+    padding-left: 15px;
+	font-size:1.4em;
+	font-weight: bold;
+	text-align:center;
+	padding:0;
+	margin:0;
+	color:white;
+	height:1.4em;
+}
+
+input {
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+	float:left;
+    *overflow: hidden;
 }
 
 }

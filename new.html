@@ -44,16 +44,24 @@
             <div class ="col-md-12" id="active"><h1>sample 2</h1></div>
           </div><!--active posts row-->
         </div>
-        <div class = "col-md-12" id="empty"></div>
+
          <hr align="center" width="70%" color="white">
-         <h3>My Filters</h3>
-         <div class = "col-md-12" id="empty"></div>
-         <div class = "row" id="filter-group">
-            <div class ="col-md-12 filter"><h4>EECS 370</h4></div>
-            <div class ="col-md-12 filter"><h4>EECS 475</h4></div>
-            <div class ="col-md-12 filter"><h4>EECS 485</h4></div>
-            <div class ="col-md-12 filter"><h4>LING 341</h4></div>
-         </div>
+         <h3>My Filters</h3><br>
+
+       
+		 <form class="filter-class">
+            <label><input type="checkbox" name="class" value="class1"><h4>EECS 370</h4></label><br>
+            <label><input type="checkbox" name="class" value="class2"><h4>EECS 475</h4></label><br>
+            <label><input type="checkbox" name="class" value="class3"><h4>EECS 485</h4></label><br>
+            <label><input type="checkbox" name="class" value="class4"><h4>LING 341</h4></label><br>
+		</form>
+		
+		<script>
+			$( '.filter-class' ).on( 'click', 'input:checkbox', function () {
+					$( this ).parent().toggleClass( 'filtered', this.checked );
+			});
+		</script>
+    
          <div class = "col-md-12" id="empty"></div>
          <div class ="col-md-12" id="active"><h2>+Filter</h2></div>
       </div> <!--sidebar-->
