@@ -98,7 +98,7 @@ h4:hover{
 	text-align:center;
 	padding:0;
 	margin:0;
-	background-color:white;
+	z-index:1;
 }
 
 h5{
@@ -110,6 +110,7 @@ h5{
 }
 
 .filtered{
+	z-index:3;
 	 display: block;
     padding-left: 15px;
 	font-size:1.4em;
@@ -120,6 +121,8 @@ h5{
 	color:white;
 	height:2em;
 	background-color: rgba(0, 162, 234, 0.14);
+	background: url('select.png') left no-repeat;
+	background-size: 1.7em 1.7em;
 	padding-top: .3em;
 }
 
@@ -191,6 +194,10 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 	padding:20px;
 }
 
+.showall{
+	background-image: none;
+}
+
 label {
     display: block;
     padding-left: 15px;
@@ -202,6 +209,8 @@ label {
 	color:white;
 	height:2em;
 	padding-top: .3em;
+	background: url('unselect.png') left no-repeat;
+	background-size: 1.7em 1.7em;
 }
 
 input {
