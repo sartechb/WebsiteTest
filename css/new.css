@@ -98,7 +98,7 @@ h4:hover{
 	text-align:center;
 	padding:0;
 	margin:0;
-	background-color:#DBEBFD;
+	background-color:white;
 }
 
 h5{
@@ -110,12 +110,17 @@ h5{
 }
 
 .filtered{
-	font-size: 1.4em;
+	 display: block;
+    padding-left: 15px;
+	font-size:1.4em;
 	font-weight: bold;
-	text-align: center;
-	padding: 0;
-	margin: 0;
-	background-color: rgb(255, 255, 255);
+	text-align:center;
+	padding:0;
+	margin:0;
+	color:white;
+	height:2em;
+	background-color: rgba(0, 162, 234, 0.14);
+	padding-top: .3em;
 }
 
 .gone{
@@ -195,7 +200,8 @@ label {
 	padding:0;
 	margin:0;
 	color:white;
-	height:1.4em;
+	height:2em;
+	padding-top: .3em;
 }
 
 input {
