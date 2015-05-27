@@ -98,7 +98,7 @@ h4:hover{
 	text-align:center;
 	padding:0;
 	margin:0;
-	background-color:white;
+	background-color:#DBEBFD;
 }
 
 h5{
@@ -116,7 +116,10 @@ h5{
 	padding: 0;
 	margin: 0;
 	background-color: rgb(255, 255, 255);
-	background-image: url("clicked.jpg");
+}
+
+.gone{
+	display:none;
 }
 
 #active-posts{

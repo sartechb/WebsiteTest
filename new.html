@@ -50,16 +50,22 @@
 
        
 		 <form class="filter-class">
-            <label><input type="checkbox" name="class" value="class1"><h4>EECS 370</h4></label><br>
-            <label><input type="checkbox" name="class" value="class2"><h4>EECS 475</h4></label><br>
-            <label><input type="checkbox" name="class" value="class3"><h4>EECS 485</h4></label><br>
-            <label><input type="checkbox" name="class" value="class4"><h4>LING 341</h4></label><br>
+            <label class="filtered"><input type="checkbox" name="class" value="eecs370"><h4>EECS 370</h4></label><br>
+            <label class="filtered"><input type="checkbox" name="class" value="eecs475"><h4>EECS 475</h4></label><br>
+            <label class="filtered"><input type="checkbox" name="class" value="eecs485"><h4>EECS 485</h4></label><br>
+            <label class="filtered"><input type="checkbox" name="class" value="ling341"><h4>LING 341</h4></label><br>
 		</form>
 		
 		<script>
 			$( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-					$( this ).parent().toggleClass( 'filtered', this.checked );
+					$( this ).parent().toggleClass( 'filtered');
 			});
+			
+			$( '.filter-class' ).on( 'click', 'input:checkbox', function () {
+					$( document.getElementById((this).value) ).toggle();
+			});
+			
+	
 		</script>
     
          <div class = "col-md-12" id="empty"></div>
@@ -76,8 +82,7 @@
         
         <div class="row" id="postfeed">
           <div class="col-xs-12">
-
-            <div class="post">
+			<div class="post">
               <div id="title">
                 <h1>This Is A Fifty Character Title, That's Our Chr Lim</h1>
               </div> <!--title-->
@@ -87,37 +92,48 @@
               </div> <!--posttext-->
 
             </div> <!--post-->
-
-            <div class="post">
+			
+            <div class="post" id="eecs370">
               <div id="title">
-                <h1>This Is A Fifty Character Title, That's Our Chr Lim</h1>
+                <h1>This is a post about EECS 370</h1>
               </div> <!--title-->
 
               <div id="posttext">
-                 <h5> This is three hundred and fifty characters (350), which is our character limit for user posts so that they don't get too long. This should be descriptive content about what the user needs help with or wants to meet up about. Bacon ipsum dolor amet hamburger short ribs turducken, pork chop proident strip steak tail consectetur fugiat shank ham officia reprehenderit tenderloin cillum. Venison aute andouille. Filler </h5>
+                 <h5> This is a question about EECS 370. Halp</h5>
               </div> <!--posttext-->
+
+            </div> <!--post-->
+
+            <div class="post" id="eecs475">
+              <div id="title">
+                <h1>This is a post about EECS 475</h1>
+              </div> <!--title-->
+
+              <div id="posttext">
+                 <h5> How do I crypto?????? </h5>
+			</div> <!--posttext-->
               
             </div> <!--post-->
 
-            <div class="post">
+            <div class="post" id="eecs485">
               <div id="title">
-                <h1>This Is A Fifty Character Title, That's Our Chr Lim</h1>
+                <h1>This is a post about EECS 485</h1>
               </div> <!--title-->
 
               <div id="posttext">
-                 <h5> This is three hundred and fifty characters (350), which is our character limit for user posts so that they don't get too long. This should be descriptive content about what the user needs help with or wants to meet up about. Bacon ipsum dolor amet hamburger short ribs turducken, pork chop proident strip steak tail consectetur fugiat shank ham officia reprehenderit tenderloin cillum. Venison aute andouille. Filler </h5>
-              </div> <!--posttext-->
+                 <h5> Wow this person has the same schedule as preeti </h5>
+			 </div> <!--posttext-->
               
             </div> <!--post-->
 
-            <div class="post">
+            <div class="post" id="ling341">
               <div id="title">
-                <h1>This Is A Fifty Character Title, That's Our Chr Lim</h1>
+                <h1>Ling 341 help needed</h1>
               </div> <!--title-->
 
               <div id="posttext">
-                 <h5> This is three hundred and fifty characters (350), which is our character limit for user posts so that they don't get too long. This should be descriptive content about what the user needs help with or wants to meet up about. Bacon ipsum dolor amet hamburger short ribs turducken, pork chop proident strip steak tail consectetur fugiat shank ham officia reprehenderit tenderloin cillum. Venison aute andouille. Filler </h5>
-              </div> <!--posttext-->
+                 <h5> Uhh this is basically EECS 376 lite</h5>
+			 </div> <!--posttext-->
               
             </div> <!--post-->
 
