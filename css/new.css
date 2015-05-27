@@ -198,6 +198,11 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 	background-image: none;
 }
 
+.showall:hover{
+	background-image: none;
+	background-color: rgba(255, 255, 255, 0.29);
+}
+
 label {
     display: block;
     padding-left: 15px;
