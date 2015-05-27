@@ -50,22 +50,40 @@
 
        
 		 <form class="filter-class">
-            <label class="filtered"><input type="checkbox" name="class" value="eecs370"><h4>EECS 370</h4></label>
-            <label class="filtered"><input type="checkbox" name="class" value="eecs475"><h4>EECS 475</h4></label>
-            <label class="filtered"><input type="checkbox" name="class" value="eecs485"><h4>EECS 485</h4></label>
-            <label class="filtered"><input type="checkbox" name="class" value="ling341"><h4>LING 341</h4></label>
+            <label class=""><input type="checkbox" name="class" value="eecs370"><h4>EECS 370</h4></label>
+            <label class=""><input type="checkbox" name="class" value="eecs475"><h4>EECS 475</h4></label>
+            <label class=""><input type="checkbox" name="class" value="eecs485"><h4>EECS 485</h4></label>
+            <label class=""><input type="checkbox" name="class" value="ling341"><h4>LING 341</h4></label>
+			<label class=""><input type="checkbox" name="show" value="showall"><h4>Show All Posts</h4></label>
 		</form>
 		
 		<script>
 			$( '.filter-class' ).on( 'click', 'input:checkbox', function () {
+				if((this).value === "showall")
+				{
+					$(".post").show();
+				}
+				else{
 					$( this ).parent().toggleClass( 'filtered');
+				}
 			});
 			
 			$( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-					$( document.getElementById((this).value) ).toggle();
+				if((this).value === "showall")
+				{
+					$(".post").show();
+				}
+				else if($(document.getElementById((this).value)).hasClass("hasBeenFiltered"))
+				{
+					$(document.getElementById((this).value)).toggle();
+				}
+				else{
+					$(".post").toggle();
+					$(".post").addClass("hasBeenFiltered");
+					$(document.getElementById((this).value)).toggle();
+				}
 			});
-			
-	
+
 		</script>
     
          <div class = "col-md-12" id="empty"></div>
@@ -82,7 +100,7 @@
         
         <div class="row" id="postfeed">
           <div class="col-xs-12">
-			<div class="post">
+			<div class="post" id="dummy123">
               <div id="title">
                 <h1>This Is A Fifty Character Title, That's Our Chr Lim</h1>
               </div> <!--title-->
