@@ -62,6 +62,8 @@
 				if((this).value === "showall")
 				{
 					$(".post").show();
+					$(".filtered").removeClass("filtered");
+					$(".hasBeenFiltered").removeClass("hasBeenFiltered");
 				}
 				else{
 					$( this ).parent().toggleClass( 'filtered');
@@ -72,6 +74,8 @@
 				if((this).value === "showall")
 				{
 					$(".post").show();
+					$(".filtered").removeClass("filtered");
+					$(".hasBeenFiltered").removeClass("hasBeenFiltered");
 				}
 				else if($(document.getElementById((this).value)).hasClass("hasBeenFiltered"))
 				{
