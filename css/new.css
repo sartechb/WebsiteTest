@@ -20,6 +20,17 @@
   z-index: 3;
 }
 
+.blue-bar {
+	display: block;
+	height: 30px;
+	background-color: #3385FF;
+	margin-top: 20px;
+}
+
+#createpost .well {
+	border-radius: initial;
+}
+
 #logo{
 	height:90%;
 	margin-top:3px;
@@ -270,6 +281,28 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 .showall:hover{
 	background-image: none;
 	background-color: rgba(255, 255, 255, 0.29);
+}
+
+#createpost input.full {
+	height: 50px;
+	width: 100%;
+	font-size: 2.0em;
+	display: block;
+}
+
+#createpost .flat {
+	outline: none;
+	background-color: #f5f5f5;
+	border: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+#createpost textarea.full {
+	height: 100px;
+	width: 100%;
+	font-size: 1.7em;
+	resize: none;
 }
 
 label {
