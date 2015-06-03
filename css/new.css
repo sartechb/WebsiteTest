@@ -9,7 +9,6 @@
   background-color: #56ACDB;
   padding: 0;
   margin: 0;
-  overflow: scroll;
   width:100%;
   height:100%;
   overflow-x:hidden;
@@ -36,11 +35,22 @@
 
 #sidebar{
 background-color: #AFD1F7;
-height: 100%;
-position: fixed;
+position:fixed;
+top:0;
+bottom:0;
 padding:0;
 margin-left: 1px;
 margin-top: 50px;
+overflow-y: scroll;
+overflow-x:hidden;
+}
+
+#bob{
+	margin:0;
+}
+
+#feedholder{
+	padding:0;
 }
 
 #user-photo{
@@ -86,7 +96,7 @@ h3{
 h4{
 	font-size: 1.3em;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   padding: 0;
   margin: 0;
   color: rgb(0, 162, 234);
@@ -95,11 +105,12 @@ h4{
 h4:hover{
 	font-size:1.3em;
 	font-weight: bold;
-	text-align:center;
+	text-align: left;
 	padding:0;
 	margin:0;
 	z-index:1;
 }
+
 
 h5{
 	font-size:1.4em;
@@ -109,21 +120,43 @@ h5{
 	margin:0;
 }
 
+h6{
+	font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  color: rgb(0, 162, 234);
+}
+
+h6:hover{
+	font-size:1.3em;
+	font-weight: bold;
+	text-align: center;
+	padding:0;
+	margin:0;
+	z-index:1;
+}
+h7{
+	color:gray;
+	margin:5px;
+}
+
 .filtered{
 	z-index:3;
 	 display: block;
-    padding-left: 15px;
-	font-size:1.4em;
+	font-size:1.32em;
 	font-weight: bold;
-	text-align:center;
 	padding:0;
 	margin:0;
 	color:white;
 	height:2em;
 	background-color: rgba(0, 162, 234, 0.14);
-	background: url('select.png') left no-repeat;
-	background-size: 1.7em 1.7em;
+	background: url('select.png') no-repeat;
+	background-position: 95%;
+	background-size: 1.2em 1.2em;
 	padding-top: .3em;
+	padding-left: 5%;
 }
 
 .gone{
@@ -135,18 +168,31 @@ h5{
 }
 
 #active{
-	width:70%;
+	width:60%;
+	height:1.8em;
 	padding:0;
-	margin:15%;
+	margin:20%;
 	margin-top:0px;
 	margin-bottom: 8px;
-	padding-top: 2px;
+	padding-top: 3px;
 	text-align: center;
 	background-color: #00A2EA;
 }
 
 #active:hover{
 	background-color: #0488C3;	
+}
+
+#add{
+	width:100%;
+	background-color: #00A2EA;
+}
+
+
+#add:hover{
+	background-color: rgba(255, 255, 255, 0.29);
+	color:white;
+
 }
 
 .filter{
@@ -157,11 +203,17 @@ h5{
 	color:#ffffff;
 }
 
+#postfeed{
+	margin:0;
+	float:right;
+}
+
 #content{
 	padding:0;
 	float:right;
 	margin-top: 50px;
 	z-index: 1;
+	margin-left: -1px;
 }
 
 .post{
@@ -181,6 +233,20 @@ margin-bottom: 45px;
 box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);	
 }
 
+#postDetails{
+	padding:0;
+	text-align:left;
+	padding-left: 14px;
+	margin-top: 5px;
+}
+
+#lowerDetails{
+	padding:0;
+	text-align:left;
+	padding-left: 14px;
+	margin-bottom: 5px;
+}
+
 #title{
 	padding-top: 15px;
 	padding-bottom:10px;
@@ -192,7 +258,10 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 #posttext{
 	font-weight: normal;
 	padding:20px;
+	padding-bottom: 10px;
 }
+
+
 
 .showall{
 	background-image: none;
@@ -205,8 +274,7 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 
 label {
     display: block;
-    padding-left: 15px;
-	font-size:1.4em;
+	font-size:1.32em;
 	font-weight: bold;
 	text-align:center;
 	padding:0;
@@ -214,8 +282,10 @@ label {
 	color:white;
 	height:2em;
 	padding-top: .3em;
-	background: url('unselect.png') left no-repeat;
-	background-size: 1.7em 1.7em;
+	padding-left: 5%;
+	background: url('unselect.png') no-repeat;
+	background-position: 95%;
+	background-size: 1.2em 1.2em;
 }
 
 input {
@@ -229,5 +299,10 @@ input {
 	float:left;
     *overflow: hidden;
 }
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+ 
 
 }

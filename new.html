@@ -30,6 +30,7 @@
     </div>
     <div class ="row" id="body">      
       <div class="hidden-xs hidden-sm col-md-2" id="sidebar">
+        <div id="holdcontent">
         <div class = "col-md-12" id="user-photo"><img id="user-photo"src="assets/puppy.jpg"/></div> <!--user photo-->
         <div class = "col-md-12" id="empty"></div>
         <div class = "col-md-12" id="user-name"><h1>Studydog Puppyson</h1></div>
@@ -40,13 +41,13 @@
           <div class ="row">
             <h3>My Active Posts</h3>
             <div class = "col-md-12" id="empty"></div>
-            <div class ="col-md-12" id="active"><h1>sample 1</h1></div>
-            <div class ="col-md-12" id="active"><h1>sample 2</h1></div>
+            <div class ="col-md-12" id="active"><h3>sample 1</h3></div>
+            <div class ="col-md-12" id="active"><h3>sample 2</h3></div>
           </div><!--active posts row-->
         </div>
 
          <hr align="center" width="70%" color="white">
-         <h3>My Filters</h3><br>
+         <h3>My Filters</h3>
 
        
 		 <form class="filter-class">
@@ -54,76 +55,54 @@
             <label class=""><input type="checkbox" name="class" value="eecs475"><h4>EECS 475</h4></label>
             <label class=""><input type="checkbox" name="class" value="eecs485"><h4>EECS 485</h4></label>
             <label class=""><input type="checkbox" name="class" value="ling341"><h4>LING 341</h4></label>
-			<label class="showall"><input type="checkbox" name="show" value="showall"><h4>Show All Posts</h4></label>
+			<label class="showall"><input type="checkbox" name="show" value="showall"><h6>Show All Posts</h6></label>
 		</form>
 		
-		<script>
-			$( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-				if((this).value === "showall")
-				{
-					$(".post").show();
-					$(".filtered").removeClass("filtered");
-					$(".hasBeenFiltered").removeClass("hasBeenFiltered");
-				}
-				else{
-					$( this ).parent().toggleClass( 'filtered');
-				}
-			});
-			
-			$( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-				if((this).value === "showall")
-				{
-					$(".post").show();
-					$(".filtered").removeClass("filtered");
-					$(".hasBeenFiltered").removeClass("hasBeenFiltered");
-				}
-				else if($(document.getElementById((this).value)).hasClass("hasBeenFiltered"))
-				{
-					$(document.getElementById((this).value)).toggle();
-				}
-				else{
-					$(".post").toggle();
-					$(".post").addClass("hasBeenFiltered");
-					$(document.getElementById((this).value)).toggle();
-				}
-			});
-
-		</script>
-    
+	
          <div class = "col-md-12" id="empty"></div>
-         <div class ="col-md-12" id="active"><h2>+Filter</h2></div>
+         <div class ="col-md-12" id="add"><h3>+add</h3></div>
+       </div> <!--holdcontent-->
       </div> <!--sidebar-->
 
 
       <div class="col-xs-12 col-md-10 col-lg-10 col-xl-10" id="content">
         <div class="row" id="createpost">
-
+          <span style="font-size:100px;margin-left:12%;">POST CREATION HERE</span>
         </div> <!--createpost-->
 
         <hr align="center" width="95%" color="#AFD1F7">
         
         <div class="row" id="postfeed">
-          <div class="col-xs-12">
-			<div class="post" id="dummy123">
+          <div id="postholder" class="col-xs-12">
+
+             <div class="post" id="dummy123">
               <div id="title">
-                <h1>This Is A Fifty Character Title, That's Our Chr Lim</h1>
+                <h1>This Is A Fifty Character Title, That's Our Chr Lim </h1>
               </div> <!--title-->
 
-              <div id="posttext">
-                 <h5> This is three hundred and fifty characters (350), which is our character limit for user posts so that they don't get too long. This should be descriptive content about what the user needs help with or wants to meet up about. Bacon ipsum dolor amet hamburger short ribs turducken, pork chop proident strip steak tail consectetur fugiat shank ham officia reprehenderit tenderloin cillum. Venison aute andouille. Filler </h5>
-              </div> <!--posttext-->
+              <div class="col-xs-12" id="postDetails">
+                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
+              </div>
 
+              <div id="posttext">
+                 <h5>This is three hundred and fifty characters (350), which is our character limit for user posts so that they don't get too long. This should be descriptive content about what the user needs help with or wants to meet up about. Bacon ipsum dolor amet hamburger short ribs turducken, pork chop proident strip steak tail consectetur fugiat shank ham officia reprehenderit tenderloin cillum. Venison aute andouille. Filler</h5>
+              </div> <!--posttext-->
+              <div id="lowerDetails"><h7>+join | Class Name | Location</h7></div>
             </div> <!--post-->
-			
+
             <div class="post" id="eecs370">
               <div id="title">
                 <h1>This is a post about EECS 370</h1>
               </div> <!--title-->
 
+              <div class="col-xs-12" id="postDetails">
+                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
+              </div>
+
               <div id="posttext">
                  <h5> This is a question about EECS 370. Halp</h5>
               </div> <!--posttext-->
-
+               <div id="lowerDetails"><h7>+join | Class Name | Location</h7></div>
             </div> <!--post-->
 
             <div class="post" id="eecs475">
@@ -131,10 +110,14 @@
                 <h1>This is a post about EECS 475</h1>
               </div> <!--title-->
 
+              <div class="col-xs-12" id="postDetails">
+                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
+              </div>
+
               <div id="posttext">
                  <h5> How do I crypto?????? </h5>
-			</div> <!--posttext-->
-              
+			        </div> <!--posttext-->
+               <div id="lowerDetails"><h7>+join | Class Name | Location</h7></div>
             </div> <!--post-->
 
             <div class="post" id="eecs485">
@@ -142,10 +125,14 @@
                 <h1>This is a post about EECS 485</h1>
               </div> <!--title-->
 
+              <div class="col-xs-12" id="postDetails" style:"text-align:left; padding:0;">
+                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
+              </div>
+
               <div id="posttext">
                  <h5> Wow this person has the same schedule as preeti </h5>
-			 </div> <!--posttext-->
-              
+			        </div> <!--posttext-->
+               <div id="lowerDetails"><h7>+join | Class Name | Location</h7></div>   
             </div> <!--post-->
 
             <div class="post" id="ling341">
@@ -153,10 +140,14 @@
                 <h1>Ling 341 help needed</h1>
               </div> <!--title-->
 
+              <div class="col-xs-12" id="postDetails">
+                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
+              </div>
+
               <div id="posttext">
                  <h5> Uhh this is basically EECS 376 lite</h5>
-			 </div> <!--posttext-->
-              
+			        </div> <!--posttext-->
+               <div id="lowerDetails"><h7>+join | Class Name | Location</h7></div>
             </div> <!--post-->
 
 
@@ -179,5 +170,42 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/test.js"></script>
+      <script>
+      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
+        if((this).value === "showall")
+        {
+          $(".post").show();
+          $(".filtered").removeClass("filtered");
+          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
+        }
+        else{
+          $( this ).parent().toggleClass( 'filtered');
+        }
+      });
+      
+      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
+        if((this).value === "showall")
+        {
+          $(".post").show();
+          $(".filtered").removeClass("filtered");
+          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
+        }
+        else if($(document.getElementById((this).value)).hasClass("hasBeenFiltered"))
+        {
+          $(document.getElementById((this).value)).toggle();
+        }
+        else{
+          $(".post").toggle();
+          $(".post").addClass("hasBeenFiltered");
+          $(document.getElementById((this).value)).toggle();
+        }
+      });
+
+      $('body').scroll(function() { 
+        $('#sidebar').css('top', $(this).scrollTop());
+      });
+
+    </script>
+    
   </body>
 </html>
