@@ -68,13 +68,14 @@
       <div class="col-xs-12 col-md-10 col-lg-10 col-xl-10" id="content">
         <div class="row" id="createpost">
           <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 blue-bar"></div>
-          <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 well minimized">
-          <form id="new-post">
-              <input type="text" name="post-title" class="toggle flat full" placeholder="Add a title"><br>
-              <hr>
-              <h2 class="text-muted text-left untoggle"> Find a StudyBuddy... </h2>
+          <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 well minimized" id="new-post-bar">
+            <h2 class="text-muted text-left untoggle"> Find a StudyBuddy... </h2>
+            <form id="new-post" class="toggle">
+              <input type="text" name="post-title" class="toggle flat full" id='new-post-title' placeholder="Add a title"><br class="toggle">
+              <hr class="toggle">
+              <hr class="toggle">
               <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Write your post here"></textarea>
-              <hr>
+              <hr class="toggle">
               <div class="col-sm-4">
                 <input type="text" name="post-place" class="toggle flat form-control" placeholder="Where?">
               </div>
@@ -85,10 +86,10 @@
                 <input type="text" name="post-limit" class="toggle flat form-control" placeholder="# of Buddies?">
               </div>
               <div class="col-sm-1">
-                <button type="submit" class="btn btn-primary">POST</button>
+                <button type="submit" class="btn btn-primary toggle">POST</button>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
        <!--  <div class="row" id="createpost">
           <span style="font-size:100px;margin-left:12%;">POST CREATION HERE</span>
@@ -98,6 +99,45 @@
         
         <div class="row" id="postfeed">
           <div id="postholder" class="col-xs-12">
+
+             <div class="post template-post" id="template-post-0">
+              <div id="title">
+                <h1></h1>
+              </div> <!--title-->
+              <div class="col-xs-12" id="postDetails">
+                <h7 id="nametime" data-time=""></h7>
+              </div>
+              <div id="posttext">
+                 <h5></h5>
+              </div> <!--posttext-->
+              <div id="lowerDetails"><h7></h7></div>
+            </div> <!--post--> 
+
+            <div class="post template-post" id="template-post-1">
+              <div id="title">
+                <h1></h1>
+              </div> <!--title-->
+              <div class="col-xs-12" id="postDetails">
+                <h7 id="nametime" data-time=""></h7>
+              </div>
+              <div id="posttext">
+                 <h5></h5>
+              </div> <!--posttext-->
+              <div id="lowerDetails"><h7></h7></div>
+            </div> <!--post--> 
+
+            <div class="post template-post" id="template-post-2">
+              <div id="title">
+                <h1></h1>
+              </div> <!--title-->
+              <div class="col-xs-12" id="postDetails">
+                <h7 id="nametime" data-time=""></h7>
+              </div>
+              <div id="posttext">
+                 <h5></h5>
+              </div> <!--posttext-->
+              <div id="lowerDetails"><h7></h7></div>
+            </div> <!--post--> 
 
              <div class="post" id="dummy123">
               <div id="title">
@@ -187,52 +227,15 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Parse.js -->
-    <script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+    <script src="https://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
     <!-- Handlebars.js -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/autogrow.min.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/test.js"></script>
-      <script>
-      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-        if((this).value === "showall")
-        {
-          $(".post").show();
-          $(".filtered").removeClass("filtered");
-          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
-        }
-        else{
-          $( this ).parent().toggleClass( 'filtered');
-        }
-      });
-      
-      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-        if((this).value === "showall")
-        {
-          $(".post").show();
-          $(".filtered").removeClass("filtered");
-          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
-        }
-        else if($(document.getElementById((this).value)).hasClass("hasBeenFiltered"))
-        {
-          $(document.getElementById((this).value)).toggle();
-        }
-        else{
-          $(".post").toggle();
-          $(".post").addClass("hasBeenFiltered");
-          $(document.getElementById((this).value)).toggle();
-        }
-      });
-
-      $('body').scroll(function() { 
-        $('#sidebar').css('top', $(this).scrollTop());
-      });
-
-      $("#new-post-content").autogrow();
-
-    </script>
+    <script src="js/main.js"></script>
     
   </body>
 </html>
