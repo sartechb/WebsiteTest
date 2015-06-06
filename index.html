@@ -195,44 +195,7 @@
     <script src="js/autogrow.min.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/test.js"></script>
-      <script>
-      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-        if((this).value === "showall")
-        {
-          $(".post").show();
-          $(".filtered").removeClass("filtered");
-          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
-        }
-        else{
-          $( this ).parent().toggleClass( 'filtered');
-        }
-      });
-      
-      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-        if((this).value === "showall")
-        {
-          $(".post").show();
-          $(".filtered").removeClass("filtered");
-          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
-        }
-        else if($(document.getElementById((this).value)).hasClass("hasBeenFiltered"))
-        {
-          $(document.getElementById((this).value)).toggle();
-        }
-        else{
-          $(".post").toggle();
-          $(".post").addClass("hasBeenFiltered");
-          $(document.getElementById((this).value)).toggle();
-        }
-      });
-
-      $('body').scroll(function() { 
-        $('#sidebar').css('top', $(this).scrollTop());
-      });
-
-      $("#new-post-content").autogrow();
-
-    </script>
+    <script src="js/main.js"></script>
     
   </body>
 </html>

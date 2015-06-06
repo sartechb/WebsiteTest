@@ -3,29 +3,23 @@ $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
   {
     $(".post").show();
     $(".filtered").removeClass("filtered");
-    $(".hasBeenFiltered").removeClass("hasBeenFiltered");
   }
   else{
+    $(".filtered").removeClass("filtered");
     $( this ).parent().toggleClass( 'filtered');
   }
 });
       
 $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-  if((this).value === "showall")
+   if((this).value === "showall")
   {
     $(".post").show();
     $(".filtered").removeClass("filtered");
-    $(".hasBeenFiltered").removeClass("hasBeenFiltered");
-  }
-  else if($(document.getElementById((this).value)).hasClass("hasBeenFiltered"))
-  {
-    $(document.getElementById((this).value)).toggle();
   }
   else{
-    $(".post").toggle();
-    $(".post").addClass("hasBeenFiltered");
-    $(document.getElementById((this).value)).toggle();
-  }
+    $(".post").hide();
+    $(document.getElementById((this).value)).show(); 
+    } 
 });
 
 $('body').scroll(function() { 

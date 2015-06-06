@@ -162,8 +162,7 @@ h7{
 	margin:0;
 	color:white;
 	height:2em;
-	background-color: rgba(0, 162, 234, 0.14);
-	background: url('select.png') no-repeat;
+	background-color: rgba(255, 255, 255, 0.29);
 	background-position: 95%;
 	background-size: 1.2em 1.2em;
 	padding-top: .3em;
@@ -332,9 +331,12 @@ label {
 	height:2em;
 	padding-top: .3em;
 	padding-left: 5%;
-	background: url('unselect.png') no-repeat;
 	background-position: 95%;
 	background-size: 1.2em 1.2em;
+}
+label:hover{
+	background-image: none;
+	background-color: rgba(255, 255, 255, 0.29);
 }
 
 input {
