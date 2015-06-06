@@ -283,10 +283,6 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 	background-color: rgba(255, 255, 255, 0.29);
 }
 
-.template-post {
-	display: none;
-}
-
 #createpost input.full {
 	height: 50px;
 	width: 100%;
@@ -307,18 +303,6 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 	width: 100%;
 	font-size: 1.7em;
 	resize: none;
-}
-
-#createpost .minimized .toggle {
-	display: none;
-}
-
-#createpost .expanded .untoggle {
-	display: none;
-}
-
-#createpost hr {
-	border-top: 1px solid #A9A;
 }
 
 label {
