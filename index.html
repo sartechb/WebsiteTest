@@ -16,7 +16,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-
   </head>
   <body>
   
@@ -51,60 +50,49 @@
          <h3>My Filters</h3>
 
        
-		 <form class="filter-class" id="filters">
+		 <form class="filter-class">
             <label class=""><input type="checkbox" name="class" value="eecs370"><h4>EECS 370</h4></label>
             <label class=""><input type="checkbox" name="class" value="eecs475"><h4>EECS 475</h4></label>
             <label class=""><input type="checkbox" name="class" value="eecs485"><h4>EECS 485</h4></label>
             <label class=""><input type="checkbox" name="class" value="ling341"><h4>LING 341</h4></label>
 			<label class="showall"><input type="checkbox" name="show" value="showall"><h6>Show All Posts</h6></label>
 		</form>
-		 <script>
-      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-        if((this).value === "showall")
-        {
-          $(".post").show();
-          $(".filtered").removeClass("filtered");
-          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
-        }
-        else{
-          $( this ).parent().toggleClass( 'filtered');
-        }
-      });
-      
-      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-        if((this).value === "showall")
-        {
-          $(".post").show();
-          $(".filtered").removeClass("filtered");
-          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
-        }
-        else if($(document.getElementById("filters")).hasClass("hasBeenFiltered"))
-        {
-          $(document.getElementById((this).value)).toggle();
-        }
-        else{
-          $(".post").toggle();
-          $("#filters").addClass("hasBeenFiltered");
-          $(document.getElementById((this).value)).toggle();
-        }
-      });
-
-      $('body').scroll(function() { 
-        $('#sidebar').css('top', $(this).scrollTop());
-      });
-
-    </script>
+		
 	
          <div class = "col-md-12" id="empty"></div>
-         <div class ="col-md-12" id="add"><h3>+add</h3></div>
+         <div class ="col-md-12" id="add"><h3>+add</h3></div>   
        </div> <!--holdcontent-->
       </div> <!--sidebar-->
 
 
       <div class="col-xs-12 col-md-10 col-lg-10 col-xl-10" id="content">
         <div class="row" id="createpost">
+          <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 blue-bar"></div>
+          <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 well minimized">
+          <form id="new-post">
+              <input type="text" name="post-title" class="toggle flat full" placeholder="Add a title"><br>
+              <hr>
+              <h2 class="text-muted text-left untoggle"> Find a StudyBuddy... </h2>
+              <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Write your post here"></textarea>
+              <hr>
+              <div class="col-sm-4">
+                <input type="text" name="post-place" class="toggle flat form-control" placeholder="Where?">
+              </div>
+              <div class="col-sm-3">
+                <input type="text" name="post-class" class="toggle flat form-control" placeholder="Class?">
+              </div>
+              <div class="col-sm-3">
+                <input type="text" name="post-limit" class="toggle flat form-control" placeholder="# of Buddies?">
+              </div>
+              <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary">POST</button>
+              </div>
+            </div>
+          </form>
+        </div>
+       <!--  <div class="row" id="createpost">
           <span style="font-size:100px;margin-left:12%;">POST CREATION HERE</span>
-        </div> <!--createpost-->
+        </div>  --><!--createpost-->
 
         <hr align="center" width="95%" color="#AFD1F7">
         
@@ -204,9 +192,47 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/autogrow.min.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/test.js"></script>
-    
+      <script>
+      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
+        if((this).value === "showall")
+        {
+          $(".post").show();
+          $(".filtered").removeClass("filtered");
+          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
+        }
+        else{
+          $( this ).parent().toggleClass( 'filtered');
+        }
+      });
+      
+      $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
+        if((this).value === "showall")
+        {
+          $(".post").show();
+          $(".filtered").removeClass("filtered");
+          $(".hasBeenFiltered").removeClass("hasBeenFiltered");
+        }
+        else if($(document.getElementById((this).value)).hasClass("hasBeenFiltered"))
+        {
+          $(document.getElementById((this).value)).toggle();
+        }
+        else{
+          $(".post").toggle();
+          $(".post").addClass("hasBeenFiltered");
+          $(document.getElementById((this).value)).toggle();
+        }
+      });
+
+      $('body').scroll(function() { 
+        $('#sidebar').css('top', $(this).scrollTop());
+      });
+
+      $("#new-post-content").autogrow();
+
+    </script>
     
   </body>
 </html>
