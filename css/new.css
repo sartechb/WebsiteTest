@@ -45,7 +45,7 @@
 	background-repeat: no-repeat;
 	padding:10px;
 	background-position: center;
-	margin-right: 10px;
+	margin-right: 12px;
 }
 
 #actions{
@@ -120,7 +120,7 @@ h3{
 h4{
 	font-size: 1.3em;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   padding: 0;
   margin: 0;
   color: rgb(0, 162, 234);
@@ -129,7 +129,7 @@ h4{
 h4:hover{
 	font-size:1.3em;
 	font-weight: bold;
-	text-align: left;
+	text-align: center;
 	padding:0;
 	margin:0;
 	z-index:1;
@@ -344,7 +344,6 @@ label {
 	color:white;
 	height:2em;
 	padding-top: .3em;
-	padding-left: 5%;
 	background-position: 95%;
 	background-size: 1.2em 1.2em;
 }
