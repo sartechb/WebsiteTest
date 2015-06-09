@@ -18,6 +18,7 @@
   background-color: #00A2EA;
   position:fixed;
   z-index: 3;
+  width:100%;
 }
 
 .blue-bar {
@@ -34,6 +35,17 @@
 #logo{
 	height:90%;
 	margin-top:3px;
+}
+#dropdown{
+	float:left;
+	width:50px;
+	height:50px;
+	background-image: url("../assets/navlines.png");
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	padding:10px;
+	background-position: center;
+	margin-right: 10px;
 }
 
 #actions{
@@ -75,6 +87,7 @@ overflow-x:hidden;
 
 #empty{
 	height:15px;
+	margin-bottom: 8px;
 }
 
 h1{
@@ -216,6 +229,7 @@ h7{
 #postfeed{
 	margin:0;
 	float:right;
+	width: 100%;
 }
 
 #content{

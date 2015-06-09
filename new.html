@@ -16,6 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
   </head>
   <body>
   
@@ -26,10 +27,11 @@
       <div class = "col-md-12" id = "this-is-the-navbar">
         <div id="actions"><h3>Notifications | Settings | Log Out</h3></div>
         <img id="logo" src="assets/logo_new_crop.png"/>
+        <div class="hidden-md hidden-lg" id="dropdown"></div>
       </div> <!--Navbar-->
     </div>
     <div class ="row" id="body">      
-      <div class="hidden-xs hidden-sm col-md-2" id="sidebar">
+      <div class="hidden-xs col-sm-3 col-sm-2" id="sidebar">
         <div id="holdcontent">
         <div class = "col-md-12" id="user-photo"><img id="user-photo"src="assets/puppy.jpg"/></div> <!--user photo-->
         <div class = "col-md-12" id="empty"></div>
@@ -65,7 +67,7 @@
       </div> <!--sidebar-->
 
 
-      <div class="col-xs-12 col-md-10 col-lg-10 col-xl-10" id="content">
+      <div class="col-xs-10 col-md-10 col-lg-10 col-xl-10" id="content">
         <div class="row" id="createpost">
           <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 blue-bar"></div>
           <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 well minimized" id="new-post-bar">
@@ -231,6 +233,8 @@
     <!-- Handlebars.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="jquery-ui/external/jquery/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/autogrow.min.js"></script>
     <script src="js/blog.js"></script>
