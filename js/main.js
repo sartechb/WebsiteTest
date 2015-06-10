@@ -1,10 +1,13 @@
 $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
   if((this).value === "showall")
   {
-    $(".post").show();
+    $(".post").show();    
+    $(".filtered").removeClass("filtered");
   }
   else{
     $(".post").hide();
+    $(".filtered").removeClass("filtered");
+    $(this).parent().addClass("filtered");
     $(document.getElementById((this).value)).show(); 
   }
 });
