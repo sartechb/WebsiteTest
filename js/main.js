@@ -1,16 +1,82 @@
-$( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-  if((this).value === "showall")
-  {
-    $(".post").show();    
-    $(".filtered").removeClass("filtered");
-  }
-  else{
-    $(".post").hide();
-    $(".filtered").removeClass("filtered");
-    $(this).parent().addClass("filtered");
-    $(document.getElementById((this).value)).show(); 
-  }
+// $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
+//   if((this).value === "showall")
+//   {
+//     $(".post").show();    
+//     $(".filtered").removeClass("filtered");
+//   }
+//   else{
+//     $(".post").hide();
+//     $(".filtered").removeClass("filtered");
+//     $(this).parent().addClass("filtered");
+//     $(document.getElementById((this).value)).show(); 
+//   }
+// });
+
+/*
+ * The app variable will be a global application variable.
+ * One can use the app variable to save debug data and
+ * view it at the console. It also helps the app maintain
+ * state for uses like filtering.
+ */
+var app = {};
+
+/*
+ * How this works: we initialize important page elements
+ * like the name, uni, etc in this function. We add filter
+ * data to the app variable based on information we get from
+ * parse. It's set up so each filter has it's own array of post
+ * IDs that it corresponds to. This makes it easy to hide
+ * and show the correct posts, and all this info is 
+ * maintained and manipulated internally
+ */
+
+  //building filters
+  app.filters = {};
+
+  //replace this part with info taken from parse:
+  //TODO: PARSE INTEGRATION HERE
+  app.filters["EECS_370"] = [];
+  app.filters["EECS_475"] = [];
+  app.filters["EECS_485"] = [];
+  app.filters["LING_341"] = [];
+
+  //building post mappings
+  //replace this part with info taken from parse:
+  //TODO: PARSE INTEGRATION HERE
+  app.filters["EECS_370"].push("dummy123", "eecs370");
+  app.filters["EECS_475"].push("eecs475");
+  app.filters["EECS_485"].push("eecs485");
+  app.filters["LING_341"].push("ling341");
+
+  console.log(app);
+
+
+$(".filter-class div").on("click", function (e) {filterToggle(e);});
+$("div.showall").on("click", function (e) {
+  $(".post.on").removeClass(".on");
+  $(".post").not(".template-post").show();
 });
+
+function filterToggle(e) {
+  var filter = $(e.target).parent().attr("id");
+  console.log(e.target);
+  filterToggleHelper(filter);
+}
+
+
+function filterToggleHelper (filter) {
+  console.log(filter);
+  var a = app.filters[filter];
+  for(var i=0; i < a.length; ++i) 
+    if($("#"+a[i]).hasClass("on"))
+      $("#"+a[i]).removeClass("on");
+    else
+      $("#"+a[i]).addClass("on");
+  $(".post").not(".template-post").show();
+  if($(".post.on").length != 0)
+    $(".post").not(".on").hide();
+}
+
 
 $('#dropdown').on('click', function(){
   $('#sidebar').slideToggle(200);
