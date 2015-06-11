@@ -24,7 +24,7 @@ $('#dropdown').on('click', function(){
   }
 });
 
-
+//allows for separate scrolling or side bar and body
 $('body').scroll(function() { 
   $('#sidebar').css('top', $(this).scrollTop());
 });
@@ -49,7 +49,7 @@ $('#new-post').submit(function (e) {
   e.preventDefault();
   console.log(e);
 
-  var errorAlert = "<div class='alert alert-danger'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+  var errorAlert = "<div class='alert alert-danger col-xs-8 col-xs-offset-2'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
   var input_length = $("#createpost input, #createpost textarea").length;
   for(var i = 0; i < input_length; ++i) {//iterate through all inputs
     if(e.currentTarget[i].value == "") {//if any are empty
