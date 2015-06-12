@@ -279,7 +279,7 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 
 #posttext{
 	font-weight: normal;
-	padding:20px;
+	padding:30px;
 	padding-bottom: 10px;
 }
 
@@ -361,7 +361,8 @@ input {
     position: relative;
     top: -1px;
 	float:left;
-    *overflow: hidden;
+    overflow: hidden;
+    -webkit-appearance: none;
 }
 
 ::-webkit-scrollbar {
