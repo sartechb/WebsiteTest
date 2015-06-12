@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Freestyle Script;
+    src: url(fonts/FREESCPT.TTF);
+}
+
  .container
  {
  	width:100%;

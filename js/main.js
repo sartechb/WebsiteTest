@@ -12,17 +12,35 @@ $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
   }
 });
 
+
 $('#dropdown').on('click', function(){
   $('#sidebar').slideToggle(200);
   if($('#content').hasClass('col-xs-10'))
   {
    $('#content').switchClass( "col-xs-10", "col-xs-12", 200, "easeInOutQuad" );
   }
-  else
+  else if($('#content').hasClass('col-xs-12'))
   {
     $('#content').switchClass( "col-xs-12", "col-xs-10", 200, "easeInOutQuad" ); 
   }
+  if($('#content').hasClass('col-md-10'))
+  {
+   $('#content').switchClass( "col-md-10", "col-md-12", 200, "easeInOutQuad" );
+  }
+  else if($('#content').hasClass('col-md-12'))
+  {
+    $('#content').switchClass( "col-md-12", "col-md-10", 200, "easeInOutQuad" ); 
+  }
+  if($('#content').hasClass('col-sm-10'))
+  {
+   $('#content').switchClass( "col-sm-10", "col-sm-12", 200, "easeInOutQuad" );
+  }
+  else if($('#content').hasClass('col-sm-12')) 
+  {
+    $('#content').switchClass( "col-sm-12", "col-sm-10", 200, "easeInOutQuad" ); 
+  }
 });
+
 
 
 $('body').scroll(function() { 
