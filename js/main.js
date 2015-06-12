@@ -43,36 +43,39 @@ var app = {};
   //building post mappings
   //replace this part with info taken from parse:
   //TODO: PARSE INTEGRATION HERE
-  app.filters["EECS_370"].push("dummy123", "eecs370");
+  app.filters["EECS_370"].push("eecs370");
   app.filters["EECS_475"].push("eecs475");
   app.filters["EECS_485"].push("eecs485");
   app.filters["LING_341"].push("ling341");
 
-  console.log(app);
+  //console.log(app);
 
 
 $(".filter-class div").on("click", function (e) {filterToggle(e);});
 $("div.showall").on("click", function (e) {
-  $(".post.on").removeClass(".on");
+  $(".post.on").removeClass("on");
   $(".post").not(".template-post").show();
+  $(".filtered").removeClass("filtered");
 });
 
 function filterToggle(e) {
   var filter = $(e.target).parent().attr("id");
-  console.log(e.target);
+  //console.log(e.target);
   filterToggleHelper(filter);
+  $(e.target).parent().toggleClass("filtered");
 }
 
 
 function filterToggleHelper (filter) {
   console.log(filter);
   var a = app.filters[filter];
+  console.log(a[0]);
   for(var i=0; i < a.length; ++i) 
     if($("#"+a[i]).hasClass("on"))
       $("#"+a[i]).removeClass("on");
     else
       $("#"+a[i]).addClass("on");
-  $(".post").not(".template-post").show();
+  $(".post").not(".template-post").show(200);
   if($(".post.on").length != 0)
     $(".post").not(".on").hide();
 }
