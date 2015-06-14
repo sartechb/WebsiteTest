@@ -345,7 +345,8 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 	border-top: 1px solid #A9A;
 }
 
-label {
+label, .filter-class div, 
+div.showall {
     display: block;
 	font-size:1.32em;
 	font-weight: bold;
@@ -356,7 +357,7 @@ label {
 	height:2em;
 	padding-top: .3em;
 }
-label:hover{
+label:hover, .filter-class div:hover{
 	background-image: none;
 	background-color: #AFD1F7;
 }
