@@ -52,7 +52,7 @@ var app = {};
 
 
 $(".filter-class div").on("click", function (e) {filterToggle(e);});
-$("div.showall").on("click", filterAll());
+$("div.showall").on("click", function() {filterAll()});
 
 function filterAll () {
   $(".post.on").removeClass("on");
