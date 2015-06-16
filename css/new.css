@@ -345,6 +345,14 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 	border-top: 1px solid #A9A;
 }
 
+#createpost button {
+	margin-top: 20px;
+}
+
+div.postInput input {
+	font-size: 1.2em;
+}
+
 label, .filter-class div, 
 div.showall {
     display: block;

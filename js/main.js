@@ -52,11 +52,13 @@ var app = {};
 
 
 $(".filter-class div").on("click", function (e) {filterToggle(e);});
-$("div.showall").on("click", function (e) {
+$("div.showall").on("click", filterAll());
+
+function filterAll () {
   $(".post.on").removeClass("on");
   $(".post").not(".template-post").show();
   $(".filtered").removeClass("filtered");
- });
+}
  
 function filterToggle(e) {
   var filter = $(e.target).parent().attr("id");
@@ -75,7 +77,7 @@ function filterToggleHelper (filter) {
       $("#"+a[i]).removeClass("on");
     else
       $("#"+a[i]).addClass("on");
-  $(".post").not(".template-post").show(200);
+  $(".post").not(".template-post").show(300);
   if($(".post.on").length != 0)
     $(".post").not(".on").hide();
 }
@@ -122,9 +124,12 @@ $("#new-post-content").autogrow();
 $('#new-post-bar h2.untoggle').on('click', function (e) {
   var bar = $(e.target);
   bar = bar.parent();
+  var form = $("#new-post");
   //check for minimized state and expand
-  if(bar.hasClass('minimized')) 
+  if(bar.hasClass('minimized')) {
+    form.children().show({"duration":200,"easing":"easeInOutQuad"});
     bar.removeClass('minimized').addClass('expanded');
+  }
   //give focus to first input
   $("#createpost #new-post-title").focus();
   //allows post creation box to stay open
@@ -164,8 +169,17 @@ $('#new-post').submit(function (e) {
   //clean up the post creator
   for(var i = 0; i < input_length; ++i)
     e.currentTarget[i].value = '';
-
+  $("#new-post").children().hide(200);
   $("#new-post-bar").addClass('minimized').removeClass('expanded');
 
+  filterAll();
+});
+
+$("#post-cancel").click(function (e) {
+  $("#new-post input, #new-post textarea").val("");
+  $("#new-post").children().hide(200);
+  $("#new-post-bar").addClass('minimized').removeClass('expanded');
+  setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
+  
 });
 

@@ -81,22 +81,23 @@
           <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 well minimized" id="new-post-bar">
             <h2 class="text-muted text-left untoggle"> Find a StudyBuddy... </h2>
             <form id="new-post" class="toggle">
-              <input type="text" name="post-title" class="toggle flat full" id='new-post-title' placeholder="Add a title"><br class="toggle">
+              <input type="text" name="post-title" class="toggle flat full" id='new-post-title' placeholder="Add a title" autocomplete="off"><br class="toggle">
               <hr class="toggle">
               <hr class="toggle">
               <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Write your post here"></textarea>
               <hr class="toggle">
+              <div class="col-sm-4 postInput">
+                <input type="text" name="post-place" class="toggle flat form-control" placeholder="Where?" autocomplete="off">
+              </div>
+              <div class="col-sm-4 postInput">
+                <input type="text" name="post-class" class="toggle flat form-control" placeholder="Class?" autocomplete="off">
+              </div>
+              <div class="col-sm-4 postInput">
+                <input type="number" name="post-limit" class="toggle flat form-control" placeholder="How Many?" autocomplete="off">
+              </div>
               <div class="col-sm-4">
-                <input type="text" name="post-place" class="toggle flat form-control" placeholder="Where?">
-              </div>
-              <div class="col-sm-3">
-                <input type="text" name="post-class" class="toggle flat form-control" placeholder="Class?">
-              </div>
-              <div class="col-sm-3">
-                <input type="text" name="post-limit" class="toggle flat form-control" placeholder="# of Buddies?">
-              </div>
-              <div class="col-sm-1">
                 <button type="submit" class="btn btn-primary toggle">POST</button>
+                <button type="button" class="btn btn-default toggle" id="post-cancel">NVM</button>
               </div>
             </form>
           </div>
