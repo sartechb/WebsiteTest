@@ -56,7 +56,7 @@ $("div.showall").on("click", function() {filterAll()});
 
 function filterAll () {
   $(".post.on").removeClass("on");
-  $(".post").not(".template-post").show();
+  $(".post").not(".template-post").show(300);
   $(".filtered").removeClass("filtered");
 }
  

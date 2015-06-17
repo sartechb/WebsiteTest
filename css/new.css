@@ -186,7 +186,10 @@ h7{
 	height:2em;
 	padding-top: .3em;
 	background-image: none;
-	background-color: #AFD1F7;
+	background-color: rgba(255, 255, 255, 0.29);
+}
+.filtered:hover {
+	background-color: initial;
 }
 
 .gone{
@@ -353,6 +356,11 @@ div.postInput input {
 	font-size: 1.2em;
 }
 
+.add-filter {
+	font-size: 1.2em;
+	cursor: pointer;
+}
+
 label, .filter-class div, 
 div.showall {
     display: block;
@@ -364,8 +372,9 @@ div.showall {
 	color:white;
 	height:2em;
 	padding-top: .3em;
+	cursor: pointer;
 }
-label:hover, .filter-class div:hover{
+label:hover, .filter-class > div:hover{
 	background-image: none;
 	background-color: #AFD1F7;
 }
