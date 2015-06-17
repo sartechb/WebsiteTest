@@ -1,17 +1,3 @@
-// $( '.filter-class' ).on( 'click', 'input:checkbox', function () {
-//   if((this).value === "showall")
-//   {
-//     $(".post").show();    
-//     $(".filtered").removeClass("filtered");
-//   }
-//   else{
-//     $(".post").hide();
-//     $(".filtered").removeClass("filtered");
-//     $(this).parent().addClass("filtered");
-//     $(document.getElementById((this).value)).show(); 
-//   }
-// });
-
 /*
  * The app variable will be a global application variable.
  * One can use the app variable to save debug data and
@@ -50,24 +36,30 @@ var app = {};
 
   //console.log(app);
 
-
+//sets event handlers on filters and showall
 $(".filter-class div").on("click", function (e) {filterToggle(e);});
 $("div.showall").on("click", function() {filterAll()});
 
+//Applies Show All
 function filterAll () {
   $(".post.on").removeClass("on");
   $(".post").not(".template-post").show(300);
   $(".filtered").removeClass("filtered");
 }
- 
+
+//Applies filterHelper
 function filterToggle(e) {
-  var filter = $(e.target).parent().attr("id");
+  var filter;
+  if($(e.target).prop("tagName") == "H4")
+    filter = $(e.target).parent();
+  else filter = $(e.target);
   //console.log(e.target);
-  filterToggleHelper(filter);
-  $(e.target).parent().toggleClass("filtered");
+  filter.toggleClass("filtered");
+  filterToggleHelper(filter.attr("id"));
+  
 }
 
-
+//Applies filters
 function filterToggleHelper (filter) {
   console.log(filter);
   var a = app.filters[filter];
@@ -77,9 +69,15 @@ function filterToggleHelper (filter) {
       $("#"+a[i]).removeClass("on");
     else
       $("#"+a[i]).addClass("on");
-  $(".post").not(".template-post").show(300);
-  if($(".post.on").length != 0)
-    $(".post").not(".on").hide();
+
+  setTimeout(function () {
+    $(".post.on").not(".template-post").show(300);
+    if($(".post.on").length != 0 /*&& */)
+      $(".post").not(".on").hide(300);
+    else if($(".filter-class .filtered").length == 0)
+      $(".post").not(".template-post").show(300);
+  }, 50);
+  
 }
 
 // Controls dropdown code
@@ -180,6 +178,34 @@ $("#post-cancel").click(function (e) {
   $("#new-post").children().hide(200);
   $("#new-post-bar").addClass('minimized').removeClass('expanded');
   setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
-  
 });
 
+$("#new-filter").click(function (e) {
+  showVeil();
+  $("#newFilterModal").show(200);
+});
+
+$("#newFilterModal form").submit(function (e) {
+  e.preventDefault();
+  hideVeil();
+  $("#newFilterModal").hide(200);
+  var newFilter = e.currentTarget[0].value;
+  $("#newFilterModal input").val("");
+
+  newFilter = newFilter.toUpperCase();
+  var id = newFilter.replace(" ", "_");
+  $(".filter-class").append("<div class='col-md-12' id="+id+"><h4>"+newFilter+"</h4></div>");
+  var html = $(".filter-class #"+id);
+  console.log(html);
+  html.click(function (e){filterToggle(e);});
+  app.filters[id] = [];
+
+});
+
+function showVeil() {
+  $("div.veil").addClass("active", 300);
+}
+
+function hideVeil() {
+  $("div.veil.active").removeClass("active", 300);
+}

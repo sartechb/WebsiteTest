@@ -20,7 +20,19 @@
   </head>
   <body>
   
-
+  <div class="veil"></div>
+  <div class="container" id="newFilterModal">
+    <div class="row top">
+      <div class="col-xs-5 col-xs-offset-4 blue-bar wide"><h1>Add a Filter:</h1></div>
+        <form>
+          <div class="col-xs-5 col-xs-offset-4 well">
+          <input type="text" name="new-filter" class="flat add col-xs-10" id='new-post-title' placeholder='Ex. EECS 123' autocomplete="off">
+          <button class="btn btn-primary col-xs-2" type="submit">ADD</button>
+        </div>
+          
+      </form>
+    </div>
+  </div>
 
  <div class="container">
     <div class = "row">
@@ -50,11 +62,7 @@
         </div>
 
          <hr align="center" width="70%" color="white">
-         <h3>My Filters
-          
-            <span class="glyphicon glyphicon-plus add-filter" aria-hidden="true"></span>
-
-         </h3>
+         <h3>My Filters<span id="new-filter" class="glyphicon glyphicon-plus add-filter" aria-hidden="true"></span></h3>
 
        
         <div class="filter-class">
@@ -64,17 +72,6 @@
           <div class="col-md-12" id="LING_341"><h4>LING 341</h4></div>
         </div>
         <div class="col-md-12 showall"><h6> Show All Posts</h6></div> 
-     <!-- <form class="filter-class">
-            <label class=""><input type="checkbox" name="class" value="eecs370"><h4>EECS 370</h4></label>
-            <label class=""><input type="checkbox" name="class" value="eecs475"><h4>EECS 475</h4></label>
-            <label class=""><input type="checkbox" name="class" value="eecs485"><h4>EECS 485</h4></label>
-            <label class=""><input type="checkbox" name="class" value="ling341"><h4>LING 341</h4></label>
-      <label class="showall"><input type="checkbox" name="show" value="showall"><h6>Show All Posts</h6></label>
-    </form> -->
-    
-  
-         <div class = "col-md-12" id="empty"></div>
-         <div class ="col-md-12" id="add"><h3>+add</h3></div>
        </div> <!--holdcontent-->
       </div> <!--sidebar-->
 

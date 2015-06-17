@@ -40,9 +40,16 @@ span{
 	height: 30px;
 	background-color: #AFD1F7;
 	margin-top: 20px;
+	color: white;
 }
 
-#createpost .well {
+.blue-bar.wide {
+	padding-top: 10px;
+	height: 50px;
+}
+
+#createpost .well,
+#newFilterModal .well {
 	border-radius: initial;
 	background-color: #white;
 }
@@ -310,14 +317,16 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 	display: none;
 }
 
-#createpost input.full {
+#createpost input.full,
+#newFilterModal input.full {
 	height: 50px;
 	width: 100%;
 	font-size: 2.0em;
 	display: block;
 }
 
-#createpost .flat {
+#createpost .flat, 
+#newFilterModal .flat {
 	outline: none;
 	background-color: #white;
 	border: none;
@@ -359,6 +368,45 @@ div.postInput input {
 .add-filter {
 	font-size: 1.2em;
 	cursor: pointer;
+}
+
+.veil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0;
+  z-index: 0;
+}
+
+.veil.active {
+  opacity: 0.7;
+  z-index: 100;
+}
+
+#newFilterModal {
+	display: none;
+	position: fixed;
+	top: 20%;
+	z-index: 101;
+}
+
+#newFilterModal input.add {
+	height: 2em;
+	font-size: 1.4em;
+	resize: none;
+	background-color: #white;
+}
+
+#newFilterModal .well {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+#newFilterModal .btn {
+	height: 100%;
+	margin-top: 3px;
 }
 
 label, .filter-class div, 
