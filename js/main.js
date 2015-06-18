@@ -61,9 +61,10 @@ function filterToggle(e) {
 
 //Applies filters
 function filterToggleHelper (filter) {
-  console.log(filter);
+  //console.log(filter);
+  if(filter == null) return;
   var a = app.filters[filter];
-  console.log(a[0]);
+ // console.log(a[0]);
   for(var i=0; i < a.length; ++i) 
     if($("#"+a[i]).hasClass("on"))
       $("#"+a[i]).removeClass("on");
@@ -173,6 +174,7 @@ $('#new-post').submit(function (e) {
   filterAll();
 });
 
+//Cancel logic for post creation
 $("#post-cancel").click(function (e) {
   $("#new-post input, #new-post textarea").val("");
   $("#new-post").children().hide(200);
@@ -180,11 +182,13 @@ $("#post-cancel").click(function (e) {
   setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
 });
 
+//new filter button logic. Shows newFilterModal
 $("#new-filter").click(function (e) {
   showVeil();
   $("#newFilterModal").show(200);
 });
 
+//Logic for submitting a new filter and adding it to the sidebar. TODO: Parse integration here!
 $("#newFilterModal form").submit(function (e) {
   e.preventDefault();
   hideVeil();
@@ -194,18 +198,30 @@ $("#newFilterModal form").submit(function (e) {
 
   newFilter = newFilter.toUpperCase();
   var id = newFilter.replace(" ", "_");
-  $(".filter-class").append("<div class='col-md-12' id="+id+"><h4>"+newFilter+"</h4></div>");
+  $(".filter-class").append("<div class='col-md-12' id="+id+
+    "><h4><span class='glyphicon glyphicon-remove' aria-hidden='true'></span>"+newFilter+"</h4></div>");
   var html = $(".filter-class #"+id);
   console.log(html);
   html.click(function (e){filterToggle(e);});
   app.filters[id] = [];
-
+  //connect all posts that fit under this filter here! TODO: Parse integration here!
 });
 
-function showVeil() {
-  $("div.veil").addClass("active", 300);
-}
+//Cancel logic for new filter creation
+$("#newFilterModal button.cancel").click(function (e) {
+  $("#newFilterModal").hide(200);
+  $("#newFilterModal input").val("");
+  hideVeil();
+});
 
-function hideVeil() {
-  $("div.veil.active").removeClass("active", 300);
-}
+//logic to delete a filter. TODO: Parse integration here!
+$(".filter-class div span").click(function (e) {
+  var filter = $(e.target).parent().parent();
+  filter.hide(200, function (){$(this).remove();});
+  //filter.remove();
+  //also remove from active filter list in parse!
+});
+
+//logic to show/hide veil during modals with animation
+function showVeil() {$("div.veil").addClass("active", 300);}
+function hideVeil() {$("div.veil.active").removeClass("active", 300);}

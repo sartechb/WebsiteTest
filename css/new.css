@@ -199,6 +199,19 @@ h7{
 	background-color: initial;
 }
 
+.filter-class span {
+	font-size: .7em;
+	color:rgb(4, 136, 195);
+	margin-left: 0;
+	margin-right: 10px;
+	margin-top: 0;
+	display: none;
+}
+
+.filter-class div:hover span {
+	display: initial;
+}
+
 .gone{
 	display:none;
 }
@@ -207,7 +220,7 @@ h7{
 	padding:0;
 }
 
-#active{
+#active-posts .row div.active-post{
 	width:60%;
 	height:1.8em;
 	padding:0;
@@ -217,22 +230,30 @@ h7{
 	padding-top: 3px;
 	text-align: center;
 	background-color: #0488C3;
+	cursor: pointer;
 }
 
-#active:hover{
+#active-posts .row div.active-post:hover{
 	background-color: #AFD1F7;	
 }
 
-#add{
+#new-filter{
 	width:100%;
 	background-color: #0488C3;
+	height: 2.4em;
+	font-size: 1.32em;
+	padding:0px;
+	cursor: pointer;
 }
 
-
-#add:hover{
+#new-filter:hover{
 	background-color: rgba(255, 255, 255, 0.29);
 	color:white;
 
+}
+
+#new-filter span {
+	font-size: 1em;
 }
 
 .filter{
@@ -398,6 +419,7 @@ div.postInput input {
 	font-size: 1.4em;
 	resize: none;
 	background-color: #white;
+	margin-top: 2px;
 }
 
 #newFilterModal .well {

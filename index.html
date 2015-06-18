@@ -23,11 +23,12 @@
   <div class="veil"></div>
   <div class="container" id="newFilterModal">
     <div class="row top">
-      <div class="col-xs-5 col-xs-offset-4 blue-bar wide"><h1>Add a Filter:</h1></div>
+      <div class="col-xs-6 col-xs-offset-3 blue-bar wide"><h1>Add a Filter:</h1></div>
         <form>
-          <div class="col-xs-5 col-xs-offset-4 well">
-          <input type="text" name="new-filter" class="flat add col-xs-10" id='new-post-title' placeholder='Ex. EECS 123' autocomplete="off">
-          <button class="btn btn-primary col-xs-2" type="submit">ADD</button>
+          <div class="col-xs-6 col-xs-offset-3 well">
+          <input type="text" name="new-filter" class="flat add col-xs-8" id='new-post-title' placeholder='Ex. EECS 123' autocomplete="off">
+          <button class="btn btn-primary col-xs-2 submit " type="submit">ADD</button>
+          <button class="btn btn-default col-xs-2 cancel" type="button">NVM</button>
         </div>
           
       </form>
@@ -56,22 +57,23 @@
           <div class ="row">
             <h3>My Active Posts</h3>
             <div class = "col-md-12" id="empty"></div>
-            <div class ="col-md-12" id="active"><h3>sample 1</h3></div>
-            <div class ="col-md-12" id="active"><h3>sample 2</h3></div>
+            <div class ="col-md-12 active-post" id=""><h3>sample 1</h3></div>
+            <div class ="col-md-12 active-post" id=""><h3>sample 2</h3></div>
           </div><!--active posts row-->
         </div>
 
          <hr align="center" width="70%" color="white">
-         <h3>My Filters<span id="new-filter" class="glyphicon glyphicon-plus add-filter" aria-hidden="true"></span></h3>
+         <h3>My Filters</h3>
 
        
         <div class="filter-class">
-          <div class="col-md-12" id="EECS_370"><h4>EECS 370</h4></div>
-          <div class="col-md-12" id="EECS_475"><h4>EECS 475</h4></div>
-          <div class="col-md-12" id="EECS_485"><h4>EECS 485</h4></div>
-          <div class="col-md-12" id="LING_341"><h4>LING 341</h4></div>
+          <div class="col-md-12" id="EECS_370"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>EECS 370</h4></div>
+          <div class="col-md-12" id="EECS_475"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>EECS 475</h4></div>
+          <div class="col-md-12" id="EECS_485"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>EECS 485</h4></div>
+          <div class="col-md-12" id="LING_341"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>LING 341</h4></div>
         </div>
         <div class="col-md-12 showall"><h6> Show All Posts</h6></div> 
+        <div class="col-md-12" id="new-filter"><h6> Add Filter <span class="glyphicon glyphicon-plus add-filter" aria-hidden="true"></span></h6></div>
        </div> <!--holdcontent-->
       </div> <!--sidebar-->
 
