@@ -1,4 +1,4 @@
-Parse.initialize("CRiHeLQl3IT2amq2a9kHCvAwhkmwNn2VEMVaKN5N", "mFcmOluxGuB0QhM3F0BsQW361QI5iPMdVMa8ynaj");
+Parse.initialize("MQvT5Bq6CsU34IQBfop8fPEJLOsLybDgDMBRdFhM", "HNFXaE7aCayggyI8hyUvbk5kG2sWXH2FpMirSNyC");
 var resp;
 var errorAlert = "<div class='alert alert-danger'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
 
@@ -36,6 +36,11 @@ $("#signerup").submit(
         user.set("email", e.currentTarget[1].value);
         user.set("username", e.currentTarget[1].value);
         user.set("password", e.currentTarget[2].value);
+        user.set("school", e.currentTarget[3].value);
+        console.log($("#signerup .profileSelect.selected").find("img").attr("src"));
+        var pic = $("#signerup .profileSelect.selected").find("img").attr("src").replace("assets/","");
+        console.log(pic);
+        user.set("pic", pic);
 
         user.signUp(null, {
           success: function (user) { 
@@ -69,4 +74,11 @@ $("#logerin").submit(
             }
         }
     });
+});
+
+$("#signerup .profileSelect").click(function (e) {
+  var img = $(e.target);
+  if(img.prop("tagName") == "IMG") img = img.parent();
+  $("#signerup .profileSelect").removeClass("selected");
+  img.addClass("selected");
 });

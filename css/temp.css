@@ -49,3 +49,19 @@ footer h3, p {
 #greeting {
 	color:#ccc;
 }
+
+#signerup .profileSelect img {
+	z-index: 5;
+}
+
+#signerup .profileSelect:hover {
+	-webkit-box-shadow: 0px 0px 20px 2px white inset;
+	-moz-box-shadow: 0px 0px 20px 2px white inset;
+	box-shadow: 0px 0px 20px 2px white inset;
+}
+
+#signerup .profileSelect.selected {
+	z-index: 0;
+	background-color: white;
+	opacity: .5;
+}
