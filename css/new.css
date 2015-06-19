@@ -247,6 +247,7 @@ h7{
 	font-size: 1.32em;
 	padding:0px;
 	cursor: pointer;
+	margin-top: 3px;
 }
 
 #new-filter:hover{
@@ -488,6 +489,20 @@ input {
 #user-photo{
 	width:50%;
 	margin-left: 25%;
+}
+#newFilterModal .well {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  width: 90%;
+  margin-left: 5%;
+}
+.blue-bar.wide {
+  padding-top: 10px;
+  width: 90%;
+  height: 50px;
+  margin:0;
+  margin-left: 5%;
 }
 
 }
