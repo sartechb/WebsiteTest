@@ -3,6 +3,9 @@
     src: url("../fonts/FREESCPT.TTF");
 }
 
+
+
+
 span{
 	font-family: Freestyle, "Freestyle", Freestyle, serif; 
 	color:white; 
@@ -466,5 +469,25 @@ input {
     width: 0px;
 }
  
+
+/* MOBILE CSS */
+@media (max-width: 767px) {
+   
+.post{
+	width:90%;
+}
+
+#dropdown{
+	float:right;	
+}
+
+#actions{
+	display:none;
+}
+
+#user-photo{
+	width:50%;
+	margin-left: 25%;
+}
 
 }
