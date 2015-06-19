@@ -94,7 +94,7 @@ $('#dropdown').on('click', function(){
   {
     $('#content').switchClass( "col-md-12", "col-md-10", 200, "easeInOutQuad" ); 
   }
-   if($('#content').hasClass('col-sm-10'))
+  else if($('#content').hasClass('col-sm-10'))
   {
    $('#content').switchClass( "col-sm-10", "col-sm-12", 200, "easeInOutQuad" );
   }
