@@ -135,7 +135,7 @@ $('#new-post-bar h2.untoggle').on('click', function (e) {
   var form = $("#new-post");
   //check for minimized state and expand
   if(bar.hasClass('minimized')) {
-    form.children().show({"duration":200,"easing":"easeInOutQuad"});
+    form.children().show({"duration":300,"easing":"easeInOutQuad"});
     bar.removeClass('minimized').addClass('expanded');
   }
   //give focus to first input
@@ -177,7 +177,7 @@ $('#new-post').submit(function (e) {
   //clean up the post creator
   for(var i = 0; i < input_length; ++i)
     e.currentTarget[i].value = '';
-  $("#new-post").children().hide(200);
+  $("#new-post").children().hide(300);
   $("#new-post-bar").addClass('minimized').removeClass('expanded');
 
   filterAll();
@@ -186,9 +186,11 @@ $('#new-post').submit(function (e) {
 //Cancel logic for post creation
 $("#post-cancel").click(function (e) {
   $("#new-post input, #new-post textarea").val("");
-  $("#new-post").children().hide(200);
-  $("#new-post-bar").addClass('minimized').removeClass('expanded');
-  setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
+  $("#new-post").children().hide(300, function() {
+    $("#new-post-bar").addClass('minimized').removeClass('expanded');
+  });
+  //
+  //setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
 });
 
 //new filter button logic. Shows newFilterModal
