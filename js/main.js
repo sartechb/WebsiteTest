@@ -1,3 +1,5 @@
+Parse.initialize("MQvT5Bq6CsU34IQBfop8fPEJLOsLybDgDMBRdFhM", "HNFXaE7aCayggyI8hyUvbk5kG2sWXH2FpMirSNyC");
+
 /*
  * The app variable will be a global application variable.
  * One can use the app variable to save debug data and
@@ -35,6 +37,12 @@ var app = {};
   app.filters["LING_341"].push("ling341");
 
   //console.log(app);
+
+  var current = Parse.User.current();
+  console.log(current.get("Name"));
+
+  $("#user-name h1").html(current.get("name"));
+  $("#user-school h3").html(current.get("school"));
 
 //sets event handlers on filters and showall
 $(".filter-class div").on("click", function (e) {filterToggle(e);});
@@ -231,6 +239,14 @@ $(".filter-class div span").click(function (e) {
   filter.hide(200, function (){$(this).remove();});
   //filter.remove();
   //also remove from active filter list in parse!
+});
+
+$("a#logout").click(function (e) {
+  e.preventDefault();
+  alert("ehh");
+  Parse.User.logOut();
+  console.log("logging out");
+  window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
 });
 
 //logic to show/hide veil during modals with animation

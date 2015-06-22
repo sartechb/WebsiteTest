@@ -14,6 +14,14 @@ Parse.Cloud.run("functionNameHere", {data:here}, {
 });
 */
 
+var rand = Math.ceil((1 - Math.random())*7);
+var im = $(".profileSelect img");
+im.eq(0).attr("src", "assets/profile"+rand+".png");
+rand = Math.ceil((1 - Math.random())*7);
+im.eq(1).attr("src", "assets/profile"+rand+".png");
+rand = Math.ceil((1 - Math.random())*7);
+im.eq(2).attr("src", "assets/profile"+rand+".png");
+
 $("#signerup").submit(
   function (e) {
     e.preventDefault();
@@ -66,7 +74,7 @@ $("#logerin").submit(
         success: function (user) {
           resp = user;
           console.log("success!");
-          window.location.href ="http://sartechb.github.io/WebsiteTest/";//need to add new page here
+         window.location.href ="http://sartechb.github.io/WebsiteTest/";//need to add new page here
         },
         error: function (user, error) {
             console.log(error.code, error.message);
