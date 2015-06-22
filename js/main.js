@@ -243,7 +243,7 @@ $(".filter-class div span").click(function (e) {
 
 $("a#logout").click(function (e) {
   e.preventDefault();
-  alert("ehh");
+  //alert("ehh");
   Parse.User.logOut();
   console.log("logging out");
   window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
