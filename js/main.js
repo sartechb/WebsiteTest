@@ -38,13 +38,29 @@ var app = {};
 
   //console.log(app);
 
-  var current = Parse.User.current();
+  app.user = Parse.User.current();
+  app.Post = Parse.Object.extend("Post");
 
-  if(current != null) {
-    console.log(current.get("Name"));
+  if(app.user != null) {
+    app.Post = Parse.Object.extend("Post");
+    post_query = new Parse.Query(app.Post);
+    //user_query = new Parse.Query(Parse.User);
 
-    $("#user-name h1").html(current.get("name"));
-    $("#user-school h3").html(current.get("school"));
+
+    $("#user-name h1").html(app.user.get("name"));
+    $("#user-school h3").html(app.user.get("school"));
+
+    post_query.find({
+      success: function (r) {
+        for(var i=0;i<r.length;++i) {
+          var post = r[i];
+          createPost(post.get("title"),post.get("content"), post.get("poster").id, 
+                  post.get("location"), post.get("Class")+" "+post.get("classNumber"),
+                  post.get("createdAt"), post.id);
+        }
+        post = {};
+      }
+    });
   } else {
     window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
   }
@@ -69,15 +85,15 @@ function filterToggle(e) {
   //console.log(e.target);
   filter.toggleClass("filtered");
   filterToggleHelper(filter.attr("id"));
-  
+  console.log("called filterToggle");
 }
 
 //Applies filters
 function filterToggleHelper (filter) {
-  //console.log(filter);
+  console.log(filter+" from the helper");
   if(filter == null) return;
   var a = app.filters[filter];
- // console.log(a[0]);
+ console.log(a[0]);
   for(var i=0; i < a.length; ++i) 
     if($("#"+a[i]).hasClass("on"))
       $("#"+a[i]).removeClass("on");
@@ -160,11 +176,12 @@ $('#new-post-bar h2.untoggle').on('click', function (e) {
 $('#new-post').submit(function (e) {
   e.preventDefault();
   console.log(e);
+  var ct = e.currentTarget;
 
   var errorAlert = "<div class='alert alert-danger col-xs-8 col-xs-offset-2'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
   var input_length = $("#createpost input, #createpost textarea").length;
   for(var i = 0; i < input_length; ++i) {//iterate through all inputs
-    if(e.currentTarget[i].value == "") {//if any are empty
+    if(ct[i].value == "") {//if any are empty
       if($("#createpost").find("div.alert.alert-danger").length == 0) //show an error if there isn't one...
         $("#createpost").append(errorAlert+"Oops! You missed something above...</div>");
       return;//...don't submit anything
@@ -174,18 +191,11 @@ $('#new-post').submit(function (e) {
   //the following lines demonstate data access. Can create an object to pass to Cloud here
   //TODO: integrate with Parse.Cloud here!!
   for(var i = 0; i < input_length; ++i)
-    console.log(e.currentTarget[i].value);
+    console.log(ct[i].value);
 
   //Fill in a post template and post it
-  var templates = $("#postholder div.post.template-post").length-1;
-  var post = $("#template-post-"+templates);
-  post.find("#title h1").html(e.currentTarget[0].value);
-  post.find("#postDetails h7").html("StudyMan BuddySon | Now");//need to replace with actual data and PrettyTime fn
-  post.find("#posttext h5").html(e.currentTarget[1].value);
-  post.find("#lowerDetails h7").html("+join | "+e.currentTarget[2].value+" | "+e.currentTarget[3].value);
-  post.removeClass("template-post");
-  post.attr("id", "parseidgoeshere");//replace with parse generated id
-
+  createPost(ct[0].value, ct[1].value, current_user.get("name"), 
+    ct[3].value, ct[2].value, "Now", "parseID");
 
   //clean up the post creator
   for(var i = 0; i < input_length; ++i)
@@ -195,6 +205,22 @@ $('#new-post').submit(function (e) {
 
   filterAll();
 });
+
+function createPost(title, content, author, location, className, time, id) {
+  var to_insert = $("#template-post").clone(true);
+  to_insert.find("#title h1").html(title);
+  to_insert.find("#postDetails h7").html(author+" | "+time);
+  to_insert.find("#posttext h5").html(content);
+  to_insert.find("#lowerDetails h7").html(className+" | "+location);
+  to_insert.attr("id", id);
+  to_insert.removeClass("template-post");
+  $("#postholder").prepend(to_insert);
+  filt = className.replace(" ","_");
+  if(app.filters[filt] != null)
+    app.filters[filt].push(id);
+  else 
+    app.filters[filt] = [id];
+}
 
 //Cancel logic for post creation
 $("#post-cancel").click(function (e) {
@@ -227,7 +253,7 @@ $("#newFilterModal form").submit(function (e) {
   var html = $(".filter-class #"+id);
   console.log(html);
   html.click(function (e){filterToggle(e);});
-  app.filters[id] = [];
+  //app.filters[id] = [];
   //connect all posts that fit under this filter here! TODO: Parse integration here!
 });
 
