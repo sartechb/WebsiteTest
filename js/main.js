@@ -39,10 +39,15 @@ var app = {};
   //console.log(app);
 
   var current = Parse.User.current();
-  console.log(current.get("Name"));
 
-  $("#user-name h1").html(current.get("name"));
-  $("#user-school h3").html(current.get("school"));
+  if(current != null) {
+    console.log(current.get("Name"));
+
+    $("#user-name h1").html(current.get("name"));
+    $("#user-school h3").html(current.get("school"));
+  } else {
+    window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
+  }
 
 //sets event handlers on filters and showall
 $(".filter-class div").on("click", function (e) {filterToggle(e);});
