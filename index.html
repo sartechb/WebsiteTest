@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+   <link rel="shortcut icon" href="assets/favicon.ico?v=2" type="image/x-icon" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +23,7 @@
   <div class="veil"></div>
   <div class="container" id="newFilterModal">
     <div class="row top">
-      <div class="col-xs-6 col-xs-offset-3 blue-bar wide"><h1>Add a Filter:</h1></div>
+      <div class="col-xs-6 col-xs-offset-3 blue-bar wide"><h1 style="color:white;">Add a Filter:</h1></div>
         <form>
           <div class="col-xs-6 col-xs-offset-3 well">
           <input type="text" name="new-filter" class="flat add col-xs-8" id='new-post-title' placeholder='Ex. EECS 123' autocomplete="off">
@@ -40,8 +40,8 @@
       <div class = "col-md-12" id = "this-is-the-navbar">
         <div class id="actions"><h3><a style="color:white;" href="#">Notifications</a> | 
           <a style="color:white;" href="#">Settings</a> | <a style="color:white;" href="#" id="logout">Log Out</a></h3></div>
-        <span id = "studybuddy" style="font-family:Freestyle; color:white; font-size:45px; line-height:45px; margin-top:10px; margin-left:8px;"> StudyBuddy </span>
-        <div class="hidden-lg" id="dropdown"></div>
+        <img src="assets/studybuddylogolight.png" style="width:165px; height:60px; margin-top:-8px; margin-left:2%;"/>
+        <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
       </div> <!--Navbar-->
     </div>
     <div class ="row" id="body">      
@@ -49,7 +49,7 @@
         <div id="holdcontent">
         <div class = "col-md-12" id="user-photo"><img id="user-photo"src="assets/puppy.jpg"/></div> <!--user photo-->
         <div class = "col-md-12" id="empty"></div>
-        <div class = "col-md-12" id="user-name"><h1>Studydog Puppyson</h1></div>
+        <div class = "col-md-12" id="user-name"><h1 style="color:white;">Studydog Puppyson</h1></div>
         <div class = "col-md-12" id="user-school"><h3>University of Adorable</h3></div>
         <div class = "col-md-12" id="empty"></div>
         <hr align="center" width="70%" color="white">
@@ -125,6 +125,10 @@
                  <h5></h5>
               </div> <!--posttext-->
               <div id="lowerDetails"><h7></h7></div>
+			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
+			  <div id="following"><h7></h7></div>
+			  <div class = "col-md-12" style="height:5px;"></div>
+			  
             </div> <!--post--> 
 
             <div class="post template-post" id="template-post-1">
@@ -138,6 +142,10 @@
                  <h5></h5>
               </div> <!--posttext-->
               <div id="lowerDetails"><h7></h7></div>
+			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
+			  <div id="following"><h7></h7></div>
+			  <div class = "col-md-12" style="height:5px;"></div>
+			  
             </div> <!--post--> 
 
             <div class="post template-post" id="template-post-2">
@@ -151,6 +159,9 @@
                  <h5></h5>
               </div> <!--posttext-->
               <div id="lowerDetails"><h7></h7></div>
+			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
+			  <div id="following"><h7></h7></div>
+			  <div class = "col-md-12" style="height:5px;"></div>
             </div> <!--post--> 
 
              <div class="post" id="dummy123">
@@ -165,7 +176,11 @@
               <div id="posttext">
                  <h5>This is three hundred and fifty characters (350), which is our character limit for user posts so that they don't get too long. This should be descriptive content about what the user needs help with or wants to meet up about. Bacon ipsum dolor amet hamburger short ribs turducken, pork chop proident strip steak tail consectetur fugiat shank ham officia reprehenderit tenderloin cillum. Venison aute andouille. Filler</h5>
               </div> <!--posttext-->
-              <div id="lowerDetails"><h7><a href="#">+join</a> | Class Name | Location</h7></div>
+              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
+			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
+			  <div id="following"><h7>X People Following</h7></div>
+			 <div class = "col-md-12" style="height:5px;"></div>
+			  
             </div> <!--post-->
 
             <div class="post" id="eecs370">
@@ -180,7 +195,10 @@
               <div id="posttext">
                  <h5> This is a question about EECS 370. Halp</h5>
               </div> <!--posttext-->
-               <div id="lowerDetails"><h7><a href="#">+join</a> | Class Name | Location</h7></div>
+              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
+			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
+			  <div id="following"><h7>X People Following</h7></div>
+			 <div class = "col-md-12" style="height:5px;"></div>
             </div> <!--post-->
 
             <div class="post" id="eecs475">
@@ -195,7 +213,10 @@
               <div id="posttext">
                  <h5> How do I crypto?????? </h5>
               </div> <!--posttext-->
-               <div id="lowerDetails"><h7><a href="#">+join</a> | Class Name | Location</h7></div>
+              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
+			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
+			  <div id="following"><h7>X People Following</h7></div>
+			 <div class = "col-md-12" style="height:5px;"></div>
             </div> <!--post-->
 
             <div class="post" id="eecs485">
@@ -210,7 +231,10 @@
               <div id="posttext">
                  <h5> Wow this person has the same schedule as preeti </h5>
               </div> <!--posttext-->
-               <div id="lowerDetails"><h7><a href="#">+join</a> | Class Name | Location</h7></div>   
+              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
+			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
+			  <div id="following"><h7>X People Following</h7></div>
+			 <div class = "col-md-12" style="height:5px;"></div>
             </div> <!--post-->
 
             <div class="post" id="ling341">
@@ -225,7 +249,10 @@
               <div id="posttext">
                  <h5> Uhh this is basically EECS 376 lite</h5>
               </div> <!--posttext-->
-               <div id="lowerDetails"><h7><a href="#">+join</a> | Class Name | Location</h7></div>
+              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
+			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
+			  <div id="following"><h7>X People Following</h7></div>
+			 <div class = "col-md-12" style="height:5px;"></div>
             </div> <!--post-->
 
 
