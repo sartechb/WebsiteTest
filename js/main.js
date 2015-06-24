@@ -49,14 +49,15 @@ var app = {};
 
     $("#user-name h1").html(app.user.get("name"));
     $("#user-school h3").html(app.user.get("school"));
-
+    post_query.include("poster");
     post_query.find({
       success: function (r) {
         for(var i=0;i<r.length;++i) {
           var post = r[i];
-          createPost(post.get("title"),post.get("content"), post.get("poster").id, 
+          //pretty Time function
+          createPost(post.get("title"),post.get("content"), post.get("poster").get("name"), 
                   post.get("location"), post.get("Class")+" "+post.get("classNumber"),
-                  post.get("createdAt"), post.id);
+                  post.createdAt.toString(), post.id);
         }
         post = {};
       }
@@ -194,8 +195,25 @@ $('#new-post').submit(function (e) {
     console.log(ct[i].value);
 
   //Fill in a post template and post it
-  createPost(ct[0].value, ct[1].value, current_user.get("name"), 
-    ct[3].value, ct[2].value, "Now", "parseID");
+  createPost(ct[0].value, ct[1].value, Parse.User.current().get("name"), 
+    ct[2].value, ct[3].value, "Now", "parseID");
+  var post = {};
+  post.memberLimit = parseInt(ct[4].value);
+  post.content = ct[1].value;
+  _class = ct[3].value.split(" ");
+  console.log(_class);
+  post.Class = _class[0];
+  post.classNumber = parseInt(_class[1]);
+  post.title = ct[0].value;
+  post.deletionDate = new Date();
+  Parse.Cloud.run("makePost", post, {
+    success: function(response) {
+      console.log(response);
+    },
+    error: function(response) {
+      console.log(response);
+    }
+  });
 
   //clean up the post creator
   for(var i = 0; i < input_length; ++i)
