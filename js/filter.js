@@ -32,7 +32,7 @@ function filterToggleHelper (filter) {
   var a = app.filters[filter];
   var postholderNF = $("#postholder.nofilter");
  //console.log(a[0]);
- 
+
   for(var i=0; i < a.length; ++i) 
     if($("#"+a[i]).hasClass("on"))
       $("#"+a[i]).removeClass("on");
@@ -43,7 +43,6 @@ function filterToggleHelper (filter) {
     $(".post.on").not(".template-post").show(300);
     if($(".post.on").length != 0 /*&& */)
       $(".post").not(".on").hide(300);
-    else if()
     else if($(".filter-class .filtered").length == 0)
       $(".post").not(".template-post").show(300);
   }, 50);
