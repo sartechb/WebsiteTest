@@ -30,7 +30,9 @@ function filterToggleHelper (filter) {
   console.log(filter+" from the helper");
   if(filter == null) return;
   var a = app.filters[filter];
+  var postholderNF = $("#postholder.nofilter");
  //console.log(a[0]);
+ 
   for(var i=0; i < a.length; ++i) 
     if($("#"+a[i]).hasClass("on"))
       $("#"+a[i]).removeClass("on");
@@ -41,6 +43,7 @@ function filterToggleHelper (filter) {
     $(".post.on").not(".template-post").show(300);
     if($(".post.on").length != 0 /*&& */)
       $(".post").not(".on").hide(300);
+    else if()
     else if($(".filter-class .filtered").length == 0)
       $(".post").not(".template-post").show(300);
   }, 50);
@@ -65,13 +68,16 @@ $("#newFilterModal form").submit(function (e) {
   e.preventDefault();
   hideVeil();
   $("#newFilterModal").hide(200);
-  var newFilter = e.currentTarget[0].value;
+  var newFilter = e.currentTarget[0].value.toUpperCase().trim();
+  var filterId = newFilter.replace(" ","_");
   $("#newFilterModal input").val("");
 
-  newFilter = newFilter.toUpperCase();
-  createFilter(newFilter);
-  
-  Parse.Cloud.run("makeFilter", 
+  if(app.filters[filterId] == undefined) {
+    console.log("was undefined");
+    newFilter = newFilter.toUpperCase();
+    createFilter(newFilter);
+
+    Parse.Cloud.run("makeFilter", 
     {
       type: "CLASS_CLASSNUMBER",
       Class: newFilter.split(" ")[0],
@@ -86,11 +92,12 @@ $("#newFilterModal form").submit(function (e) {
       }, error: function(r) {console.log(r);}
     });
 
-  var filterId = newFilter.replace(" ","_");
-  for(var x = 0; x < app.posts.length; ++x) {
+
+    for(var x = 0; x < app.posts.length; ++x) {
     name = app.posts[x].Class+"_"+app.posts[x].classNumber;
-    if(filterId == name) {
-      app.filters[filterId].push(app.posts[x].objectId);
+      if(filterId == name) {
+        app.filters[filterId].push(app.posts[x].objectId);
+      }
     }
   }
   //app.filters[newFilter.replace(" ","_")];
