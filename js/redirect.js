@@ -13,5 +13,5 @@ console.log("here", app);
 app.user = Parse.User.current();
 
 if(app.user == null) {
-	window.location.href = "http://sartechb.github.io/WebsiteTest";
+	window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
 }
