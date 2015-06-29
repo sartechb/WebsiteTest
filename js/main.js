@@ -1,28 +1,4 @@
-Parse.initialize("MQvT5Bq6CsU34IQBfop8fPEJLOsLybDgDMBRdFhM", "HNFXaE7aCayggyI8hyUvbk5kG2sWXH2FpMirSNyC");
 
-/*
- * The app variable will be a global application variable.
- * One can use the app variable to save debug data and
- * view it at the console. It also helps the app maintain
- * state for uses like filtering.
- */
-var app = {};
-
-/*
- * How this works: we initialize important page elements
- * like the name, uni, etc in this function. We add filter
- * data to the app variable based on information we get from
- * parse. It's set up so each filter has it's own array of post
- * IDs that it corresponds to. This makes it easy to hide
- * and show the correct posts, and all this info is 
- * maintained and manipulated internally
- */
-
-  //building filters
-  app.filters = {};
-
-  //replace this part with info taken from parse:
-  //TODO: PARSE INTEGRATION HERE
   app.filters["EECS_370"] = [];
   app.filters["EECS_475"] = [];
   app.filters["EECS_485"] = [];
@@ -37,267 +13,85 @@ var app = {};
   app.filters["LING_341"].push("ling341");
 
   //console.log(app);
+app.Post = Parse.Object.extend("Post");
 
-  app.user = Parse.User.current();
+if(app.user != null) 
   app.Post = Parse.Object.extend("Post");
+//post_query = new Parse.Query(app.Post);
+  //user_query = new Parse.Query(Parse.User);
+Parse.Cloud.run("getUniversityPostData", {}, {
+  success: function(r) {
+    //console.log(r);
+    app.posts = r.activePosts;
+    for(var i = 0; i < r.activePosts.length; ++i) {
+      var post = r.activePosts[i];
+      //pretty time function here
+      createPost(post.title, post.content, post.poster, post.location,
+        post.Class+" "+post.classNumber, post.createdAt.toString(), post.objectId);
+    }
 
-  if(app.user != null) {
-    app.Post = Parse.Object.extend("Post");
-    post_query = new Parse.Query(app.Post);
-    //user_query = new Parse.Query(Parse.User);
-
-
-    $("#user-name h1").html(app.user.get("name"));
-    $("#user-school h3").html(app.user.get("school"));
-    post_query.include("poster");
-    post_query.find({
+    Parse.Cloud.run("getFilterData", {}, {
       success: function (r) {
-        for(var i=0;i<r.length;++i) {
-          var post = r[i];
-          //pretty Time function
-          createPost(post.get("title"),post.get("content"), post.get("poster").get("name"), 
-                  post.get("location"), post.get("Class")+" "+post.get("classNumber"),
-                  post.createdAt.toString(), post.id);
+        console.log(r);
+        for(var i = 0; i < r.filters.length; ++i) {
+          createFilter(r.filters[i].name);
+          var filter_id = r.filters[i].name.replace(" ","_");
+          app.filters[filter_id] = [];
+          if(r.filters[i].type == "CLASS_CLASSNUMBER") {
+            for(var j = 0; j < app.posts.length; ++j) {
+              if(app.posts[j].Class+"_"+app.posts[j].classNumber == filter_id)
+                app.filters[filter_id].push(app.posts[j].objectId);
+            }
+          }
         }
-        post = {};
-      }
+      }, error: function (r) {console.log(r);}
     });
-  } else {
-    window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
-  }
 
-//sets event handlers on filters and showall
-$(".filter-class div").on("click", function (e) {filterToggle(e);});
-$("div.showall").on("click", function() {filterAll()});
+  },error: function(r) {console.log(r);}
+});
 
-//Applies Show All
-function filterAll () {
-  $(".post.on").removeClass("on");
-  $(".post").not(".template-post").show(300);
-  $(".filtered").removeClass("filtered");
-}
-
-//Applies filterHelper
-function filterToggle(e) {
-  var filter;
-  if($(e.target).prop("tagName") == "H4")
-    filter = $(e.target).parent();
-  else filter = $(e.target);
-  //console.log(e.target);
-  filter.toggleClass("filtered");
-  filterToggleHelper(filter.attr("id"));
-  console.log("called filterToggle");
-}
-
-//Applies filters
-function filterToggleHelper (filter) {
-  console.log(filter+" from the helper");
-  if(filter == null) return;
-  var a = app.filters[filter];
- console.log(a[0]);
-  for(var i=0; i < a.length; ++i) 
-    if($("#"+a[i]).hasClass("on"))
-      $("#"+a[i]).removeClass("on");
-    else
-      $("#"+a[i]).addClass("on");
-
-  setTimeout(function () {
-    $(".post.on").not(".template-post").show(300);
-    if($(".post.on").length != 0 /*&& */)
-      $(".post").not(".on").hide(300);
-    else if($(".filter-class .filtered").length == 0)
-      $(".post").not(".template-post").show(300);
-  }, 50);
-  
-}
-
-// Controls dropdown code
-$('#dropdown').on('click', function(){
-  if($(window).width() > 768)
-  {
-  $('#sidebar').slideToggle(200);
-  if($('#content').hasClass('col-md-10'))
-  {
-   $('#content').switchClass( "col-md-10", "col-md-12", 200, "easeInOutQuad" );
-  }
-  else if($('#content').hasClass('col-md-12'))
-  {
-    $('#content').switchClass( "col-md-12", "col-md-10", 200, "easeInOutQuad" ); 
-  }
-  else if($('#content').hasClass('col-sm-10'))
-  {
-   $('#content').switchClass( "col-sm-10", "col-sm-12", 200, "easeInOutQuad" );
-  }
-  else if($('#content').hasClass('col-md-12'))
-  {
-    $('#content').switchClass( "col-sm-12", "col-sm-10", 200, "easeInOutQuad" ); 
-  }
-  
-}
-else
-{
-
-  if($('#sidebar').hasClass('hidden-xs'))
-  {
-    $('#content').slideToggle(200);
-    $('#sidebar').delay(200).switchClass( "hidden-xs", "col-xs-12", 0, "swing" ); 
-  }
-  else{
-    $('#sidebar').switchClass( "col-xs-12", "hidden-xs", 200, "swing" ); 
-    $('#content').delay(200).slideToggle(200);
-  }
-}
+Parse.Cloud.run("getBasicData", {}, {
+  success: function(r) {
+    console.log(r);
+    $("#user-name h1").html(r.name);
+    $("#user-school h3").html(r.school);
+    $("img#user-photo").attr("src", "assets/"+r.pic);
+  }, error: function(r) {console.log(r);}
 });
 
 
-//allows for separate scrolling or side bar and body
-$('body').scroll(function() { 
-  $('#sidebar').css('top', $(this).scrollTop());
-});
-
-//Allows autogrow on textarea for post creation
-$("#new-post-content").autogrow();
-
-//Event handler for post creation
-$('#new-post-bar h2.untoggle').on('click', function (e) {
-  var bar = $(e.target);
-  bar = bar.parent();
-  var form = $("#new-post");
-  //check for minimized state and expand
-  if(bar.hasClass('minimized')) {
-    form.children().show({"duration":300,"easing":"easeInOutQuad"});
-    bar.removeClass('minimized').addClass('expanded');
-  }
-  //give focus to first input
-  $("#createpost #new-post-title").focus();
-  //allows post creation box to stay open
-});
-
-//Event handler for form submission
-$('#new-post').submit(function (e) {
-  e.preventDefault();
-  console.log(e);
-  var ct = e.currentTarget;
-
-  var errorAlert = "<div class='alert alert-danger col-xs-8 col-xs-offset-2'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-  var input_length = $("#createpost input, #createpost textarea").length;
-  for(var i = 0; i < input_length; ++i) {//iterate through all inputs
-    if(ct[i].value == "") {//if any are empty
-      if($("#createpost").find("div.alert.alert-danger").length == 0) //show an error if there isn't one...
-        $("#createpost").append(errorAlert+"Oops! You missed something above...</div>");
-      return;//...don't submit anything
+Parse.Cloud.run("getActivePostData", {}, {
+  success: function(r) {
+    console.log(r);
+    for(var i = 0; i < r.activePosts.length; ++i) {
+      createActiveLink(r.activePosts[i].title);
     }
-  }// end for: All inputs were submitted
-
-  //the following lines demonstate data access. Can create an object to pass to Cloud here
-  //TODO: integrate with Parse.Cloud here!!
-  for(var i = 0; i < input_length; ++i)
-    console.log(ct[i].value);
-
-  //Fill in a post template and post it
-  createPost(ct[0].value, ct[1].value, Parse.User.current().get("name"), 
-    ct[2].value, ct[3].value, "Now", "parseID");
-  var post = {};
-  post.memberLimit = parseInt(ct[4].value);
-  post.content = ct[1].value;
-  _class = ct[3].value.split(" ");
-  console.log(_class);
-  post.Class = _class[0];
-  post.classNumber = parseInt(_class[1]);
-  post.title = ct[0].value;
-  post.deletionDate = new Date();
-  Parse.Cloud.run("makePost", post, {
-    success: function(response) {
-      console.log(response);
-    },
-    error: function(response) {
-      console.log(response);
-    }
-  });
-
-  //clean up the post creator
-  for(var i = 0; i < input_length; ++i)
-    e.currentTarget[i].value = '';
-  $("#new-post").children().hide(300);
-  $("#new-post-bar").addClass('minimized').removeClass('expanded');
-
-  filterAll();
+  }, error: function(r) {console.log(r);}
 });
+//$("#user-name h1").html(app.user.get("name"));
+//$("#user-school h3").html(app.user.get("school"));
 
-function createPost(title, content, author, location, className, time, id) {
-  var to_insert = $("#template-post").clone(true);
-  to_insert.find("#title h1").html(title);
-  to_insert.find("#postDetails h7").html(author+" | "+time);
-  to_insert.find("#posttext h5").html(content);
-  to_insert.find("#lowerDetails h7").html(className+" | "+location);
-  to_insert.attr("id", id);
-  to_insert.removeClass("template-post");
-  $("#postholder").prepend(to_insert);
-  filt = className.replace(" ","_");
-  if(app.filters[filt] != null)
-    app.filters[filt].push(id);
-  else 
-    app.filters[filt] = [id];
-}
 
-//Cancel logic for post creation
-$("#post-cancel").click(function (e) {
-  $("#new-post input, #new-post textarea").val("");
-  $("#new-post").children().hide(300, function() {
-    $("#new-post-bar").addClass('minimized').removeClass('expanded');
-  });
-  //
-  //setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
-});
 
-//new filter button logic. Shows newFilterModal
-$("#new-filter").click(function (e) {
-  showVeil();
-  $("#newFilterModal").show(200);
-});
-
-//Logic for submitting a new filter and adding it to the sidebar. TODO: Parse integration here!
-$("#newFilterModal form").submit(function (e) {
-  e.preventDefault();
-  hideVeil();
-  $("#newFilterModal").hide(200);
-  var newFilter = e.currentTarget[0].value;
-  $("#newFilterModal input").val("");
-
-  newFilter = newFilter.toUpperCase();
-  var id = newFilter.replace(" ", "_");
-  $(".filter-class").append("<div class='col-md-12' id="+id+
-    "><h4><span class='glyphicon glyphicon-remove' aria-hidden='true'></span>"+newFilter+"</h4></div>");
-  var html = $(".filter-class #"+id);
-  console.log(html);
-  html.click(function (e){filterToggle(e);});
-  //app.filters[id] = [];
-  //connect all posts that fit under this filter here! TODO: Parse integration here!
-});
-
-//Cancel logic for new filter creation
-$("#newFilterModal button.cancel").click(function (e) {
-  $("#newFilterModal").hide(200);
-  $("#newFilterModal input").val("");
-  hideVeil();
-});
-
-//logic to delete a filter. TODO: Parse integration here!
-$(".filter-class div span").click(function (e) {
-  var filter = $(e.target).parent().parent();
-  filter.hide(200, function (){$(this).remove();});
-  //filter.remove();
-  //also remove from active filter list in parse!
-});
 
 $("a#logout").click(function (e) {
-  e.preventDefault();
-  //alert("ehh");
-  Parse.User.logOut();
-  console.log("logging out");
-  window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
+    e.preventDefault();
+    //alert("ehh");
+    Parse.User.logOut();
+    console.log("logging out");
+    window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
 });
 
-//logic to show/hide veil during modals with animation
-function showVeil() {$("div.veil").addClass("active", 300);}
-function hideVeil() {$("div.veil.active").removeClass("active", 300);}
+function test(obj) {
+  Parse.Cloud.run("makeFilter", obj, {
+    success: function (r) {
+      console.log(r);
+    }, error: function (r) {console.log(r);}
+  });
+}
+
+o = {
+  type: "CLASS_CLASSNUMBER",
+  Class: "EECS",
+  classNumber: 280
+};

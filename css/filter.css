@@ -1,0 +1,146 @@
+.filtered{
+	display: block;
+	font-size:1.32em;
+	font-weight: bold;
+	text-align:center;
+	padding:0;
+	margin:0;
+	color:white;
+	height:2em;
+	padding-top: .3em;
+	background-image: none;
+	background-color: rgba(255, 255, 255, 0.29);
+}
+.filtered:hover {
+	background-color: initial;
+}
+
+.filter-class span {
+	font-size: .7em;
+	color:rgb(4, 136, 195);
+	margin-left: 0;
+	margin-right: 10px;
+	margin-top: 0;
+	display: none;
+}
+
+.filter-class div:hover span {
+	display: initial;
+}
+
+.gone,
+.template-filter{
+	display:none !important;
+}
+
+
+
+#new-filter{
+	width:100%;
+	background-color: #0488C3;
+	height: 2.4em;
+	font-size: 1.32em;
+	padding:0px;
+	cursor: pointer;
+	margin-top: 3px;
+}
+
+#new-filter:hover{
+	background-color: rgba(255, 255, 255, 0.29);
+	color:white;
+
+}
+
+#new-filter span {
+	font-size: 1em;
+}
+
+.filter{
+	color:#0488C3;
+	height:23px;
+}
+.filter:hover{
+	color:#ffffff;
+}
+
+
+
+.add-filter {
+	font-size: 1.2em;
+	cursor: pointer;
+}
+
+.veil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0;
+  z-index: 0;
+}
+
+.veil.active {
+  opacity: 0.7;
+  z-index: 100;
+}
+
+#newFilterModal {
+	display: none;
+	position: fixed;
+	top: 20%;
+	z-index: 101;
+}
+
+#newFilterModal input.add {
+	height: 2em;
+	font-size: 1.4em;
+	resize: none;
+	background-color: #white;
+	margin-top: 2px;
+}
+
+#newFilterModal .well {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+#newFilterModal .btn {
+	height: 100%;
+	margin-top: 3px;
+}
+
+label, .filter-class div, 
+div.showall {
+    display: block;
+	font-size:1.32em;
+	font-weight: bold;
+	text-align:center;
+	padding:0;
+	margin:0;
+	color:white;
+	height:2em;
+	padding-top: .3em;
+	cursor: pointer;
+}
+label:hover, .filter-class > div:hover{
+	background-image: none;
+	background-color: #AFD1F7;
+}
+
+input {
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+	float:left;
+    overflow: hidden;
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}

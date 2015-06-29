@@ -46,6 +46,7 @@ $("#signerup").submit(
         user.set("username", e.currentTarget[1].value);
         user.set("password", e.currentTarget[2].value);
         user.set("school", e.currentTarget[3].value);
+        user.set("filters", []);
         console.log($("#signerup .profileSelect.selected").find("img").attr("src"));
         var pic = $("#signerup .profileSelect.selected").find("img").attr("src").replace("assets/","");
         console.log(pic);

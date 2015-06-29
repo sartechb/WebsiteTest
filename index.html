@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   <link rel="shortcut icon" href="assets/favicon.ico?v=2" type="image/x-icon" />
+   <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,14 +11,18 @@
  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/new.css" rel="stylesheet">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/post.css" rel="stylesheet">
+    <link href="css/filter.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
     <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
   </head>
   <body>
+
+  <script type="text/javascript" src="js/redirect.js"></script>
   
   <div class="veil"></div>
   <div class="container" id="newFilterModal">
@@ -47,18 +51,17 @@
     <div class ="row" id="body">      
       <div class="hidden-xs col-sm-3 col-sm-2" id="sidebar">
         <div id="holdcontent">
-        <div class = "col-md-12" id="user-photo"><img id="user-photo"src="assets/puppy.jpg"/></div> <!--user photo-->
+        <div class = "col-md-12" id="user-photo"><img id="user-photo"src=""/></div> <!--user photo-->
         <div class = "col-md-12" id="empty"></div>
-        <div class = "col-md-12" id="user-name"><h1 style="color:white;">Studydog Puppyson</h1></div>
-        <div class = "col-md-12" id="user-school"><h3>University of Adorable</h3></div>
+        <div class = "col-md-12" id="user-name"><h1 style="color:white;"></h1></div>
+        <div class = "col-md-12" id="user-school"><h3></h3></div>
         <div class = "col-md-12" id="empty"></div>
         <hr align="center" width="70%" color="white">
         <div class = "col-md-12" id="active-posts">
           <div class ="row">
             <h3>My Active Posts</h3>
             <div class = "col-md-12" id="empty"></div>
-            <div class ="col-md-12 active-post" id=""><h3>sample 1</h3></div>
-            <div class ="col-md-12 active-post" id=""><h3>sample 2</h3></div>
+            <div class = "col-md-12 active-post template-active-post"><h3></h3></div>
           </div><!--active posts row-->
         </div>
 
@@ -67,10 +70,8 @@
 
        
         <div class="filter-class">
-          <div class="col-md-12" id="EECS_370"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>EECS 370</h4></div>
-          <div class="col-md-12" id="EECS_475"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>EECS 475</h4></div>
-          <div class="col-md-12" id="EECS_485"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>EECS 485</h4></div>
-          <div class="col-md-12" id="LING_341"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>LING 341</h4></div>
+          <div class="col-md-12 template-filter"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></h4></div>
+         
         </div>
         <div class="col-md-12 showall"><h6> Show All Posts</h6></div> 
         <div class="col-md-12" id="new-filter"><h6><span class="glyphicon glyphicon-plus add-filter" aria-hidden="true"></span></h6></div>
@@ -113,8 +114,8 @@
         
         <div class="row" id="postfeed">
           <div id="postholder" class="col-xs-12">
-
-             <div class="post template-post" id="template-post">
+            <!-- POST TEMPLATE MODEL -->
+            <div class="post template-post" id="template-post">
               <div id="title">
                 <h1></h1>
               </div> <!--title-->
@@ -124,128 +125,35 @@
               <div id="posttext">
                  <h5></h5>
               </div> <!--posttext-->
-              <div id="lowerDetails"><h7></h7></div>
-			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
-			  <div id="following"><h7></h7></div>
-			  <div class = "col-md-12" style="height:5px;"></div>
-			  
-            </div> <!--post-->
-
-             <div class="post" id="dummy123">
-              <div id="title">
-                <h1>This Is A Fifty Character Title, That's Our Chr Lim </h1>
-              </div> <!--title-->
-
-              <div class="col-xs-12" id="postDetails">
-                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
+              <div id="lowerDetails">
+                <h7></h7>
               </div>
-
-              <div id="posttext">
-                 <h5>This is three hundred and fifty characters (350), which is our character limit for user posts so that they don't get too long. This should be descriptive content about what the user needs help with or wants to meet up about. Bacon ipsum dolor amet hamburger short ribs turducken, pork chop proident strip steak tail consectetur fugiat shank ham officia reprehenderit tenderloin cillum. Venison aute andouille. Filler</h5>
-              </div> <!--posttext-->
-              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
-			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
-			  <div id="following"><h7>X People Following</h7></div>
-			 <div class = "col-md-12" style="height:5px;"></div>
-			  
-            </div> <!--post-->
-
-            <div class="post" id="eecs370">
-              <div id="title">
-                <h1>This is a post about EECS 370</h1>
-              </div> <!--title-->
-
-              <div class="col-xs-12" id="postDetails">
-                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
+      			  <div id="join">
+                <button type="submit" class="btn btn-primary toggle">Join!</button>
               </div>
-
-              <div id="posttext">
-                 <h5> This is a question about EECS 370. Halp</h5>
-              </div> <!--posttext-->
-              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
-			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
-			  <div id="following"><h7>X People Following</h7></div>
-			 <div class = "col-md-12" style="height:5px;"></div>
-            </div> <!--post-->
-
-            <div class="post" id="eecs475">
-              <div id="title">
-                <h1>This is a post about EECS 475</h1>
-              </div> <!--title-->
-
-              <div class="col-xs-12" id="postDetails">
-                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
+      			  <div id="following">
+                <h7></h7>
               </div>
+      			  <div class = "col-md-12" style="height:5px;"></div>
+            </div> <!--/post-->
 
-              <div id="posttext">
-                 <h5> How do I crypto?????? </h5>
-              </div> <!--posttext-->
-              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
-			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
-			  <div id="following"><h7>X People Following</h7></div>
-			 <div class = "col-md-12" style="height:5px;"></div>
-            </div> <!--post-->
-
-            <div class="post" id="eecs485">
-              <div id="title">
-                <h1>This is a post about EECS 485</h1>
-              </div> <!--title-->
-
-              <div class="col-xs-12" id="postDetails" style:"text-align:left; padding:0;">
-                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
-              </div>
-
-              <div id="posttext">
-                 <h5> Wow this person has the same schedule as preeti </h5>
-              </div> <!--posttext-->
-              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
-			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
-			  <div id="following"><h7>X People Following</h7></div>
-			 <div class = "col-md-12" style="height:5px;"></div>
-            </div> <!--post-->
-
-            <div class="post" id="ling341">
-              <div id="title">
-                <h1>Ling 341 help needed</h1>
-              </div> <!--title-->
-
-              <div class="col-xs-12" id="postDetails">
-                <h7 id="nametime">Studyman Buddyson | 3 Hours Ago</h7>
-              </div>
-
-              <div id="posttext">
-                 <h5> Uhh this is basically EECS 376 lite</h5>
-              </div> <!--posttext-->
-              <div id="lowerDetails"><h7>Class Name | Location</h7></div>
-			  <div id="join"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
-			  <div id="following"><h7>X People Following</h7></div>
-			 <div class = "col-md-12" style="height:5px;"></div>
-            </div> <!--post-->
-
-
-          </div>
-
-        </div> <!--postfeed-->
-      </div> <!--content-->
+          </div>  <!--/postholder-->
+        </div> <!--/postfeed-->
+      </div> <!--/content-->
 
     </div><!--body-->
     </div><!-- /.container -->
 
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Parse.js -->
-    <script src="https://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
-    <!-- Handlebars.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="jquery-ui/external/jquery/jquery.js"></script>
     <script src="jquery-ui/jquery-ui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/autogrow.min.js"></script>
-    <!-- <script src="js/blog.js"></script> -->
-    <script src="js/test.js"></script>
+    <!--proprietary scripts -->
+    <script src="js/post.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/filter.js"></script>
     <script src="js/main.js"></script>
-    
+
   </body>
 </html>
