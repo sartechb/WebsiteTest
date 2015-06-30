@@ -60,6 +60,7 @@ function createFilter (filter) {
 $("#new-filter").click(function (e) {
   showVeil();
   $("#newFilterModal").show(200);
+  $("#newFilterModal input").focus();
 });
 
 //Logic for submitting a new filter and adding it to the sidebar. TODO: Parse integration here!
