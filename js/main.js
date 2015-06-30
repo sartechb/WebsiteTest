@@ -1,17 +1,4 @@
 
-  app.filters["EECS_370"] = [];
-  app.filters["EECS_475"] = [];
-  app.filters["EECS_485"] = [];
-  app.filters["LING_341"] = [];
-
-  //building post mappings
-  //replace this part with info taken from parse:
-  //TODO: PARSE INTEGRATION HERE
-  app.filters["EECS_370"].push("eecs370");
-  app.filters["EECS_475"].push("eecs475");
-  app.filters["EECS_485"].push("eecs485");
-  app.filters["LING_341"].push("ling341");
-
   //console.log(app);
 app.Post = Parse.Object.extend("Post");
 
@@ -32,7 +19,7 @@ Parse.Cloud.run("getUniversityPostData", {}, {
 
     Parse.Cloud.run("getFilterData", {}, {
       success: function (r) {
-        console.log(r);
+        console.log(r, app.filters);
         for(var i = 0; i < r.filters.length; ++i) {
           createFilter(r.filters[i].name);
           var filter_id = r.filters[i].name.replace(" ","_");

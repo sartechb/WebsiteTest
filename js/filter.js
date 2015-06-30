@@ -95,7 +95,10 @@ $("#newFilterModal form").submit(function (e) {
     for(var x = 0; x < app.posts.length; ++x) {
     name = app.posts[x].Class+"_"+app.posts[x].classNumber;
       if(filterId == name) {
-        app.filters[filterId].push(app.posts[x].objectId);
+        if(app.filters[filterId] == undefined) 
+          app.filters[filterId]=[];
+        else if($.inArray(app.posts[x].objectId, app.filters[filterId]) == -1)
+          app.filters[filterId].push(app.posts[x].objectId);
       }
     }
   }
@@ -117,6 +120,7 @@ $(".filter-class div span").click(function (e) {
   var filterId = filter.attr("id");
   filter.hide(200, function (){$(this).remove();});
 
+  app.filters[filterId] = undefined;
 
   Parse.Cloud.run("removeFilter", {name: filterId}, {
     success: function (r) {

@@ -39,20 +39,22 @@ $('#new-post').submit(function (e) {
 
   //Fill in a post template and post it
   createPost(ct[0].value, ct[1].value, Parse.User.current().get("name"), 
-    ct[2].value, ct[3].value, "Now", "parseID");
+    ct[2].value, ct[3].value.toUpperCase().trim(), "Now", "parseID");
   var post = {};
   post.memberLimit = parseInt(ct[4].value);
   post.content = ct[1].value;
   _class = ct[3].value.toUpperCase().split(" ");
   //console.log(_class);
-  post.Class = _class[0];
-  post.classNumber = parseInt(_class[1]);
+  post.Class = _class[0].toUpperCase().trim();
+  post.classNumber = parseInt(_class[1].trim());
   post.title = ct[0].value;
   post.deletionDate = new Date();
   post.location = ct[2].value;
 
   Parse.Cloud.run("makePost", post, {
     success: function(response) {
+      createPost(response.title, response.content, response.poster, response.location,
+        response.Class+" "+response.classNumber, response.createdAt, response.objectId);
       app.posts.push(response);
       var filterId = _class.join("_");
       for(var n = 0; n < app.filters.length; ++n) {
@@ -87,10 +89,11 @@ function createPost(title, content, author, location, className, time, id) {
   to_insert.removeClass("template-post");
   $("#postholder").prepend(to_insert);
   filt = className.replace(" ","_");
-  if(app.filters[filt] != null)
-    app.filters[filt].push(id);
-  else 
-    app.filters[filt] = [id];
+  //ISSU HERE WITH UNINTENDED FILTER CREATION
+  // if(app.filters[filt] != null)
+  //   app.filters[filt].push(id);
+  // else 
+  //   app.filters[filt] = [id];
 }
 
 //Cancel logic for post creation
