@@ -38,8 +38,8 @@ $('#new-post').submit(function (e) {
     console.log(ct[i].value);
 
   //Fill in a post template and post it
-  createPost(ct[0].value, ct[1].value, Parse.User.current().get("name"), 
-    ct[2].value, ct[3].value.toUpperCase().trim(), "Now", "parseID");
+  // createPost(ct[0].value, ct[1].value, Parse.User.current().get("name"), 
+  //   ct[2].value, ct[3].value.toUpperCase().trim(), "Now", "parseID");
   var post = {};
   post.memberLimit = parseInt(ct[4].value);
   post.content = ct[1].value;
