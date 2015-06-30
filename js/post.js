@@ -56,12 +56,6 @@ $('#new-post').submit(function (e) {
       createPost(response.title, response.content, response.poster, response.location,
         response.Class+" "+response.classNumber, response.createdAt, response.objectId);
       app.posts.push(response);
-      var filterId = _class.join("_");
-      for(var n = 0; n < app.filters.length; ++n) {
-        if(app.filters[n].length != 0) {
-          app.filters[n].push(response.objectId);
-        }
-      }
     },
     error: function(response) {
       console.log(response);
