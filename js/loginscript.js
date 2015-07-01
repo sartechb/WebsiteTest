@@ -48,6 +48,7 @@ $("#signerup").submit(
     }
     var i = 0;
     var school = e.currentTarget[2].value;
+    console.log(schoolNames);
     for(i = 0; i < schoolNames.length; ++i) {
       console.log(school, schoolNames[i]);
       if(schoolNames[i] == school) break;
