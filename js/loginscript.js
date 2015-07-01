@@ -47,7 +47,7 @@ $("#signerup").submit(
       }
     }
     var i = 0;
-    var school = e.currentTarget[2].value;
+    var school = e.currentTarget[3].value;
     console.log(schoolNames);
     for(i = 0; i < schoolNames.length; ++i) {
       console.log(school, schoolNames[i]);
