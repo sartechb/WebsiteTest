@@ -15,6 +15,8 @@
     <link href="css/post.css" rel="stylesheet">
     <link href="css/filter.css" rel="stylesheet">
     <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/typeahead.css" rel="stylesheet">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
@@ -91,7 +93,7 @@
               <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Write your post here"></textarea>
               <hr class="toggle">
               <div class="col-xs-12 col-md-4 postInput">
-                <input type="text" name="post-place" class="toggle flat form-control" placeholder="Where?" autocomplete="off">
+                <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where?" autocomplete="off" data-provide="typeahead">
               </div>
               <div class="col-xs-12 col-md-4 postInput">
                 <input type="text" name="post-class" class="toggle flat form-control" placeholder="Class?" autocomplete="off">
@@ -149,9 +151,7 @@
     <script src="jquery-ui/jquery-ui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/autogrow.min.js"></script>
-    <script src="js/typeahead.jquery.min.js"></script>
-    <script src="js/typeahead.bundle.min.js"></script>
-    <script src="js/bloodhound.min.js"></script>
+    <script src="js/bootstrap3-typeahead.min.js"></script>
     <!--proprietary scripts -->
     <script src="js/post.js"></script>
     <script src="js/sidebar.js"></script>

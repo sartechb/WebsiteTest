@@ -56,6 +56,8 @@ $('#new-post').submit(function (e) {
       createPost(response.title, response.content, response.poster, response.location,
         response.Class+" "+response.classNumber, response.createdAt, response.objectId);
       app.posts.push(response);
+      app.activePosts.push(response.objectId);
+      createActiveLink(response.title);
     },
     error: function(response) {
       console.log(response);
@@ -83,6 +85,7 @@ function createPost(title, content, author, location, className, time, id) {
   to_insert.removeClass("template-post");
   $("#postholder").prepend(to_insert);
   filt = className.replace(" ","_");
+  
   //ISSU HERE WITH UNINTENDED FILTER CREATION
   // if(app.filters[filt] != null)
   //   app.filters[filt].push(id);
@@ -103,8 +106,17 @@ $("#post-cancel").click(function (e) {
 function createActiveLink(title) {
   var to_insert = $("#active-posts .template-active-post").clone();
   to_insert.removeClass("template-active-post");
+  if(title.length > 18) {
+    title = title.substr(0, 14);
+    title += "...";
+  }
   to_insert.find("h3").html(title);
   console.log(title);
   //add src attribute creation here
   $("#active-posts div.row").append(to_insert);
 }
+
+$("#new-post-bar input.typeahead").typeahead({
+  name: "Where",
+  source: ['BBB', 'League', 'North Quad', 'EECS', 'Pierpont', '123 west tasman']
+});

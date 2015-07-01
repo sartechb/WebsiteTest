@@ -22,6 +22,19 @@ im.eq(1).attr("src", "assets/profile"+rand+".png");
 rand = Math.ceil((1 - Math.random())*7);
 im.eq(2).attr("src", "assets/profile"+rand+".png");
 
+var schoolNames = [];
+
+Parse.Cloud.run("getSchoolNames", {}, {
+  success: function(schools) {
+    schoolNames = schools.names;
+    console.log(schools);
+    console.log($("input#school"));
+    $("input#school").typeahead({
+      source: schools.names
+    });
+  }, error: function(error) {console.log(error);}
+});
+
 $("#signerup").submit(
   function (e) {
     e.preventDefault();
@@ -33,6 +46,20 @@ $("#signerup").submit(
         return;
       }
     }
+    var i = 0;
+    var school = e.currentTarget[2].value;
+    for(i = 0; i < schoolNames.length; ++i) {
+      if(schoolNames[i] == school) break;
+    }
+    if(i == schoolNames.length) 
+      if($("#signerup").find("div.alert.alert-danger").length == 0) {
+          $("#signerup h1").after(errorAlert+"Sorry! Studybuddy isn't available at your school yet! <br>" +
+                    "<a href='http://www.getastudybuddy.com'> Please visit us for more information </a>"+"</div>");
+          return;
+      }
+
+    //school = school.substr(0, school.indexOf('(')-1).trim();
+
    //  console.log(e);
    //  var info = $("#signerup").serialize();
    //  console.log(e.currentTarget[0].value);

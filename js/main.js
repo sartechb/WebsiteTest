@@ -50,8 +50,10 @@ Parse.Cloud.run("getBasicData", {}, {
 Parse.Cloud.run("getActivePostData", {}, {
   success: function(r) {
     console.log(r);
+    app.activePosts = [];
     for(var i = 0; i < r.activePosts.length; ++i) {
       createActiveLink(r.activePosts[i].title);
+      app.activePosts.push(r.activePosts[i].objectId);
     }
   }, error: function(r) {console.log(r);}
 });
