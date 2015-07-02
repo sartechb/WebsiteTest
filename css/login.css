@@ -1,8 +1,8 @@
 .dividerish {
 	margin: 0 auto;
-	height: 300px;
+	height: 100%;
 	width: 8px;
-	background-color: #FFC107;
+	background-color: #FFFFFF;
 	display: block;
 }
 
@@ -11,11 +11,12 @@ body.log {
 }
 
 html { 
-  background: url("bg.jpg") no-repeat center center fixed; 
+  /* background: url("bg.jpg") no-repeat center center fixed; */ 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-color: #56ACDB;
 }
 
 .well {
@@ -64,4 +65,27 @@ footer h3, p {
 	z-index: 0;
 	background-color: white;
 	opacity: .5;
+}
+
+#login-box{
+	margin-top:8%;
+	/* background-color: white; */
+	/* border-radius: 0; */
+}
+#divider{
+height:100%;
+}
+
+.user-field{
+	background-color:white;
+	border-radius:0;
+	-webkit-box-shadow: 3px 3px 8px -1px rgba(87,70,87,1);
+-moz-box-shadow: 3px 3px 8px -1px rgba(87,70,87,1);
+box-shadow: 3px 3px 8px -1px rgba(87,70,87,1);
+}
+
+.user-field:hover{
+	-webkit-box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
+-moz-box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
+box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 }
