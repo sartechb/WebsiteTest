@@ -76,6 +76,7 @@ $("#newFilterModal form").submit(function (e) {
     console.log("was undefined");
     newFilter = newFilter.toUpperCase();
     createFilter(newFilter);
+    app.filters[filterId] = [];
 
     Parse.Cloud.run("makeFilter", 
     {
@@ -87,21 +88,22 @@ $("#newFilterModal form").submit(function (e) {
       success: function(r) {
         for(var i = 0; i < r.relevantPosts.length; ++i) {
           console.log(r.relevantPosts[i]);
-          app.filters[newFilter.replace(" ","_")].push(r.relevantPosts[i]);
+          app.filters[filterId].push(r.relevantPosts[i]);
         }
+        console.log(app.filters[filterId]);
       }, error: function(r) {console.log(r);}
     });
 
 
-    for(var x = 0; x < app.posts.length; ++x) {
-    name = app.posts[x].Class+"_"+app.posts[x].classNumber;
-      if(filterId == name) {
-        if(app.filters[filterId] == undefined) 
-          app.filters[filterId]=[];
-        else if($.inArray(app.posts[x].objectId, app.filters[filterId]) == -1)
-          app.filters[filterId].push(app.posts[x].objectId);
-      }
-    }
+    // for(var x = 0; x < app.posts.length; ++x) {
+    // name = app.posts[x].Class+"_"+app.posts[x].classNumber;
+    //   if(filterId == name) {
+    //     if(app.filters[filterId] == undefined) 
+    //       app.filters[filterId]=[];
+    //     else if($.inArray(app.posts[x].objectId, app.filters[filterId]) == -1)
+    //       app.filters[filterId].push(app.posts[x].objectId);
+    //   }
+    // }
   }
   //app.filters[newFilter.replace(" ","_")];
   //app.filters[id] = [];
