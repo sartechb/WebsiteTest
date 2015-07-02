@@ -121,3 +121,16 @@ $("#signerup .profileSelect").click(function (e) {
   $("#signerup .profileSelect").removeClass("selected");
   img.addClass("selected");
 });
+
+function loginShow(){
+    $("#signup-box").addClass("hidden", 200, "easeInQuad");
+    $("#login-box").removeClass("hidden", 200, "easeOutQuad");
+    $("#login-button").addClass("selected");
+    $("#register-button").removeClass("selected");
+}
+function regShow(){
+    $("#login-box").addClass("hidden", 200, "linear");
+    $("#signup-box").removeClass("hidden", 200, "linear");
+    $("#register-button").addClass("selected");
+    $("#login-button").removeClass("selected");
+}
