@@ -27,12 +27,11 @@ input, button {
 	background-color: rgba(245,245,245,1);
 }
 
-footer {
+.footer {
 	background-color: #333;
 	color: #aaa;
-	margin-top: 50px;
-	padding-top: 20px; 
-	/*font-family: 'Open Sans', Arial, sans-serif;*/
+	height:50px;
+    position:absolute;
 }
 
 footer h3, footer a, footer a:visited {
@@ -108,6 +107,7 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
     background-color: rgb(4, 136, 195);
     color:white;
     border:0px;
+
 }
 
 .button:hover{
