@@ -1,4 +1,4 @@
-.filtered{
+/*.filtered{
 	display: block;
 	font-size:1.32em;
 	font-weight: bold;
@@ -26,7 +26,7 @@
 
 .filter-class div:hover span {
 	display: initial;
-}
+}*/
 
 .gone,
 .template-filter{
@@ -34,7 +34,7 @@
 }
 
 
-
+/*
 #new-filter{
 	width:100%;
 	background-color: #0488C3;
@@ -68,7 +68,7 @@
 .add-filter {
 	font-size: 1.2em;
 	cursor: pointer;
-}
+}*/
 
 .veil {
   position: fixed;
@@ -123,10 +123,6 @@ div.showall {
 	padding-top: .3em;
 	cursor: pointer;
 }
-label:hover, .filter-class > div:hover{
-	background-image: none;
-	background-color: #AFD1F7;
-}
 
 input {
     width: 0px;
@@ -144,3 +140,64 @@ input {
 ::-webkit-scrollbar {
     width: 0px;
 }
+
+div.filter-drawer {
+	margin-top: 15px;
+}
+
+div.filter-drawer span {
+	font-size: 1em;
+}
+
+div.filter-drawer div.filter-label {
+	margin-top: 10px;
+}
+
+div.filter-marble {
+	font-size: 1.3em;
+	margin-top: 10px;
+	/**/
+	
+}
+
+div.filter-marble > div {
+	background-color: #0488C3;
+	border-radius: 25px;
+	padding: 5px;
+	display: block;
+	cursor: pointer;
+}
+
+div.filter-marble div.filter-button {
+	font-size: 1em;
+}
+
+div.filter-marble div.filter-button span {
+	font-size: .7em;
+	
+}
+
+div.filter-marble.off div.filter-button:hover {
+	background-color: #AFD1F7;
+}
+
+div.filter-marble.off div.filter-button{
+	background-color: #56ACDB;
+}
+
+
+div.filter-marble span {
+	margin: 0;
+}
+
+div.filter-label {
+	
+}
+
+div.filter-label h1 {
+	color: white;
+	margin-top: 10px;
+	background-color: #0488C3;
+}
+
+

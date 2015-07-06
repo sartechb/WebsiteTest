@@ -3,24 +3,27 @@ function showVeil() {$("div.veil").addClass("active", 300);}
 function hideVeil() {$("div.veil.active").removeClass("active", 300);}
 
 //sets event handlers on filters and showall
-$(".filter-class div").on("click", function (e) {filterToggle(e);});
+$(".filter-class div.filter-button").on("click", function (e) {filterToggle(e);});
 $("div.showall").on("click", function() {filterAll()});
 
 //Applies Show All
 function filterAll () {
   $(".post.on").removeClass("on");
   $(".post").not(".template-post").show(300);
-  $(".filtered").removeClass("filtered");
+  $(".off").removeClass("off");
 }
 
 //Applies filterHelper
 function filterToggle(e) {
   var filter;
-  if($(e.target).prop("tagName") == "H4")
+  if($(e.target).prop("tagName") == "H6")
+    filter = $(e.target).parent().parent();
+  else if ($(e.target).hasClass("filter-button"))
     filter = $(e.target).parent();
-  else filter = $(e.target);
-  //console.log(e.target);
-  filter.toggleClass("filtered");
+  else 
+    filter = $(e.target);
+  console.log(e.target);
+  filter.toggleClass("off");
   filterToggleHelper(filter.attr("id"));
   console.log("called filterToggle");
 }
@@ -50,9 +53,10 @@ function filterToggleHelper (filter) {
 
 function createFilter (filter) {
   var to_insert = $("div.filter-class div.template-filter").clone(true);
+  console.log(to_insert, "this is the created filter");
   to_insert.removeClass("template-filter");
   to_insert.attr("id", filter.replace(" ","_"));
-  to_insert.find("h4").append(filter);
+  to_insert.find("h6").append(filter);
   $("div.filter-class").append(to_insert);
 }
 
@@ -119,13 +123,15 @@ $("#newFilterModal button.cancel").click(function (e) {
 
 //logic to delete a filter. TODO: Parse integration here!
 $(".filter-class div span").click(function (e) {
-  var filter = $(e.target).parent().parent();
+  var filter = $(e.target).parent().parent().parent();
+ 
   var filterId = filter.attr("id");
+   console.log(filterId);
   filter.hide(200, function (){$(this).remove();});
 
   app.filters[filterId] = undefined;
 
-  Parse.Cloud.run("removeFilter", {name: filterId}, {
+  Parse.Cloud.run("removeFilter", {name: filterId.replace("_", " ")}, {
     success: function (r) {
       console.log(r);
     }, error: function (r) {console.log(r);}
