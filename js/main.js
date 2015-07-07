@@ -1,6 +1,6 @@
 
   //console.log(app);
-app.Post = Parse.Object.extend("Post");
+//app.Post = Parse.Object.extend("Post");
 
 if(app.user != null) 
   app.Post = Parse.Object.extend("Post");
