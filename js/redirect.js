@@ -8,10 +8,12 @@ Parse.initialize("MQvT5Bq6CsU34IQBfop8fPEJLOsLybDgDMBRdFhM", "HNFXaE7aCayggyI8hy
 var app = {};
 app.filters = {};
 
-console.log("here", app);
+// console.log("here", app);
 
+//Store the current User
 app.user = Parse.User.current();
 
+//check if the user is logged in. Redirect to login if not logged in
 if(app.user == null) {
 	window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
 }

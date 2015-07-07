@@ -75,17 +75,19 @@ $('#new-post').submit(function (e) {
   filterAll();
 });
 
-function createPost(title, content, author, location, className, time, id) {
+function createPost(post, set) {
   var to_insert = $("#template-post").clone(true);
-  to_insert.find("#title h1").html(title);
-  to_insert.find("#postDetails h7").html(author+" | "+time);
-  to_insert.find("#posttext h5").html(content);
-  to_insert.find("#lowerDetails h7").html(className+" | "+location);
-  to_insert.attr("id", id);
+  to_insert.find("#title h1").html(post.title);
+  to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
+  to_insert.find("#postDetails h7").html(post.author+" | "+post.time.toString());
+  to_insert.find("#posttext h5").html(post.content);
+  to_insert.find("#lowerDetails h7").html(post.classString+" | "+post.location);
+  to_insert.find("#following h7").html(post.memberCount+" members have joined this post");
+  to_insert.attr("id", post.postId);
   to_insert.removeClass("template-post");
+  to_insert.addClass(set);
   $("#postholder").prepend(to_insert);
-  filt = className.replace(" ","_");
-  
+  //filt = className.replace(" ","_");
   //ISSU HERE WITH UNINTENDED FILTER CREATION
   // if(app.filters[filt] != null)
   //   app.filters[filt].push(id);
@@ -103,15 +105,17 @@ $("#post-cancel").click(function (e) {
   //setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
 });
 
-function createActiveLink(title) {
+function createActiveLink(title, objectId) {
   var to_insert = $("#active-posts .template-active-post").clone();
   to_insert.removeClass("template-active-post");
+  to_insert.attr("id", objectId);
+  //console.log(objectId);
   if(title.length > 18) {
     title = title.substr(0, 14);
     title += "...";
   }
   to_insert.find("h3").html(title);
-  console.log(title);
+ // console.log(title);
   //add src attribute creation here
   $("#active-posts div.row").append(to_insert);
 }
