@@ -98,7 +98,7 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
     padding-top: 0;
     padding-bottom: 0;
     /* height:210px; */
-    position: absolute;
+    position: relative;
     padding: 0;
 }
 .button{
