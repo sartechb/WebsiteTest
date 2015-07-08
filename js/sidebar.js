@@ -6,20 +6,14 @@ $('#dropdown').on('click', function(){
   if($('#content').hasClass('col-md-10'))
   {
    $('#content').switchClass( "col-md-10", "col-md-12", 200, "easeInOutQuad" );
+   $('#content').switchClass( "col-sm-10", "col-sm-12", 200, "easeInOutQuad" ); 
   }
-  if($('#content').hasClass('col-md-12'))
+  else if($('#content').hasClass('col-md-12'))
   {
     $('#content').switchClass( "col-md-12", "col-md-10", 200, "easeInOutQuad" ); 
-  }
-  if($('#content').hasClass('col-sm-10'))
-  {
-   $('#content').switchClass( "col-sm-10", "col-sm-12", 200, "easeInOutQuad" );
-  }
-  if($('#content').hasClass('col-md-12'))
-  {
     $('#content').switchClass( "col-sm-12", "col-sm-10", 200, "easeInOutQuad" ); 
   }
-  
+ 
 }
 else
 {
