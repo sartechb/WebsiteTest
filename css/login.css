@@ -1,13 +1,16 @@
+body{
+    overflow:hidden;
+}
 .dividerish {
-	margin: 0 auto;
-	height: 100%;
-	width: 8px;
-	background-color: #FFFFFF;
-	display: block;
+    margin: 0 auto;
+    height: 100%;
+    width: 8px;
+    background-color: #FFFFFF;
+    display: block;
 }
 
 body.log {
-	background: transparent;
+    background: transparent;
 }
 
 html { 
@@ -17,71 +20,77 @@ html {
   -o-background-size: cover;
   background-size: cover;
   background-color: #56ACDB;
+  background-image:url("../assets/bluetriangles.png");
+  overflow-y:hidden;
 }
 
 .well {
-	background-color: rgba(245,245,245,0.8);
+    background-color: rgba(245,245,245,0.8);
 }
 
 input, button {
-	background-color: rgba(245,245,245,1);
+    background-color: rgba(245,245,245,1);
 }
 
 .footer {
-	background-color: #333;
-	color: #aaa;
-	height:50px;
+    background-color: #333;
+    color: #aaa;
+    height:50px;
     position:absolute;
 }
 
 footer h3, footer a, footer a:visited {
-	color: #ccc;
+    color: #ccc;
 }
 
 footer a:hover, footer a:focus {
-	color: #aaa;
+    color: #aaa;
 }
 
 footer h3, p {
-	font-family: Calibri, "Calibri", Calibri, sans-serif;
+    font-family: Calibri, "Calibri", Calibri, sans-serif;
 }
 
 #greeting {
-	color:#ccc;
+    color:#ccc;
 }
 .profileSelect{
     padding:0;
 }
 
 #signerup .profileSelect img {
-	z-index: 5;
+    z-index: 5;
 }
 
 #signerup .profileSelect:hover {
-	-webkit-box-shadow: 0px 0px 20px 2px white inset;
-	-moz-box-shadow: 0px 0px 20px 2px white inset;
-	box-shadow: 0px 0px 20px 2px white inset;
+    -webkit-box-shadow: 0px 0px 20px 2px white inset;
+    -moz-box-shadow: 0px 0px 20px 2px white inset;
+    box-shadow: 0px 0px 20px 2px white inset;
 }
 
 #signerup .profileSelect.selected {
-	z-index: 0;
-	background-color: white;
-	opacity: .5;
+    z-index: 0;
+    background-color: white;
+    opacity: .5;
 }
 
 #login-box{
-	margin-top:0%;
-	/* background-color: white; */
-	/* border-radius: 0; */
+    margin-top:0%;
+    /* background-color: white; */
+    /* border-radius: 0; */
+}
+#signup-box{
+    padding-bottom:0;
 }
 #divider{
 height:;
 }
 
+
 .user-field{
-	background-color:white;
-	border-radius:0;
-	-webkit-box-shadow: 3px 3px 8px -1px rgba(87,70,87,1);
+    background-color:white;
+    border-radius:0;
+    -webkit-box-shadow: 3px 3px 8px -1px rgba(87,70,87,1);
 -moz-box-shadow: 3px 3px 8px -1px rgba(87,70,87,1);
 box-shadow: 3px 3px 8px -1px rgba(87,70,87,1);
     text-align: center;
@@ -89,7 +98,7 @@ box-shadow: 3px 3px 8px -1px rgba(87,70,87,1);
 }
 
 .user-field:hover{
-	-webkit-box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
+    -webkit-box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 -moz-box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 }
@@ -129,7 +138,12 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 }
 .control-label{
     text-align:left;
+    padding: 0;
+    padding-top: 5px;
 }
 .form-control{
     text-align:center;
+    float: right;
+    width: 75%;
 }
+

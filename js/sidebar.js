@@ -21,11 +21,13 @@ else
   if($('#sidebar').hasClass('hidden-xs'))
   {
     $('#content').slideToggle(200);
-    $('#sidebar').delay(200).switchClass( "hidden-xs", "col-xs-12", 0, "swing" ); 
+    $('#sidebar').delay(200).switchClass( "hidden-xs", "col-xs-12", 0, "swing" );
+    $('#actions').slideToggle(200); 
   }
   else{
     $('#sidebar').switchClass( "col-xs-12", "hidden-xs", 200, "swing" ); 
     $('#content').delay(200).slideToggle(200);
+     $('#actions').slideToggle(200);
   }
 }
 });

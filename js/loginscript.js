@@ -123,14 +123,14 @@ $("#signerup .profileSelect").click(function (e) {
 });
 
 function loginShow(){
-    $("#signup-box").addClass("hidden", 200, "easeInQuad");
-    $("#login-box").removeClass("hidden", 200, "easeOutQuad");
+    $("#signup-box").slideToggle(200);
+    $("#login-box").slideToggle(200);
     $("#login-button").addClass("selected");
     $("#register-button").removeClass("selected");
 }
 function regShow(){
-    $("#login-box").addClass("hidden", 200, "linear");
-    $("#signup-box").removeClass("hidden", 200, "linear");
+    $("#signup-box").slideToggle(200);
+    $("#login-box").slideToggle(200);
     $("#register-button").addClass("selected");
     $("#login-button").removeClass("selected");
 }
