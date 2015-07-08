@@ -67,6 +67,7 @@ span{
     height: 30px;
     font-size: 1.12em;
     padding-top: 2px;
+    display:none;
 }
 
 #user-photo{
