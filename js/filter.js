@@ -53,7 +53,7 @@ function filterToggleHelper (filter) {
 
 function createFilter (filter) {
   var to_insert = $("div.filter-class div.template-filter").clone(true);
-  console.log(to_insert, "this is the created filter");
+  //console.log(to_insert, "this is the created filter");
   to_insert.removeClass("template-filter");
   to_insert.attr("id", filter.replace(" ","_"));
   to_insert.find("h6").append(filter);

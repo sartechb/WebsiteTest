@@ -75,7 +75,7 @@ $('#new-post').submit(function (e) {
   filterAll();
 });
 
-function createPost(post, set) {
+function createPost(post, set, append, postBefore) {
   var to_insert = $("#template-post").clone(true);
   to_insert.find("#title h1").html(post.title);
   to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
@@ -86,13 +86,13 @@ function createPost(post, set) {
   to_insert.attr("id", post.postId);
   to_insert.removeClass("template-post");
   to_insert.addClass(set);
-  $("#postholder").prepend(to_insert);
-  //filt = className.replace(" ","_");
-  //ISSU HERE WITH UNINTENDED FILTER CREATION
-  // if(app.filters[filt] != null)
-  //   app.filters[filt].push(id);
-  // else 
-  //   app.filters[filt] = [id];
+  if(append)
+    $("#postholder").append(to_insert);
+  else
+    if(postBefore == "top")
+      $("#postholder").prepend(to_insert);
+    else
+      $("#postholder #"+postBefore).after(to_insert);
 }
 
 //Cancel logic for post creation
