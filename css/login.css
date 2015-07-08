@@ -95,19 +95,23 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 }
 
 #button-box{
-    padding-top:50px;
-    padding-bottom:40px;
-    height:210px;
+    padding-top: 0;
+    padding-bottom: 0;
+    /* height:210px; */
+    position: absolute;
+    padding: 0;
 }
 .button{
     margin-bottom: 10px;
-    height:50px;
-    font-size:2em;
+    /* height:50px; */
+    font-size: 1em;
     box-shadow:0px;
-    background-color: rgb(4, 136, 195);
+    background-color: rgb(86, 172, 219);
     color:white;
     border:0px;
 
+    display: inline-block;
+    border-radius: 0;
 }
 
 .button:hover{
@@ -120,7 +124,7 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 }
 
 .selected{
-    background-color:  #AFD1F7;
+    background-color: #42A4DA;
     color:white;
 }
 .control-label{
