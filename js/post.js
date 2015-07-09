@@ -110,10 +110,10 @@ function createActiveLink(title, objectId) {
   to_insert.removeClass("template-active-post");
   to_insert.attr("id", objectId);
   //console.log(objectId);
-  if(title.length > 18) {
-    title = title.substr(0, 14);
-    title += "...";
-  }
+  // if(title.length > 18) {
+  //   title = title.substr(0, 14);
+  //   title += "...";
+  // }
   to_insert.find("h3").html(title);
  // console.log(title);
   //add src attribute creation here

@@ -43,17 +43,22 @@ Parse.Cloud.run("getPosts", {nextTen:true,areFilters:false,timeCutOff:app.refres
 
 function getFilterPosts() {
   var filters = app.user.get("filters");
-  app.filters = [];
+  app.filters = {};
+  app.filters.c = [];
+  app.filters.l = [];
+  app.filters.t = [];
   app.t = 0;
   app.t1 = app.postOrder.length;
   //app.filters = app.user.get("filters");
   for(var x = 0; x < filters.length; ++x) {
-    app.filters.push(JSON.parse(filters[x]));
+    var filtObj = app.user.get("filters")[x].split("|");
+    app.filters[filtObj[1]].push({filter:filtObj[0],on:false}); 
+    //app.filters.push(JSON.parse(filters[x]));
     Parse.Cloud.run("getPosts", {
       nextTen:false,
       areFilters:true,
-      filterString:app.filters[x].s,
-      filterType:app.filters[x].t
+      filterString:filtObj[0],
+      filterType:filtObj[1]
     }, {
       success: function(response) {
         for(var i = 0; i < response.posts.length; ++i) {
@@ -62,16 +67,14 @@ function getFilterPosts() {
             app.posts[response.posts[i].postId] = response.posts[i];
             app.posts[response.posts[i].postId].filters = [];
           }
-          console.log(response.filterString, response.posts[i].postId);
+          //console.log(response.filterString, response.posts[i].postId);
           app.posts[response.posts[i].postId].filters.push(response.filterString.replace(" ", "_"));
         }
         ++app.t;
         if(app.t == app.user.get("filters").length) {
           fixPosts();
           refreshPostFeed();
-          for(var n = 0; n < app.filters.length; ++n) {
-            createFilter(app.filters[n].s);
-          }
+          buildFilters();
         }
       }, error: function(error) {console.log(error);}
     });
@@ -108,6 +111,16 @@ function refreshPostFeed() {
       }
     }
   }
+}
+
+function buildFilters() {
+  for(var n = 0; n < app.filters.c.length; ++n) createFilter(app.filters.c[n].filter, "|c");
+  for(var o = 0; o < app.filters.l.length; ++o) createFilter(app.filters.l[o].filter, "|l");
+  for(var p = 0; p < app.filters.t.length; ++p) createFilter(app.filters.t[p].filter, "|t");
+}
+
+function stringToTimeFilter() {
+  
 }
 
 $("a#logout").click(function (e) {

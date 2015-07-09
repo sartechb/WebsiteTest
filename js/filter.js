@@ -1,141 +1,72 @@
-//logic to show/hide veil during modals with animation
-function showVeil() {$("div.veil").addClass("active", 300);}
-function hideVeil() {$("div.veil.active").removeClass("active", 300);}
+//sets event handlers on filters
+$(".filter-class div.filter-button").on("click", function (e) {runFilter(e);});
 
-//sets event handlers on filters and showall
-$(".filter-class div.filter-button").on("click", function (e) {filterToggle(e);});
-$("div.showall").on("click", function() {filterAll()});
-
-//Applies Show All
-function filterAll () {
-  $(".post.on").removeClass("on");
-  $(".post").not(".template-post").show(300);
-  $(".off").removeClass("off");
-}
-
-//Applies filterHelper
-function filterToggle(e) {
+//executes a filterCommand
+function runFilter(e) {
   var filter;
+  //make sure we have the element with the ID tag
   if($(e.target).prop("tagName") == "H6")
     filter = $(e.target).parent().parent();
   else if ($(e.target).hasClass("filter-button"))
     filter = $(e.target).parent();
   else 
     filter = $(e.target);
-  console.log(e.target);
+  //visual effect
   filter.toggleClass("off");
-  filterToggleHelper(filter.attr("id"));
-  console.log("called filterToggle");
+  //find filter by type -> string
+  var f = filter.attr("id").split("|");
+  var ty = f[1];
+  var st = f[0];
+  console.log(filter.attr("id"), ty, st);
+  console.log(app.filters[ty].length);
+  //set flag variable to true
+  for(var i = 0; i < app.filters[ty].length; ++i)
+    if(app.filters[ty][i].filter.replace(" ", "_") == st)
+      app.filters[ty][i].on = !app.filters[ty][i].on
+
+  var classFilters = [];
+  var locFilters = [];
+  var timeFilters = [];
+  //build arrays of "on" strings
+  for(var x = 0; x < app.filters.c.length; ++x) 
+    if(app.filters.c[x].on)
+      classFilters.push(app.filters.c[x].filter.replace(" ","_"));
+  for(var y = 0; y < app.filters.l.length; ++y) 
+    if(app.filters.l[y].on)
+      locFilters.push(app.filters.l[y].filter.replace(" ","_"));
+  for(var z = 0; z < app.filters.t.length; ++z) 
+    if(app.filters.t[z].on)
+      timeFilters.push(app.filters.t[z].filter.replace(" ","_"));
+  //check for edge cases
+  if(classFilters.length == 0) classFilters.push("");
+  if(locFilters.length == 0) locFilters.push("");
+  if(timeFilters.length == 0) timeFilters.push("");  
+  var selectors = [];
+  //Create the combinations of valid strings
+  for(var a = 0; a < classFilters.length; ++a) {
+    for(var b = 0; b < locFilters.length; ++ b) {
+      for(var c = 0; c < timeFilters.length; ++c) {
+        var classSel = ((classFilters[a].length==0)?(""):("."+classFilters[a]));
+        var locSel = ((locFilters[b].length==0)?(""):("."+locFilters[b]));
+        var timeSel = ((timeFilters[c].length==0)?(""):("."+timeFilters[c]));
+        //if(sel.length!=0)
+        selectors.push(".post"+classSel+locSel+timeSel);
+      }
+    }
+  }
+  //do the visual stuff
+  console.log(selectors);
+  $(selectors.join()).not(".template-post").show(200);
+  $(".post").not(selectors.join()).hide(200);
 }
 
-//Applies filters
-function filterToggleHelper (filter) {
-  console.log(filter+" from the helper");
-  if(filter == null) return;
-  var a = app.filters[filter];
-  var postholderNF = $("#postholder.nofilter");
- //console.log(a[0]);
-
-  for(var i=0; i < a.length; ++i) 
-    if($("#"+a[i]).hasClass("on"))
-      $("#"+a[i]).removeClass("on");
-    else
-      $("#"+a[i]).addClass("on");
-
-  setTimeout(function () {
-    $(".post.on").not(".template-post").show(300);
-    if($(".post.on").length != 0 /*&& */)
-      $(".post").not(".on").hide(300);
-    else if($(".filter-class .filtered").length == 0)
-      $(".post").not(".template-post").show(300);
-  }, 50);
-}
-
-function createFilter (filter) {
+function createFilter (filter, type) {
   var to_insert = $("div.filter-class div.template-filter").clone(true);
   //console.log(to_insert, "this is the created filter");
   to_insert.removeClass("template-filter");
-  to_insert.attr("id", filter.replace(" ","_"));
+  to_insert.attr("id", filter.replace(" ","_")+type);
   to_insert.find("h6").append(filter);
   $("div.filter-class").append(to_insert);
 }
 
-//new filter button logic. Shows newFilterModal
-$("#new-filter").click(function (e) {
-  showVeil();
-  $("#newFilterModal").show(200);
-  $("#newFilterModal input").focus();
-});
 
-//Logic for submitting a new filter and adding it to the sidebar. TODO: Parse integration here!
-$("#newFilterModal form").submit(function (e) {
-  e.preventDefault();
-  hideVeil();
-  $("#newFilterModal").hide(200);
-  var newFilter = e.currentTarget[0].value.toUpperCase().trim();
-  var filterId = newFilter.replace(" ","_");
-  $("#newFilterModal input").val("");
-
-  if(app.filters[filterId] == undefined) {
-    console.log("was undefined");
-    newFilter = newFilter.toUpperCase();
-    createFilter(newFilter);
-    app.filters[filterId] = [];
-
-    Parse.Cloud.run("makeFilter", 
-    {
-      type: "CLASS_CLASSNUMBER",
-      Class: newFilter.split(" ")[0],
-      classNumber: parseInt(newFilter.split(" ")[1])
-    },
-    {
-      success: function(r) {
-        for(var i = 0; i < r.relevantPosts.length; ++i) {
-          console.log(r.relevantPosts[i]);
-          app.filters[filterId].push(r.relevantPosts[i]);
-        }
-        console.log(app.filters[filterId]);
-      }, error: function(r) {console.log(r);}
-    });
-
-
-    // for(var x = 0; x < app.posts.length; ++x) {
-    // name = app.posts[x].Class+"_"+app.posts[x].classNumber;
-    //   if(filterId == name) {
-    //     if(app.filters[filterId] == undefined) 
-    //       app.filters[filterId]=[];
-    //     else if($.inArray(app.posts[x].objectId, app.filters[filterId]) == -1)
-    //       app.filters[filterId].push(app.posts[x].objectId);
-    //   }
-    // }
-  }
-  //app.filters[newFilter.replace(" ","_")];
-  //app.filters[id] = [];
-  //connect all posts that fit under this filter here! TODO: Parse integration here!`
-});
-
-//Cancel logic for new filter creation
-$("#newFilterModal button.cancel").click(function (e) {
-  $("#newFilterModal").hide(200);
-  $("#newFilterModal input").val("");
-  hideVeil();
-});
-
-//logic to delete a filter. TODO: Parse integration here!
-$(".filter-class div span").click(function (e) {
-  var filter = $(e.target).parent().parent().parent();
- 
-  var filterId = filter.attr("id");
-   console.log(filterId);
-  filter.hide(200, function (){$(this).remove();});
-
-  app.filters[filterId] = undefined;
-
-  Parse.Cloud.run("removeFilter", {name: filterId.replace("_", " ")}, {
-    success: function (r) {
-      console.log(r);
-    }, error: function (r) {console.log(r);}
-  })
-  //filter.remove();
-  //also remove from active filter list in parse!
-});
