@@ -146,4 +146,7 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
     float: right;
     width: 75%;
 }
-
+html{
+    overflow: scroll;
+}
+}
