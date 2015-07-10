@@ -208,3 +208,67 @@ div.filter-label h1 {
 	background-color: #0488C3;
 	color: white;
 }
+
+.modal-title {
+	color:black;
+}
+
+.modal-content {
+	border-radius: 0;
+	font-family: Calibri, "Calibri", Calibri, sans-serif; 
+}
+
+.modal-content button {
+	border-radius: 0;
+	outline-width: 0;
+}
+
+.modal-body .container .row {
+	background-color: #56ACDB;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	opacity: 0.5;
+	margin-top: 5px;
+}
+.modal-body .container .row.active {
+	background-color: #0488C3;
+	opacity: 1.0;
+}
+
+.modal-body h4 {
+	/*padding-top: 5px;*/
+	text-align: left;
+}
+
+.modal-body i {
+	color: white;
+}
+
+.row.template-filter {
+	display: none;
+}
+
+.modal-body {
+	padding-bottom: 50px;
+}
+
+.modal-body form {
+	margin-top: 10px;
+	display: block;
+}
+
+.modal-body .notice span.link {
+	text-decoration: underline;
+	font-family: Calibri, "Calibri", Calibri, sans-serif; 
+	color:inherit;
+	font-size: inherit;
+	line-height: inherit;
+	margin-top: inherit;
+	margin-left: inherit;
+}
+
+.modal-body .notice {
+	display: none;
+	margin-bottom: -40px;
+}
+

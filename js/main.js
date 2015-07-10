@@ -9,56 +9,75 @@ Parse.Cloud.run("getInitialData", {}, {
    // console.log(response);
     app.activePosts = response.activePosts;
     app.locations = response.locations;
+    $("input#locFilterAddInput").typeahead({source: response.locations});
     app.classes = response.classes;
+    $("input#classFilterAddInput").typeahead({source: response.classes});
     for(var i = 0; i < app.activePosts.length; ++i)
       createActiveLink(app.activePosts[i].title, app.activePosts[i].postId);
+    buildPostFeed();
   }, error: function(error){console.log(error);}
 });
 
 //If there are filters, we pull filtered posts and shut
 //off filtering while the request completes.
-app.filteringEnabled = false;
-app.refreshTime = new Date();
-Parse.Cloud.run("getPosts", {nextTen:true,areFilters:false,timeCutOff:app.refreshTime}, {
-  success: function(response) {
-   app.postOrder = [];
-   app.posts = {};
-   for(var x = 0; x < response.posts.length; ++x) {
-    app.postOrder.push(response.posts[x].postId);
-    app.posts[response.posts[x].postId] = response.posts[x];
-    app.posts[response.posts[x].postId].filters = [];
-  }
-    //app.posts = response.posts;
-    app.timeCutOff = response.timeCutOff;
-    app.areMorePosts = response.areMorePosts;
-   //if(app.user.get("filters").length == 0)
-    for(var i = 0; i < app.postOrder.length; ++i) {
-      createPost(app.posts[app.postOrder[i]], "recent", true);
+function buildPostFeed() {
+  app.filteringEnabled = false;
+  app.refreshTime = new Date();
+  Parse.Cloud.run("getPosts", {nextTen:true,areFilters:false,timeCutOff:app.refreshTime}, {
+    success: function(response) {
+     app.postOrder = [];
+     app.posts = {};
+     for(var x = 0; x < response.posts.length; ++x) {
+      app.postOrder.push(response.posts[x].postId);
+      app.posts[response.posts[x].postId] = response.posts[x];
+      app.posts[response.posts[x].postId].filters = [];
     }
-    //console.log(app.user.get("filters"));
-    if(app.user.get("filters").length > 0)
-      getFilterPosts(); 
-  }, error: function(error) {console.log(error);}
-});
+      //app.posts = response.posts;
+      app.timeCutOff = response.timeCutOff;
+      app.areMorePosts = response.areMorePosts;
+     //if(app.user.get("filters").length == 0)
+      for(var i = 0; i < app.postOrder.length; ++i) {
+        createPost(app.posts[app.postOrder[i]], "recent", true);
+      }
+      //console.log(app.user.get("filters"));
+      if(app.user.get("filters").length > 0) {
+        getFilterPosts(true, "ERROR", "ERROR");
+      } else {
+        app.filters = {};
+        app.filters.c = [];
+        app.filters.l = [];
+        app.filters.t = [];
+      }
+    }, error: function(error) {console.log(error);}
+  });
+}
 
-function getFilterPosts() {
-  var filters = app.user.get("filters");
-  app.filters = {};
-  app.filters.c = [];
-  app.filters.l = [];
-  app.filters.t = [];
+function getFilterPosts(ib, fs, ft) {
+   console.log(ib);
+  var filters = [];
+  if(ib) {
+    filters = app.user.get("filters");
+    app.filters = {};
+    app.filters.c = [];
+    app.filters.l = [];
+    app.filters.t = [];
+  }
   app.t = 0;
   app.t1 = app.postOrder.length;
   //app.filters = app.user.get("filters");
-  for(var x = 0; x < filters.length; ++x) {
-    var filtObj = app.user.get("filters")[x].split("|");
-    app.filters[filtObj[1]].push({filter:filtObj[0],on:false}); 
+  for(var x = 0; x < (ib?filters.length:1); ++x) {
+    var filtObj;
+    if(ib) {
+      filtObj = app.user.get("filters")[x].split("|");
+      app.filters[filtObj[1]].push({filter:filtObj[0],on:false}); 
+    }
     //app.filters.push(JSON.parse(filters[x]));
+   if(ib) console.log(filtObj[0], filtObj[1]);
     Parse.Cloud.run("getPosts", {
       nextTen:false,
       areFilters:true,
-      filterString:filtObj[0],
-      filterType:filtObj[1]
+      filterString:(ib?filtObj[0]:fs),
+      filterType:(ib?filtObj[1]:ft)
     }, {
       success: function(response) {
         for(var i = 0; i < response.posts.length; ++i) {
@@ -66,15 +85,16 @@ function getFilterPosts() {
             app.postOrder.push(response.posts[i].postId);
             app.posts[response.posts[i].postId] = response.posts[i];
             app.posts[response.posts[i].postId].filters = [];
+            if(!ib)console.log("made new post");
           }
           //console.log(response.filterString, response.posts[i].postId);
-          app.posts[response.posts[i].postId].filters.push(response.filterString.replace(" ", "_"));
+          app.posts[response.posts[i].postId].filters.push(response.filterString.replace(/\s+/g, "_"));
         }
         ++app.t;
-        if(app.t == app.user.get("filters").length) {
+        if(app.t == app.user.get("filters").length || !ib) {
           fixPosts();
           refreshPostFeed();
-          buildFilters();
+          if(ib) buildFilters();
         }
       }, error: function(error) {console.log(error);}
     });
@@ -120,7 +140,7 @@ function buildFilters() {
 }
 
 function stringToTimeFilter() {
-  
+
 }
 
 $("a#logout").click(function (e) {
@@ -130,3 +150,6 @@ $("a#logout").click(function (e) {
     console.log("logging out");
     window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
 });
+
+$('[data-toggle="tooltip"]').tooltip()
+

@@ -12,6 +12,13 @@ span{
 	margin-left:8px;
 }
 
+button.btn, button.btn:focus {
+  border-radius: 0;
+  outline-width: 0;
+  outline-color: transparent;
+  outline-style: none;
+}
+
  .container
  {
  	width:100%;

@@ -81,11 +81,14 @@ function createPost(post, set, append, postBefore) {
   to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
   to_insert.find("#postDetails h7").html(post.author+" | "+post.time.toString());
   to_insert.find("#posttext h5").html(post.content);
-  to_insert.find("#lowerDetails h7").html(post.classString+" | "+post.location);
+  to_insert.find("#lowerDetails h7").html(post.classString+" | "+post.location+" "+post.detailLocation);
   to_insert.find("#following h7").html(post.memberCount+" members have joined this post");
   to_insert.attr("id", post.postId);
   to_insert.removeClass("template-post");
   to_insert.addClass(set);
+  to_insert.addClass(post.classString.replace(/\s+/g,"_"));
+  to_insert.addClass(post.location.replace(/\s+/g,"_"));
+  //time function filter here
   if(append)
     $("#postholder").append(to_insert);
   else

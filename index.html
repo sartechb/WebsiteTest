@@ -19,6 +19,7 @@
     <link href="css/main.css" rel="stylesheet">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
     <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
@@ -27,18 +28,76 @@
 
   <script type="text/javascript" src="js/redirect.js"></script>
   
-  <div class="veil"></div>
-  <div class="container" id="newFilterModal">
-    <div class="row top">
-      <div class="col-xs-6 col-xs-offset-3 blue-bar wide"><h1 style="color:white;">Add a Filter:</h1></div>
-        <form>
-          <div class="col-xs-6 col-xs-offset-3 well">
-          <input type="text" name="new-filter" class="flat add col-xs-8" id='new-post-title' placeholder='Ex. EECS 123' autocomplete="off">
-          <button class="btn btn-primary col-xs-2 submit " type="submit">ADD</button>
-          <button class="btn btn-default col-xs-2 cancel" type="button">NVM</button>
+  
+  <div class="modal fade" id="classFilterMenu" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Filter By Class</h4>
         </div>
+        <div class="modal-body">
+          <p> Your class filters: </p>
+          <div class="container">
+            <div class="row template-filter">
+              <div class="col-xs-10 title"><h4></h4></div>
+              <div class="col-xs-2"><i class="fa fa-times fa-lg"></i></div>
+            </div>
+          </div>
+          <form id="classFilterAdd">
+            <input type="text" class="form-control typeahead" id="classFilterAddInput" placeholder="Add a Filter" data-provide="typeahead">
+            <input type="submit" style="display:none"/>
+          </form>
+          <p class="notice text-small text-danger"> We're sorry, you can't make a filter for that class yet because it hasn't been posted about on StudyBuddy. If you're looking for people in the class,<span class="link">try making a post</span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade" id="locFilterMenu" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Filter By Location</h4>
+        </div>
+        <div class="modal-body">
+          <p> Your location filters: </p>
+          <div class="container"></div>
+          <form id="locFilterAdd">
+            <input type="text" class="form-control typeahead" id="locFilterAddInput" placeholder="Add a Filter" data-provide="typeahead">
+            <input type="submit" style="display:none"/>
+          </form>
+          <p class="notice text-small text-danger"> We're sorry, you can't make a filter for that location yet because it hasn't been posted about on StudyBuddy. If you're looking for people at that location,<span class="link">try making a post</span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade" id="timeFilterMenu" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Filter By Time</h4>
+        </div>
+        <div class="modal-body">
+          <p> Your time filters: </p>
+          <div class="container">
+            Coming Soon!
+          </div>
           
-      </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -67,17 +126,6 @@
             <div class = "col-md-12 active-post template-active-post"><h3></h3></div>
           </div><!--active posts row-->
         </div>
-
-        <!--  <hr align="center" width="70%" color="white">
-         <h3>My Filters</h3>
-
-       
-        <div class="filter-class">
-          <div class="col-md-12 template-filter"><h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></h4></div>
-         
-        </div>
-        <div class="col-md-12 showall"><h6> Show All Posts</h6></div> 
-        <div class="col-md-12" id="new-filter"><h6><span class="glyphicon glyphicon-plus add-filter" aria-hidden="true"></span></h6></div> -->
        </div> <!--holdcontent-->
       </div> <!--sidebar-->
 
@@ -108,33 +156,28 @@
               </div>
             </form>
           </div>
-        </div>
+        </div><!--createpost-->
+
         <div class="row fp">
           <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 filterIcons">
-            <div class="col-xs-4"><i class="fa fa-book fa-2x fa-border"></i></div>
-            <div class="col-xs-4"><i class="fa fa-compass fa-2x fa-border"></i></div>
-            <div class="col-xs-4"><i class="fa fa-clock-o fa-2x fa-border"></i></div>
-          </div>
-        </div>
-        <div class="row filter-drawer">
-          <div class="col-xs-10 col-xs-offset-1 col-sm-2 filter-label"><h1>Filters:</h1></div>
-          <div class="filter-class">
-            <div class="col-xs-6 col-xs-offset-3  col-sm-2 col-sm-offset-0 filter-marble template-filter off">
-              <div class="filter-button"><h6><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></h6></div>
+            <div class="col-xs-4" >
+              <div data-toggle="modal" data-target="#classFilterMenu" >
+              <i class="fa fa-book fa-2x fa-border" data-toggle="tooltip" data-placement="bottom" title="Filter by class"></i>
+              </div>
+            </div>
+            <div class="col-xs-4" >
+              <div data-toggle="modal" data-target="#locFilterMenu" >
+              <i class="fa fa-location-arrow fa-2x fa-border" data-toggle="tooltip" data-placement="bottom" title="Filter by location"></i>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div data-toggle="modal" data-target="#timeFilterMenu" >
+              <i class="fa fa-clock-o fa-2x fa-border" data-toggle="tooltip" data-placement="bottom" title="Filter by time"></i>
+              </div>
             </div>
           </div>
-          <div class="col-xs-2 col-xs-offset-5 col-sm-1 col-sm-offset-0  filter-marble" id="new-filter">
-            <div class="add-filter-button">
-              <h6>
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              </h6>
-            </div>
-          </div>
-          
         </div>
-       <!--  <div class="row" id="createpost">
-          <span style="font-size:100px;margin-left:12%;">POST CREATION HERE</span>
-        </div>  --><!--createpost-->
+
 
         <hr align="center" width="95%" color="#AFD1F7">
         
