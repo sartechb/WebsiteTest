@@ -174,7 +174,7 @@ function createPost(post, set, append, postBefore, glow) {
   to_insert.addClass(post.location.replace(/\s+/g,"_"));
   if(glow) {
     to_insert.addClass("glow");
-    setTimeout(function() {$(".post.glow").removeClass("glow", 1000);}, 9000);
+    setTimeout(function() {$(".post.glow").removeClass("glow", 1000);}, 3000);
   }
 
   //time function filter here
