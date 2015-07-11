@@ -87,6 +87,7 @@ $("#new-post").submit(function (e) {
       app.postOrder.push(newPost.post.postId);
       fixPosts();
       refreshPostFeed(false, true);
+      createActiveLink(newPost.post.title, newPost.post.postId);
       $("#post-cancel").trigger("click");
 
       
