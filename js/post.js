@@ -8,7 +8,7 @@ $('#new-post-bar h2.untoggle').on('click', function (e) {
   var form = $("#new-post");
   //check for minimized state and expand
   if(bar.hasClass('minimized')) {
-    form.children().show({"duration":300,"easing":"easeInOutQuad"});
+    form.children().fadeIn({"duration":300,"easing":"easeInOutQuad"});
     bar.removeClass('minimized').addClass('expanded');
   }
   //give focus to first input
@@ -16,63 +16,114 @@ $('#new-post-bar h2.untoggle').on('click', function (e) {
   //allows post creation box to stay open
 });
 
-//Event handler for form submission
-$('#new-post').submit(function (e) {
+app.newLocationString = {val:"",is:false};
+app.newClassString = {val:"",is:false};
+
+$("#new-post").submit(function (e) {
   e.preventDefault();
-  console.log(e);
-  var ct = e.currentTarget;
+  var errorAlert = "<div class='alert alert-danger col-xs-8 col-xs-offset-2'><a href='#'' "+
+    "class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+  var titleLength = $("#new-post-bar #new-post-title").val().length;
+  var contentLength = $("#new-post-bar #new-post-content").val().length;
+  var reqFields = $("#new-post-bar #new-post-title").val().length > 0 &&
+    $("#new-post-bar #new-post-content").val().length > 0 &&
+    $("#new-post-bar #new-post-place").val().length > 0 &&
+    $("#new-post-bar #new-post-class").val().length > 0;
+  if(titleLength > 150) {
+   if($("#createpost").find("div.alert.alert-danger").length == 0)
+      $("#createpost").append(errorAlert+"Your title is too long! Try to make it more concise.</div>");
+    return;
+  } else if(contentLength > 450) {
+    if($("#createpost").find("div.alert.alert-danger").length == 0)
+      $("#createpost").append(errorAlert+"Your message is too long! Try to make it more concise.</div>");
+    return;
+  } else if (!reqFields) {
+    if($("#createpost").find("div.alert.alert-danger").length == 0)
+      $("#createpost").append(errorAlert+"Whoops you missed something above! Try again.</div>");
+    return;
+  }
 
-  var errorAlert = "<div class='alert alert-danger col-xs-8 col-xs-offset-2'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-  var input_length = $("#createpost input, #createpost textarea").length;
-  for(var i = 0; i < input_length; ++i) {//iterate through all inputs
-    if(ct[i].value == "") {//if any are empty
-      if($("#createpost").find("div.alert.alert-danger").length == 0) //show an error if there isn't one...
-        $("#createpost").append(errorAlert+"Oops! You missed something above...</div>");
-      return;//...don't submit anything
-    }
-  }// end for: All inputs were submitted
+  var classString = $("#new-post-bar #new-post-class").val();
+  var locationString = $("#new-post-bar #new-post-place").val();
 
-  //the following lines demonstate data access. Can create an object to pass to Cloud here
-  //TODO: integrate with Parse.Cloud here!!
-  for(var i = 0; i < input_length; ++i)
-    console.log(ct[i].value);
+  if(app.locations.indexOf(locationString) == -1) {
+    app.newLocationString.val = "";
+    app.newLocationString.is = false;
+    $("#newLocationStringMenu span.user-entry").html(locationString);
+    $("#newLocationStringMenu").modal("show");
+    return;
+  }else if(app.classes.indexOf(classString) == -1) {
+    app.newClassString.val = "";
+    app.newClassString.is = false;
+    $("#newClassStringMenu span.user-entry").html(classString);
+    $("#newClassStringMenu").modal("show");
+    return;
+  }
 
-  //Fill in a post template and post it
-  // createPost(ct[0].value, ct[1].value, Parse.User.current().get("name"), 
-  //   ct[2].value, ct[3].value.toUpperCase().trim(), "Now", "parseID");
-  var post = {};
-  post.memberLimit = parseInt(ct[4].value);
-  post.content = ct[1].value;
-  _class = ct[3].value.toUpperCase().split(" ");
-  //console.log(_class);
-  post.Class = _class[0].toUpperCase().trim();
-  post.classNumber = parseInt(_class[1].trim());
-  post.title = ct[0].value;
-  post.deletionDate = new Date();
-  post.location = ct[2].value;
+});
 
-  Parse.Cloud.run("makePost", post, {
-    success: function(response) {
-      createPost(response.title, response.content, response.poster, response.location,
-        response.Class+" "+response.classNumber, response.createdAt, response.objectId);
-      app.posts.push(response);
-      app.activePosts.push(response.objectId);
-      createActiveLink(response.title);
-    },
-    error: function(response) {
-      console.log(response);
-    }
-  });
+$("#newLocationStringMenu").on("show.bs.modal", function (e){
+  $("#newLocationStringMenu .notice").hide();
+});
 
-  //clean up the post creator
-  for(var i = 0; i < input_length; ++i)
-    e.currentTarget[i].value = '';
-  $("#new-post").children().hide(300);
-  $("#new-post-bar").addClass('minimized').removeClass('expanded');
+$("#newLocationStringMenu #newLocationStringAdd").submit(function (e) {
+  e.preventDefault();
+  var reqFields = $("#newLocationStringAdd #newLocationStringLong").val().length > 0 &&
+    $("#newLocationStringAdd #newLocationStringShort").val().length > 0;
+  if (!reqFields) {
+    $("#newLocationStringMenu .notice").fadeIn(200);
+    setTimeout(function(){$("#newLocationStringMenu .notice").fadeOut(200);}, 6000);
+    return;
+  } else {
+    $("#newLocationStringMenu span.user-entry").html();
+    app.newLocationString.val = $("#newLocationStringAdd #newLocationStringShort").val()+" "+
+      $("#newLocationStringAdd #newLocationStringLong").val();
+    app.locations.push(app.newLocationString.val);
+    app.newLocationString.is = true;
 
-  
+    $("#newLocationStringMenu input[type='text']").val("");
+    $("#new-post-bar #new-post-place").val(app.newLocationString.val);
+    $('#newLocationStringMenu').modal('hide');
+    $("#new-post").trigger("submit");
+  }
+});
 
-  filterAll();
+$("#newLocationStringMenu #newLocationStringCancel").click(function() {
+  $("#newLocationStringMenu input[type='text']").val("");
+  app.newClassString.is = false;
+  $('#newLocationStringMenu').modal('hide');
+});
+
+$("#newClassStringMenu").on("show.bs.modal", function (e){
+  $("#newClassStringMenu .notice").hide();
+});
+
+$("#newClassStringMenu #newClassStringAdd").submit(function (e) {
+  e.preventDefault();
+  var reqFields = $("#newClassStringAdd #newClassStringLong").val().length > 0 &&
+    $("#newClassStringAdd #newClassStringShort").val().length > 0;
+  if (!reqFields) {
+    $("#newClassStringMenu .notice").fadeIn(200);
+    setTimeout(function(){$("#newClassStringMenu .notice").fadeOut(200);}, 6000);
+    return;
+  } else {
+    $("#newClassStringMenu span.user-entry").html();
+    app.newClassString.val = $("#newClassStringAdd #newClassStringShort").val()+" "+
+      $("#newClassStringAdd #newClassStringLong").val();
+    app.classes.push(app.newClassString.val);
+    app.newClassString.is = true;
+
+    $("#newClassStringMenu input[type='text']").val("");
+    $("#new-post-bar #new-post-class").val(app.newClassString.val);
+    $('#newClassStringMenu').modal('hide');
+    $("#new-post").trigger("submit");
+  }
+});
+
+$("#newClassStringMenu #newClassStringCancel").click(function() {
+  $("#newClassStringMenu input[type='text']").val("");
+  app.newClassString.is = false;
+  $('#newClassStringMenu').modal('hide');
 });
 
 function createPost(post, set, append, postBefore) {
@@ -101,9 +152,15 @@ function createPost(post, set, append, postBefore) {
 //Cancel logic for post creation
 $("#post-cancel").click(function (e) {
   $("#new-post input, #new-post textarea").val("");
-  $("#new-post").children().hide(300, function() {
+  $("#new-post").children().fadeOut(300, function() {
     $("#new-post-bar").addClass('minimized').removeClass('expanded');
   });
+  if(!app.newLocationString.is && app.newLocationString.val.length > 0)
+    if(app.locations.indexOf(app.newLocationString.val) != -1)
+      app.locations.splice(app.locations.indexOf(app.newLocationString.val), 1);
+  if(!app.newClassString.is && app.newClassString.val.length > 0)
+    if(app.locations.indexOf(app.newClassString.val) != -1)
+      app.locations.splice(app.locations.indexOf(app.newClassString.val), 1);
   //
   //setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
 });
@@ -112,18 +169,8 @@ function createActiveLink(title, objectId) {
   var to_insert = $("#active-posts .template-active-post").clone();
   to_insert.removeClass("template-active-post");
   to_insert.attr("id", objectId);
-  //console.log(objectId);
-  // if(title.length > 18) {
-  //   title = title.substr(0, 14);
-  //   title += "...";
-  // }
   to_insert.find("h3").html(title);
- // console.log(title);
   //add src attribute creation here
   $("#active-posts div.row").append(to_insert);
 }
 
-$("#new-post-bar input.typeahead").typeahead({
-  name: "Where",
-  source: ['BBB', 'League', 'North Quad', 'EECS', 'Pierpont', '123 west tasman']
-});

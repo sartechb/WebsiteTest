@@ -3,20 +3,24 @@
     src: url("../fonts/FREESCPT.TTF");
 }
 
-span{
+/*span{
 	font-family: Freestyle, "Freestyle", Freestyle, serif; 
 	color:white; 
 	font-size:45px; 
 	line-height:45px; 
 	margin-top:10px; 
 	margin-left:8px;
-}
+}*/
 
-button.btn, button.btn:focus {
+button.btn, button.btn:focus, input.btn {
   border-radius: 0;
   outline-width: 0;
   outline-color: transparent;
   outline-style: none;
+}
+
+button.btn-primary, input.btn-primary {
+  background-color: #0488C3;
 }
 
  .container

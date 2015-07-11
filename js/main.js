@@ -3,17 +3,30 @@ $("#user-name h1").html(app.user.get("name"));
 $("#user-school h3").html(app.user.get("school"));
 $("img#user-photo").attr("src", "assets/"+app.user.get("pic"));
 
+handleResize();
+var resizeTimer;
+$(window).resize(function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(handleResize, 250);
+});
+
 //Get the activePosts, and locations/classes for post create autocomplete 
 Parse.Cloud.run("getInitialData", {}, {
   success: function (response) {
    // console.log(response);
     app.activePosts = response.activePosts;
     app.locations = response.locations;
+
     $("input#locFilterAddInput").typeahead({source: response.locations});
+    $("#new-post-bar #new-post-place").typeahead({source: response.locations});
+
     app.classes = response.classes;
     $("input#classFilterAddInput").typeahead({source: response.classes});
+    $("#new-post-bar #new-post-class").typeahead({source: response.classes});
+
     for(var i = 0; i < app.activePosts.length; ++i)
       createActiveLink(app.activePosts[i].title, app.activePosts[i].postId);
+
     buildPostFeed();
   }, error: function(error){console.log(error);}
 });
@@ -53,7 +66,7 @@ function buildPostFeed() {
 }
 
 function getFilterPosts(ib, fs, ft) {
-   console.log(ib);
+ //  console.log(ib);
   var filters = [];
   if(ib) {
     filters = app.user.get("filters");
@@ -72,7 +85,7 @@ function getFilterPosts(ib, fs, ft) {
       app.filters[filtObj[1]].push({filter:filtObj[0],on:false}); 
     }
     //app.filters.push(JSON.parse(filters[x]));
-   if(ib) console.log(filtObj[0], filtObj[1]);
+   //if(ib) console.log(filtObj[0], filtObj[1]);
     Parse.Cloud.run("getPosts", {
       nextTen:false,
       areFilters:true,
@@ -141,6 +154,14 @@ function buildFilters() {
 
 function stringToTimeFilter() {
 
+}
+
+function handleResize() {
+  if($(window).width() > 768) {
+    $("body").addClass("desktop");
+  } else {
+    $("body").removeClass("desktop");
+  }
 }
 
 $("a#logout").click(function (e) {

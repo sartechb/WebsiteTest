@@ -1,5 +1,5 @@
 //sets event handlers on filters
-$(".modal-dialog .container .row").click(function (e) {runFilter(e)});
+$(".modal-dialog .filt .container .row").click(function (e) {runFilter(e)});
 
 //executes a filterCommand
 function runFilter(e) {
@@ -58,6 +58,55 @@ function runFilter(e) {
   console.log(selectors);
   $(selectors.join()).not(".template-post").fadeIn(200);
   $(".post").not(selectors.join()).fadeOut(200);
+
+  updateFilterNotify(classFilters, locFilters, timeFilters);
+}
+
+function updateFilterNotify(c, l, t) {
+ // console.log("updateFilterNotify");
+  if(c[0]=="") c.pop();
+  if(l[0]=="") l.pop();
+  if(t[0]=="") t.pop();
+  console.log(c, l, t);
+  for(var n = 0; n < c.length; ++n) c[n] = c[n].replace(/_+/g, " ");
+  for(var m = 0; m < l.length; ++m) l[m] = l[m].replace(/_+/g, " ");
+  for(var p = 0; p < t.length; ++p) t[p] = t[p].replace(/_+/g, " ");
+  console.log(c, l, t);
+//  console.log(c.length, l.length, t.length);
+  if(c.length + l.length + t.length > 0) {
+    $(".filter-notify span.leader").fadeIn(200);
+    if(c.length > 0) {
+      $(".filter-notify span.class-leader").fadeIn(200);
+      $(".filter-notify span.class-section").html(c.join(", ")).fadeIn(200);
+    } else {
+      $(".filter-notify span.class-leader").fadeOut(200);
+      $(".filter-notify span.class-section").html("");
+    }
+    if(l.length > 0) {
+      $(".filter-notify span.loc-leader").fadeIn(200);
+      $(".filter-notify span.loc-section").html(l.join(", ")).fadeIn(200);
+    } else {
+      $(".filter-notify span.loc-leader").fadeOut(200);
+      $(".filter-notify span.loc-section").html("");
+    }
+    if(t.length > 0) {
+      $(".filter-notify span.time-leader").fadeIn(200);
+      $(".filter-notify span.time-section").html(t.join(", ")).fadeIn(200);
+    } else {
+      $(".filter-notify span.time-leader").fadeOut(200);
+      $(".filter-notify span.time-section").html("");
+    }
+    if(c.length > 0 && l.length > 0) 
+      $(".filter-notify span.and-loc").fadeIn(200);
+    else
+      $(".filter-notify span.and-loc").fadeOut(200);
+    if((c.length > 0 && t.length > 0)||(l.length > 0 && t.length > 0)) 
+      $(".filter-notify span.and-time").fadeIn(200);
+    else
+      $(".filter-notify span.and-time").fadeOut(200);
+  } else {
+    $(".filter-notify span").fadeOut(200);
+  }
 }
 
 function createFilter (filter, type) {
@@ -80,8 +129,8 @@ $("form#classFilterAdd").submit(function(e) {
   var input = $("#classFilterAddInput");
   var inputVal = input.val().trim().toUpperCase();
   if(app.classes.indexOf(inputVal) == -1) {
-    $("#classFilterMenu .notice").fadeIn(200);
-    setTimeout(function(){$("#classFilterMenu .notice").fadeOut(200);}, 6000);
+    $("#classFilterMenu .notice.dne").fadeIn(200);
+    setTimeout(function(){$("#classFilterMenu .notice.dne").fadeOut(200);}, 6000);
     input.val("");
     return;
   }
@@ -96,6 +145,12 @@ $("form#classFilterAdd").submit(function(e) {
   }
   if(i < app.filters.c.length) {
     //filter exists, and posts are present
+    if($("#classFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|c").length > 0) {
+      $("#classFilterMenu .notice.dup").fadeIn(200);
+      setTimeout(function(){$("#classFilterMenu .notice.dup").fadeOut(200);}, 6000);
+      input.val("");
+      return;
+    }
     createFilter(inputVal, "|c");
   } else {
     //filter DNE, must load from parse
@@ -117,8 +172,8 @@ $("form#locFilterAdd").submit(function(e) {
   var input = $("#locFilterAddInput");
   var inputVal = input.val().trim();
   if(app.locations.indexOf(inputVal) == -1) {
-    $("#locFilterMenu .notice").fadeIn(200);
-    setTimeout(function(){$("#locFilterMenu .notice").fadeOut(200);}, 6000);
+    $("#locFilterMenu .notice.dne").fadeIn(200);
+    setTimeout(function(){$("#locFilterMenu .notice.dne").fadeOut(200);}, 6000);
     input.val("");
     return;
   }
@@ -133,6 +188,12 @@ $("form#locFilterAdd").submit(function(e) {
   }
   if(i < app.filters.l.length) {
     //filter exists, and posts are present
+    if($("#locFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|l").length > 0) {
+      $("#locFilterMenu .notice.dup").fadeIn(200);
+      setTimeout(function(){$("#locFilterMenu .notice.dup").fadeOut(200);}, 6000);
+      input.val("");
+      return;
+    }
     createFilter(inputVal, "|l");
   } else {
     //filter DNE, must load from parse

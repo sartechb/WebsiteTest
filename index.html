@@ -36,7 +36,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Filter By Class</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body filt">
           <p> Your class filters: </p>
           <div class="container">
             <div class="row template-filter">
@@ -46,32 +46,35 @@
           </div>
           <form id="classFilterAdd">
             <input type="text" class="form-control typeahead" id="classFilterAddInput" placeholder="Add a Filter" data-provide="typeahead">
-            <input type="submit" style="display:none"/>
+            <input type="submit" class="btn btn-primary col-xs-12" value="Create Filter" style="margin-top:5px;height:30px"/>
           </form>
-          <p class="notice text-small text-danger"> We're sorry, you can't make a filter for that class yet because it hasn't been posted about on StudyBuddy. If you're looking for people in the class,<span class="link">try making a post</span></p>
+          <p class="notice small text-danger"> We're sorry, you can't make a filter for that class yet because it hasn't been posted about on StudyBuddy. If you're looking for people in the class, <span class="link">try making a post</span></p>
+          <p class="notice dup small text-danger">You already created that filter! Click on it to turn it on and off.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
         </div>
       </div>
     </div>
   </div>
 
-    <div class="modal fade" id="locFilterMenu" tabindex="-1" role="dialog">
+  <div class="modal fade" id="locFilterMenu" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Filter By Location</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body filt">
           <p> Your location filters: </p>
           <div class="container"></div>
           <form id="locFilterAdd">
             <input type="text" class="form-control typeahead" id="locFilterAddInput" placeholder="Add a Filter" data-provide="typeahead">
-            <input type="submit" style="display:none"/>
+            <input type="submit" class="btn btn-primary col-xs-12" value="Create Filter" style="margin-top:5px;height:30px"/>
           </form>
-          <p class="notice text-small text-danger"> We're sorry, you can't make a filter for that location yet because it hasn't been posted about on StudyBuddy. If you're looking for people at that location,<span class="link">try making a post</span></p>
+          <p class="notice dne small text-danger"> We're sorry, you can't make a filter for that location yet because it hasn't been posted about on StudyBuddy. If you're looking for people at that location, <span class="link">try making a post</span></p>
+          <p class="notice dup small text-danger">You already created that filter! Click on it to turn it on and off.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -80,14 +83,14 @@
     </div>
   </div>
 
-    <div class="modal fade" id="timeFilterMenu" tabindex="-1" role="dialog">
+  <div class="modal fade" id="timeFilterMenu" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Filter By Time</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body filt">
           <p> Your time filters: </p>
           <div class="container">
             Coming Soon!
@@ -100,6 +103,93 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="newLocationStringMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Whoa that's new.</h4>
+        </div>
+        <div class="modal-body newStr">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <p>Hey! Thanks for bringing Studybuddy to new places. We know everyone's got their own special study spot and we're glad to add <span class="user-entry"></span> to our list! We'd just like you to confirm some information so we can get it right:</p>
+              </div>
+            </div>
+            <div class="row">
+              <form id="newLocationStringAdd">
+                <div class="col-sm-6">
+                  <p> A short name people use for this place: </p>
+                  <p class="text-muted"><small>Ex. "UGLI" stands for "Undergraduate Library".</small></p>
+                  <input type="text" id="newLocationStringShort" placeholder="Short name" class="form-control">
+                </div>
+                <div class="col-sm-6">
+                  <p> A longer name people use for this place: </p>
+                  <p class="text-muted"><small>Watch your spelling!</small></p>
+                  <input type="text" id="newLocationStringLong" placeholder="Longer Name" class="form-control">
+                </div>
+                <div class="col-sm-4 col-sm-offset-8">
+                  <input type="submit" class="btn btn-primary form-control" value="Confirm">
+                </div>
+                <div class="col-sm-4 col-sm-offset-8">
+                  <button type="button" id="newLocationStringCancel" class="btn btn-default form-control">Cancel</button>
+                </div>
+              </form>
+            </div>
+            <div class="row">
+              <p class="notice text-danger">Oops! You need to fill in all the information to confirm this new location.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="newClassStringMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">What class is that?.</h4>
+        </div>
+        <div class="modal-body newStr">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <p>Hey! Thanks for teaching Studybuddy about new a class. There are so many different courses at a school and we're glad to add <span class="user-entry"></span> to our list! We'd just like you to confirm some information so we can get it right:</p>
+              </div>
+            </div>
+            <div class="row">
+              <form id="newClassStringAdd">
+                <div class="col-sm-6">
+                  <p> A short code for the subject: </p>
+                  <p class="text-muted"><small>Ex. "PYSCH" or "EECS"</small></p>
+                  <input type="text" id="newClassStringShort" placeholder="Short Code" class="form-control">
+                </div>
+                <div class="col-sm-6">
+                  <p> A class number or name that people use: </p>
+                  <p class="text-muted"><small>Ex. "101", "281", "Thermodynamics"</small></p>
+                  <input type="text" id="newClassStringLong" placeholder="Number or Name" class="form-control">
+                </div>
+                <div class="col-sm-4 col-sm-offset-8">
+                  <input type="submit" class="btn btn-primary form-control" value="Confirm">
+                </div>
+                <div class="col-sm-4 col-sm-offset-8">
+                  <button type="button" id="newClassStringCancel" class="btn btn-default form-control">Cancel</button>
+                </div>
+              </form>
+            </div>
+            <div class="row">
+              <p class="notice text-danger">Oops! You need to fill in all the information to confirm this new location.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
  <div class="container">
     <div class = "row">
@@ -136,19 +226,22 @@
           <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 well minimized" id="new-post-bar">
             <h2 class="text-muted text-left untoggle"> Find a StudyBuddy... </h2>
             <form id="new-post" class="toggle">
-              <input type="text" name="post-title" class="toggle flat full" id='new-post-title' placeholder="Add a title" autocomplete="off"><br class="toggle">
+              <input type="text" name="post-title" class="toggle flat full" id='new-post-title' placeholder="Add a title here" autocomplete="off"><br class="toggle">
               <hr class="toggle">
               <hr class="toggle">
-              <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Write your post here"></textarea>
+              <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Add a message here"></textarea>
               <hr class="toggle">
-              <div class="col-xs-12 col-md-4 postInput">
-                <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where?" autocomplete="off" data-provide="typeahead">
+              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="top" title="Let people know what building you want to meet in">
+                <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where to Meet?" autocomplete="off" data-provide="typeahead" id="new-post-place">
               </div>
-              <div class="col-xs-12 col-md-4 postInput">
-                <input type="text" name="post-class" class="toggle flat form-control" placeholder="Class?" autocomplete="off">
+              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="top" title="Let people know what class you'd like to meet for">
+                <input type="text" name="post-class" class="typeahead toggle flat form-control" placeholder="Class you're In?" autocomplete="off" data-provide="typeahead" id="new-post-class">
               </div>
-              <div class="col-xs-12 col-md-4 postInput">
-                <input type="number" name="post-limit" class="toggle flat form-control" placeholder="How Many?" autocomplete="off" min="1" max="10">
+              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="bottom" title="Optional: Add any landmarks to help others find you">
+                <input type="text" name="post-detail" class="toggle flat form-control" placeholder="Landmarks?" autocomplete="off" id="new-post-detail">
+              </div>
+              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="bottom" title="Optional: if you have limited space, indicate how many can join you">
+                <input type="number" name="post-limit" class="toggle flat form-control" placeholder="How Many?" autocomplete="off" min="1" max="10" id="new-post-limit">
               </div>
               <div class="col-xs-12 col-md-4">
                 <button type="submit" class="btn btn-primary toggle">POST</button>
@@ -176,6 +269,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="row filter-notify">
+          <div class="col-xs-8 col-xs-offset-2"><h4><span class="leader">You're currently filtering posts by </span><span class="class-leader">the class(es) </span><span class="class-section"></span><span class="and-loc"> and </span><span class="loc-leader">the location(s) </span><span class="loc-section"> and </span><span class="and-time"></span><span class="time-leader">the times </span><span class="time-section"></span></h4></div>
         </div>
 
 

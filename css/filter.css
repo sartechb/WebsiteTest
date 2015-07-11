@@ -1,129 +1,3 @@
-/*.filtered{
-	display: block;
-	font-size:1.32em;
-	font-weight: bold;
-	text-align:center;
-	padding:0;
-	margin:0;
-	color:white;
-	height:2em;
-	padding-top: .3em;
-	background-image: none;
-	background-color: rgba(255, 255, 255, 0.29);
-}
-.filtered:hover {
-	background-color: initial;
-}
-
-.filter-class span {
-	font-size: .7em;
-	color:rgb(4, 136, 195);
-	margin-left: 0;
-	margin-right: 10px;
-	margin-top: 0;
-	display: none;
-}
-
-.filter-class div:hover span {
-	display: initial;
-}*/
-
-.gone,
-.template-filter{
-	display:none !important;
-}
-
-
-/*
-#new-filter{
-	width:100%;
-	background-color: #0488C3;
-	height: 2.4em;
-	font-size: 1.32em;
-	padding:0px;
-	cursor: pointer;
-	margin-top: 3px;
-}
-
-#new-filter:hover{
-	background-color: rgba(255, 255, 255, 0.29);
-	color:white;
-
-}
-
-#new-filter span {
-	font-size: 1em;
-}
-
-.filter{
-	color:#0488C3;
-	height:23px;
-}
-.filter:hover{
-	color:#ffffff;
-}
-
-
-
-.add-filter {
-	font-size: 1.2em;
-	cursor: pointer;
-}*/
-
-.veil {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: black;
-  opacity: 0;
-  z-index: 0;
-}
-
-.veil.active {
-  opacity: 0.7;
-  z-index: 100;
-}
-
-#newFilterModal {
-	display: none;
-	position: fixed;
-	top: 20%;
-	z-index: 101;
-}
-
-#newFilterModal input.add {
-	height: 2em;
-	font-size: 1.4em;
-	resize: none;
-	background-color: #white;
-	margin-top: 2px;
-}
-
-#newFilterModal .well {
-	padding-top: 0;
-	padding-bottom: 0;
-}
-#newFilterModal .btn {
-	height: 100%;
-	margin-top: 3px;
-}
-
-label, .filter-class div, 
-div.showall {
-    display: block;
-	font-size:1.32em;
-	font-weight: bold;
-	text-align:center;
-	padding:0;
-	margin:0;
-	color:white;
-	height:2em;
-	padding-top: .3em;
-	cursor: pointer;
-}
-
 input {
     width: 0px;
     height: 0px;
@@ -141,72 +15,16 @@ input {
     width: 0px;
 }
 
-div.filter-drawer {
-	margin-top: 15px;
-}
-
-div.filter-drawer span {
-	font-size: 1em;
-}
-
-div.filter-drawer div.filter-label {
-	margin-top: 10px;
-}
-
-div.filter-marble {
-	font-size: 1.3em;
-	margin-top: 10px;
-	/**/
-	
-}
-
-div.filter-marble > div {
-	background-color: #0488C3;
-	border-radius: 25px;
-	padding: 5px;
-	display: block;
-	cursor: pointer;
-}
-
-div.filter-marble div.filter-button {
-	font-size: 1em;
-}
-
-div.filter-marble div.filter-button span {
-	font-size: .7em;
-	
-}
-
-div.filter-marble.off div.filter-button:hover {
-	background-color: #AFD1F7;
-}
-
-div.filter-marble.off div.filter-button{
-	background-color: #56ACDB;
-}
-
-
-div.filter-marble span {
-	margin: 0;
-}
-
-div.filter-label {
-	
-}
-
-div.filter-label h1 {
-	color: white;
-	margin-top: 5px;
-	background-color: #0488C3;
-}
-
-
-
 
 .fp i {
 	border: #0488C3;
 	background-color: #0488C3;
 	color: white;
+	cursor: pointer;
+}
+
+body.desktop .modal-dialog {
+	margin-top: 15%;
 }
 
 .modal-title {
@@ -223,12 +41,13 @@ div.filter-label h1 {
 	outline-width: 0;
 }
 
-.modal-body .container .row {
+.modal-body.filt .container .row {
 	background-color: #56ACDB;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	opacity: 0.5;
 	margin-top: 5px;
+	cursor: pointer;
 }
 .modal-body .container .row.active {
 	background-color: #0488C3;
@@ -242,14 +61,15 @@ div.filter-label h1 {
 
 .modal-body i {
 	color: white;
+	cursor: pointer;
 }
 
 .row.template-filter {
 	display: none;
 }
 
-.modal-body {
-	padding-bottom: 50px;
+.modal-body.filt {
+	padding-bottom: 80px;
 }
 
 .modal-body form {
@@ -267,8 +87,34 @@ div.filter-label h1 {
 	margin-left: inherit;
 }
 
-.modal-body .notice {
+.modal-body.filt .notice {
 	display: none;
-	margin-bottom: -40px;
+	margin-bottom: -70px;
 }
 
+.filter-notify {
+	margin-top: 20px;
+}
+
+.filter-notify span {
+	display: none;
+}
+
+.filter-notify span.class-section,
+.filter-notify span.loc-section,
+.filter-notify span.time-section {
+	text-decoration: underline;
+}
+
+.modal-body.newStr .btn {
+	margin-top: 10px;
+}
+
+.modal-body.newStr span.user-entry {
+	font-weight: bold;
+	text-decoration: underline;
+	color:white;
+	background-color: #0488C3;
+	border-radius: 3px;
+	padding: 2px 5px;
+}
