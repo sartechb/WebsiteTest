@@ -46,7 +46,7 @@ $("#new-post").submit(function (e) {
   var classString = $("#new-post-bar #new-post-class").val();
   var locationString = $("#new-post-bar #new-post-place").val();
 
-  if(app.locations.indexOf(locationString) == -1) {
+  if(app.locations.indexOf(locationString) == -1 && app.newLocationString != locationString) {
     app.newLocationString.val = "";
     app.newLocationString.is = false;
     $("#newLocationStringMenu span.user-entry").html(locationString);
@@ -59,6 +59,39 @@ $("#new-post").submit(function (e) {
     $("#newClassStringMenu").modal("show");
     return;
   }
+
+  var newPost = {};
+  newPost.isNewLocation = app.newLocationString.is;
+  newPost.isNewClass = app.newClassString.is;
+  newPost.post = {};
+  newPost.post.title = $("#new-post-bar #new-post-title").val();
+  newPost.post.content = $("#new-post-bar #new-post-content").val();
+  newPost.post.classString = $("#new-post-bar #new-post-class").val();
+  newPost.post.baseLocation = $("#new-post-bar #new-post-place").val();
+  newPost.post.detailLocation = $("#new-post-bar #new-post-detail").val();
+  if($("#new-post-bar #new-post-limit").val().length != 0)
+    newPost.post.memberLimit = parseInt($("#new-post-bar #new-post-limit").val());
+  else
+    newPost.post.memberLimit = 5;
+
+  Parse.Cloud.run("createPost", newPost, {
+    success: function (response) {
+      newPost.post.postId = response.postId;
+      newPost.post.time = response.time;
+      newPost.post.authorPic = app.user.get("pic");
+      newPost.post.author = app.user.get("name");
+      newPost.post.memberCount = 1;
+      newPost.post.filters = [];
+      newPost.post.location = newPost.post.baseLocation;
+      app.posts[newPost.post.postId] = newPost.post;
+      app.postOrder.push(newPost.post.postId);
+      fixPosts();
+      refreshPostFeed(false, true);
+      $("#post-cancel").trigger("click");
+
+      
+    }, error: function (error) {console.log(error);}
+  });
 
 });
 
@@ -126,7 +159,7 @@ $("#newClassStringMenu #newClassStringCancel").click(function() {
   $('#newClassStringMenu').modal('hide');
 });
 
-function createPost(post, set, append, postBefore) {
+function createPost(post, set, append, postBefore, glow) {
   var to_insert = $("#template-post").clone(true);
   to_insert.find("#title h1").html(post.title);
   to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
@@ -139,6 +172,11 @@ function createPost(post, set, append, postBefore) {
   to_insert.addClass(set);
   to_insert.addClass(post.classString.replace(/\s+/g,"_"));
   to_insert.addClass(post.location.replace(/\s+/g,"_"));
+  if(glow) {
+    to_insert.addClass("glow");
+    setTimeout(function() {$(".post.glow").removeClass("glow", 1000);}, 9000);
+  }
+
   //time function filter here
   if(append)
     $("#postholder").append(to_insert);

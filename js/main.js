@@ -1,6 +1,6 @@
 //Set Basic Info from User object
 $("#user-name h1").html(app.user.get("name"));
-$("#user-school h3").html(app.user.get("school"));
+
 $("img#user-photo").attr("src", "assets/"+app.user.get("pic"));
 
 handleResize();
@@ -16,7 +16,7 @@ Parse.Cloud.run("getInitialData", {}, {
    // console.log(response);
     app.activePosts = response.activePosts;
     app.locations = response.locations;
-
+    $("#user-school h3").html(response.name);
     $("input#locFilterAddInput").typeahead({source: response.locations});
     $("#new-post-bar #new-post-place").typeahead({source: response.locations});
 
@@ -106,7 +106,7 @@ function getFilterPosts(ib, fs, ft) {
         ++app.t;
         if(app.t == app.user.get("filters").length || !ib) {
           fixPosts();
-          refreshPostFeed();
+          refreshPostFeed(false);
           if(ib) buildFilters();
         }
       }, error: function(error) {console.log(error);}
@@ -129,13 +129,14 @@ function fixPosts() {
     }
 }
 
-function refreshPostFeed() {
+function refreshPostFeed(append, glow) {
   for(var i = 0; i < app.postOrder.length; ++i) {
     if($("#postholder #"+app.postOrder[i]).length == 0) {
-      if(i != 0) {
-        createPost(app.posts[app.postOrder[i]], app.posts[app.postOrder[i]].filters.join(" "),false,app.postOrder[i-1]);
+      if(i != 0 && !glow) {
+        createPost(app.posts[app.postOrder[i]], app.posts[app.postOrder[i]].filters.join(" "),append,app.postOrder[i-1], glow);
       } else {
-        createPost(app.posts[app.postOrder[i]], app.posts[app.postOrder[i]].filters.join(" "),false,"top");
+        console.log("will append: "+append);
+        createPost(app.posts[app.postOrder[i]], app.posts[app.postOrder[i]].filters.join(" "),append,"top",glow);
       }
     } else {
       for(var j = 0; j < app.posts[app.postOrder[i]].filters.length; ++j) {

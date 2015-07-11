@@ -127,7 +127,7 @@ $("form#classFilterAdd").submit(function(e) {
   e.preventDefault();
   //check if exists
   var input = $("#classFilterAddInput");
-  var inputVal = input.val().trim().toUpperCase();
+  var inputVal = input.val().trim();
   if(app.classes.indexOf(inputVal) == -1) {
     $("#classFilterMenu .notice.dne").fadeIn(200);
     setTimeout(function(){$("#classFilterMenu .notice.dne").fadeOut(200);}, 6000);
@@ -135,15 +135,16 @@ $("form#classFilterAdd").submit(function(e) {
     return;
   }
   //check if part of user filters
-  var i = 0;
+  var i = -1;
   if(app.filters.c != undefined) {
-    for(i = 0; i < app.filters.c.length; ++i) 
-      if(app.filters.c[i].filter == inputVal)
-        break;
+    for(var j = 0; j < app.filters.c.length; ++j)
+      if(app.filters.c[j].filter == inputVal)
+        i = j;
+    console.log(i);
   } else {
     app.filters.c = [];
   }
-  if(i < app.filters.c.length) {
+  if(i != -1) {
     //filter exists, and posts are present
     if($("#classFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|c").length > 0) {
       $("#classFilterMenu .notice.dup").fadeIn(200);
@@ -178,15 +179,15 @@ $("form#locFilterAdd").submit(function(e) {
     return;
   }
   //check if part of user filters
-  var i = 0;
+  var i = -1;
   if(app.filters.l != undefined) {
-    for(i = 0; i < app.filters.l.length; ++i) 
-      if(app.filters.l[i].filter == inputVal)
-        break;
+    for(var j = 0; j < app.filters.l.length; ++j)
+      if(app.filters.l[j].filter == inputVal)
+        i = j;
   } else {
     app.filters.l = [];
   }
-  if(i < app.filters.l.length) {
+  if(i != -1) {
     //filter exists, and posts are present
     if($("#locFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|l").length > 0) {
       $("#locFilterMenu .notice.dup").fadeIn(200);
