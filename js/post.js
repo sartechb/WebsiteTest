@@ -164,7 +164,7 @@ function createPost(post, set, append, postBefore, glow) {
   var to_insert = $("#template-post").clone(true);
   to_insert.find("#title h1").html(post.title);
   to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
-  to_insert.find("#postDetails h7").html(post.author+" | "+post.time.toString());
+  to_insert.find("#postDetails h7").html(post.author+" | "+prettyTime(new Date(post.time)));
   to_insert.find("#posttext h5").html(post.content);
   to_insert.find("#lowerDetails h7").html(post.classString+" | "+post.location+" "+post.detailLocation);
   to_insert.find("#following h7").html(post.memberCount+" members have joined this post");
@@ -213,3 +213,20 @@ function createActiveLink(title, objectId) {
   $("#active-posts div.row").append(to_insert);
 }
 
+function prettyTime(time) {
+  var date = new Date();
+  var seconds = Math.round((date - time)/1000);
+  var minutes = Math.round(seconds/60);
+  var hours = Math.round(minutes/60);
+  if(seconds < 20) {
+    return "Just Now";
+  } else if(seconds < 60) {
+    return seconds+" seconds ago";
+  } else if (minutes < 60) {
+    return minutes+((minutes==1)?" minute ago":" minutes ago");
+  } else if (hours < 24) {
+    return hours+((hours==1)?" hour ago":" hours ago");
+  } else {
+    return "More than a day ago";
+  }
+}

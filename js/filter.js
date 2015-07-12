@@ -228,6 +228,11 @@ function removeFilter(filter) {
     filter.remove();
 }
 
+$("#classFilterMenu span.link").click(function () {
+  $("#classFilterMenu button").trigger("click");
+  $('#new-post-bar h2.untoggle').trigger("click");
+});
+
 // $(".modal-dialog .container .row i.fa-times").click(function (e) {
 //   console.log(e.target);
 //   var filter = $(e.target).parent().parent();

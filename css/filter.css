@@ -85,6 +85,7 @@ body.desktop .modal-dialog {
 	line-height: inherit;
 	margin-top: inherit;
 	margin-left: inherit;
+	cursor: pointer;
 }
 
 .modal-body.filt .notice {
