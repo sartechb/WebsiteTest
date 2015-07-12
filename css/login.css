@@ -1,10 +1,17 @@
 body{
     overflow:hidden;
 }
-.info-link {
+.info-link, .forgot {
     cursor: pointer;
 }
 
+.notice, .error, .success {
+    display: none;
+}
+
+.forgot {
+    /*margin-top: 20px;*/
+}
 .dividerish {
     margin: 0 auto;
     height: 100%;

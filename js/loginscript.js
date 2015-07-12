@@ -14,6 +14,7 @@ Parse.Cloud.run("functionNameHere", {data:here}, {
 });
 */
 
+
 var rand = Math.ceil((1 - Math.random())*7);
 var im = $(".profileSelect img");
 im.eq(0).attr("src", "assets/profile"+rand+".png");
@@ -34,6 +35,26 @@ Parse.Cloud.run("getSchoolNames", {}, {
     });
   }, error: function(error) {console.log(error);}
 });
+
+$("#forgot-pass-form").submit(function (e) {
+  e.preventDefault();
+  if($("#forgot-email").val() == 0) {
+    $("#forgot-pass-form .notice").fadeIn(400);
+    setTimeout(function () {$("#forgot-pass-form .notice").fadeOut(400);}, 10000);
+    return;
+  }
+  Parse.User.requestPasswordReset($("#forgot-email").val(), {
+  success: function() {
+    $("#forgot-pass-form .error").hide();
+    $("#forgot-pass-form .success").fadeIn(400);
+  },
+  error: function(error) {
+    // Show the error message somewhere
+    $("#forgot-pass-form .error").fadeIn(400);
+  }
+});
+});
+
 
 $("#signerup").submit(
   function (e) {
