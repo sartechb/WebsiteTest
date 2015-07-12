@@ -158,10 +158,15 @@ function stringToTimeFilter() {
 }
 
 function handleResize() {
-  if($(window).width() > 768) {
-    $("body").addClass("desktop");
+  var w = $(window).width();
+  if(w > 1200) {
+    $("body").addClass("lg").removeClass("md sm xs");
+  } else if (w > 992 && w <= 1200) {
+    $("body").addClass("md").removeClass("lg sm xs");
+  } else if (w > 768 && w <= 992) {
+    $("body").addClass("sm").removeClass("lg md xs");
   } else {
-    $("body").removeClass("desktop");
+    $("body").addClass("xs").removeClass("lg md sm");
   }
 }
 

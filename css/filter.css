@@ -23,7 +23,7 @@ input {
 	cursor: pointer;
 }
 
-body.desktop .modal-dialog {
+body.lg .modal-dialog, body.md .modal-dialog {
 	margin-top: 15%;
 }
 

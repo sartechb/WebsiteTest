@@ -88,7 +88,7 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
 #postDetails{
 	padding:0;
 	text-align:left;
-	padding-left: 14px;
+	/*padding-left: 14px;*/
 	margin-top: 5px;
 }
 
@@ -97,11 +97,16 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
 	text-align:left;
 	margin-bottom: 5px;
 }
+#join button{
+	/*margin-left: 14px;*/
+}
+
 #following{
 	padding-right:20px;
 	text-align:right;
 	padding-left: 14px;
 	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
 #title{
@@ -110,6 +115,20 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
 	padding-left: 5px;
 	padding-right: 5px;
 	background-color: white;/*#AFD1F7*/ 
+	margin: 0px;
+}
+
+body.xs #title img {
+	margin-bottom: -80px;
+}
+body.sm #title img {
+	margin-bottom: -30px;
+}
+body.md #title img {
+	margin-bottom: -30px;
+}
+body.lg #title img {
+	margin-bottom: -50px;
 }
 
 #posttext{
