@@ -140,7 +140,8 @@ $("#signerup").submit(
 $("#logerin").submit(
     function (e) {
       e.preventDefault();
-      Parse.User.logIn($("#login-email"), $("#login-pass"), {
+      console.log()
+      Parse.User.logIn($("#login-email").val(), $("#login-pass").val(), {
         success: function (user) {
           resp = user;
           console.log("success!");
