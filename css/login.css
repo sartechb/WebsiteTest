@@ -1,6 +1,10 @@
 body{
     overflow:hidden;
 }
+.info-link {
+    cursor: pointer;
+}
+
 .dividerish {
     margin: 0 auto;
     height: 100%;

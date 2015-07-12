@@ -28,8 +28,8 @@ Parse.Cloud.run("getSchoolNames", {}, {
   success: function(schools) {
     schoolNames = schools.names;
     console.log(schools);
-    console.log($("input#school"));
-    $("input#school").typeahead({
+    console.log($("input#signup-school"));
+    $("input#signup-school").typeahead({
       source: schools.names
     });
   }, error: function(error) {console.log(error);}
@@ -39,26 +39,36 @@ $("#signerup").submit(
   function (e) {
     e.preventDefault();
    // console.log(e);
-    for(var i = 0; i < $("#signerup input").length; ++i) {
-      if(e.currentTarget[i].value == "") {
+   var fname = $("#signup-fname").val();
+   var lname = $("#signup-lname").val();
+   var email = $("#signup-email").val();
+   var pass = $("#signup-pass").val();
+   var school = $("#signup-school").val();
+
+    if(fname.length == 0 || lname.length == 0 || email.length == 0 ||
+     pass.length == 0 || school.length == 0) {
         if($("#signerup").find("div.alert.alert-danger").length == 0) 
           $("#signerup h1").after(errorAlert+"Oops! You missed something below..."+"</div>");
         return;
       }
-    }
-    var i = 0;
-    var school = e.currentTarget[3].value;
-    console.log(schoolNames);
-    for(i = 0; i < schoolNames.length; ++i) {
-      console.log(school, schoolNames[i]);
-      if(schoolNames[i] == school) break;
-    }
-    if(i == schoolNames.length) 
+    
+
+    if(email.indexOf(".edu") == -1) 
+      if($("#signerup").find("div.alert.alert-danger").length == 0) {
+          $("#signerup h1").after(errorAlert+"Sorry! To preserve a great user experience for members,"+
+            "we require you use your school email to Sign Up with us. Please read more about how we"+
+            "use your information in the link below:"+"</div>");
+          return;
+      }
+
+    if(schoolNames.indexOf(school) == -1) 
       if($("#signerup").find("div.alert.alert-danger").length == 0) {
           $("#signerup h1").after(errorAlert+"Sorry! Studybuddy isn't available at your school yet! <br>" +
                     "<a href='http://www.getastudybuddy.com'> Please visit us for more information </a>"+"</div>");
           return;
       }
+
+
 
     //school = school.substr(0, school.indexOf('(')-1).trim();
 
@@ -69,12 +79,17 @@ $("#signerup").submit(
    //  console.log(e.currentTarget[2].value);
 
     var user = new Parse.User();
-       
-        user.set("name", e.currentTarget[0].value);
-        user.set("email", e.currentTarget[1].value);
-        user.set("username", e.currentTarget[1].value);
-        user.set("password", e.currentTarget[2].value);
-        user.set("school", e.currentTarget[3].value);
+    var reg = /\((.*?)\)/;
+    school = reg.exec(school)[1];
+    var schoolQuery = new Parse.Query(Parse.Object.extend("School"));
+    schoolQuery.equalTo("location", school);
+    schoolQuery.first({
+      success: function (response) {
+        user.set("name", fname + " " + lname[0] + ".");
+        user.set("email", email);
+        user.set("username", email);
+        user.set("password", pass);
+        user.set("school", response);
         user.set("filters", []);
         console.log($("#signerup .profileSelect.selected").find("img").attr("src"));
         var pic = $("#signerup .profileSelect.selected").find("img").attr("src").replace("assets/","");
@@ -95,12 +110,16 @@ $("#signerup").submit(
             }
           }
         });
+      }, error: function (error) {}
+    })
+       
+       
 });
 
 $("#logerin").submit(
     function (e) {
       e.preventDefault();
-      Parse.User.logIn(e.currentTarget[0].value, e.currentTarget[1].value, {
+      Parse.User.logIn($("#login-email"), $("#login-pass"), {
         success: function (user) {
           resp = user;
           console.log("success!");
