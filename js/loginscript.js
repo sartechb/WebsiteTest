@@ -64,6 +64,7 @@ $("#signerup").submit(
    var lname = $("#signup-lname").val();
    var email = $("#signup-email").val();
    var pass = $("#signup-pass").val();
+   var confirm = $("#signup-confirm").val();
    var school = $("#signup-school").val();
 
     if(fname.length == 0 || lname.length == 0 || email.length == 0 ||
@@ -86,6 +87,14 @@ $("#signerup").submit(
       if($("#signerup").find("div.alert.alert-danger").length == 0) {
           $("#signerup h1").after(errorAlert+"Sorry! Studybuddy isn't available at your school yet! <br>" +
                     "<a href='http://www.getastudybuddy.com'> Please visit us for more information </a>"+"</div>");
+          return;
+      }
+
+    if(confirm != pass) 
+      if($("#signerup").find("div.alert.alert-danger").length == 0) {
+          $("#signerup h1").after(errorAlert+"Oops! your passwords didn't match up. Try again!"+"</div>");
+          $("#signup-pass").val("");
+          $("#signup-confirm").val("");
           return;
       }
 
