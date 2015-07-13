@@ -164,10 +164,10 @@ function createPost(post, set, append, postBefore, glow) {
   var to_insert = $("#template-post").clone(true);
   to_insert.find("#title h1").html(post.title);
   to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
-  to_insert.find("#postDetails h7").html(post.author+" | "+prettyTime(new Date(post.time)));
+  to_insert.find("#postDetails h7").html(post.author+" | <i class=\"fa fa-clock-o\"></i> "+prettyTime(new Date(post.time)));
   to_insert.find("#posttext h5").html(post.content);
   to_insert.find("#lowerDetails h7").html("<i class='fa fa-book'></i> "+post.classString+" | <i class='fa fa-location-arrow'></i> "+post.location+" "+post.detailLocation);
-  to_insert.find("#following h7").html(post.memberCount+(post.memberCount==1?" member has":" members have")+" joined this post");
+  to_insert.find("#following h7").html(post.memberCount+(post.memberCount==1?" member":" members")+" joined so far");
   to_insert.attr("id", post.postId);
   to_insert.removeClass("template-post");
   to_insert.addClass(set);

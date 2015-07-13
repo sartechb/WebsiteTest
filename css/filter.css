@@ -119,3 +119,7 @@ body.lg .modal-dialog, body.md .modal-dialog {
 	border-radius: 3px;
 	padding: 2px 5px;
 }
+
+.filterIcons > div {
+	text-align: center;
+}

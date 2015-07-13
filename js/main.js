@@ -145,6 +145,14 @@ function refreshPostFeed(append, glow) {
       }
     }
   }
+  var popoverContent = 
+  "<ul class='list-group>"+
+    "<li class='list-group-item'>This post has offensive content</li>"+
+    "<li class='list-group-item'>This post shouldn't be on StudyBuddy</li>"+
+    "<li class='list-group-item'>This user is "
+  // $('[data-toggle="popover"]').popover({
+  //   content:
+  // });
 }
 
 function buildFilters() {
@@ -178,5 +186,7 @@ $("a#logout").click(function (e) {
     window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
 });
 
-$('[data-toggle="tooltip"]').tooltip()
+$('[data-toggle="tooltip"]').tooltip();
+
+
 
