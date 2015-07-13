@@ -206,6 +206,12 @@ $("#post-cancel").click(function (e) {
   //setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
 });
 
+$(".post .popover li").click(function (e) {
+  var li = $(e.target);
+  var issue = (li.hasClass("offensive")?"offensive":(li.hasClass("badPost")?"badPost":"user"));
+  console.log(issue);
+});
+
 function createActiveLink(title, objectId) {
   var to_insert = $("#active-posts .template-active-post").clone();
   to_insert.removeClass("template-active-post");

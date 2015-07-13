@@ -146,8 +146,6 @@ body.lg #title img {
 	padding-top: 10px;
 }
 
-
-
 .showall{
 	background-image: none;
 }
@@ -216,4 +214,14 @@ div.postInput input {
 
 h3.popover-title {
 	color: black;
+}
+
+.post .popover {
+	width: 75%;
+}
+
+.post .popover li:hover {
+	background-color: #0488C3;
+	color: white;
+	cursor: pointer;
 }

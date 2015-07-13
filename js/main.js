@@ -49,6 +49,7 @@ function buildPostFeed() {
       app.timeCutOff = response.timeCutOff;
       app.areMorePosts = response.areMorePosts;
      //if(app.user.get("filters").length == 0)
+     $("#loader").remove();
       for(var i = 0; i < app.postOrder.length; ++i) {
         createPost(app.posts[app.postOrder[i]], "recent", true);
       }
@@ -130,6 +131,7 @@ function fixPosts() {
 }
 
 function refreshPostFeed(append, glow) {
+
   for(var i = 0; i < app.postOrder.length; ++i) {
     if($("#postholder #"+app.postOrder[i]).length == 0) {
       if(i != 0 && !glow) {
@@ -146,13 +148,16 @@ function refreshPostFeed(append, glow) {
     }
   }
   var popoverContent = 
-  "<ul class='list-group>"+
-    "<li class='list-group-item'>This post has offensive content</li>"+
-    "<li class='list-group-item'>This post shouldn't be on StudyBuddy</li>"+
-    "<li class='list-group-item'>This user is "
-  // $('[data-toggle="popover"]').popover({
-  //   content:
-  // });
+  "<ul class='list-group'>"+
+    "<li class='list-group-item small offensive'>This post has offensive content</li>"+
+    "<li class='list-group-item small badPost'>This post shouldn't be on StudyBuddy</li>"+
+    "<li class='list-group-item small user'>This user is posting offensive or annoying things</li>"+
+  "</ul>";
+  $('[data-toggle="popover"]').popover({
+    html: true,
+    content: popoverContent,
+    container: "div.post"
+  });
 }
 
 function buildFilters() {
