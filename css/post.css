@@ -143,6 +143,7 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
   width: 70%;
   max-width: 125px;
   float: left;
+  display: none;
 }
 #nametime{
 	margin-left:10px;
