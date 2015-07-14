@@ -130,6 +130,10 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
 	margin: 0px;
 }
 
+.img-circle {
+  position: absolute;
+  margin-left: -30px;
+}
 #nametime{
 	margin-left:10px;
 }
