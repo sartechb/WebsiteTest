@@ -280,7 +280,10 @@
         <div class="row" id="postfeed">
           <div id="postholder" class="col-xs-12 nofilter">
             <div id="loader" class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5" style="margin-top:50px">
-              <img id="loading" src="assets/loader.gif" class="img-responsive">
+              <!-- <img id="loading" src="assets/loader.gif" class="img-responsive"> -->
+              <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+   <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+</svg>
             </div>
             <!-- POST TEMPLATE MODEL -->
             <div class="post template-post" id="template-post">
@@ -305,8 +308,8 @@
                 <div class="col-sm-4"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
               </div>
       			  <div id="following" class="row">
-                <div class="col-xs-4 text-muted" style="text-align:left" id="report" ><div data-toggle="popover" title="What's wrong?" data-placement="top"><i class="fa fa-flag"></i> Report</div></div>
-                <div class="col-xs-8"><h7></h7></div>
+                <div class="col-xs-4 col-md-3 text-muted" style="text-align:left" id="report" ><div class="to-pop"><i class="fa fa-flag"></i> Report</div></div>
+                <div class="col-xs-8 col-md-9"><h7></h7></div>
               </div>
       			  <div class = "col-md-12" style="height:5px;"></div>
             </div> <!--/post-->

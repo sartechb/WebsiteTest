@@ -147,17 +147,6 @@ function refreshPostFeed(append, glow) {
       }
     }
   }
-  var popoverContent = 
-  "<ul class='list-group'>"+
-    "<li class='list-group-item small offensive'>This post has offensive content</li>"+
-    "<li class='list-group-item small badPost'>This post shouldn't be on StudyBuddy</li>"+
-    "<li class='list-group-item small user'>This user is posting offensive or annoying things</li>"+
-  "</ul>";
-  $('[data-toggle="popover"]').popover({
-    html: true,
-    content: popoverContent,
-    container: "div.post"
-  });
 }
 
 function buildFilters() {

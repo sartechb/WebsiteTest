@@ -206,10 +206,30 @@ $("#post-cancel").click(function (e) {
   //setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
 });
 
-$(".post .popover li").click(function (e) {
-  var li = $(e.target);
-  var issue = (li.hasClass("offensive")?"offensive":(li.hasClass("badPost")?"badPost":"user"));
-  console.log(issue);
+$(".post #report").click(function (e) {
+  console.log("clicked report");
+  var popoverContent = 
+  "<ul class='list-group'>"+
+    "<li class='list-group-item small offensive'>This post has offensive content</li>"+
+    "<li class='list-group-item small badPost'>This post shouldn't be on StudyBuddy</li>"+
+    "<li class='list-group-item small user'>This user is posting offensive or annoying things</li>"+
+  "</ul>";
+  var postId = $(e.target).closest(".post").attr("id");
+  $(e.target).popover({
+    html: true,
+    content: popoverContent,
+    title: "What's wrong?",
+    container: "#postholder #"+postId,
+    placement: "top"
+  }).popover("show");
+
+  $("body").on("click", ".popover li", function (e) {
+    var li = $(e.target);
+    var issue = (li.hasClass("offensive")?"offensive":(li.hasClass("badPost")?"badPost":"user"));
+    var post = $("#postholder #"+postId);
+    console.log(issue, li, post);
+    li.closest(".popover").remove();
+  });
 });
 
 function createActiveLink(title, objectId) {
