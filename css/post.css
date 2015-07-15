@@ -73,6 +73,18 @@ padding-bottom:10px;
 padding-bottom:10px;
 }
 
+.post.reported {
+	opacity: 0.1;
+}
+
+.post.reported .notice {
+	position: relative;
+	top:20px;
+	left: 20px;
+	font-size: 2em;
+	color:white;
+}
+
 .post:hover{
 	-webkit-box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 -moz-box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
@@ -119,10 +131,23 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
 
 #following #report:hover {
 	text-decoration: underline;
+	color: red;
 }
 
-#report:hover{
-	color:red;
+#reportMenu ul li {
+	font-size: 1.4em;
+}
+
+#reportMenu ul li:hover, 
+#reportMenu ul li.selected {
+	background-color: #0488C3;
+	color: white;
+	cursor: pointer;
+}
+
+#reportMenu p.notice,
+#reportMenu p.success {
+	display: none;
 }
 
 #title{
@@ -134,7 +159,7 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
 	margin: 0px;
 }
 
-.fa:hover{
+.fp .fa:hover{
 	background-color: #AFD1F7;
 }
 
@@ -168,6 +193,10 @@ body.lg #title img {
 	padding-bottom: 10px;
 	padding-top: 10px;
 	margin-bottom: 5px;
+}
+
+.sm #posttext h5{
+	font-size: 1.2em;
 }
 
 .showall{
@@ -240,13 +269,8 @@ h3.popover-title {
 	color: black;
 }
 
-.post .popover {
-	width: 75%;
-}
-
-.post .popover li:hover {
-	background-color: #0488C3;
-	color: white;
+.post .edit-post:hover {
+	text-decoration: underline;
 	cursor: pointer;
 }
 

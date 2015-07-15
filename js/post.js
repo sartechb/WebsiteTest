@@ -164,7 +164,9 @@ function createPost(post, set, append, postBefore, glow) {
   var to_insert = $("#template-post").clone(true);
   to_insert.find("#title h1").html(post.title);
   to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
-  to_insert.find("#postDetails h7").html(post.author+" | <i class=\"fa fa-clock-o\"></i> "+prettyTime(new Date(post.time)));
+  to_insert.find("#postDetails h7").html(post.author+
+    " | <i class=\"fa fa-clock-o\"></i> "+prettyTime(new Date(post.time))+(
+    post.isUserAuthor?" | <i class='fa fa-pencil'></i><span class='edit-post'> Edit</span>":""));
   to_insert.find("#posttext h5").html(post.content);
   to_insert.find("#lowerDetails h7").html("<i class='fa fa-book'></i> "+
     post.classString+" | <i class='fa fa-location-arrow'></i> "+
@@ -206,31 +208,48 @@ $("#post-cancel").click(function (e) {
   //setTimeout(function(){$("#new-post-bar").addClass('minimized').removeClass('expanded');}, 200);
 });
 
-$(".post #report").click(function (e) {
-  console.log("clicked report");
-  var popoverContent = 
-  "<ul class='list-group'>"+
-    "<li class='list-group-item small offensive'>This post has offensive content</li>"+
-    "<li class='list-group-item small badPost'>This post shouldn't be on StudyBuddy</li>"+
-    "<li class='list-group-item small user'>This user is posting offensive or annoying things</li>"+
-  "</ul>";
-  var postId = $(e.target).closest(".post").attr("id");
-  $(e.target).popover({
-    html: true,
-    content: popoverContent,
-    title: "What's wrong?",
-    container: "#postholder #"+postId,
-    placement: "top"
-  }).popover("show");
 
-  $("body").on("click", ".popover li", function (e) {
-    var li = $(e.target);
-    var issue = (li.hasClass("offensive")?"offensive":(li.hasClass("badPost")?"badPost":"user"));
-    var post = $("#postholder #"+postId);
-    console.log(issue, li, post);
-    li.closest(".popover").remove();
+
+$(".post .report-me").click(function (e) {
+  var post = $(e.target).closest(".post");
+  app.toReport = {}
+  app.toReport.flaggedPost = post.attr("id");
+}); 
+
+$("#reportMenu ul li").click(function (e) {
+  var offense = $(e.target);
+  $("#reportMenu ul li").removeClass("selected", 200);
+  offense.addClass("selected", 200);
+  $("#reportMenu .notice").fadeIn(300);
+  if(offense.hasClass("offensive"))
+    app.toReport.description = "offensive post";
+  else if (offense.hasClass("badPost"))
+    app.toReport.description = "should not be on StudyBuddy";
+  else if (offense.hasClass("user"))
+    app.toReport.description = "bad user";
+  else if (offense.hasClass("other"))
+    app.toReport.description = "other";
+});
+
+$("#reportMenu .report-confirm").click(function (e){
+  console.log(app.toReport);
+  console.log($("#"+app.toReport.flaggedPost));
+  Parse.Cloud.run("reportPost", app.toReport, {
+    success: function (response) {
+      $("#reportMenu .notice").fadeOut(200);
+      $("#reportMenu .success").fadeIn(200);
+      $("#postfeed #"+app.toReport.flaggedPost).addClass("reported")
+        .find("#join button.join").prop("disabled", true);
+
+    }, error: function (error) {console.log(error);}
   });
 });
+
+$("#reportMenu .cancel").click(function (e) {
+  $("#reportMenu p").hide();
+  $("#reportMenu ul li").removeClass("selected");
+});
+
 
 function createActiveLink(title, objectId) {
   var to_insert = $("#active-posts .template-active-post").clone();

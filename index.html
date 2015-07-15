@@ -190,6 +190,31 @@
     </div>
   </div>
 
+  <div class="modal fade" id="reportMenu" tabindex="-1" role="dialog" aria-labelledby="reportModalTitle">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="reportModalTitle">Tell us what's wrong</h4>
+        </div>
+        <div class="modal-body">
+          <p>We try to make your experience on StudyBuddy focused and effective. But in community settings, unintended situations can arise. Please let us know what's wrong and we'll try to resolve this issue as quickly as possible. Thanks for supporting StudyBuddy's mission of the community helping itself!</p>
+          <ul class='list-group'>
+            <li class='list-group-item small offensive'>This post has offensive content</li>
+            <li class='list-group-item small badPost'>This post shouldn't be on StudyBuddy</li>
+            <li class='list-group-item small user'>This user is posting offensive or annoying things</li>
+            <li class='list-group-item small other'>Something other than the above</li>
+          </ul>
+          <p class="notice text-danger">Take a second to confirm that you really want to report this <button class="btn btn-danger report-confirm">Report</button></p>
+          <p class="success text-success">Your report was filed. <i class="fa fa-check"></i></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
  <div class="container">
     <div class = "row">
@@ -279,11 +304,11 @@
         
         <div class="row" id="postfeed">
           <div id="postholder" class="col-xs-12 nofilter">
-            <div id="loader" class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5" style="margin-top:50px">
+            <div id="loader" class="col-xs-2 col-xs-offset-5 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-5" style="margin-top:50px">
               <!-- <img id="loading" src="assets/loader.gif" class="img-responsive"> -->
               <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-   <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-</svg>
+                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+              </svg>
             </div>
             <!-- POST TEMPLATE MODEL -->
             <div class="post template-post" id="template-post">
@@ -305,10 +330,12 @@
                 </div>
               </div>
       			  <div id="join" class="row">
-                <div class="col-sm-4"><button type="submit" class="btn btn-primary toggle">Join!</button></div>
+                <div class="col-sm-4"><button type="submit" class="btn btn-primary toggle join">Join!</button></div>
               </div>
       			  <div id="following" class="row">
-                <div class="col-xs-4 col-md-3 text-muted" style="text-align:left" id="report" ><div class="to-pop"><i class="fa fa-flag"></i> Report</div></div>
+                <div class="col-xs-4 col-md-3 text-muted" style="text-align:left" id="report" >
+                  <div class="report-me" data-toggle="modal" data-target="#reportMenu"><i class="fa fa-flag"></i> Report</div>
+                </div>
                 <div class="col-xs-8 col-md-9"><h7></h7></div>
               </div>
       			  <div class = "col-md-12" style="height:5px;"></div>

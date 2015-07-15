@@ -25,7 +25,7 @@ input {
 }
 
 body.lg .modal-dialog, body.md .modal-dialog {
-	margin-top: 15%;
+	margin-top: 10%;
 }
 
 .modal-title {
@@ -60,7 +60,7 @@ body.lg .modal-dialog, body.md .modal-dialog {
 	text-align: left;
 }
 
-.modal-body i {
+.modal-body i.fa-times {
 	color: white;
 	cursor: pointer;
 }

@@ -102,9 +102,11 @@ button.btn-primary, input.btn-primary {
 
 }
 
+
 .spinner {
   -webkit-animation: rotator 1.4s linear infinite;
           animation: rotator 1.4s linear infinite;
+  margin: 0 auto;
 }
 
 @-webkit-keyframes rotator {
