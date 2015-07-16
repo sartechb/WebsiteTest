@@ -177,6 +177,9 @@ function createPost(post, set, append, postBefore, glow) {
   to_insert.addClass(set);
   to_insert.addClass(post.classString.replace(/\s+/g,"_"));
   to_insert.addClass(post.location.replace(/\s+/g,"_"));
+  if(post.isUserAuthor) {
+    to_insert.find("div.report-me").remove();
+  }
   if(glow) {
     to_insert.addClass("glow");
     setTimeout(function() {$(".post.glow").removeClass("glow", 1000);}, 3000);
@@ -216,7 +219,7 @@ $(".post .report-me").click(function (e) {
   app.toReport.flaggedPost = post.attr("id");
 }); 
 
-$("#reportMenu ul li").click(function (e) {
+$("#reportMenu ul li.bucket").click(function (e) {
   var offense = $(e.target);
   $("#reportMenu ul li").removeClass("selected", 200);
   offense.addClass("selected", 200);
@@ -227,8 +230,21 @@ $("#reportMenu ul li").click(function (e) {
     app.toReport.description = "should not be on StudyBuddy";
   else if (offense.hasClass("user"))
     app.toReport.description = "bad user";
-  else if (offense.hasClass("other"))
-    app.toReport.description = "other";
+});
+
+$("#reportMenu ul li.other").click(function (e) {
+  var offense = $(e.target);
+  $("#reportMenu .notice").fadeOut(300);
+  $("#reportMenu ul li").removeClass("selected", 200);
+  offense.closest("li").addClass("selected", 200);
+});
+
+$("#reportMenu ul form#reportMenu-form").submit(function (e) {
+  e.preventDefault();
+  var input = $("#reportMenu form #reportMenu-input").val();
+  if(input.length == 0) return;
+  app.toReport.description = input;
+  $("#reportMenu .notice").fadeIn(300);
 });
 
 $("#reportMenu .report-confirm").click(function (e){
@@ -238,8 +254,11 @@ $("#reportMenu .report-confirm").click(function (e){
     success: function (response) {
       $("#reportMenu .notice").fadeOut(200);
       $("#reportMenu .success").fadeIn(200);
-      $("#postfeed #"+app.toReport.flaggedPost).addClass("reported")
-        .find("#join button.join").prop("disabled", true);
+      $("#postfeed #"+app.toReport.flaggedPost).remove();
+      var reports = app.user.get("reportedPosts") || [];
+      reports.push(app.toReport.flaggedPost);
+      app.user.set("reportedPosts", reports);
+      app.user.save();
 
     }, error: function (error) {console.log(error);}
   });

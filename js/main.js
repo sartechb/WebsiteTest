@@ -36,15 +36,19 @@ Parse.Cloud.run("getInitialData", {}, {
 function buildPostFeed() {
   app.filteringEnabled = false;
   app.refreshTime = new Date();
+  var report = app.user.get("reportedPosts") || [];
   Parse.Cloud.run("getPosts", {nextTen:true,areFilters:false,timeCutOff:app.refreshTime}, {
     success: function(response) {
      app.postOrder = [];
      app.posts = {};
      for(var x = 0; x < response.posts.length; ++x) {
-      app.postOrder.push(response.posts[x].postId);
-      app.posts[response.posts[x].postId] = response.posts[x];
-      app.posts[response.posts[x].postId].filters = [];
+      if(report.indexOf(response.posts[x].postId) == -1) {
+        app.postOrder.push(response.posts[x].postId);
+        app.posts[response.posts[x].postId] = response.posts[x];
+        app.posts[response.posts[x].postId].filters = [];
+      } 
     }
+   // console.log(app.postOrder);
       //app.posts = response.posts;
       app.timeCutOff = response.timeCutOff;
       app.areMorePosts = response.areMorePosts;
@@ -85,6 +89,7 @@ function getFilterPosts(ib, fs, ft) {
       filtObj = app.user.get("filters")[x].split("|");
       app.filters[filtObj[1]].push({filter:filtObj[0],on:false}); 
     }
+    var report = app.user.get("reportedPosts") || [];
     //app.filters.push(JSON.parse(filters[x]));
    //if(ib) console.log(filtObj[0], filtObj[1]);
     Parse.Cloud.run("getPosts", {
@@ -95,15 +100,20 @@ function getFilterPosts(ib, fs, ft) {
     }, {
       success: function(response) {
         for(var i = 0; i < response.posts.length; ++i) {
-          if(!(response.posts[i].postId in app.posts)) {
-            app.postOrder.push(response.posts[i].postId);
-            app.posts[response.posts[i].postId] = response.posts[i];
-            app.posts[response.posts[i].postId].filters = [];
-            if(!ib)console.log("made new post");
-          }
+          if(report.indexOf(response.posts[i].postId) == -1) {
+            if(!(response.posts[i].postId in app.posts)) {
+              app.postOrder.push(response.posts[i].postId);
+              app.posts[response.posts[i].postId] = response.posts[i];
+              app.posts[response.posts[i].postId].filters = [];
+              if(!ib)console.log("made new post");
+            }
+          
+          // console.log(report);
+          // console.log(report.indexOf(app.postOrder[app.postOrder.length-1]));
           //console.log(response.filterString, response.posts[i].postId);
           app.posts[response.posts[i].postId].filters.push(response.filterString.replace(/\s+/g, "_"));
-        }
+          } 
+        } 
         ++app.t;
         if(app.t == app.user.get("filters").length || !ib) {
           fixPosts();
@@ -131,9 +141,11 @@ function fixPosts() {
 }
 
 function refreshPostFeed(append, glow) {
-
+  var reports = app.user.get("reportedPosts") || [];
+  //console.log(reports);
   for(var i = 0; i < app.postOrder.length; ++i) {
     if($("#postholder #"+app.postOrder[i]).length == 0) {
+      //console.log("creating "+app.postOrder[i]);
       if(i != 0 && !glow) {
         createPost(app.posts[app.postOrder[i]], app.posts[app.postOrder[i]].filters.join(" "),append,app.postOrder[i-1], glow);
       } else {
@@ -146,6 +158,9 @@ function refreshPostFeed(append, glow) {
           $("#"+app.postOrder[i]).addClass(app.posts[app.postOrder[i]].filters[j]);
       }
     }
+  }
+  for(var k = 0; k < reports; ++k) {
+    $("#postholder #"+reports[k]).remove();
   }
 }
 
@@ -181,6 +196,4 @@ $("a#logout").click(function (e) {
 });
 
 $('[data-toggle="tooltip"]').tooltip();
-
-
 
