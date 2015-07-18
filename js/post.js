@@ -189,7 +189,7 @@ function createPost(post, set, append, postBefore, glow) {
   if(append)
     $("#postholder").append(to_insert);
   else
-    if(postBefore == "top")
+    if(postBefore == null)
       $("#postholder").prepend(to_insert);
     else
       $("#postholder #"+postBefore).after(to_insert);

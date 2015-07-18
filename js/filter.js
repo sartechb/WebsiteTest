@@ -1,8 +1,9 @@
 //sets event handlers on filters
-$(".modal-dialog .filt .container .row").click(function (e) {runFilter(e)});
+$(".modal-dialog .filt .container .row").click(function (e) {runFilter(e);});
 
 //executes a filterCommand
 function runFilter(e) {
+  //determine the correct target
   var filter = $(e.target);
   if(filter.prop("tagName") == "I") {
     filter = filter.parent().parent();
@@ -12,16 +13,17 @@ function runFilter(e) {
   else if(filter.hasClass("title"))
     filter = filter.parent();
 
+  //visually changes how filter looks
   filter.toggleClass("active");
   //find filter by type -> string
   var f = filter.attr("id").split("|");
   var ty = f[1];
-  var st = f[0];
-  console.log(filter.attr("id"), ty, st);
-  console.log(app.filters[ty].length);
-  //set flag variable to not of variable
+  var st = f[0];//ID String
+  //console.log(filter.attr("id"), ty, st);
+  //console.log(app.filters[ty].length);
+  //set flag variable to not of flag variable
   for(var i = 0; i < app.filters[ty].length; ++i)
-    if(app.filters[ty][i].filter.replace(/\s+/g, "_") == st)
+    if(app.filters[ty][i].id == st)
       app.filters[ty][i].on = !app.filters[ty][i].on;
 
   var classFilters = [];
@@ -30,13 +32,13 @@ function runFilter(e) {
   //build arrays of "on" strings
   for(var x = 0; x < app.filters.c.length; ++x) 
     if(app.filters.c[x].on)
-      classFilters.push(app.filters.c[x].filter.replace(/\s+/g,"_"));
+      classFilters.push(app.filters.c[x].id);
   for(var y = 0; y < app.filters.l.length; ++y) 
     if(app.filters.l[y].on)
-      locFilters.push(app.filters.l[y].filter.replace(/\s+/g,"_"));
+      locFilters.push(app.filters.l[y].id);
   for(var z = 0; z < app.filters.t.length; ++z) 
     if(app.filters.t[z].on)
-      timeFilters.push(app.filters.t[z].filter.replace(/\s+/g,"_"));
+      timeFilters.push(app.filters.t[z].id);
   //check for edge cases
   if(classFilters.length == 0) classFilters.push("");
   if(locFilters.length == 0) locFilters.push("");
@@ -55,7 +57,7 @@ function runFilter(e) {
     }
   }
   //do the visual stuff
-  console.log(selectors);
+  //console.log(selectors);
   $(selectors.join()).not(".template-post").fadeIn(200);
   $(".post").not(selectors.join()).fadeOut(200);
 
@@ -63,16 +65,16 @@ function runFilter(e) {
 }
 
 function updateFilterNotify(c, l, t) {
- // console.log("updateFilterNotify");
+ // //console.log("updateFilterNotify");
   if(c[0]=="") c.pop();
   if(l[0]=="") l.pop();
   if(t[0]=="") t.pop();
-  console.log(c, l, t);
+  //console.log(c, l, t);
   for(var n = 0; n < c.length; ++n) c[n] = c[n].replace(/_+/g, " ");
   for(var m = 0; m < l.length; ++m) l[m] = l[m].replace(/_+/g, " ");
   for(var p = 0; p < t.length; ++p) t[p] = t[p].replace(/_+/g, " ");
-  console.log(c, l, t);
-//  console.log(c.length, l.length, t.length);
+  //console.log(c, l, t);
+//  //console.log(c.length, l.length, t.length);
   if(c.length + l.length + t.length > 0) {
     $(".filter-notify span.leader").fadeIn(200);
     if(c.length > 0) {
@@ -111,7 +113,7 @@ function updateFilterNotify(c, l, t) {
 
 function createFilter (filter, type) {
   var to_insert = $("div.row.template-filter").clone(true);
-  //console.log(to_insert, "this is the created filter");
+  ////console.log(to_insert, "this is the created filter");
   to_insert.removeClass("template-filter");
   to_insert.attr("id", filter.replace(/\s+/g,"_")+type);
   to_insert.find("h4").append(filter);
@@ -140,12 +142,13 @@ $("form#classFilterAdd").submit(function(e) {
     for(var j = 0; j < app.filters.c.length; ++j)
       if(app.filters.c[j].filter == inputVal)
         i = j;
-    console.log(i);
+    //console.log(i);
   } else {
     app.filters.c = [];
   }
   if(i != -1) {
-    //filter exists, and posts are present
+    //if filter exists, then posts are present
+    //check is duplicate
     if($("#classFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|c").length > 0) {
       $("#classFilterMenu .notice.dup").fadeIn(200);
       setTimeout(function(){$("#classFilterMenu .notice.dup").fadeOut(200);}, 6000);
@@ -155,16 +158,17 @@ $("form#classFilterAdd").submit(function(e) {
     createFilter(inputVal, "|c");
   } else {
     //filter DNE, must load from parse
-    app.filters.c.push({filter:inputVal, on:false});
-    getFilterPosts(false, inputVal, "c");
+    app.filters.c.push(new filterObject(inputVal));
+    getFilterPosts("c", true);
     createFilter(inputVal, "|c");
     var userFilters = app.user.get("filters");
     userFilters.push(inputVal+"|c");
     app.user.set("filters", userFilters);
     app.user.save();
   }
-  console.log(input.val());
+  //console.log(input.val());
   input.val("");
+
 });
 
 $("form#locFilterAdd").submit(function(e) {
@@ -188,7 +192,7 @@ $("form#locFilterAdd").submit(function(e) {
     app.filters.l = [];
   }
   if(i != -1) {
-    //filter exists, and posts are present
+    //filter exists, and posts are present: duplicate case
     if($("#locFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|l").length > 0) {
       $("#locFilterMenu .notice.dup").fadeIn(200);
       setTimeout(function(){$("#locFilterMenu .notice.dup").fadeOut(200);}, 6000);
@@ -198,16 +202,16 @@ $("form#locFilterAdd").submit(function(e) {
     createFilter(inputVal, "|l");
   } else {
     //filter DNE, must load from parse
-    app.filters.l.push({filter:inputVal, on:false});
-    getFilterPosts(false, inputVal, "l");
+    app.filters.l.push(new filterObject(inputVal));
+    getFilterPosts("l", true);
     createFilter(inputVal, "|l");
     var userFilters = app.user.get("filters");
     userFilters.push(inputVal+"|l");
     app.user.set("filters", userFilters);
     app.user.save();
-    console.log("had to pull from parse");
+    //console.log("had to pull from parse");
   }
-  console.log(input.val());
+  //console.log(input.val());
   input.val("");
 });
 
@@ -221,7 +225,7 @@ function removeFilter(filter) {
         app.filters[ty1][ex].on = true;
     var userFilters = app.user.get("filters");
     var toRemove = userFilters.indexOf(st1.replace(/_+/g," ")+"|"+ty1);
-    console.log(userFilters, toRemove);
+    //console.log(userFilters, toRemove);
     userFilters.splice(toRemove,1);
     app.user.set("filters", userFilters);
     app.user.save();
@@ -234,7 +238,7 @@ $("#classFilterMenu span.link").click(function () {
 });
 
 // $(".modal-dialog .container .row i.fa-times").click(function (e) {
-//   console.log(e.target);
+//   //console.log(e.target);
 //   var filter = $(e.target).parent().parent();
-//   console.log(filter);
+//   //console.log(filter);
 // })
