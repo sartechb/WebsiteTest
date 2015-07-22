@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0488C3">
+    <title>Wobetto</title>
+
+ <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/post.css" rel="stylesheet">
+    <link href="css/filter.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/typeahead.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+  </head>
+  <body>
+
+
+ <div class="container">
+    <div class = "row">
+      <div class = "col-md-12" id = "this-is-the-navbar">
+        <div style="" id="actions"><h3><a style="color:white;" href="#">Notifications</a> | 
+          <a style="color:white;" href="#">Settings</a> | <a style="color:white;" href="#" id="logout">Log Out</a></h3></div>
+        <img src="assets/studybuddylogolight.png" style="width:165px; height:60px; margin-top:-8px; margin-left:2%;"/>
+        <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
+      </div> <!--Navbar-->
+    </div>
+    <div class ="row" id="body">      
+      <div class="hidden-xs col-sm-3 col-sm-2" id="sidebar">
+        <div id="holdcontent">
+        <div class = "col-md-12" id="user-photo"><img id="user-photo"src=""/></div> <!--user photo-->
+        <div class = "col-md-12" id="empty"></div>
+        <div class = "col-md-12" id="user-name"><h1 style="color:white;"></h1></div>
+        <div class = "col-md-12" id="user-school"><h3></h3></div>
+        <div class = "col-md-12" id="empty"></div>
+        <hr align="center" width="70%" color="white">
+        <div class = "col-md-12" id="active-posts">
+          <div class ="row">
+            <h3>My Active Posts</h3>
+            <div class = "col-md-12" id="empty"></div>
+            <div class = "col-md-12 active-post template-active-post"><h3></h3></div>
+          </div><!--active posts row-->
+        </div>
+       </div> <!--holdcontent-->
+      </div> <!--sidebar-->
+
+
+      <div class="col-xs-12" id="content">
+        
+        <div class="row" id="postfeed">
+          <div id="postholder" class="col-xs-12 nofilter">
+            <div id="loader" class="col-xs-2 col-xs-offset-6 col-sm-2 col-sm-offset-6 col-md-2 col-md-offset-6" style="margin-top:50px">
+              <!-- <img id="loading" src="assets/loader.gif" class="img-responsive"> -->
+              <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+            <!-- POST TEMPLATE MODEL -->
+            <div class="post" id="template-post">
+              <div id="title" class="row">
+                <div class="col-sm-10 col-xs-10"><h1 style="text-align:left">HI</h1></div>
+                <div class="col-sm-2 col-xs-2"><img class="img-responsive img-circle" src=""/></div>
+              </div> <!--title-->
+              <div class="row">
+                <div class="col-xs-10 col-xs-offset-1" id="postDetails">
+                  <div class="col-xs-9"> <h7 id="nametime" data-time=""></h7></div>
+                  <div class="col-xs-12">
+                    <div id="posttext">
+                       <h5></h5>
+                    </div> <!--posttext-->
+                    <div id="lowerDetails">
+                      <h7></h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      			  <div id="join" class="row">
+                <div class="col-sm-4"><button type="submit" class="btn btn-primary toggle join">Join!</button></div>
+              </div>
+      			  <div id="following" class="row">
+                <div class="col-xs-4 col-md-3 text-muted" style="text-align:left" id="report" >
+                  <div class="report-me" data-toggle="modal" data-target="#reportMenu"><i class="fa fa-flag"></i> Report</div>
+                </div>
+                <div class="col-xs-8 col-md-9"><h7></h7></div>
+              </div>
+      			  <div class = "col-md-12" style="height:5px;"></div>
+            </div> <!--/post-->
+
+          </div>  <!--/postholder-->
+        </div> <!--/postfeed-->
+      </div> <!--/content-->
+
+    </div><!--body-->
+    </div><!-- /.container -->
+
+
+    <script src="jquery-ui/external/jquery/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/autogrow.min.js"></script>
+    <script src="js/bootstrap3-typeahead.min.js"></script>
+    <!--proprietary scripts -->
+    <script src="js/bst.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/detail.js"></script>
+    <script src="js/post.js"></script>
+<!--     // <script src="js/post.js"></script>
+    // <script src="js/sidebar.js"></script>
+    // <script src="js/filter.js"></script>
+    // <script src="js/main.js"></script> -->
+
+  </body>
+</html>

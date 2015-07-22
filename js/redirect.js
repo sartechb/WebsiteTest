@@ -6,7 +6,6 @@ Parse.initialize("MQvT5Bq6CsU34IQBfop8fPEJLOsLybDgDMBRdFhM", "HNFXaE7aCayggyI8hy
  * state for uses like filtering.
  */
 var app = {};
-app.filters = {};
 
 //console.log("here", app);
 

@@ -18,7 +18,11 @@ function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
       //console.log(response);
-      app.activePosts = response.activePosts;
+      app.activePosts = {};
+      for(var j = 0; j < response.activePosts.length; ++j) 
+        app.activePosts[response.activePosts[j].postId] = 
+          response.activePosts[j].title;
+
       app.locations = response.locations;
       $("#user-school h3").html(response.name);
       $("input#locFilterAddInput").typeahead({source: response.locations});
@@ -28,8 +32,10 @@ function buildInitialData() {
       $("input#classFilterAddInput").typeahead({source: response.classes});
       $("#new-post-bar #new-post-class").typeahead({source: response.classes});
 
-      for(var i = 0; i < app.activePosts.length; ++i)
-        createActiveLink(app.activePosts[i].title, app.activePosts[i].postId);
+      for(var i = 0; i < response.activePosts.length; ++i)
+        createActiveLink(response.activePosts[i].title, response.activePosts[i].postId);
+
+      setActivePostHandler();
 
       
     }, error: function(error){console.log(error);}
@@ -42,33 +48,22 @@ function buildPostFeed(init) {
   var report = app.user.get("reportedPosts") || [];
   Parse.Cloud.run("getMorePosts", {timeCutOff:app.refreshTime}, {
     success: function(response) {
-     //app.postOrder = [];
-     //hashmap of post objects
       app.posts = {};
       var order = new BST(postOrdering);
       for(var x = 0; x < response.posts.length; ++x) {
         var id = response.posts[x].postId;
         if(!(id in app.posts) && report.indexOf(id) == -1) {
-          //app.postOrder.push(response.posts[x].postId);
           app.posts[id] = response.posts[x];
           order.insert(id);
-          //app.posts[response.posts[x].postId].filters = [];
         } 
       }
       order.doOp(addPostToFeed1);
-   // console.log(app.postOrder);
-      //app.posts = response.posts;
-      //keep the refresh time of oldest post retrieved normally
+
       app.refreshTime = response.timeCutOff;
       app.areMorePosts = response.areMorePosts;
-     //if(app.user.get("filters").length == 0)
-     //Remove the loading animation
+
      $("#loader").remove();
-      // for(var i = 0; i < app.postOrder.length; ++i) {
-      //   createPost(app.posts[app.postOrder[i]], "recent", true);
-      // }
-      //console.log(app.user.get("filters"));
-      //start filter objects
+
       if(init) buildFilterPosts();
     }, error: function(error) {console.log(error);}
   });
@@ -170,103 +165,6 @@ function fixPostFeed(id) {
   app.util.lastPost = id;
 }
 
-
-
-
-
-// function getFilterPosts1(ib, fs, ft) {
-//  //  console.log(ib);
-//   var filters = [];
-//   if(ib) {
-//     filters = app.user.get("filters");
-//     app.filters = {};
-//     app.filters.c = [];
-//     app.filters.l = [];
-//     app.filters.t = [];
-//   }
-//   app.t = 0;
-//   app.t1 = app.postOrder.length;
-//   //app.filters = app.user.get("filters");
-//   for(var x = 0; x < (ib?filters.length:1); ++x) {
-//     var filtObj;
-//     if(ib) {
-//       filtObj = app.user.get("filters")[x].split("|");
-//       app.filters[filtObj[1]].push({filter:filtObj[0],on:false}); 
-//     }
-//     var report = app.user.get("reportedPosts") || [];
-//     //app.filters.push(JSON.parse(filters[x]));
-//    //if(ib) console.log(filtObj[0], filtObj[1]);
-//     Parse.Cloud.run("getPosts", {
-//       nextTen:false,
-//       areFilters:true,
-//       filterString:(ib?filtObj[0]:fs),
-//       filterType:(ib?filtObj[1]:ft)
-//     }, {
-//       success: function(response) {
-//         for(var i = 0; i < response.posts.length; ++i) {
-//           if(report.indexOf(response.posts[i].postId) == -1) {
-//             if(!(response.posts[i].postId in app.posts)) {
-//               app.postOrder.push(response.posts[i].postId);
-//               app.posts[response.posts[i].postId] = response.posts[i];
-//               app.posts[response.posts[i].postId].filters = [];
-//               if(!ib)console.log("made new post");
-//             }
-          
-//           // console.log(report);
-//           // console.log(report.indexOf(app.postOrder[app.postOrder.length-1]));
-//           //console.log(response.filterString, response.posts[i].postId);
-//           app.posts[response.posts[i].postId].filters.push(response.filterString.replace(/\s+/g, "_"));
-//           } 
-//         } 
-//         ++app.t;
-//         if(app.t == app.user.get("filters").length || !ib) {
-//           fixPosts();
-//           refreshPostFeed(false);
-//           if(ib) buildFilters();
-//         }
-//       }, error: function(error) {console.log(error);}
-//     });
-//   }
-// }
-
-// function fixPosts() {
-//   //order in terms of time
-//   if(app.t1 < app.postOrder.length)
-//     for(var i = app.t1; i < app.postOrder.length; ++i) {
-//       var postTime = app.posts[app.postOrder[i]].time;
-//       for(var j = i-1; j >= 0; --j) {
-//         if(app.posts[app.postOrder[j]].time < postTime) {
-//           temp = app.postOrder[i];
-//           app.postOrder[i] = app.postOrder[j];
-//           app.postOrder[j] = temp;
-//         }
-//       }
-//     }
-// }
-
-// function refreshPostFeed(append, glow) {
-//   var reports = app.user.get("reportedPosts") || [];
-//   //console.log(reports);
-//   for(var i = 0; i < app.postOrder.length; ++i) {
-//     if($("#postholder #"+app.postOrder[i]).length == 0) {
-//       //console.log("creating "+app.postOrder[i]);
-//       if(i != 0 && !glow) {
-//         createPost(app.posts[app.postOrder[i]], app.posts[app.postOrder[i]].filters.join(" "),append,app.postOrder[i-1], glow);
-//       } else {
-//         console.log("will append: "+append);
-//         createPost(app.posts[app.postOrder[i]], app.posts[app.postOrder[i]].filters.join(" "),append,"top",glow);
-//       }
-//     } else {
-//       for(var j = 0; j < app.posts[app.postOrder[i]].filters.length; ++j) {
-//         if(!($("#"+app.postOrder[i]).hasClass(app.posts[app.postOrder[i]].filters[j])))
-//           $("#"+app.postOrder[i]).addClass(app.posts[app.postOrder[i]].filters[j]);
-//       }
-//     }
-//   }
-//   for(var k = 0; k < reports; ++k) {
-//     $("#postholder #"+reports[k]).remove();
-//   }
-// }
 
 function buildFilters() {
   for(var n = 0; n < app.filters.c.length; ++n) createFilter(app.filters.c[n].filter, "|c");
