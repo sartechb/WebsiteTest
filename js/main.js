@@ -150,13 +150,22 @@ function addToPosts(id, post) {
     app.posts[id] = post;
 }
 
-function updatePostUI() {
+function updatePostUI(add) {
   app.util.lastPost = null;
   var order = new BST(postOrdering);
   for(var id in app.posts) 
     if(app.posts.hasOwnProperty(id))
       order.insert(id);
-  order.doOp(fixPostFeed);
+  if(add)
+    order.doOp(insertToPostFeed);
+  else  
+    order.doOp(fixPostFeed);
+}
+
+function insertToPostFeed(id) {
+  if(!$("#postholder #"+id).length)
+    createPost(app.posts[id], "recent", false);
+  app.util.lastPost = id;
 }
 
 function fixPostFeed(id) {

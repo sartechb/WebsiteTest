@@ -85,7 +85,7 @@ $("#new-post").submit(function (e) {
       newPost.post.location = newPost.post.baseLocation;
       app.posts[newPost.post.postId] = newPost.post;
       //app.postOrder.push(newPost.post.postId);
-      updatePostUI();
+      updatePostUI(true);
       //fixPosts();
       //refreshPostFeed(false, true);
       createActiveLink(newPost.post.title, newPost.post.postId);
