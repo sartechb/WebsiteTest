@@ -170,7 +170,7 @@ function insertToPostFeed(id) {
 
 function fixPostFeed(id) {
   if(!$("#postholder #"+id).length)
-    createPost(app.posts[id], "recent", true, app.util.lastPost);
+    createPost(app.posts[id], "recent", true, app.util.lastPost, true);
   app.util.lastPost = id;
 }
 
