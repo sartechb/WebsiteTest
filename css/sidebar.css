@@ -52,6 +52,21 @@ border-color: #AFD1F7;
 	margin-bottom: 8px;
 }
 
+body.lg #this-is-the-navbar img,
+body.md #this-is-the-navbar img {
+	width: 165px !important;
+	height: 55px !important;
+	margin-left: 0px !important;
+}
+
+body.sm #this-is-the-navbar img,
+body.xs #this-is-the-navbar img {
+	width: 165px !important;
+	height: 55px !important;
+	margin-left: 2% !important;
+}
+
+
 h1{
 	color:black;
 	font-size:2em;

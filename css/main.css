@@ -40,7 +40,7 @@ button.btn-primary, input.btn-primary {
 }
 
 #this-is-the-navbar{
-  height:50px;
+  height:55px;
   /*background-color: #00A2EA;*/ background-color: #0488C3;
   position:fixed;
   z-index: 3;
