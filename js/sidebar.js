@@ -51,7 +51,7 @@ function setActivePostHandler() {
 
     var url = 
     //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-    "http://sartechb.github.io/WebsiteTest/detail.html";
+    "http://sartechb.github.io/WebsiteTest/post.html";
     url += "#"+postId;
     window.location.href = url;
   });
