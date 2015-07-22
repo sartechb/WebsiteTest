@@ -164,7 +164,7 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
 	background-color: #AFD1F7;
 }
 
-.img-circle {
+.post .img-circle {
   position: absolute;
   width: 70%;
   max-width: 125px;
@@ -266,6 +266,11 @@ div.postInput input {
 	display: none !important;
 }
 
+#postholder .post.detail-post {
+	margin-top: 50px;
+	width: 80%;
+}
+
 h3.popover-title {
 	color: black;
 }
@@ -273,6 +278,35 @@ h3.popover-title {
 .post .edit-post:hover {
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+.post #parts {
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
+.post #parts .img-circle {
+	display: block;
+	width: 100%;
+	position: static;
+}
+
+.post #parts .thumbnail {
+	border: 0;
+}
+
+.post #parts .thumbnail .caption {
+	margin-top: 0;
+	float: left;
+}
+.post #parts .thumbnail .caption h3 {
+	color: black;
+	text-align: left;
+}
+
+
+.post #parts .template-participant {
+	display: none !important;
 }
 
 @media(min-width:2150px)

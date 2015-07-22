@@ -17,7 +17,7 @@ buildInitialData();
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
-      //console.log(response);
+      console.log(response);
       app.activePosts = {};
       for(var j = 0; j < response.activePosts.length; ++j) 
         app.activePosts[response.activePosts[j].postId] = 

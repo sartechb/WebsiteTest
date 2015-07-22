@@ -42,15 +42,6 @@ function buildInitialData() {
         app.activePosts[response.activePosts[j].postId] = 
           response.activePosts[j].title;
 
-      app.locations = response.locations;
-      $("#user-school h3").html(response.name);
-      $("input#locFilterAddInput").typeahead({source: response.locations});
-      $("#new-post-bar #new-post-place").typeahead({source: response.locations});
-
-      app.classes = response.classes;
-      $("input#classFilterAddInput").typeahead({source: response.classes});
-      $("#new-post-bar #new-post-class").typeahead({source: response.classes});
-
       for(var i = 0; i < response.activePosts.length; ++i)
         createActiveLink(response.activePosts[i].title, response.activePosts[i].postId);
 
@@ -62,10 +53,59 @@ function buildInitialData() {
 function buildDetailView() {
 	Parse.Cloud.run("getDetailView", {postId:app.thisPost}, {
 		success: function (response) {
-			console.log(response);
+      $("#loader").remove();
+      createDetailPost(response);
+      app.thisPostData = response;
 		}, error: function (error) {console.log(error);}	
 	});
 }
+
+function createDetailPost(post) {
+  var to_insert = $("#template-post").clone(true);
+  to_insert.removeClass("template-post").addClass("detail-post");
+  to_insert.find("#title h1").html(post.title);
+  to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
+  to_insert.find("#postDetails h7").html(post.author+
+    " | <i class=\"fa fa-clock-o\"></i> "+prettyTime(new Date(post.time))+(
+    post.isUserAuthor?" | <i class='fa fa-pencil'></i><span class='edit-post'> Edit</span>":""));
+  to_insert.find("#posttext h5").html(post.content);
+  to_insert.find("#lowerDetails h7").html("<i class='fa fa-book'></i> "+
+    post.classString+" | <i class='fa fa-location-arrow'></i> "+
+    post.location+(post.detailLocation.length>0?" ("+post.detailLocation+")":""));
+  to_insert.find("#following h7").html(post.memberCount+(post.memberCount==1?" member":" members")+" joined so far");
+  to_insert.attr("id", post.postId);
+  for(var i = 0; i < post.participants.length; ++i) {
+    var person = to_insert.find("#parts .template-participant").clone(true);
+    person.find("img").attr("src", "assets/"+post.participants[i].pic);
+    person.find("h3").text(post.participants[i].name);
+    person.removeClass("template-participant");
+    to_insert.find("#parts").append(person);
+  }
+  if(post.isUserAuthor) {
+    to_insert.find("div.report-me").remove();
+  }
+
+    $("#postholder").append(to_insert);
+}
+
+function setActivePostHandler() {
+  $("#active-posts div.row .active-post").click(function (e) {
+    var link = $(e.target);
+    if(link.prop("tagName") == "H3")
+      link = link.parent();
+
+    var postId = link.attr("id");
+    var title = app.activePosts[postId];
+
+    var url = 
+    "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+    url += "#"+postId;
+    window.location.href = url;
+    location.reload();
+   // "http://sartechb.github.io/WebsiteTest/detail.html#";
+  });
+}
+
 
  function handleResize() {
   var w = $(window).width();
@@ -77,6 +117,24 @@ function buildDetailView() {
     $("body").addClass("sm").removeClass("lg md xs");
   } else {
     $("body").addClass("xs").removeClass("lg md sm");
+  }
+}
+
+function prettyTime(time) {
+  var date = new Date();
+  var seconds = Math.round((date - time)/1000);
+  var minutes = Math.round(seconds/60);
+  var hours = Math.round(minutes/60);
+  if(seconds < 20) {
+    return "Just Now";
+  } else if(seconds < 60) {
+    return seconds+" seconds ago";
+  } else if (minutes < 60) {
+    return minutes+((minutes==1)?" minute ago":" minutes ago");
+  } else if (hours < 24) {
+    return hours+((hours==1)?" hour ago":" hours ago");
+  } else {
+    return "More than a day ago";
   }
 }
 

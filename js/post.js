@@ -84,9 +84,10 @@ $("#new-post").submit(function (e) {
       newPost.post.filters = [];
       newPost.post.location = newPost.post.baseLocation;
       app.posts[newPost.post.postId] = newPost.post;
-      app.postOrder.push(newPost.post.postId);
-      fixPosts();
-      refreshPostFeed(false, true);
+      //app.postOrder.push(newPost.post.postId);
+      updatePostUI();
+      //fixPosts();
+      //refreshPostFeed(false, true);
       createActiveLink(newPost.post.title, newPost.post.postId);
       $("#post-cancel").trigger("click");
 
