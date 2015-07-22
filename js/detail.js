@@ -98,11 +98,12 @@ function setActivePostHandler() {
     var title = app.activePosts[postId];
 
     var url = 
-    "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+    //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+     "http://sartechb.github.io/WebsiteTest/detail.html";
     url += "#"+postId;
     window.location.href = url;
     location.reload();
-   // "http://sartechb.github.io/WebsiteTest/detail.html#";
+   
   });
 }
 
