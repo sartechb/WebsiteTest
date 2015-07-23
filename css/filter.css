@@ -89,6 +89,10 @@ body.lg .modal-dialog, body.md .modal-dialog {
 	cursor: pointer;
 }
 
+body.xs .modal-body .topitem {
+	margin-bottom: 50px;
+}
+
 .modal-body.filt .notice {
 	display: none;
 	margin-bottom: -70px;

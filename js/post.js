@@ -178,6 +178,10 @@ function createPost(post, set, append, postBefore, glow) {
   to_insert.addClass(set);
   to_insert.addClass(post.classString.replace(/\s+/g,"_"));
   to_insert.addClass(post.location.replace(/\s+/g,"_"));
+  if(post.hasUserJoined) {
+    to_insert.find(".join").text("View Your Group");
+    to_insert.find(".join").removeClass("join btn-primary").addClass("goToGroup btn-success");
+  }
   if(post.isUserAuthor) {
     to_insert.find("div.report-me").remove();
   }

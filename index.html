@@ -120,17 +120,17 @@
             </div>
             <div class="row">
               <form id="newLocationStringAdd">
-                <div class="col-sm-6">
+                <div class="col-sm-6 form-group topitem">
                   <p> A short name people use for this place: </p>
                   <p class="text-muted"><small>Ex. "UGLI" stands for "Undergraduate Library".</small></p>
                   <input type="text" id="newLocationStringShort" placeholder="Short name" class="form-control">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 form-group topitem">
                   <p> A longer name people use for this place: </p>
                   <p class="text-muted"><small>Watch your spelling!</small></p>
                   <input type="text" id="newLocationStringLong" placeholder="Longer Name" class="form-control">
                 </div>
-                <div class="col-sm-4 col-sm-offset-8">
+                <div class="col-sm-4 col-sm-offset-8 topitem">
                   <input type="submit" class="btn btn-primary form-control" value="Confirm">
                 </div>
                 <div class="col-sm-4 col-sm-offset-8">
@@ -163,17 +163,17 @@
             </div>
             <div class="row">
               <form id="newClassStringAdd">
-                <div class="col-sm-6">
+                <div class="col-sm-6 topitem">
                   <p> A short code for the subject: </p>
                   <p class="text-muted"><small>Ex. "PYSCH" or "EECS"</small></p>
                   <input type="text" id="newClassStringShort" placeholder="Short Code" class="form-control">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 topitem">
                   <p> A class number or name that people use: </p>
                   <p class="text-muted"><small>Ex. "101", "281", "Thermodynamics"</small></p>
                   <input type="text" id="newClassStringLong" placeholder="Number or Name" class="form-control">
                 </div>
-                <div class="col-sm-4 col-sm-offset-8">
+                <div class="col-sm-4 col-sm-offset-8 topitem">
                   <input type="submit" class="btn btn-primary form-control" value="Confirm">
                 </div>
                 <div class="col-sm-4 col-sm-offset-8">
@@ -222,13 +222,32 @@
     </div>
   </div>
 
+  <div class="modal fade" id="joinFailure" tabindex="-1" role="dialog" aria-labelledby="joinFailureTitle">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="joinFailureTitle">Wow this is Popular!</h4>
+        </div>
+        <div class="modal-body">
+          <p>Hey there. It looks like <span class="post-owner-name"></span>'s post was really popular with other Wobetto members. <span class="post-owner-name"></span> only had room for <span class="limit"></span> where he or she was studying. But don't be discouraged - there's a good chance other people wanted to join too, so make a new post and start your own study group where you are to connect with them!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
  <div class="container">
     <div class = "row">
       <div class = "col-md-12" id = "this-is-the-navbar">
         <div style="" id="actions"><h3><a style="color:white;" href="#">Notifications</a> | 
           <a style="color:white;" href="#">Settings</a> | <a style="color:white;" href="#" id="logout">Log Out</a></h3></div>
-        <img src="assets/wobettologolight.png" style="width:165px; height:55px; margin-top:-3px; margin-left:2%;"/>
+          <a href="file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/index.html">
+          <!-- <a href="http:sartechb.github.io/WebsiteTest/">  -->
+        <img src="assets/wobettologolight.png" style="width:165px; height:55px; margin-top:-3px; margin-left:2%;"/></a>
         <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
       </div> <!--Navbar-->
     </div>

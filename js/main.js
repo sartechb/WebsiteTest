@@ -18,6 +18,7 @@ function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
       console.log(response);
+      app.joinedPosts = response.joinedPosts;
       app.activePosts = {};
       for(var j = 0; j < response.activePosts.length; ++j) 
         app.activePosts[response.activePosts[j].postId] = 
@@ -63,7 +64,7 @@ function buildPostFeed(init) {
       app.areMorePosts = response.areMorePosts;
 
      $("#loader").remove();
-
+    // console.log(init+" yes?");
       if(init) buildFilterPosts();
     }, error: function(error) {console.log(error);}
   });
@@ -96,10 +97,12 @@ function buildFilterPosts() {
     if(app.filters.c.length) getFilterPosts("c");
     if(app.filters.l.length) getFilterPosts("l");
     if(app.filters.t.length) getFilterPosts("t");
-  }
+  } else updatePostUI();
+  
 }
 
 function getFilterPosts(type, addFilter) {
+  //console.log("getFilterPosts");
   var str = {};
   if(addFilter && app.filters[type].length) {
     str[type] = [];
@@ -151,6 +154,7 @@ function addToPosts(id, post) {
 }
 
 function updatePostUI(add) {
+ // console.log("updatePostUI");
   app.util.lastPost = null;
   var order = new BST(postOrdering);
   for(var id in app.posts) 
@@ -160,6 +164,8 @@ function updatePostUI(add) {
     order.doOp(insertToPostFeed);
   else  
     order.doOp(fixPostFeed);
+  applyJoinButtonHandler();
+  applyGoToGroupButtonHandler();
 }
 
 function insertToPostFeed(id) {
@@ -174,11 +180,48 @@ function fixPostFeed(id) {
   app.util.lastPost = id;
 }
 
-
 function buildFilters() {
   for(var n = 0; n < app.filters.c.length; ++n) createFilter(app.filters.c[n].filter, "|c");
   for(var o = 0; o < app.filters.l.length; ++o) createFilter(app.filters.l[o].filter, "|l");
   for(var p = 0; p < app.filters.t.length; ++p) createFilter(app.filters.t[p].filter, "|t");
+}
+
+function applyJoinButtonHandler() {
+  //console.log("hi");
+  $("#postfeed .post .btn.join").click(function(e) {
+    var post = $(e.target);
+    post = post.closest(".post");
+    Parse.Cloud.run("joinPost", {postId:post.attr("id")}, {
+      success: function(response) {
+        console.log(response);
+        if(response.success) {
+          var url = 
+            "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+          //"http://sartechb.github.io/WebsiteTest/post.html";
+          window.location.href = url + "#" + post.attr("id");
+        } else {//member limit reached
+          var modal = $("#joinFailure.modal");
+          var postData = app.posts[post.attr("id")];
+          modal.find("span.post-owner-name").text(postData.author);
+          if(postData.memberLimit>1)
+            modal.find("span.limit").text(postData.memberLimit+" people");
+          else
+            modal.find("span.limit").text(postData.memberLimit+" person");
+          modal.modal("show");
+        }
+      }, error: function(error) {console.log(error);}
+    });
+  }); 
+}
+
+function applyGoToGroupButtonHandler() {
+  $("#postfeed .post .btn.goToGroup").click(function(e) {
+    var post = $(e.target).closest(".post").attr("id");
+    var url = 
+      "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+      // "http://sartechb.github.io/WebsiteTest/post.html";
+      window.location.href = url + "#" + post;
+  });
 }
 
 function postOrdering(a, b) {
