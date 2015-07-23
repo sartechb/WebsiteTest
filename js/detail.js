@@ -56,6 +56,8 @@ function buildDetailView() {
       $("#loader").remove();
       createDetailPost(response);
       app.thisPostData = response;
+      applyDeletePostHandler();
+      applyLeavePostHandler();
 		}, error: function (error) {console.log(error);}	
 	});
 }
@@ -83,8 +85,12 @@ function createDetailPost(post) {
   }
   if(post.isUserAuthor) {
     to_insert.find("div.report-me").remove();
+    to_insert.find(".join").text("Delete Group");
+    to_insert.find(".join").removeClass("join btn-primary").addClass("delete btn-danger");
+  } else {
+    to_insert.find(".join").text("Leave Group");
+    to_insert.find(".join").removeClass("join btn-primary").addClass("leave btn-danger");
   }
-
     $("#postholder").append(to_insert);
 }
 
@@ -107,6 +113,24 @@ function setActivePostHandler() {
   });
 }
 
+function applyDeletePostHandler() {
+  $(".post .delete").click(function (e) {
+    alert("NEED TO IMPLEMENT OK??");
+  });
+}
+
+function applyLeavePostHandler() {
+  $(".post .leave").click(function (e) {
+    Parse.Cloud.run("leavePost", {postId:app.thisPost}, {
+      success: function (response) {
+        var url = 
+          "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/index.html";
+          // "http://sartechb.github.io/WebsiteTest/";
+        window.location.href = url;
+      }, error: function(error) {console.log(error);}
+    });
+  });
+}
 
  function handleResize() {
   var w = $(window).width();
