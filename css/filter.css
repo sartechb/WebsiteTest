@@ -108,7 +108,7 @@ body.xs .modal-body .topitem {
 
 .filter-notify span.class-section,
 .filter-notify span.loc-section,
-.filter-notify span.time-section {
+.filter-notify span.text-section {
 	text-decoration: underline;
 }
 

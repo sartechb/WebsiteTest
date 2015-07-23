@@ -1,5 +1,5 @@
 //sets event handlers on filters
-$(".modal-dialog .filt .container .row").click(function (e) {runFilter(e);});
+$(".modal-dialog .filterMenu .container .row").click(function (e) {runFilter(e);});
 
 //executes a filterCommand
 function runFilter(e) {
@@ -28,7 +28,7 @@ function runFilter(e) {
 
   var classFilters = [];
   var locFilters = [];
-  var timeFilters = [];
+  var textFilters = [];
   //build arrays of "on" strings
   for(var x = 0; x < app.filters.c.length; ++x) 
     if(app.filters.c[x].on)
@@ -38,21 +38,21 @@ function runFilter(e) {
       locFilters.push(app.filters.l[y].id);
   for(var z = 0; z < app.filters.t.length; ++z) 
     if(app.filters.t[z].on)
-      timeFilters.push(app.filters.t[z].id);
+      textFilters.push(app.filters.t[z].id);
   //check for edge cases
   if(classFilters.length == 0) classFilters.push("");
   if(locFilters.length == 0) locFilters.push("");
-  if(timeFilters.length == 0) timeFilters.push("");  
+  if(textFilters.length == 0) textFilters.push("");  
   var selectors = [];
   //Create the combinations of valid strings
   for(var a = 0; a < classFilters.length; ++a) {
     for(var b = 0; b < locFilters.length; ++ b) {
-      for(var c = 0; c < timeFilters.length; ++c) {
+      for(var c = 0; c < textFilters.length; ++c) {
         var classSel = ((classFilters[a].length==0)?(""):("."+classFilters[a]));
         var locSel = ((locFilters[b].length==0)?(""):("."+locFilters[b]));
-        var timeSel = ((timeFilters[c].length==0)?(""):("."+timeFilters[c]));
+        var textSel = ((textFilters[c].length==0)?(""):("."+textFilters[c]));
         //if(sel.length!=0)
-        selectors.push(".post"+classSel+locSel+timeSel);
+        selectors.push(".post"+classSel+locSel+textSel);
       }
     }
   }
@@ -61,7 +61,7 @@ function runFilter(e) {
   $(selectors.join()).not(".template-post").fadeIn(200);
   $(".post").not(selectors.join()).fadeOut(200);
 
-  updateFilterNotify(classFilters, locFilters, timeFilters);
+  updateFilterNotify(classFilters, locFilters, textFilters);
 }
 
 function updateFilterNotify(c, l, t) {
@@ -92,20 +92,20 @@ function updateFilterNotify(c, l, t) {
       $(".filter-notify span.loc-section").html("");
     }
     if(t.length > 0) {
-      $(".filter-notify span.time-leader").fadeIn(200);
-      $(".filter-notify span.time-section").html(t.join(", ")).fadeIn(200);
+      $(".filter-notify span.text-leader").fadeIn(200);
+      $(".filter-notify span.text-section").html(t.join(", ")).fadeIn(200);
     } else {
-      $(".filter-notify span.time-leader").fadeOut(200);
-      $(".filter-notify span.time-section").html("");
+      $(".filter-notify span.text-leader").fadeOut(200);
+      $(".filter-notify span.text-section").html("");
     }
     if(c.length > 0 && l.length > 0) 
       $(".filter-notify span.and-loc").fadeIn(200);
     else
       $(".filter-notify span.and-loc").fadeOut(200);
     if((c.length > 0 && t.length > 0)||(l.length > 0 && t.length > 0)) 
-      $(".filter-notify span.and-time").fadeIn(200);
+      $(".filter-notify span.and-text").fadeIn(200);
     else
-      $(".filter-notify span.and-time").fadeOut(200);
+      $(".filter-notify span.and-text").fadeOut(200);
   } else {
     $(".filter-notify span").fadeOut(200);
   }
@@ -122,7 +122,7 @@ function createFilter (filter, type) {
   else if(type == "|l")
     $("#locFilterMenu .modal-dialog .container").append(to_insert);
   else if(type == "|t")
-    $("#timeFilterMenu .modal-dialog .container").append(to_insert);
+    $("#textFilterMenu .modal-dialog .container").append(to_insert);
 }
 
 $("form#classFilterAdd").submit(function(e) {
@@ -214,6 +214,44 @@ $("form#locFilterAdd").submit(function(e) {
   //console.log(input.val());
   input.val("");
 });
+
+$("form#textFilterAdd").submit(function(e) {
+  e.preventDefault();
+  var input = $("#textFilterAddInput");
+  var inputVal = input.val().trim();
+  
+  //check if duplicate
+  var i = -1;
+  if(app.filters.t != undefined) {
+    for(var j = 0; j < app.filters.t.length; ++j)
+      if(app.filters.t[j].filter == inputVal)
+        i = j;
+  } else {
+    app.filters.t = [];
+  }
+  if(i == -1) {
+    //filter dne, must pull posts
+    app.filters.t.push(new filterObject(inputVal));
+    getFilterPosts("t", true);
+    createFilter(inputVal, "|t");
+    var userFilters = app.user.get("filters");
+    userFilters.push(inputVal+"|t");
+    app.user.set("filters", userFilters);
+    app.user.save();
+  }
+  //Add class for selection to all known posts.
+  saveFilterPhrase(inputVal);
+  input.val("");
+});
+
+//STILL NEED TO INCLUDE IN POST CREATION SOMEWHERE
+function saveFilterPhrase(val) {
+  var s = val.replace(/\s+/g, "_");
+  for(var p in app.posts) {
+    if(p.title.search(val) != -1) 
+      $("#"+p.postId).addClass(s);
+  }
+}
 
 function removeFilter(filter) {
    filter.hide(200);

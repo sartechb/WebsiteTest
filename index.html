@@ -36,7 +36,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Filter By Class</h4>
         </div>
-        <div class="modal-body filt">
+        <div class="modal-body filt filterMenu">
           <p> Your class filters: </p>
           <div class="container">
             <div class="row template-filter">
@@ -66,7 +66,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Filter By Location</h4>
         </div>
-        <div class="modal-body filt">
+        <div class="modal-body filt filterMenu">
           <p> Your location filters: </p>
           <div class="container"></div>
           <form id="locFilterAdd">
@@ -83,17 +83,20 @@
     </div>
   </div>
 
-  <div class="modal fade" id="timeFilterMenu" tabindex="-1" role="dialog">
+  <div class="modal fade" id="textFilterMenu" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Filter By Phrases</h4>
         </div>
-        <div class="modal-body filt">
+        <div class="modal-body filterMenu">
           <p> Your phrase filters: </p>
           <div class="container">
-            Coming Soon!
+            <form id="textFilterAdd">
+            <input type="text" class="form-control typeahead" id="textFilterAddInput" placeholder="Add a Filter">
+            <input type="submit" class="btn btn-primary col-xs-12" value="Create Filter" style="margin-top:5px;height:30px"/>
+          </form>
           </div>
           
         </div>
@@ -315,14 +318,14 @@
               </div>
             </div>
             <div class="col-xs-4">
-              <div data-toggle="modal" data-target="#timeFilterMenu" >
-              <i class="fa fa-clock-o fa-2x fa-border" data-toggle="tooltip" data-placement="bottom" title="Filter by time"></i>
+              <div data-toggle="modal" data-target="#textFilterMenu" >
+              <i class="fa fa-font fa-2x fa-border" data-toggle="tooltip" data-placement="bottom" title="Filter by a phrase"></i>
               </div>
             </div>
           </div>
         </div>
         <div class="row filter-notify">
-          <div class="col-xs-8 col-xs-offset-2"><h4><span class="leader">You're currently filtering posts by </span><span class="class-leader">the class(es) </span><span class="class-section"></span><span class="and-loc"> and </span><span class="loc-leader">the location(s) </span><span class="loc-section"> and </span><span class="and-time"></span><span class="time-leader">the times </span><span class="time-section"></span></h4></div>
+          <div class="col-xs-8 col-xs-offset-2"><h4><span class="leader">You're currently filtering posts by </span><span class="class-leader">the class(es) </span><span class="class-section"></span><span class="and-loc"> and </span><span class="loc-leader">the location(s) </span><span class="loc-section"> and </span><span class="and-text"></span><span class="text-leader">the phrases </span><span class="text-section"></span></h4></div>
         </div>
 
 
