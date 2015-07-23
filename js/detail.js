@@ -104,8 +104,8 @@ function setActivePostHandler() {
     var title = app.activePosts[postId];
 
     var url = 
-    "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-    // "http://sartechb.github.io/WebsiteTest/post.html";
+    //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+     "http://sartechb.github.io/WebsiteTest/post.html";
     url += "#"+postId;
     window.location.href = url;
     location.reload();
@@ -124,8 +124,8 @@ function applyLeavePostHandler() {
     Parse.Cloud.run("leavePost", {postId:app.thisPost}, {
       success: function (response) {
         var url = 
-          "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/index.html";
-          // "http://sartechb.github.io/WebsiteTest/";
+          //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/index.html";
+           "http://sartechb.github.io/WebsiteTest/";
         window.location.href = url;
       }, error: function(error) {console.log(error);}
     });
