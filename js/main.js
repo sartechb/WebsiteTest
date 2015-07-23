@@ -196,8 +196,8 @@ function applyJoinButtonHandler() {
         console.log(response);
         if(response.success) {
           var url = 
-            "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-          //"http://sartechb.github.io/WebsiteTest/post.html";
+            //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+          "http://sartechb.github.io/WebsiteTest/post.html";
           window.location.href = url + "#" + post.attr("id");
         } else {//member limit reached
           var modal = $("#joinFailure.modal");
@@ -218,8 +218,8 @@ function applyGoToGroupButtonHandler() {
   $("#postfeed .post .btn.goToGroup").click(function(e) {
     var post = $(e.target).closest(".post").attr("id");
     var url = 
-      "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-      // "http://sartechb.github.io/WebsiteTest/post.html";
+      //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+       "http://sartechb.github.io/WebsiteTest/post.html";
       window.location.href = url + "#" + post;
   });
 }
