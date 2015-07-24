@@ -104,7 +104,7 @@ body.xs .modal-body .topitem {
 
 .filter-notify span {
 	display: none;
-	padding: 3px;
+	padding: 3px 0px;
 	border-radius: 3px;
 }
 
