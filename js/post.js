@@ -80,17 +80,19 @@ $("#new-post").submit(function (e) {
       newPost.post.time = response.time;
       newPost.post.authorPic = app.user.get("pic");
       newPost.post.author = app.user.get("name");
-      newPost.post.memberCount = 1;
-      newPost.post.filters = [];
+      newPost.post.memberCount = 0;
+      //newPost.post.filters = [];
       newPost.post.location = newPost.post.baseLocation;
+      newPost.post.hasUserJoined = true;
+      newPost.post.isUserAuthor = true;
       app.posts[newPost.post.postId] = newPost.post;
       //app.postOrder.push(newPost.post.postId);
       updatePostUI(true);
       //fixPosts();
       //refreshPostFeed(false, true);
       createActiveLink(newPost.post.title, newPost.post.postId);
+      setActivePostHandler();
       $("#post-cancel").trigger("click");
-
       
     }, error: function (error) {console.log(error);}
   });
