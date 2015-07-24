@@ -93,12 +93,12 @@
         <div class="modal-body filterMenu">
           <p> Your phrase filters: </p>
           <div class="container">
-            <form id="textFilterAdd">
+            
+          </div>
+          <form id="textFilterAdd">
             <input type="text" class="form-control typeahead" id="textFilterAddInput" placeholder="Add a Filter">
             <input type="submit" class="btn btn-primary col-xs-12" value="Create Filter" style="margin-top:5px;height:30px"/>
           </form>
-          </div>
-          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -338,6 +338,9 @@
               <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                 <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
               </svg>
+            </div>
+            <div id="empty-feed" class="col-xs-8 col-xs-offset-2" style="margin-top:50px">
+              <h4>Oops! Looks like there aren't any posts that meet your criteria! Try again with fewer filters.</h4>
             </div>
             <!-- POST TEMPLATE MODEL -->
             <div class="post template-post" id="template-post">

@@ -26,6 +26,14 @@ function runFilter(e) {
     if(app.filters[ty][i].id == st)
       app.filters[ty][i].on = !app.filters[ty][i].on;
 
+  applyFilterChanges();
+}
+
+function applyFilterChanges() {
+
+  for(var i = 0; i < app.filters.t.length; ++i) 
+    saveFilterPhrase(app.filters.t[i].filter);
+
   var classFilters = [];
   var locFilters = [];
   var textFilters = [];
@@ -59,6 +67,10 @@ function runFilter(e) {
   //do the visual stuff
   //console.log(selectors);
   $(selectors.join()).not(".template-post").fadeIn(200);
+  if($(selectors.join()).not(".template-post").length)
+    $("#empty-feed").fadeOut(200);
+  else
+    $("#empty-feed").fadeIn(200);
   $(".post").not(selectors.join()).fadeOut(200);
 
   updateFilterNotify(classFilters, locFilters, textFilters);
@@ -77,6 +89,7 @@ function updateFilterNotify(c, l, t) {
 //  //console.log(c.length, l.length, t.length);
   if(c.length + l.length + t.length > 0) {
     $(".filter-notify span.leader").fadeIn(200);
+    
     if(c.length > 0) {
       $(".filter-notify span.class-leader").fadeIn(200);
       $(".filter-notify span.class-section").html(c.join(", ")).fadeIn(200);
@@ -111,18 +124,20 @@ function updateFilterNotify(c, l, t) {
   }
 }
 
-function createFilter (filter, type) {
+function createFilter (filter, type, on) {
   var to_insert = $("div.row.template-filter").clone(true);
   ////console.log(to_insert, "this is the created filter");
   to_insert.removeClass("template-filter");
   to_insert.attr("id", filter.replace(/\s+/g,"_")+type);
   to_insert.find("h4").append(filter);
+  if(on) to_insert.addClass("active");
   if(type == "|c")
     $("#classFilterMenu .modal-dialog .container").append(to_insert);
   else if(type == "|l")
     $("#locFilterMenu .modal-dialog .container").append(to_insert);
   else if(type == "|t")
     $("#textFilterMenu .modal-dialog .container").append(to_insert);
+  //return to_insert;
 }
 
 $("form#classFilterAdd").submit(function(e) {
@@ -155,16 +170,22 @@ $("form#classFilterAdd").submit(function(e) {
       input.val("");
       return;
     }
-    createFilter(inputVal, "|c");
+    createFilter(inputVal, "|c", true);
+    applyFilterChanges();
   } else {
     //filter DNE, must load from parse
-    app.filters.c.push(new filterObject(inputVal));
-    getFilterPosts("c", true);
-    createFilter(inputVal, "|c");
-    var userFilters = app.user.get("filters");
-    userFilters.push(inputVal+"|c");
-    app.user.set("filters", userFilters);
-    app.user.save();
+    Parse.Cloud.run("createFilter", {
+      filter:inputVal,
+      on:true,
+      type:"c"
+    }, {
+      success: function(response) {
+        app.filters.c.push(new filterObject(inputVal, true));
+        getFilterPosts("c", true);
+        createFilter(inputVal, "|c", true);
+        //filt.trigger("click");
+      }, error: function(error) {console.log(error);}
+    });
   }
   //console.log(input.val());
   input.val("");
@@ -199,16 +220,22 @@ $("form#locFilterAdd").submit(function(e) {
       input.val("");
       return;
     }
-    createFilter(inputVal, "|l");
+    createFilter(inputVal, "|l", true);
+    applyFilterChanges();
   } else {
     //filter DNE, must load from parse
-    app.filters.l.push(new filterObject(inputVal));
-    getFilterPosts("l", true);
-    createFilter(inputVal, "|l");
-    var userFilters = app.user.get("filters");
-    userFilters.push(inputVal+"|l");
-    app.user.set("filters", userFilters);
-    app.user.save();
+    Parse.Cloud.run("createFilter", {
+      filter:inputVal,
+      on:true,
+      type:"l"
+    }, {
+      success: function(response) {
+        app.filters.l.push(new filterObject(inputVal, true));
+        getFilterPosts("l", true);
+        createFilter(inputVal, "|l", true);
+        //filt.trigger("click");
+      }, error: function(error) {console.log(error);}
+    });
     //console.log("had to pull from parse");
   }
   //console.log(input.val());
@@ -229,15 +256,28 @@ $("form#textFilterAdd").submit(function(e) {
   } else {
     app.filters.t = [];
   }
-  if(i == -1) {
+
+  if(i != -1) {
+    if($("#locFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|l").length > 0) {
+      input.val("");
+      return;
+    }
+    createFilter(inputVal, "|t", true);
+    applyFilterChanges();
+  } else {
     //filter dne, must pull posts
-    app.filters.t.push(new filterObject(inputVal));
-    getFilterPosts("t", true);
-    createFilter(inputVal, "|t");
-    var userFilters = app.user.get("filters");
-    userFilters.push(inputVal+"|t");
-    app.user.set("filters", userFilters);
-    app.user.save();
+    Parse.Cloud.run("createFilter", {
+      filter:inputVal,
+      on:true,
+      type:"t"
+    }, {
+      success: function(response) {
+        app.filters.t.push(new filterObject(inputVal, true));
+        getFilterPosts("t", true);
+        createFilter(inputVal, "|t", true);
+        //filt.trigger("click");
+      }, error: function(error) {console.log(error);}
+    });
   }
   //Add class for selection to all known posts.
   saveFilterPhrase(inputVal);
@@ -248,8 +288,9 @@ $("form#textFilterAdd").submit(function(e) {
 function saveFilterPhrase(val) {
   var s = val.replace(/\s+/g, "_");
   for(var p in app.posts) {
-    if(p.title.search(val) != -1) 
-      $("#"+p.postId).addClass(s);
+    //console.log(app.posts[p].title, ", "+val, app.posts[p].title.search(val));
+    if(app.posts[p].title.search(val) != -1 && !$("#postholder #"+app.posts[p].postId).hasClass(s)) 
+      $("#postholder #"+app.posts[p].postId).addClass(s);
   }
 }
 
@@ -261,12 +302,12 @@ function removeFilter(filter) {
     for(var ex = 0; ex < app.filters[ty1].length; ++ex)
       if(app.filters[ty1][ex].filter.replace(/\s+/g, "_") == st1)
         app.filters[ty1][ex].on = true;
-    var userFilters = app.user.get("filters");
-    var toRemove = userFilters.indexOf(st1.replace(/_+/g," ")+"|"+ty1);
-    //console.log(userFilters, toRemove);
-    userFilters.splice(toRemove,1);
-    app.user.set("filters", userFilters);
-    app.user.save();
+    Parse.Cloud.run("removeFilter", {
+      filter: st1.replace(/_/g, " "),
+      type: ty1
+    },{
+      success: function () {},error:function(e){console.log(e);}
+    })
     filter.remove();
 }
 
@@ -274,6 +315,37 @@ $("#classFilterMenu span.link").click(function () {
   $("#classFilterMenu button").trigger("click");
   $('#new-post-bar h2.untoggle').trigger("click");
 });
+
+// $("#classFilterMenu").on("hide.bs.modal", function (e){
+//   console.log(app.filters.c);
+//    Parse.Cloud.run("updateFilterState", {
+//       filters: app.filters.c,
+//       type: "c"
+//    }, {
+//     success: function(response) {}, 
+//     error: function(error) {console.log(error);}
+//    });
+// });
+
+// $("#locFilterMenu").on("hide.bs.modal", function (e){
+//    Parse.Cloud.run("updateFilterState", {
+//       filters: app.filters.l,
+//       type: "l"
+//    }, {
+//     success: function(response) {}, 
+//     error: function(error) {console.log(error);}
+//    });
+// });
+
+// $("#textFilterMenu").on("hide.bs.modal", function (e){
+//    Parse.Cloud.run("updateFilterState", {
+//       filters: app.filters.t,
+//       type: "t"
+//    }, {
+//     success: function(response) {}, 
+//     error: function(error) {console.log(error);}
+//    });
+// });
 
 // $(".modal-dialog .container .row i.fa-times").click(function (e) {
 //   //console.log(e.target);

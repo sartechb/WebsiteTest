@@ -102,6 +102,9 @@ button.btn-primary, input.btn-primary {
 
 }
 
+#empty-feed {
+  display: none;
+}
 
 .spinner {
   -webkit-animation: rotator 1.4s linear infinite;

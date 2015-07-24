@@ -163,3 +163,10 @@ function prettyTime(time) {
   }
 }
 
+$("a#logout").click(function (e) {
+    e.preventDefault();
+    //alert("ehh");
+    Parse.User.logOut();
+    console.log("logging out");
+    window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
+});

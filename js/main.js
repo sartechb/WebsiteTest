@@ -11,15 +11,17 @@ $(window).resize(function() {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(handleResize, 250);
 });
-buildPostFeed(true);
+
 buildInitialData();
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
       console.log(response);
-      app.joinedPosts = response.joinedPosts;
+      //app.joinedPosts = response.joinedPosts;
       app.activePosts = {};
+      app.reportedPosts = response.reportedPosts;
+      console.log(response.activePosts);
       for(var j = 0; j < response.activePosts.length; ++j) 
         app.activePosts[response.activePosts[j].postId] = 
           response.activePosts[j].title;
@@ -37,7 +39,7 @@ function buildInitialData() {
         createActiveLink(response.activePosts[i].title, response.activePosts[i].postId);
 
       setActivePostHandler();
-
+      buildPostFeed(true);
       
     }, error: function(error){console.log(error);}
   });
@@ -46,13 +48,14 @@ function buildInitialData() {
 function buildPostFeed(init) {
   //app.filteringEnabled = false;
   app.refreshTime = new Date();
-  var report = app.user.get("reportedPosts") || [];
+  var report = app.reportedPosts || [];
   Parse.Cloud.run("getMorePosts", {timeCutOff:app.refreshTime}, {
     success: function(response) {
       app.posts = {};
       var order = new BST(postOrdering);
       for(var x = 0; x < response.posts.length; ++x) {
         var id = response.posts[x].postId;
+      //  console.log(id, report);
         if(!(id in app.posts) && report.indexOf(id) == -1) {
           app.posts[id] = response.posts[x];
           order.insert(id);
@@ -76,28 +79,52 @@ function buildFilterPosts() {
   app.filters.l = [];
   app.filters.t = [];
 
-  if(app.user.get("filters").length) {
-    var fs = app.user.get("filters");
-    for(var i = 0; i < fs.length; ++i) {
-      var f  = fs[i].split("|");
-      if(f[1] == "c")
-        app.filters.c.push(new filterObject(f[0]));
-      else if (f[1] == "l")
-        app.filters.l.push(new filterObject(f[0]));
-      else if (f[1] == "t")
-        app.filters.t.push(new filterObject(f[0]));
-    }
-    app.util.totalFilters = app.filters.c.length?1:0 + 
-      app.filters.l.length?1:0 + app.filters.t.length;
+  Parse.Cloud.run("getFilters", {}, {
+    success: function(response) {
+      if(response.size){
+        for(var i = 0; i < response.filters.c.length; ++i) 
+          app.filters.c.push(new filterObject(response.filters.c[i].filter, response.filters.c[i].on));
+        for(var i = 0; i < response.filters.l.length; ++i) 
+          app.filters.l.push(new filterObject(response.filters.l[i].filter, response.filters.l[i].on));
+        for(var i = 0; i < response.filters.t.length; ++i) 
+          app.filters.t.push(new filterObject(response.filters.t[i].filter, response.filters.t[i].on));
+        app.util.totalFilters = app.filters.c.length?1:0 + 
+          app.filters.l.length?1:0 + app.filters.t.length;
 
-      //console.log(app.filters);
+        buildFilters();
 
-    buildFilters();
+        if(app.filters.c.length) getFilterPosts("c");
+        if(app.filters.l.length) getFilterPosts("l");
+        if(app.filters.t.length) getFilterPosts("t");
 
-    if(app.filters.c.length) getFilterPosts("c");
-    if(app.filters.l.length) getFilterPosts("l");
-    if(app.filters.t.length) getFilterPosts("t");
-  } else updatePostUI();
+
+
+      } else updatePostUI();
+    }, error: function(error) {console.log(error);}
+  });
+
+  // if(app.user.get("filters").length) {
+  //   var fs = app.user.get("filters");
+  //   for(var i = 0; i < fs.length; ++i) {
+  //     var f  = fs[i].split("|");
+  //     if(f[1] == "c")
+  //       app.filters.c.push(new filterObject(f[0]));
+  //     else if (f[1] == "l")
+  //       app.filters.l.push(new filterObject(f[0]));
+  //     else if (f[1] == "t")
+  //       app.filters.t.push(new filterObject(f[0]));
+  //   }
+  //   app.util.totalFilters = app.filters.c.length?1:0 + 
+  //     app.filters.l.length?1:0 + app.filters.t.length;
+
+  //     //console.log(app.filters);
+
+  //   buildFilters();
+
+  //   if(app.filters.c.length) getFilterPosts("c");
+  //   if(app.filters.l.length) getFilterPosts("l");
+  //   if(app.filters.t.length) getFilterPosts("t");
+  // } else updatePostUI();
   
 }
 
@@ -148,7 +175,8 @@ function getFilterPosts(type, addFilter) {
 }
 
 function addToPosts(id, post) {
-  var report = app.user.get("reportedPosts");
+  var report = app.reportedPosts;
+ // console.log(report, id);
   if(!(id in app.posts) && report.indexOf(id) == -1)
     app.posts[id] = post;
 }
@@ -166,6 +194,7 @@ function updatePostUI(add) {
     order.doOp(fixPostFeed);
   applyJoinButtonHandler();
   applyGoToGroupButtonHandler();
+  applyFilterChanges();
 }
 
 function insertToPostFeed(id) {
@@ -181,9 +210,12 @@ function fixPostFeed(id) {
 }
 
 function buildFilters() {
-  for(var n = 0; n < app.filters.c.length; ++n) createFilter(app.filters.c[n].filter, "|c");
-  for(var o = 0; o < app.filters.l.length; ++o) createFilter(app.filters.l[o].filter, "|l");
-  for(var p = 0; p < app.filters.t.length; ++p) createFilter(app.filters.t[p].filter, "|t");
+  for(var n = 0; n < app.filters.c.length; ++n) 
+    createFilter(app.filters.c[n].filter, "|c", app.filters.c[n].on);
+  for(var o = 0; o < app.filters.l.length; ++o) 
+    createFilter(app.filters.l[o].filter, "|l", app.filters.l[o].on);
+  for(var p = 0; p < app.filters.t.length; ++p) 
+    createFilter(app.filters.t[p].filter, "|t", app.filters.t[p].on);
 }
 
 function applyJoinButtonHandler() {
@@ -196,7 +228,7 @@ function applyJoinButtonHandler() {
         console.log(response);
         if(response.success) {
           var url = 
-            //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+           // "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
           "http://sartechb.github.io/WebsiteTest/post.html";
           window.location.href = url + "#" + post.attr("id");
         } else {//member limit reached
@@ -253,10 +285,10 @@ function getPropertyArray(aofo, k) {
   return ret;
 }
 
-function filterObject(s) {
+function filterObject(s, _on) {
   this.filter = s; //with spaces (UI display)
   this.id = s.replace(/\s+/g, "_"); //with underscores (attr)
-  this.on = false;
+  this.on = _on;
 }
 
 $("a#logout").click(function (e) {

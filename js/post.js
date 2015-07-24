@@ -260,9 +260,9 @@ $("#reportMenu .report-confirm").click(function (e){
       $("#reportMenu .notice").fadeOut(200);
       $("#reportMenu .success").fadeIn(200);
       $("#postfeed #"+app.toReport.flaggedPost).remove();
-      var reports = app.user.get("reportedPosts") || [];
-      reports.push(app.toReport.flaggedPost);
-      app.user.set("reportedPosts", reports);
+     // var reports = app.user.get("reportedPosts") || [];
+     // reports.push(app.toReport.flaggedPost);
+     // app.user.set("reportedPosts", reports);
       app.user.save();
 
     }, error: function (error) {console.log(error);}

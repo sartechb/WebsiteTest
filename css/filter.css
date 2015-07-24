@@ -42,7 +42,7 @@ body.lg .modal-dialog, body.md .modal-dialog {
 	outline-width: 0;
 }
 
-.modal-body.filt .container .row {
+.modal-body.filterMenu .container .row {
 	background-color: #BEC9D2;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -104,12 +104,22 @@ body.xs .modal-body .topitem {
 
 .filter-notify span {
 	display: none;
+	padding: 3px;
+	border-radius: 3px;
 }
 
-.filter-notify span.class-section,
-.filter-notify span.loc-section,
+.filter-notify h4 {
+	line-height: 30px;
+}
+
+.filter-notify span.class-section {
+	background-color: #0488C3;
+}
+.filter-notify span.loc-section {
+	background-color: rgb(137, 96, 158);
+}
 .filter-notify span.text-section {
-	text-decoration: underline;
+	background-color: #5cb85c;
 }
 
 .modal-body.newStr .btn {
