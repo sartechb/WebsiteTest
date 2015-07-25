@@ -24,14 +24,6 @@ input {
 	font-size: 2.5em;
 }
 
-.fp i.fa-location-arrow {
-	background-color: rgb(137, 96, 158);
-}
-
-.fp i.fa-font {
-	background-color: #5cb85c;
-}
-
 body.lg .modal-dialog, body.md .modal-dialog {
 	margin-top: 10%;
 }
