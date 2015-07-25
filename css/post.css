@@ -64,6 +64,9 @@
 #join{
 	margin-left:20px;
 }
+.xs #join button{
+	width:90%;
+}
 
 
 .post{
@@ -276,6 +279,11 @@ div.postInput input {
 	width: 80%;
 }
 
+.xs #postholder .post.detail-post {
+	margin-top: 50px;
+	width: 95%;
+}
+
 h3.popover-title {
 	color: black;
 }
@@ -286,7 +294,7 @@ h3.popover-title {
 }
 
 .post #parts {
-	margin-left: 15px;
+	/* margin-left: 15px; */
 	margin-top: 10px;
 }
 
@@ -298,6 +306,7 @@ h3.popover-title {
 
 .post #parts .thumbnail {
 	border: 0;
+	margin-left: 10px;
 }
 
 .post #parts .thumbnail .caption {
@@ -312,6 +321,13 @@ h3.popover-title {
 
 .post #parts .template-participant {
 	display: none !important;
+}
+
+@media(min-width:767px)
+{
+	.post{
+		width:100%;
+	}
 }
 
 @media(min-width:2150px)

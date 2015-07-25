@@ -61,9 +61,10 @@ body.md #this-is-the-navbar img {
 
 body.sm #this-is-the-navbar img,
 body.xs #this-is-the-navbar img {
-	width: 165px !important;
+	width:  !important;
 	height: 55px !important;
 	margin-left: 2% !important;
+	margin-top: -3px;
 }
 
 
