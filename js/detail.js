@@ -115,7 +115,15 @@ function setActivePostHandler() {
 
 function applyDeletePostHandler() {
   $(".post .delete").click(function (e) {
-    alert("NEED TO IMPLEMENT OK??");
+    Parse.Cloud.run("deletePost", {postId:app.thisPost}, {
+      success: function (response) {
+        if(response.success) {
+          window.location.href = "http://sartechb.github.io/WebsiteTest";
+        } else {
+          console.log("an error occurred when deleting the post");
+        }
+      }, error: function(error) {console.log(error);}
+    });
   });
 }
 
