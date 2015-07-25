@@ -123,6 +123,9 @@ body.xs .modal-body .topitem {
 .filter-notify span.class-section {
 	background-color: #0488C3;
 }
+.filter-notify span.class-section::before {
+	padding: 5px;
+}
 .filter-notify span.loc-section {
 	background-color: rgb(137, 96, 158);
 }
