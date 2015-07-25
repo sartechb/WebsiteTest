@@ -71,9 +71,9 @@ function createDetailPost(post) {
     " | <i class=\"fa fa-clock-o\"></i> "+prettyTime(new Date(post.time))+(
     post.isUserAuthor?" | <i class='fa fa-pencil'></i><span class='edit-post'> Edit</span>":""));
   to_insert.find("#posttext h5").html(post.content);
-  to_insert.find("#lowerDetails h7").html("<i class='fa fa-book'></i> "+
-    post.classString+" | <i class='fa fa-location-arrow'></i> "+
-    post.location+(post.detailLocation.length>0?" ("+post.detailLocation+")":""));
+   to_insert.find("#lowerDetails h7").html("<span class='post-class'><i class='fa fa-book'></i> "+
+    post.classString+"</span> | <span class='post-location'><i class='fa fa-location-arrow'></i> "+
+    post.location+(post.detailLocation.length>0?" ("+post.detailLocation+")":"")+"</span>");
   to_insert.find("#following h7").html(post.memberCount+(post.memberCount==1?" member":" members")+" joined so far");
   to_insert.attr("id", post.postId);
   for(var i = 0; i < post.participants.length; ++i) {
