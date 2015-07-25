@@ -101,6 +101,10 @@ body.xs .modal-body .topitem {
 .filter-notify {
 	margin-top: 20px;
 }
+.xs .filter-notify {
+	line-height: 22px;
+	font-size: .9em;
+}
 
 .filter-notify span {
 	display: none;
