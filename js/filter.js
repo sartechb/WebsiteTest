@@ -226,7 +226,7 @@ $("form#locFilterAdd").submit(function(e) {
     //filter DNE, must load from parse
     Parse.Cloud.run("createFilter", {
       filter:inputVal,
-      on:true,
+      on:false,
       type:"l"
     }, {
       success: function(response) {
@@ -268,7 +268,7 @@ $("form#textFilterAdd").submit(function(e) {
     //filter dne, must pull posts
     Parse.Cloud.run("createFilter", {
       filter:inputVal,
-      on:true,
+      on:false,
       type:"t"
     }, {
       success: function(response) {
