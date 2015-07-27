@@ -176,7 +176,7 @@ $("form#classFilterAdd").submit(function(e) {
     //filter DNE, must load from parse
     Parse.Cloud.run("createFilter", {
       filter:inputVal,
-      on:true,
+      on:false,
       type:"c"
     }, {
       success: function(response) {
