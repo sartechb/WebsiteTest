@@ -56,8 +56,8 @@ function buildDetailView() {
       $("#loader").remove();
       createDetailPost(response);
       app.thisPostData = response;
-      applyDeletePostHandler();
-      applyLeavePostHandler();
+      //applyDeletePostHandler();
+      //applyLeavePostHandler();
 		}, error: function (error) {console.log(error);}	
 	});
 }
@@ -85,13 +85,9 @@ function createDetailPost(post) {
   }
   if(post.isUserAuthor) {
     to_insert.find("div.report-me").remove();
-    to_insert.find(".join").text("Delete Group");
-    to_insert.find(".join").removeClass("join btn-primary").addClass("delete btn-danger");
-    to_insert.find(".delete").attr("data-target", "#deletePostConf");
+    to_insert.find(".leave").remove();
   } else {
-    to_insert.find(".join").text("Leave Group");
-    to_insert.find(".join").removeClass("join btn-primary").addClass("leave btn-danger");
-    to_insert.find(".leave").attr("data-target", "#leavePostConf");
+    to_insert.find("delete").remove();
   }
     $("#postholder").append(to_insert);
 }
