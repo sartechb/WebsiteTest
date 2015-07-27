@@ -87,7 +87,7 @@ function createDetailPost(post) {
     to_insert.find("div.report-me").remove();
     to_insert.find(".leave").remove();
   } else {
-    to_insert.find("delete").remove();
+    to_insert.find(".delete").remove();
   }
     $("#postholder").append(to_insert);
 }
