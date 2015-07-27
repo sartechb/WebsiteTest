@@ -87,11 +87,11 @@ function createDetailPost(post) {
     to_insert.find("div.report-me").remove();
     to_insert.find(".join").text("Delete Group");
     to_insert.find(".join").removeClass("join btn-primary").addClass("delete btn-danger");
-    to_insert.find(".delete").data("target", "#deletePostConf");
+    to_insert.find(".delete").attr("data-target", "#deletePostConf");
   } else {
     to_insert.find(".join").text("Leave Group");
     to_insert.find(".join").removeClass("join btn-primary").addClass("leave btn-danger");
-    to_insert.find(".leave").data("target", "#leavePostConf");
+    to_insert.find(".leave").attr("data-target", "#leavePostConf");
   }
     $("#postholder").append(to_insert);
 }
