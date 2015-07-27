@@ -125,8 +125,7 @@ $("#deletePostConf .delete").click(function (e) {
         }
       }, error: function(error) {console.log(error);}
     });
-  });
-});
+}
 
 $("#leavePostConf .leave").click(function (e) {
   Parse.Cloud.run("leavePost", {postId:app.thisPost}, {
@@ -137,9 +136,7 @@ $("#leavePostConf .leave").click(function (e) {
         window.location.href = url;
       }, error: function(error) {console.log(error);}
     });
-  });
-});
-
+  }
 // function applyDeletePostHandler() {
 //   $(".post .delete").click(function (e) {
 //     Parse.Cloud.run("deletePost", {postId:app.thisPost}, {
