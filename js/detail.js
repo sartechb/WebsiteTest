@@ -100,12 +100,7 @@ function setActivePostHandler() {
 
     var postId = link.attr("id");
     var title = app.activePosts[postId];
-
-    var url = 
-    //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-     "http://sartechb.github.io/WebsiteTest/post.html";
-    url += "#"+postId;
-    window.location.href = url;
+    window.location.href = "post.html#"+postId;
     location.reload();
    
   });
@@ -115,7 +110,7 @@ $("#deletePostConf .delete").click(function (e) {
   Parse.Cloud.run("deletePost", {postId:app.thisPost}, {
       success: function (response) {
         if(response.success) {
-          window.location.href = "http://sartechb.github.io/WebsiteTest";
+          window.location.href = "index.html";
         } else {
           console.log("an error occurred when deleting the post");
         }
@@ -128,7 +123,7 @@ $("#leavePostConf .leave").click(function (e) {
       success: function (response) {
         var url = 
           //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/index.html";
-           "http://sartechb.github.io/WebsiteTest/";
+           "index.html";
         window.location.href = url;
       }, error: function(error) {console.log(error);}
     });

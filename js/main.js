@@ -13,6 +13,7 @@ $(window).resize(function() {
 });
 
 buildInitialData();
+setTimeout(runUpdates, 40000);//run updates in 40 seconds
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
@@ -49,7 +50,7 @@ function buildPostFeed(init) {
   //app.filteringEnabled = false;
   app.refreshTime = new Date();
   var report = app.reportedPosts || [];
-  Parse.Cloud.run("getMorePosts", {timeCutOff:app.refreshTime}, {
+  Parse.Cloud.run("getMorePosts", {timeCutOff:app.refreshTime,update:false}, {
     success: function(response) {
       app.posts = {};
       var order = new BST(postOrdering);
@@ -64,6 +65,7 @@ function buildPostFeed(init) {
       order.doOp(addPostToFeed1);
 
       app.refreshTime = response.timeCutOff;
+      app.updateTime = new Date();
       app.areMorePosts = response.areMorePosts;
 
      $("#loader").remove();
@@ -102,30 +104,6 @@ function buildFilterPosts() {
       } else updatePostUI();
     }, error: function(error) {console.log(error);}
   });
-
-  // if(app.user.get("filters").length) {
-  //   var fs = app.user.get("filters");
-  //   for(var i = 0; i < fs.length; ++i) {
-  //     var f  = fs[i].split("|");
-  //     if(f[1] == "c")
-  //       app.filters.c.push(new filterObject(f[0]));
-  //     else if (f[1] == "l")
-  //       app.filters.l.push(new filterObject(f[0]));
-  //     else if (f[1] == "t")
-  //       app.filters.t.push(new filterObject(f[0]));
-  //   }
-  //   app.util.totalFilters = app.filters.c.length?1:0 + 
-  //     app.filters.l.length?1:0 + app.filters.t.length;
-
-  //     //console.log(app.filters);
-
-  //   buildFilters();
-
-  //   if(app.filters.c.length) getFilterPosts("c");
-  //   if(app.filters.l.length) getFilterPosts("l");
-  //   if(app.filters.t.length) getFilterPosts("t");
-  // } else updatePostUI();
-  
 }
 
 function getFilterPosts(type, addFilter) {
@@ -145,7 +123,8 @@ function getFilterPosts(type, addFilter) {
     Parse.Cloud.run("getMorePosts", {
       classFilter: str.c,
       locationFilter: str.l,
-      timeCutOff: app.refreshTime
+      timeCutOff: app.refreshTime,
+      update:false
     }, {
       success: function(response) {//class & location
      //   console.log(response);
@@ -160,7 +139,8 @@ function getFilterPosts(type, addFilter) {
     for(var i = 0; i < str.t.length; ++i) {
       Parse.Cloud.run("getMorePosts", {
         textFilter: str.t[i],
-        timeCutOff: app.refreshTime
+        timeCutOff: app.refreshTime,
+        update:false
       }, {
         success: function(response) {//text filters
           for(var j = 0; j < response.posts.length; ++j) 
@@ -218,6 +198,37 @@ function buildFilters() {
     createFilter(app.filters.t[p].filter, "|t", app.filters.t[p].on);
 }
 
+function runUpdates() {
+  //get the posts that were recently made and order them and build them
+  console.log("ran an update");
+  Parse.Cloud.run("getMorePosts", {
+    update: false,
+    timeCutOff: app.refreshTime
+  }, {
+    success: function (response) {
+     // var order = new BST(postOrdering);
+      for(var i = 0; i < response.posts.length; ++i) {
+        var id = response.posts[i].postId;
+      //  console.log(id, report);
+        if(!(id in app.posts)) {
+          app.posts[id] = response.posts[i];
+        //  order.insert(id);
+        }
+      }
+     // order.doOp(addPostToFeed1);
+      app.refreshTime = app.timeCutOff || new Date();
+
+      updatePostUI();
+
+    }, error: function (error) {console.log(error);}
+  });
+
+  //get update objects and apply changes
+  //TO-DO
+
+  setTimeout(runUpdates, 40000);
+}
+
 function applyJoinButtonHandler() {
   //console.log("hi");
   $("#postfeed .post .btn.join").click(function(e) {
@@ -229,7 +240,7 @@ function applyJoinButtonHandler() {
         if(response.success) {
           var url = 
            // "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-          "http://sartechb.github.io/WebsiteTest/post.html";
+          "post.html";
           window.location.href = url + "#" + post.attr("id");
         } else {//member limit reached
           var modal = $("#joinFailure.modal");
@@ -251,10 +262,11 @@ function applyGoToGroupButtonHandler() {
     var post = $(e.target).closest(".post").attr("id");
     var url = 
       //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-       "http://sartechb.github.io/WebsiteTest/post.html";
+       "post.html";
       window.location.href = url + "#" + post;
   });
 }
+
 
 function postOrdering(a, b) {
   //a and b are postIds
