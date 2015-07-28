@@ -79,6 +79,38 @@
       </div>
     </div>
 
+    <div class="modal fade" id="reportMenu" tabindex="-1" role="dialog" aria-labelledby="reportModalTitle">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="reportModalTitle">Tell us what's wrong</h4>
+          </div>
+          <div class="modal-body">
+            <p>We try to make your experience on Wobetto focused and effective. But in community settings, unintended situations can arise. Please let us know what's wrong and we'll try to resolve this issue as quickly as possible. Thanks for supporting Wobetto's mission of the community helping itself!</p>
+            <ul class='list-group'>
+              <li class='list-group-item small offensive bucket'>This post has offensive content</li>
+              <li class='list-group-item small badPost bucket'>This post shouldn't be on Wobetto</li>
+              <li class='list-group-item small user bucket'>This user is posting offensive or annoying things</li>
+              <li class='list-group-item small other'>Something other than the above:
+                <form id="reportMenu-form" class="form-inline" style="min-height:50px">
+                  <div class="col-sm-10 col-sm-offset-1">
+                   <input class="form-control" id="reportMenu-input" type="text" style="width:70%">
+                   <input type="submit" class="form-control btn btn-default reportMenu-submit" style="width:30%">
+                  </div>
+                </form>
+              </li>
+            </ul>
+            <p class="notice text-danger">Take a second to confirm that you really want to report this <button class="btn btn-danger report-confirm">Report</button></p>
+            <p class="success text-success">Your report was filed. <i class="fa fa-check"></i></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
  <div class="container">
     <div class = "row">
       <div class = "col-md-12" id = "this-is-the-navbar">
