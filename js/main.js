@@ -184,8 +184,9 @@ function insertToPostFeed(id) {
 }
 
 function fixPostFeed(id) {
+  //console.log(app.util.lastPost, id);
   if(!$("#postholder #"+id).length)
-    createPost(app.posts[id], "recent", true, app.util.lastPost, true);
+    createPost(app.posts[id], "recent", false, app.util.lastPost, true);
   app.util.lastPost = id;
 }
 
@@ -202,7 +203,7 @@ function runUpdates() {
   //get the posts that were recently made and order them and build them
   console.log("ran an update");
   Parse.Cloud.run("getMorePosts", {
-    update: false,
+    update: true,
     timeCutOff: app.refreshTime
   }, {
     success: function (response) {
@@ -234,27 +235,28 @@ function applyJoinButtonHandler() {
   $("#postfeed .post .btn.join").click(function(e) {
     var post = $(e.target);
     post = post.closest(".post");
-    Parse.Cloud.run("joinPost", {postId:post.attr("id")}, {
-      success: function(response) {
-        console.log(response);
-        if(response.success) {
-          var url = 
-           // "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-          "post.html";
-          window.location.href = url + "#" + post.attr("id");
-        } else {//member limit reached
-          var modal = $("#joinFailure.modal");
-          var postData = app.posts[post.attr("id")];
-          modal.find("span.post-owner-name").text(postData.author);
-          if(postData.memberLimit>1)
-            modal.find("span.limit").text(postData.memberLimit+" people");
-          else
-            modal.find("span.limit").text(postData.memberLimit+" person");
-          modal.modal("show");
-        }
-      }, error: function(error) {console.log(error);}
+    window.location.href = "post.html" + "#" + post.attr("id");
+  //   Parse.Cloud.run("joinPost", {postId:post.attr("id")}, {
+  //     success: function(response) {
+  //       console.log(response);
+  //       if(response.success) {
+  //         var url = 
+  //          // "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+  //         "post.html";
+  //         window.location.href = url + "#" + post.attr("id");
+  //       } else {//member limit reached
+  //         var modal = $("#joinFailure.modal");
+  //         var postData = app.posts[post.attr("id")];
+  //         modal.find("span.post-owner-name").text(postData.author);
+  //         if(postData.memberLimit>1)
+  //           modal.find("span.limit").text(postData.memberLimit+" people");
+  //         else
+  //           modal.find("span.limit").text(postData.memberLimit+" person");
+  //         modal.modal("show");
+  //       }
+  //     }, error: function(error) {console.log(error);}
     });
-  }); 
+   
 }
 
 function applyGoToGroupButtonHandler() {

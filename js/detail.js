@@ -83,11 +83,18 @@ function createDetailPost(post) {
     person.removeClass("template-participant");
     to_insert.find("#parts").append(person);
   }
-  if(post.isUserAuthor) {
-    to_insert.find("div.report-me").remove();
-    to_insert.find(".leave").remove();
-  } else {
+  if(post.hasUserJoined)
+    if(post.isUserAuthor) {
+      to_insert.find("div.report-me").remove();
+      to_insert.find(".leave").remove();
+      to_insert.find(".join").remove();
+    } else {
+      to_insert.find(".delete").remove();
+      to_insert.find(".join").remove();
+    }
+  else {
     to_insert.find(".delete").remove();
+    to_insert.find(".leave").remove();
   }
     $("#postholder").append(to_insert);
 }
@@ -105,6 +112,27 @@ function setActivePostHandler() {
    
   });
 }
+
+$(".post .join").click(function (e) {
+    Parse.Cloud.run("joinPost", {postId:app.thisPost}, {
+      success: function(response) {
+        console.log(response);
+        if(response.success) {
+          location.reload();
+        } else {//member limit reached
+          var modal = $("#joinFailure.modal");
+          var postData = app.thisPostData;
+          modal.find("span.post-owner-name").text(postData.author);
+          if(postData.memberLimit>1)
+            modal.find("span.limit").text(postData.memberLimit+" people");
+          else
+            modal.find("span.limit").text(postData.memberLimit+" person");
+          modal.modal("show");
+        }
+      }, error: function(error) {console.log(error);}
+    });
+  }); 
+
 
 $("#deletePostConf .delete").click(function (e) {
   Parse.Cloud.run("deletePost", {postId:app.thisPost}, {
