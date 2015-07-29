@@ -173,7 +173,7 @@ function createPost(post, set, append, postBefore, glow) {
   to_insert.find("#lowerDetails h7").html("<i class='fa fa-book'></i> "+
     post.classString+" | <i class='fa fa-location-arrow'></i> "+
     post.location.split(" ")[0]);
-  to_insert.find("#following h7").html(post.memberCount+(post.memberCount==1?" member":" members")+" joined so far");
+  //to_insert.find("#following h7").html(post.memberCount+(post.memberCount==1?" member":" members")+" joined so far");
   to_insert.attr("id", post.postId);
   to_insert.removeClass("template-post");
   to_insert.addClass(set);
@@ -183,9 +183,9 @@ function createPost(post, set, append, postBefore, glow) {
     to_insert.find(".join").text("View Your Group");
     to_insert.find(".join").removeClass("join btn-primary").addClass("goToGroup btn-success");
   }
-  if(post.isUserAuthor) {
-    to_insert.find("div.report-me").remove();
-  }
+  // if(post.isUserAuthor) {
+  //   to_insert.find("div.report-me").remove();
+  // }
   if(glow) {
     to_insert.addClass("glow");
     setTimeout(function() {$(".post.glow").removeClass("glow", 1000);}, 3000);

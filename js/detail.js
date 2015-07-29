@@ -45,6 +45,8 @@ function buildInitialData() {
       for(var i = 0; i < response.activePosts.length; ++i)
         createActiveLink(response.activePosts[i].title, response.activePosts[i].postId);
 
+       $("#user-school h3").html(response.name);
+
       setActivePostHandler();
     }, error: function(error){console.log(error);}
   });
