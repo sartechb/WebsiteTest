@@ -283,6 +283,7 @@ div.postInput input {
 #postholder .post.detail-post {
 	margin-top: 50px;
 	width: 80%;
+	padding-bottom: 5px;
 }
 
 .xs #postholder .post.detail-post {
@@ -336,6 +337,9 @@ h3.popover-title {
 	width:100%;
 	text-align:center;
 }
+textarea{
+	resize:none;
+}
 
 @media(max-width: 767px)
 {
@@ -352,5 +356,8 @@ h3.popover-title {
 
 .img-circle {
   margin-left: 30px;
+}
+#comment-text{
+	width:100%;
 }
 }
