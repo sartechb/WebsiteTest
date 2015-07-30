@@ -67,10 +67,13 @@ footer h3, p {
 }
 .profileSelect{
     padding:0;
+    background-color: white;
+    opacity: .2;
 }
 
 #signerup .profileSelect img {
     z-index: 5;
+    
 }
 
 #signerup .profileSelect:hover {
@@ -81,8 +84,7 @@ footer h3, p {
 
 #signerup .profileSelect.selected {
     z-index: 0;
-    background-color: white;
-    opacity: .5;
+    opacity: none
 }
 
 #login-box{
