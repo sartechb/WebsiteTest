@@ -236,6 +236,10 @@ body.lg #title img {
 	font-family: Calibri, "Calibri", Calibri, sans-serif;
 }
 
+#editModal #createpost input.full {
+	font-size: 1.4em;
+}
+
 #createpost .flat, 
 #newFilterModal .flat {
 	outline: none;
@@ -256,6 +260,10 @@ body.lg #title img {
 	background-color: white;
 }
 
+#editModal #createpost textarea.full {
+	font-size: 1.3em;
+} 
+
 #createpost .minimized .toggle {
 	display: none;
 }
@@ -274,6 +282,10 @@ body.lg #title img {
 
 div.postInput input {
 	font-size: 1.2em;
+}
+
+#editModal div.postInput input {
+	font-size: 1em;
 }
 
 .template-active-post {

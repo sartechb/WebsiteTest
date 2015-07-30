@@ -37,6 +37,10 @@ function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
       //console.log(response);
+      app.locations = response.locations;
+      app.classes = response.classes;
+      $("#new-post-bar #new-post-place").typeahead({source: response.locations});
+      $("#new-post-bar #new-post-class").typeahead({source: response.classes});
       app.activePosts = {};
       for(var j = 0; j < response.activePosts.length; ++j) 
         app.activePosts[response.activePosts[j].postId] = 
@@ -60,7 +64,11 @@ function buildDetailView() {
       app.thisPostData = response;
       //applyDeletePostHandler();
       //applyLeavePostHandler();
-		}, error: function (error) {console.log(error);}	
+		}, error: function (error) {
+      //console.log(error);
+      $("#loader").remove();
+      $("#postholder #empty-feed").fadeIn(200);
+    }	
 	});
 }
 
@@ -77,7 +85,8 @@ function createDetailPost(post) {
   to_insert.find("#lowerDetails h7").html("<i class='fa fa-book'></i> "+
     post.classString+" | <i class='fa fa-location-arrow'></i> "+
     post.location+(post.detailLocation.length>0?" ("+post.detailLocation+")":""));
-  to_insert.find("#following h7").html(post.memberCount+(post.memberCount==1?" member":" members")+" joined so far");
+  to_insert.find("#following h7").html(post.memberCount+(post.memberCount==1?" member":" members")+
+    " joined so far");
   to_insert.attr("id", post.postId);
   for(var i = 0; i < post.participants.length; ++i) {
     var person = to_insert.find("#parts .template-participant").clone(true);
@@ -99,7 +108,10 @@ function createDetailPost(post) {
     to_insert.find(".delete").remove();
     to_insert.find(".leave").remove();
   }
-    $("#postholder").append(to_insert);
+
+  $("#postholder").append(to_insert);
+
+  applyEditPostHandler();
 }
 
 function setActivePostHandler() {
@@ -159,6 +171,90 @@ $("#leavePostConf .leave").click(function (e) {
       }, error: function(error) {console.log(error);}
     });
   });
+
+function applyEditPostHandler() {
+  $(".edit-post").click(function () {
+    $("#editModal .notify").hide();
+   // console.log("edit post opened");
+    var m = $("#editModal #createpost");
+
+    m.find("#new-post-title").val(app.thisPostData.title);
+    m.find("#new-post-content").val(app.thisPostData.content);
+    m.find("#new-post-place").val(app.thisPostData.location);
+    m.find("#new-post-class").val(app.thisPostData.classString);
+    m.find("#new-post-detail").val(app.thisPostData.detailLocation);
+  });
+}
+
+$("#editModal .save").click(function () {
+  var m = $("#editModal #createpost");
+  var errorAlert = "<div class='alert alert-danger fade in col-xs-10 col-xs-offset-2'><a href='#'' "+
+    "class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+  var edits = {};
+  edits.title =  m.find("#new-post-title").val();
+  edits.content = m.find("#new-post-content").val();
+  edits.baseLocation =  m.find("#new-post-place").val();
+  edits.detailLocation =  m.find("#new-post-detail").val();
+  edits.classString =  m.find("#new-post-class").val();
+
+  var reqFields = edits.title.length?true:false &&
+    edits.content.length?true:false &&
+    edits.baseLocation.length?true:false &&
+    edits.detailLocation.length?true:false &&
+    edits.classString.length?true:false;
+
+  //make content checks
+  if(edits.title.length > 150) {
+   if($("#createpost").find("div.alert.alert-danger").length == 0)
+      $("#createpost").prepend(errorAlert+"Your title is too long! Try to make it more concise.</div>");
+    return;
+  } else if(edits.content.length > 450) {
+    if($("#createpost").find("div.alert.alert-danger").length == 0)
+      $("#createpost").prepend(errorAlert+"Your message is too long! Try to make it more concise.</div>");
+    return;
+  } else if (!reqFields) {
+    if($("#createpost").find("div.alert.alert-danger").length == 0)
+      $("#createpost").prepend(errorAlert+"Whoops you missed something above! Try again.</div>");
+    return;
+  }
+
+  //can't be a new location or post we didn't save
+  if(app.locations.indexOf(edits.baseLocation) == -1) {
+    if($("#createpost").find("div.alert.alert-danger").length == 0)
+      $("#createpost").prepend(errorAlert+"Sorry! No one has added that location to Wobetto yet. Usually, we let you mark new locations when you make new posts. Since you're editing a post you made, you'll have to select a location already available or make a new post.</div>");
+    return;
+  }else if(app.classes.indexOf(edits.classString) == -1) {
+    if($("#createpost").find("div.alert.alert-danger").length == 0)
+      $("#createpost").prepend(errorAlert+"Sorry! No one has added that class to Wobetto yet. Usually, we let you add new classes when you make new posts. Since you're editing a post you made, you'll have to select a class already available or make a new post.</div>");
+    return;
+  }
+
+  $("div.alert").alert("close");
+
+  edits.postId = app.thisPost;
+
+  Parse.Cloud.run("editPost", edits, {
+    success: function (response) {
+      var thePost = $("#postholder .post");
+      thePost.find("#title h1").text(edits.title);
+      thePost.find("#posttext h5").text(edits.content);
+      thePost.find("#lowerDetails h7").html("<i class='fa fa-book'></i> "+
+        edits.classString+" | <i class='fa fa-location-arrow'></i> "+
+        edits.baseLocation+(edits.detailLocation.length>0?" ("+edits.detailLocation+")":""));
+
+      app.thisPostData.title = edits.title;
+      app.thisPostData.content = edits.content;
+      app.thisPostData.location = edits.baseLocation;
+      app.thisPostData.detailLocation = edits.detailLocation;
+      app.thisPostData.classString = edits.classString;
+
+      $("#editModal .notify").fadeIn(200);
+      setTimeout(function() {
+        $("#editModal .notify").fadeOut(200);
+      }, 3000);
+    }, error: function(error) {console.log(error);}
+  });
+});
 
 
  function handleResize() {

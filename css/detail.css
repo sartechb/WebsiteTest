@@ -1,4 +1,5 @@
-#editModal .notfiy {
-	float:left;
+#editModal .notify {
+	float: left;
 	margin-top: 5px;
+	display: none;
 }
