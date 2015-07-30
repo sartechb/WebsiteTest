@@ -40,10 +40,14 @@ $("#reportMenu .report-confirm").click(function (e){
       $("#reportMenu .notice").fadeOut(200);
       $("#reportMenu .success").fadeIn(200);
       $("#postfeed #"+app.toReport.flaggedPost).remove();
+      setTimeout(function() {
+        $("#reportMenu .cancel").trigger("click");
+        window.location.href = "index.html";
+      }, 1000);
      // var reports = app.user.get("reportedPosts") || [];
      // reports.push(app.toReport.flaggedPost);
      // app.user.set("reportedPosts", reports);
-      app.user.save();
+      //app.user.save();
 
     }, error: function (error) {console.log(error);}
   });
