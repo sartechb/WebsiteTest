@@ -15,6 +15,7 @@
     <link href="css/post.css" rel="stylesheet">
     <link href="css/filter.css" rel="stylesheet">
     <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/detail.css" rel="stylesheet">
     <link href="css/typeahead.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     
@@ -105,6 +106,47 @@
             <p class="success text-success">Your report was filed. <i class="fa fa-check"></i></p>
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="editModalTitle">Edit this Post</h4>
+          </div>
+          <div class="modal-body">
+            <h4 style="color:black">Make edits to your post here. Then, click the save button at the bottom to save your changes. To cancel editing and discard any changes, close the dialog without saving.</h4>
+            <div class="row" id="createpost">
+              <div class="col-xs-12" id="new-post-bar">
+                <form id="editPostForm" class="">
+                  <input type="text" name="post-title" class="toggle flat full" id='new-post-title' placeholder="Add a title here" autocomplete="off"><br class="toggle">
+                  <hr class="toggle">
+                  <hr class="toggle">
+                  <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Add a message here"></textarea>
+                  <hr class="toggle">
+                  <div class="col-xs-12 col-md-6 postInput">
+                    <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where to Meet?" autocomplete="off" data-provide="typeahead" id="new-post-place">
+                  </div>
+                  <div class="col-xs-12 col-md-6 postInput">
+                    <input type="text" name="post-class" class="typeahead toggle flat form-control" placeholder="Class you're In?" autocomplete="off" data-provide="typeahead" id="new-post-class">
+                  </div>
+                  <div class="col-xs-12 col-md-6 postInput">
+                    <input type="text" name="post-detail" class="toggle flat form-control" placeholder="Landmarks?" autocomplete="off" id="new-post-detail">
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <h4 class="notify text-success"><i class="fa fa-check"></i> Your changes have been saved.</h4>
+            <button type="button" class="btn btn-primary save">Save</button>
             <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
           </div>
         </div>
