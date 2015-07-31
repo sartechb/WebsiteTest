@@ -171,6 +171,7 @@ $("form#classFilterAdd").submit(function(e) {
       return;
     }
     createFilter(inputVal, "|c", true);
+    app.filters.c[i].on = true;
     applyFilterChanges();
   } else {
     //filter DNE, must load from parse
@@ -221,6 +222,7 @@ $("form#locFilterAdd").submit(function(e) {
       return;
     }
     createFilter(inputVal, "|l", true);
+    app.filters.l[i].on = true;
     applyFilterChanges();
   } else {
     //filter DNE, must load from parse
@@ -263,6 +265,7 @@ $("form#textFilterAdd").submit(function(e) {
       return;
     }
     createFilter(inputVal, "|t", true);
+    app.filters.t[i].on = true;
     applyFilterChanges();
   } else {
     //filter dne, must pull posts
@@ -286,10 +289,11 @@ $("form#textFilterAdd").submit(function(e) {
 
 //STILL NEED TO INCLUDE IN POST CREATION SOMEWHERE
 function saveFilterPhrase(val) {
-  var s = val.replace(/\s+/g, "_");
+  var s = val.replace(/\s+/g, "_").replace("\/", "\\/").replace("\?", "\\?");
+  console.log(s);
   for(var p in app.posts) {
     //console.log(app.posts[p].title, ", "+val, app.posts[p].title.search(val));
-    if(app.posts[p].title.search(val) != -1 && !$("#postholder #"+app.posts[p].postId).hasClass(s)) 
+    if(app.posts[p].title.search(s) != -1 && !$("#postholder #"+app.posts[p].postId).hasClass(s)) 
       $("#postholder #"+app.posts[p].postId).addClass(s);
   }
 }
