@@ -149,50 +149,63 @@ function getAggregatePosts() {
 
 function getFilterPosts(type, addFilter) {
   //console.log("getFilterPosts");
-  var str = {};
-  if(addFilter && app.filters[type].length) {
-    str[type] = [];
-    str[type].push(app.filters.c[app.filters.c.length -1])
-    app.util.totalFilters = type=="t"?app.filters.t.length:1;
-  } else if (!addFilter) {
-     str[type] = getPropertyArray(app.filters[type], "filter");
-     //console.log(str[type]);
-     //str[type] = ["EECS 280"];
-  }
+  //var report = app.reportedPosts || [];
 
-  if(type != "t") {
-    Parse.Cloud.run("getMorePosts", {
-      classFilter: str.c,
-      locationFilter: str.l,
-      timeCutOff: app.refreshTime,
-      update:false
-    }, {
-      success: function(response) {//class & location
-     //   console.log(response);
-        for(var k = 0; k < response.posts.length; ++k) 
-          addToPosts(response.posts[k].postId, response.posts[k]);
-        app.util.totalFilters--;
-        if(app.util.totalFilters==0) 
-          updatePostUI();
-      }, error: function(error) {console.log(error);}
-    });
-  } else {
-    for(var i = 0; i < str.t.length; ++i) {
-      Parse.Cloud.run("getMorePosts", {
-        textFilter: str.t[i],
-        timeCutOff: app.refreshTime,
-        update:false
-      }, {
-        success: function(response) {//text filters
-          for(var j = 0; j < response.posts.length; ++j) 
-            addToPosts(response.posts[j].postId, response.posts[j]);
-          app.util.totalFilters--;
-          if(app.util.totalFilters==0)
-            updatePostUI();
-        }, error: function(error) {console.log(error);}
-      })
-    }
-  }
+  var cArray = [""];
+  var lArray = [""];
+  var tArray = ["","",""];
+
+  if(type == "c") cArray[0] = app.filters.c[app.filters.c.length-1].filter;
+  else if (type == 'l') lArray[0] = app.filters.l[app.filters.l.length-1].filter;
+  else if (type == 't') tArray[0] = app.filters.t[app.filters.t.length-1].filter;
+
+  Parse.Cloud.run("getMorePosts", {
+    classFilter: cArray,
+    locationFilter: lArray,
+    textFilter: tArray,
+    timeCutOff: app.refreshTime,
+    update:false
+  }, {
+    success: function(response) {//class & location
+   //   console.log(response);
+      for(var k = 0; k < response.posts.length; ++k) 
+        addToPosts(response.posts[k].postId, response.posts[k]);
+      app.util.totalFilters--;
+      if(app.util.totalFilters==0) 
+        updatePostUI();
+    }, error: function(error) {console.log(error);}
+  });
+
+  // var str = {};
+  // if(addFilter && app.filters[type].length) {
+  //   str[type] = [];
+  //   str[type].push(app.filters.c[app.filters.c.length -1])
+  //   app.util.totalFilters = type=="t"?app.filters.t.length:1;
+  // } else if (!addFilter) {
+  //    str[type] = getPropertyArray(app.filters[type], "filter");
+  //    //console.log(str[type]);
+  //    //str[type] = ["EECS 280"];
+  // }
+
+  // if(type != "t") {
+    
+  // } else {
+  //   for(var i = 0; i < str.t.length; ++i) {
+  //     Parse.Cloud.run("getMorePosts", {
+  //       textFilter: str.t[i],
+  //       timeCutOff: app.refreshTime,
+  //       update:false
+  //     }, {
+  //       success: function(response) {//text filters
+  //         for(var j = 0; j < response.posts.length; ++j) 
+  //           addToPosts(response.posts[j].postId, response.posts[j]);
+  //         app.util.totalFilters--;
+  //         if(app.util.totalFilters==0)
+  //           updatePostUI();
+  //       }, error: function(error) {console.log(error);}
+  //     })
+  //   }
+  // }
 }
 
 function addToPosts(id, post) {

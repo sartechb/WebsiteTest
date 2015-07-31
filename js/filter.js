@@ -56,9 +56,9 @@ function applyFilterChanges() {
   for(var a = 0; a < classFilters.length; ++a) {
     for(var b = 0; b < locFilters.length; ++ b) {
       for(var c = 0; c < textFilters.length; ++c) {
-        var classSel = ((classFilters[a].length==0)?(""):("."+classFilters[a]));
-        var locSel = ((locFilters[b].length==0)?(""):("."+locFilters[b]));
-        var textSel = ((textFilters[c].length==0)?(""):("."+textFilters[c]));
+        var classSel = ((classFilters[a].length==0)?(""):("."+jq(classFilters[a])));
+        var locSel = ((locFilters[b].length==0)?(""):("."+jq(locFilters[b])));
+        var textSel = ((textFilters[c].length==0)?(""):("."+jq(textFilters[c])));
         //if(sel.length!=0)
         selectors.push(".post"+classSel+locSel+textSel);
       }
@@ -75,6 +75,12 @@ function applyFilterChanges() {
   $(".post").not(selectors.join()).fadeOut(200);
 
   updateFilterNotify(classFilters, locFilters, textFilters);
+}
+
+function jq( myid ) {
+ 
+    return myid.replace( /(:|\.|\[|\]|,|\/)/g, "\\$1" );
+ 
 }
 
 function updateFilterNotify(c, l, t) {
