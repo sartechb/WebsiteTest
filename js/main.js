@@ -18,11 +18,11 @@ setTimeout(runUpdates, 40000);//run updates in 40 seconds
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
-      console.log(response);
+      //console.log(response);
       //app.joinedPosts = response.joinedPosts;
       app.activePosts = {};
       app.reportedPosts = response.reportedPosts;
-      console.log(response.activePosts);
+      //console.log(response.activePosts);
       for(var j = 0; j < response.activePosts.length; ++j) 
         app.activePosts[response.activePosts[j].postId] = 
           response.activePosts[j].title;
@@ -40,6 +40,7 @@ function buildInitialData() {
         createActiveLink(response.activePosts[i].title, response.activePosts[i].postId);
 
       setActivePostHandler();
+
       //buildPostFeed(true);
       buildFilterPosts();
       
@@ -54,6 +55,8 @@ function buildPostFeed(init) {
   var cArray = getPropertyArray(app.filters.c, "filter");
   var lArray = getPropertyArray(app.filters.l, "filter");
   var tArray = getPropertyArray(app.filters.t, "filter");
+  if(cArray.length == 0) cArray = [""];
+  if(lArray.length == 0) lArray = [""];
   if(tArray.length == 0) tArray = ["","",""];
   if(tArray.length == 1) {tArray.push(""); tArray.push("");}
   if(tArray.length == 2) tArray.push("");
@@ -67,7 +70,7 @@ function buildPostFeed(init) {
     textFilter:tArray
   }, {
     success: function(response) {
-      console.log(response);
+     // console.log(response);
       app.posts = {};
       var order = new BST(postOrdering);
       for(var x = 0; x < response.posts.length; ++x) {
@@ -85,6 +88,8 @@ function buildPostFeed(init) {
       app.areMorePosts = response.areMorePosts;
 
      $("#loader").remove();
+     //$("#empty-feed").hide();
+     //console.log("removed");
     // console.log(init+" yes?");
       //if(init) buildFilterPosts();
     }, error: function(error) {console.log(error);}
@@ -116,9 +121,10 @@ function buildFilterPosts() {
         //if(app.filters.t.length) getFilterPosts("t");
 
         //getAggregatePosts();
-        buildPostFeed(true);
+        
 
       } else updatePostUI();
+      buildPostFeed(true);
     }, error: function(error) {console.log(error);}
   });
 }
@@ -241,6 +247,8 @@ function runUpdates() {
   var cArray = getPropertyArray(app.filters.c, "filter");
   var lArray = getPropertyArray(app.filters.l, "filter");
   var tArray = getPropertyArray(app.filters.t, "filter");
+  if(cArray.length == 0) cArray = [""];
+  if(lArray.length == 0) lArray = [""];
   if(tArray.length == 0) tArray = ["","",""];
   if(tArray.length == 1) {tArray.push(""); tArray.push("");}
   if(tArray.length == 2) tArray.push("");

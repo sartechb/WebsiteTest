@@ -67,9 +67,10 @@ function applyFilterChanges() {
   //do the visual stuff
   //console.log(selectors);
   $(selectors.join()).not(".template-post").fadeIn(200);
+ // console.log(app.posts);
   if($(selectors.join()).not(".template-post").length)
     $("#empty-feed").fadeOut(200);
-  else
+  else if (app.posts)
     $("#empty-feed").fadeIn(200);
   $(".post").not(selectors.join()).fadeOut(200);
 
