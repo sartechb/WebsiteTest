@@ -13,7 +13,7 @@ $(window).resize(function() {
 });
 
 buildInitialData();
-buildFilterPosts();
+
 setTimeout(runUpdates, 40000);//run updates in 40 seconds
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
@@ -41,7 +41,7 @@ function buildInitialData() {
         createActiveLink(response.activePosts[i].title, response.activePosts[i].postId);
 
       setActivePostHandler();
-
+      buildFilterPosts();
       //buildPostFeed(true);
       
       
