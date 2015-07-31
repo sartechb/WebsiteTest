@@ -40,7 +40,8 @@ function buildInitialData() {
         createActiveLink(response.activePosts[i].title, response.activePosts[i].postId);
 
       setActivePostHandler();
-      buildPostFeed(true);
+      //buildPostFeed(true);
+      buildFilterPosts();
       
     }, error: function(error){console.log(error);}
   });
@@ -50,8 +51,23 @@ function buildPostFeed(init) {
   //app.filteringEnabled = false;
   app.refreshTime = new Date();
   var report = app.reportedPosts || [];
-  Parse.Cloud.run("getMorePosts", {timeCutOff:app.refreshTime,update:false}, {
+  var cArray = getPropertyArray(app.filters.c, "filter");
+  var lArray = getPropertyArray(app.filters.l, "filter");
+  var tArray = getPropertyArray(app.filters.t, "filter");
+  if(tArray.length == 0) tArray = ["","",""];
+  if(tArray.length == 1) {tArray.push(""); tArray.push("");}
+  if(tArray.length == 2) tArray.push("");
+  
+
+  Parse.Cloud.run("getMorePosts", {
+    timeCutOff:app.refreshTime,
+    update:false,
+    classFilter:cArray,
+    locationFilter:lArray,
+    textFilter:tArray
+  }, {
     success: function(response) {
+      console.log(response);
       app.posts = {};
       var order = new BST(postOrdering);
       for(var x = 0; x < response.posts.length; ++x) {
@@ -70,7 +86,7 @@ function buildPostFeed(init) {
 
      $("#loader").remove();
     // console.log(init+" yes?");
-      if(init) buildFilterPosts();
+      //if(init) buildFilterPosts();
     }, error: function(error) {console.log(error);}
   });
 }
@@ -95,14 +111,33 @@ function buildFilterPosts() {
 
         buildFilters();
 
-        if(app.filters.c.length) getFilterPosts("c");
-        if(app.filters.l.length) getFilterPosts("l");
-        if(app.filters.t.length) getFilterPosts("t");
+        //if(app.filters.c.length) getFilterPosts("c");
+        //if(app.filters.l.length) getFilterPosts("l");
+        //if(app.filters.t.length) getFilterPosts("t");
 
-
+        //getAggregatePosts();
+        buildPostFeed(true);
 
       } else updatePostUI();
     }, error: function(error) {console.log(error);}
+  });
+}
+
+function getAggregatePosts() {
+  var classes = [];
+  var locations = [];
+  var texts = ["wobetto","",""];
+  classes = getPropertyArray(app.filters.c, "filter");
+  locations = getPropertyArray(app.filters.l, "filter");
+
+  Parse.Cloud.run("getAggregate", {
+    classFilter:classes,
+    locationFilter:locations,
+    textFilter:texts
+  }, {
+    success: function(response) {
+      console.log(response);
+    }, error: function(e) {console.log(e);}
   });
 }
 
@@ -202,9 +237,20 @@ function buildFilters() {
 function runUpdates() {
   //get the posts that were recently made and order them and build them
   console.log("ran an update");
+  var report = app.reportedPosts || [];
+  var cArray = getPropertyArray(app.filters.c, "filter");
+  var lArray = getPropertyArray(app.filters.l, "filter");
+  var tArray = getPropertyArray(app.filters.t, "filter");
+  if(tArray.length == 0) tArray = ["","",""];
+  if(tArray.length == 1) {tArray.push(""); tArray.push("");}
+  if(tArray.length == 2) tArray.push("");
+
   Parse.Cloud.run("getMorePosts", {
     update: true,
-    timeCutOff: app.refreshTime
+    timeCutOff: app.refreshTime,
+    classFilter:cArray,
+    locationFilter:lArray,
+    textFilter:tArray
   }, {
     success: function (response) {
      // var order = new BST(postOrdering);

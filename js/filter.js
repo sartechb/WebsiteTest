@@ -142,8 +142,18 @@ function createFilter (filter, type, on) {
 
 $("form#classFilterAdd").submit(function(e) {
   e.preventDefault();
-  //check if exists
   var input = $("#classFilterAddInput");
+
+  //check if there are too many filters already
+  if(app.filters.c.length >= 5) {
+    $("#classFilterMenu .notice.limit").fadeIn(200);
+    setTimeout(function(){$("#classFilterMenu .notice.limit").fadeOut(200);}, 6000);
+    input.val("");
+    return;
+  }
+
+  //check if exists
+  
   var inputVal = input.val().trim();
   if(app.classes.indexOf(inputVal) == -1) {
     $("#classFilterMenu .notice.dne").fadeIn(200);
@@ -195,8 +205,18 @@ $("form#classFilterAdd").submit(function(e) {
 
 $("form#locFilterAdd").submit(function(e) {
   e.preventDefault();
-  //check if exists
   var input = $("#locFilterAddInput");
+
+  if(app.filters.l.length >= 5) {
+    $("#classFilterMenu .notice.limit").fadeIn(200);
+    setTimeout(function(){$("#classFilterMenu .notice.limit").fadeOut(200);}, 6000);
+    input.val("");
+    return;
+  }
+
+
+  //check if exists
+  
   var inputVal = input.val().trim();
   if(app.locations.indexOf(inputVal) == -1) {
     $("#locFilterMenu .notice.dne").fadeIn(200);
@@ -247,6 +267,15 @@ $("form#locFilterAdd").submit(function(e) {
 $("form#textFilterAdd").submit(function(e) {
   e.preventDefault();
   var input = $("#textFilterAddInput");
+
+  if(app.filters.t.length >= 3) {
+    $("#classFilterMenu .notice.limit").fadeIn(200);
+    setTimeout(function(){$("#classFilterMenu .notice.limit").fadeOut(200);}, 6000);
+    input.val("");
+    return;
+  }
+
+  
   var inputVal = input.val().trim();
   
   //check if duplicate
@@ -290,12 +319,22 @@ $("form#textFilterAdd").submit(function(e) {
 //STILL NEED TO INCLUDE IN POST CREATION SOMEWHERE
 function saveFilterPhrase(val) {
   var s = val.replace(/\s+/g, "_").replace("\/", "\\/").replace("\?", "\\?");
-  console.log(s);
+ //console.log(s);
   for(var p in app.posts) {
-    //console.log(app.posts[p].title, ", "+val, app.posts[p].title.search(val));
-    if(app.posts[p].title.search(s) != -1 && !$("#postholder #"+app.posts[p].postId).hasClass(s)) 
+    //console.log(subStrMatch(app.posts[p].title, s), app.posts[p].title);
+    if(subStrMatch(app.posts[p].title, s) && !$("#postholder #"+app.posts[p].postId).hasClass(s)) 
       $("#postholder #"+app.posts[p].postId).addClass(s);
   }
+}
+
+function subStrMatch(string, sub) {
+  var n = string.length - sub.length;
+  if(n <= 0) return false;
+  for(var i = 0; i < n; ++i) {
+    var test = string.substring(0+i,sub.length+i);
+    if(test.toUpperCase() == sub.toUpperCase()) return true;
+  }
+  return false;
 }
 
 function removeFilter(filter) {
