@@ -89,6 +89,9 @@ function buildPostFeed(init) {
       app.areMorePosts = response.areMorePosts;
 
      $("#loader").remove();
+     applyJoinButtonHandler();
+     applyGoToGroupButtonHandler();
+     applyFilterChanges();
      //$("#empty-feed").hide();
      //console.log("removed");
     // console.log(init+" yes?");
@@ -299,7 +302,7 @@ function runUpdates() {
 }
 
 function applyJoinButtonHandler() {
-  //console.log("hi");
+  console.log("hi");
   $("#postfeed .post .btn.join").click(function(e) {
     var post = $(e.target);
     post = post.closest(".post");
