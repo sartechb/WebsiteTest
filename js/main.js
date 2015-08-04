@@ -179,37 +179,7 @@ function getFilterPosts(type, addFilter) {
         updatePostUI();
     }, error: function(error) {console.log(error);}
   });
-
-  // var str = {};
-  // if(addFilter && app.filters[type].length) {
-  //   str[type] = [];
-  //   str[type].push(app.filters.c[app.filters.c.length -1])
-  //   app.util.totalFilters = type=="t"?app.filters.t.length:1;
-  // } else if (!addFilter) {
-  //    str[type] = getPropertyArray(app.filters[type], "filter");
-  //    //console.log(str[type]);
-  //    //str[type] = ["EECS 280"];
-  // }
-
-  // if(type != "t") {
-    
-  // } else {
-  //   for(var i = 0; i < str.t.length; ++i) {
-  //     Parse.Cloud.run("getMorePosts", {
-  //       textFilter: str.t[i],
-  //       timeCutOff: app.refreshTime,
-  //       update:false
-  //     }, {
-  //       success: function(response) {//text filters
-  //         for(var j = 0; j < response.posts.length; ++j) 
-  //           addToPosts(response.posts[j].postId, response.posts[j]);
-  //         app.util.totalFilters--;
-  //         if(app.util.totalFilters==0)
-  //           updatePostUI();
-  //       }, error: function(error) {console.log(error);}
-  //     })
-  //   }
-  // }
+0
 }
 
 function addToPosts(id, post) {
@@ -307,25 +277,6 @@ function applyJoinButtonHandler() {
     var post = $(e.target);
     post = post.closest(".post");
     window.location.href = "post.html" + "#" + post.attr("id");
-  //   Parse.Cloud.run("joinPost", {postId:post.attr("id")}, {
-  //     success: function(response) {
-  //       console.log(response);
-  //       if(response.success) {
-  //         var url = 
-  //          // "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-  //         "post.html";
-  //         window.location.href = url + "#" + post.attr("id");
-  //       } else {//member limit reached
-  //         var modal = $("#joinFailure.modal");
-  //         var postData = app.posts[post.attr("id")];
-  //         modal.find("span.post-owner-name").text(postData.author);
-  //         if(postData.memberLimit>1)
-  //           modal.find("span.limit").text(postData.memberLimit+" people");
-  //         else
-  //           modal.find("span.limit").text(postData.memberLimit+" person");
-  //         modal.modal("show");
-  //       }
-  //     }, error: function(error) {console.log(error);}
     });
    
 }

@@ -215,8 +215,8 @@ $("form#locFilterAdd").submit(function(e) {
   var input = $("#locFilterAddInput");
 
   if(app.filters.l.length >= 5) {
-    $("#classFilterMenu .notice.limit").fadeIn(200);
-    setTimeout(function(){$("#classFilterMenu .notice.limit").fadeOut(200);}, 6000);
+    $("#locFilterMenu .notice.limit").fadeIn(200);
+    setTimeout(function(){$("#locFilterMenu .notice.limit").fadeOut(200);}, 6000);
     input.val("");
     return;
   }
@@ -276,8 +276,8 @@ $("form#textFilterAdd").submit(function(e) {
   var input = $("#textFilterAddInput");
 
   if(app.filters.t.length >= 3) {
-    $("#classFilterMenu .notice.limit").fadeIn(200);
-    setTimeout(function(){$("#classFilterMenu .notice.limit").fadeOut(200);}, 6000);
+    $("#textFilterMenu .notice.limit").fadeIn(200);
+    setTimeout(function(){$("#textFilterMenu .notice.limit").fadeOut(200);}, 6000);
     input.val("");
     return;
   }
@@ -296,7 +296,7 @@ $("form#textFilterAdd").submit(function(e) {
   }
 
   if(i != -1) {
-    if($("#locFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|l").length > 0) {
+    if($("#textFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|l").length > 0) {
       input.val("");
       return;
     }
