@@ -414,7 +414,7 @@ function runUpdates() {
         app.util.lastComment = null;
         order.doOp(fixComments);
       } else 
-        $("#postholder .comment-holder").html("<div class='col-xs-10 col-xs-offset-1 no-comments'><h4>No comments yet. Leave one above!<h4></div>");
+        $("#postholder .comment-holder").append("<div class='col-xs-10 col-xs-offset-1 no-comments'><h4>No comments yet. Leave one above!<h4></div>");
     }, error: function(error) {console.log(error);}
   });
   app.refreshTime = new Date();
