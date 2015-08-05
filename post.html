@@ -1,222 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-   <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0488C3">
-    <title>Wobetto</title>
+<head>
+ <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="theme-color" content="#0488C3">
+ <title>Wobetto</title>
 
  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo">
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/post.css" rel="stylesheet">
-    <link href="css/filter.css" rel="stylesheet">
-    <link href="css/sidebar.css" rel="stylesheet">
-    <link href="css/detail.css" rel="stylesheet">
-    <link href="css/typeahead.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    
-    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
-  </head>
-  <body>
+ <!-- Bootstrap -->
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+ <link href="css/post.css" rel="stylesheet">
+ <link href="css/filter.css" rel="stylesheet">
+ <link href="css/sidebar.css" rel="stylesheet">
+ <link href="css/detail.css" rel="stylesheet">
+ <link href="css/typeahead.css" rel="stylesheet">
+ <link href="css/main.css" rel="stylesheet">
+ 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ 
+ <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+ <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+ <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+</head>
+<body>
 
-    <div class="modal fade" id="deletePostConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
-          </div>
-          <div class="modal-body newStr">
-            <p>Are you sure you want to delete this Group? If you continue, this action can't be undone, and the group and any comments will be permanantly deleted.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger delete" data-dismiss="modal">Delete</button>
-            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
-          </div>
+  <div class="modal fade" id="deletePostConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+        </div>
+        <div class="modal-body newStr">
+          <p>Are you sure you want to delete this Group? If you continue, this action can't be undone, and the group and any comments will be permanantly deleted.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger delete" data-dismiss="modal">Delete</button>
+          <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="modal fade" id="leavePostConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
-          </div>
-          <div class="modal-body newStr">
-            <p>Are you sure you want to leave this Group? If you continue, we'll remove the group from your active group list. Any comments you made, however, will remain. You're alsp free to come back and join the group later!</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger leave" data-dismiss="modal">Leave</button>
-            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
-          </div>
+  <div class="modal fade" id="leavePostConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+        </div>
+        <div class="modal-body newStr">
+          <p>Are you sure you want to leave this Group? If you continue, we'll remove the group from your active group list. Any comments you made, however, will remain. You're alsp free to come back and join the group later!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger leave" data-dismiss="modal">Leave</button>
+          <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="modal fade" id="joinFailure" tabindex="-1" role="dialog" aria-labelledby="joinFailureTitle">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="joinFailureTitle">Wow this is Popular!</h4>
-          </div>
-          <div class="modal-body">
-            <p>Hey there. It looks like <span class="post-owner-name"></span>'s post was really popular with other Wobetto members. <span class="post-owner-name"></span> only had room for <span class="limit"></span> where he or she was studying. But don't be discouraged - there's a good chance other people wanted to join too, so make a new post and start your own study group where you are to connect with them!</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
-          </div>
+  <div class="modal fade" id="joinFailure" tabindex="-1" role="dialog" aria-labelledby="joinFailureTitle">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="joinFailureTitle">Wow this is Popular!</h4>
+        </div>
+        <div class="modal-body">
+          <p>Hey there. It looks like <span class="post-owner-name"></span>'s post was really popular with other Wobetto members. <span class="post-owner-name"></span> only had room for <span class="limit"></span> where he or she was studying. But don't be discouraged - there's a good chance other people wanted to join too, so make a new post and start your own study group where you are to connect with them!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="modal fade" id="reportMenu" tabindex="-1" role="dialog" aria-labelledby="reportModalTitle">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="reportModalTitle">Tell us what's wrong</h4>
-          </div>
-          <div class="modal-body">
-            <p>We try to make your experience on Wobetto focused and effective. But in community settings, unintended situations can arise. Please let us know what's wrong and we'll try to resolve this issue as quickly as possible. Thanks for supporting Wobetto's mission of the community helping itself!</p>
-            <ul class='list-group'>
-              <li class='list-group-item small offensive bucket'>This post has offensive content</li>
-              <li class='list-group-item small badPost bucket'>This post shouldn't be on Wobetto</li>
-              <li class='list-group-item small user bucket'>This user is posting offensive or annoying things</li>
-              <li class='list-group-item small other'>Something other than the above:
-                <form id="reportMenu-form" class="form-inline" style="min-height:50px">
-                  <div class="col-sm-10 col-sm-offset-1">
-                   <input class="form-control" id="reportMenu-input" type="text" style="width:70%">
-                   <input type="submit" class="form-control btn btn-default reportMenu-submit" style="width:30%">
-                  </div>
-                </form>
-              </li>
-            </ul>
-            <p class="notice text-danger">Take a second to confirm that you really want to report this <button class="btn btn-danger report-confirm">Report</button></p>
-            <p class="success text-success">Your report was filed. <i class="fa fa-check"></i></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
-          </div>
+  <div class="modal fade" id="reportMenu" tabindex="-1" role="dialog" aria-labelledby="reportModalTitle">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="reportModalTitle">Tell us what's wrong</h4>
         </div>
+        <div class="modal-body">
+          <p>We try to make your experience on Wobetto focused and effective. But in community settings, unintended situations can arise. Please let us know what's wrong and we'll try to resolve this issue as quickly as possible. Thanks for supporting Wobetto's mission of the community helping itself!</p>
+          <ul class='list-group'>
+            <li class='list-group-item small offensive bucket'>This post has offensive content</li>
+            <li class='list-group-item small badPost bucket'>This post shouldn't be on Wobetto</li>
+            <li class='list-group-item small user bucket'>This user is posting offensive or annoying things</li>
+            <li class='list-group-item small other'>Something other than the above:
+              <form id="reportMenu-form" class="form-inline" style="min-height:50px">
+                <div class="col-sm-10 col-sm-offset-1">
+                 <input class="form-control" id="reportMenu-input" type="text" style="width:70%">
+                 <input type="submit" class="form-control btn btn-default reportMenu-submit" style="width:30%">
+               </div>
+             </form>
+           </li>
+         </ul>
+         <p class="notice text-danger">Take a second to confirm that you really want to report this <button class="btn btn-danger report-confirm">Report</button></p>
+         <p class="success text-success">Your report was filed. <i class="fa fa-check"></i></p>
+       </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="editModalTitle">Edit this Post</h4>
-          </div>
-          <div class="modal-body">
-            <h4 style="color:black">Make edits to your post here. Then, click the save button at the bottom to save your changes. To cancel editing and discard any changes, close the dialog without saving.</h4>
-            <div class="row" id="createpost">
-              <div class="col-xs-12" id="new-post-bar">
-                <form id="editPostForm" class="">
-                  <input type="text" name="post-title" class="toggle flat full" id='new-post-title' placeholder="Add a title here" autocomplete="off"><br class="toggle">
-                  <hr class="toggle">
-                  <hr class="toggle">
-                  <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Add a message here"></textarea>
-                  <hr class="toggle">
-                  <div class="col-xs-12 col-md-6 postInput">
-                    <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where to Meet?" autocomplete="off" data-provide="typeahead" id="new-post-place">
-                  </div>
-                  <div class="col-xs-12 col-md-6 postInput">
-                    <input type="text" name="post-class" class="typeahead toggle flat form-control" placeholder="Class you're In?" autocomplete="off" data-provide="typeahead" id="new-post-class">
-                  </div>
-                  <div class="col-xs-12 col-md-6 postInput">
-                    <input type="text" name="post-detail" class="toggle flat form-control" placeholder="Landmarks?" autocomplete="off" id="new-post-detail">
-                  </div>
-                  <div class="col-xs-12 col-md-4">
-                  </div>
-                </form>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editModalTitle">Edit this Post</h4>
+      </div>
+      <div class="modal-body">
+        <h4 style="color:black">Make edits to your post here. Then, click the save button at the bottom to save your changes. To cancel editing and discard any changes, close the dialog without saving.</h4>
+        <div class="row" id="createpost">
+          <div class="col-xs-12" id="new-post-bar">
+            <form id="editPostForm" class="">
+              <input type="text" name="post-title" class="toggle flat full" id='new-post-title' placeholder="Add a title here" autocomplete="off"><br class="toggle">
+              <hr class="toggle">
+              <hr class="toggle">
+              <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Add a message here"></textarea>
+              <hr class="toggle">
+              <div class="col-xs-12 col-md-6 postInput">
+                <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where to Meet?" autocomplete="off" data-provide="typeahead" id="new-post-place">
               </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <h4 class="notify text-success"><i class="fa fa-check"></i> Your changes have been saved.</h4>
-            <button type="button" class="btn btn-success save">Save</button>
-            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+              <div class="col-xs-12 col-md-6 postInput">
+                <input type="text" name="post-class" class="typeahead toggle flat form-control" placeholder="Class you're In?" autocomplete="off" data-provide="typeahead" id="new-post-class">
+              </div>
+              <div class="col-xs-12 col-md-6 postInput">
+                <input type="text" name="post-detail" class="toggle flat form-control" placeholder="Landmarks?" autocomplete="off" id="new-post-detail">
+              </div>
+              <div class="col-xs-12 col-md-4">
+              </div>
+            </form>
           </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <h4 class="notify text-success"><i class="fa fa-check"></i> Your changes have been saved.</h4>
+        <button type="button" class="btn btn-success save">Save</button>
+        <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
+</div>
 
- <div class="container">
-    <div class = "row">
-      <div class = "col-md-12" id = "this-is-the-navbar">
-        <div style="" id="actions"><h3><a style="color:white;" href="#">Notifications</a> | 
-          <a style="color:white;" href="#">Settings</a> | <a style="color:white;" href="#" id="logout">Log Out</a></h3></div>
+<div class="container">
+  <div class = "row">
+    <div class = "col-md-12" id = "this-is-the-navbar">
+      <div style="" id="actions"><h3><a style="color:white;" href="#">Notifications</a> | 
+        <a style="color:white;" href="#">Settings</a> | <a style="color:white;" href="#" id="logout">Log Out</a></h3></div>
         <!-- <a href="file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/index.html"> -->
-          <a href="index.html"> 
-        <img src="assets/wobettologolight.png" style="width:165px; height:55px; margin-top:-3px; margin-left:2%;"/></a>
-        <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
-      </div> <!--Navbar-->
-    </div>
-    <div class ="row" id="body">      
-      <div class="hidden-xs col-sm-3 col-sm-2" id="sidebar">
-        <div id="holdcontent">
-        <div class = "col-md-12" id="user-photo"><img id="user-photo"src=""/></div> <!--user photo-->
-        <div class = "col-md-12" id="empty"></div>
-        <div class = "col-md-12" id="user-name"><h1 style="color:white;"></h1></div>
-        <div class = "col-md-12" id="user-school"><h3></h3></div>
-        <div class = "col-md-12" id="empty"></div>
-        <hr align="center" width="70%" color="white">
-        <div class = "col-md-12" id="active-posts">
-          <div class ="row">
-            <h3>My Active Groups</h3>
+        <a href="index.html"> 
+          <img src="assets/wobettologolight.png" style="width:165px; height:55px; margin-top:-3px; margin-left:2%;"/></a>
+          <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
+        </div> <!--Navbar-->
+      </div>
+      <div class ="row" id="body">      
+        <div class="hidden-xs col-sm-3 col-sm-2" id="sidebar">
+          <div id="holdcontent">
+            <div class = "col-md-12" id="user-photo"><img id="user-photo"src=""/></div> <!--user photo-->
             <div class = "col-md-12" id="empty"></div>
-            <a href="" class="template-active-post"><div class = "col-md-12 active-post "><h3></h3></div></a>
-          </div><!--active posts row-->
-        </div>
-       </div> <!--holdcontent-->
-      </div> <!--sidebar-->
+            <div class = "col-md-12" id="user-name"><h1 style="color:white;"></h1></div>
+            <div class = "col-md-12" id="user-school"><h3></h3></div>
+            <div class = "col-md-12" id="empty"></div>
+            <hr align="center" width="70%" color="white">
+            <div class = "col-md-12" id="active-posts">
+              <div class ="row">
+                <h3>My Active Groups</h3>
+                <div class = "col-md-12" id="empty"></div>
+                <a href="" class="template-active-post"><div class = "col-md-12 active-post "><h3></h3></div></a>
+              </div><!--active posts row-->
+            </div>
+          </div> <!--holdcontent-->
+        </div> <!--sidebar-->
 
 
-      <div class="col-xs-12 col-sm-10" id="content">
-        
-        <div class="row" id="postfeed">
-          <div id="postholder" class="col-xs-12 nofilter">
-            <div id="loader" class="col-xs-2 col-xs-offset-6 col-sm-2 col-sm-offset-6 col-md-2 col-md-offset-6" style="margin-top:50px">
-              <!-- <img id="loading" src="assets/loader.gif" class="img-responsive"> -->
-              <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-              </svg>
-            </div>
-            <div id="empty-feed" class="col-xs-8 col-xs-offset-2" style="margin-top:50px">
-              <h4>Oops! It seems that the post you're looking for has been deleted, or doesn't exist anymore :( We're really sorry about this. You can return to browsing more posts by clicking Wobetto logo at the top of the page.</h4>
-            </div>
-            <!-- POST TEMPLATE MODEL -->
-            <div class="post template-post" id="template-post">
-              <div id="title" class="row">
-                <div class="col-sm-10 col-xs-10"><h1 style="text-align:left"></h1></div>
-                <div class="col-sm-2 col-xs-2"><img class="img-responsive img-circle" src=""/></div>
-              </div> <!--title-->
-              <div class="row">
-                <div class="col-xs-10 col-xs-offset-1" id="postDetails">
-                  <div class="col-xs-9"> <h7 id="nametime" data-time=""></h7></div>
-                  <div class="col-xs-12">
-                    <div id="posttext">
+        <div class="col-xs-12 col-sm-10" id="content">
+          
+          <div class="row" id="postfeed">
+            <div id="postholder" class="col-xs-12 nofilter">
+              <div id="loader" class="col-xs-2 col-xs-offset-6 col-sm-2 col-sm-offset-6 col-md-2 col-md-offset-6" style="margin-top:50px">
+                <!-- <img id="loading" src="assets/loader.gif" class="img-responsive"> -->
+                <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                </svg>
+              </div>
+              <div id="empty-feed" class="col-xs-8 col-xs-offset-2" style="margin-top:50px">
+                <h4>Oops! It seems that the post you're looking for has been deleted, or doesn't exist anymore :( We're really sorry about this. You can return to browsing more posts by clicking Wobetto logo at the top of the page.</h4>
+              </div>
+              <!-- POST TEMPLATE MODEL -->
+              <div class="post template-post" id="template-post">
+                <div id="title" class="row">
+                  <div class="col-sm-10 col-xs-10"><h1 style="text-align:left"></h1></div>
+                  <div class="col-sm-2 col-xs-2"><img class="img-responsive img-circle" src=""/></div>
+                </div> <!--title-->
+                <div class="row">
+                  <div class="col-xs-10 col-xs-offset-1" id="postDetails">
+                    <div class="col-xs-9"> <h7 id="nametime" data-time=""></h7></div>
+                    <div class="col-xs-12">
+                      <div id="posttext">
                        <h5></h5>
-                    </div> <!--posttext-->
-                    <div id="lowerDetails">
+                     </div> <!--posttext-->
+                     <div id="lowerDetails">
                       <h7></h7>
                     </div>
                   </div>
                 </div>
               </div>
-      			  <div id="join" class="row">
+              <div id="join" class="row">
                 <div class="col-sm-4">
                   <button type="submit" class="btn btn-primary toggle join">Join Group</button>
                   <button type="submit" class="btn btn-danger toggle delete" data-toggle="modal" data-target="#deletePostConf">Delete Group</button>
@@ -233,83 +233,83 @@
                   </div>
                 </div>
               </div>
-      			  <div id="following" class="row">
+              <div id="following" class="row">
                 <div class="col-xs-4 col-md-3 text-muted" style="text-align:left" id="report" >
                   <div class="report-me" data-toggle="modal" data-target="#reportMenu"><i class="fa fa-flag"></i> Report</div>
                 </div>
                 <div class="col-xs-8 col-md-9"><h7></h7></div>
               </div>
-      			  <div class = "col-md-12" style="height:5px;"></div>
-<div class="row">
-<div class="col-xs-12" style="
-    resize: none;
-">
-                <form id="comment">
-                    <textarea type="text" form="comment" name="comment-text" id="comment-text" class="flat full" placeholder="Comment on this post" style="padding-left: 10px; width: 100%; height: 68px; border: 1px solid rgb(223, 223, 223); box-sizing: border-box; display: block; margin-bottom:5pxs;"></textarea>
-             
-                </form>
-              </div>
- <div class="col-xs-12" style="
-    text-align: center;
-">
-                <button type="submit" class="btn btn-primary toggle">POST</button>
-                <button type="button" class="btn btn-default toggle" id="post-cancel">NVM</button>
-              </div>
-</div>
+              <div class = "col-md-12" style="height:5px;"></div>
+              <div class="row">
+                <div class="col-xs-12" style="
+                resize: none;
+                ">
+               <form id="comment">
+              <textarea type="text" form="comment" name="comment-text" id="comment-text" class="flat full" placeholder="Comment on this post" style="padding-left: 10px; width: 100%; height: 68px; border: 1px solid rgb(223, 223, 223); box-sizing: border-box; display: block; margin-bottom:5px; font-size:1.2em;"></textarea>
               
-            </div> <!--/post-->
-              <div class="post comment-holder">
-               <div class="media">
-                <div class="media-left">
-                   <a href="#">
-                     <img class="media-object" src="assets/profile1.png" alt="...">
-                    </a>
-                 </div>
-                 <div class="media-body">
-                 <h4 class="media-heading">Preeti Mohan</h4>
-                 <span class="timestamp"><h7><i class="fa fa-clock-o"></i> 21 minutes ago</h7></span><br>
-                     <span class="comment-text">Now this is a really interesting question. I'm not sure what you guys
-                      think, but this made me think a lot- I think it would spark some really interesting discussion.
-                      How long do you think this study group will go? I'd like to join, but may not be able to for
-                      maybe another hour.</span>
-               </div>
-              </div>
-              <div class="media">
-                <div class="media-left">
-                   <a href="#">
-                     <img class="media-object" src="assets/profile4.png" alt="...">
-                    </a>
-                 </div>
-                 <div class="media-body">
-                 <h4 class="media-heading">Harry Potter</h4>
-                 <span class="timestamp"><h7><i class="fa fa-clock-o"></i> 14 minutes ago</h7></span><br>
-                     <span class="comment-text">I'd love to join too, but I need to destroy Voldemort! Can I message one of you guys my phone number, so you can text me if it goes long?</span>
-               </div>
-              </div>
-            </div>
-          </div>  <!--/postholder-->
-        </div> <!--/postfeed-->
-      </div> <!--/content-->
+            </form>
+          </div>
+          <div class="col-xs-12" style="
+          text-align: center;
+          ">
+          <button type="submit" class="btn btn-primary toggle" style="float:left; margin-left:10px; margin-bottom:10px; width:90px;">POST</button>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post comment-holder">
+     <div class="media">
+      <div class="media-left">
+       <a href="#">
+         <img class="media-object" src="assets/profile1.png" alt="...">
+       </a>
+     </div>
+     <div class="media-body">
+       <h4 class="media-heading">Preeti Mohan</h4>
+       <span class="timestamp"><h7><i class="fa fa-clock-o"></i> 21 minutes ago</h7></span><br>
+       <span class="comment-text">Now this is a really interesting question. I'm not sure what you guys
+        think, but this made me think a lot- I think it would spark some really interesting discussion.
+        How long do you think this study group will go? I'd like to join, but may not be able to for
+        maybe another hour.</span>
+      </div>
+    </div>
+    <hr class="comment-line"></hr>
+    <div class="media">
+      <div class="media-left">
+       <a href="#">
+         <img class="media-object" src="assets/profile4.png" alt="...">
+       </a>
+     </div>
+     <div class="media-body">
+       <h4 class="media-heading">Harry Potter</h4>
+       <span class="timestamp"><h7><i class="fa fa-clock-o"></i> 14 minutes ago</h7></span><br>
+       <span class="comment-text">I'd love to join too, but I need to destroy Voldemort! Can I message one of you guys my phone number, so you can text me if it goes long?</span>
+     </div>
+   </div>
+ </div>
+   </div>  <!--/postholder-->
+ </div> <!--/postfeed-->
+</div> <!--/content-->
 
-    </div><!--body-->
-    </div><!-- /.container -->
+</div><!--body-->
+</div><!-- /.container -->
 
 
-    <script src="jquery-ui/external/jquery/jquery.js"></script>
-    <script src="jquery-ui/jquery-ui.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/autogrow.min.js"></script>
-    <script src="js/bootstrap3-typeahead.min.js"></script>
-    <!--proprietary scripts -->
-    <script src="js/bst.js"></script>
-    <script src="js/sidebar.js"></script>
-    <script src="js/detail.js"></script>
-    <script src="js/post.js"></script>
-    <script src="js/report.js"></script>
+<script src="jquery-ui/external/jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/autogrow.min.js"></script>
+<script src="js/bootstrap3-typeahead.min.js"></script>
+<!--proprietary scripts -->
+<script src="js/bst.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/detail.js"></script>
+<script src="js/post.js"></script>
+<script src="js/report.js"></script>
 <!--     // <script src="js/post.js"></script>
     // <script src="js/sidebar.js"></script>
     // <script src="js/filter.js"></script>
     // <script src="js/main.js"></script> -->
 
   </body>
-</html>
+  </html>

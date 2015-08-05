@@ -357,6 +357,11 @@ textarea{
 	padding:0;
 	width:60%;
 }
+.comment-line{
+	margin:0;
+	background-color:#DBDBDB;
+	height:1px;
+}
 .media{
 	padding:0;
 	width:100%;
