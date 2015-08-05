@@ -76,6 +76,7 @@ function buildDetailView() {
 
 function createDetailPost(post) {
   var to_insert = $("#template-post").clone(true);
+  console.log(to_insert);
   to_insert.removeClass("template-post").addClass("detail-post");
   to_insert.find("#title h1").html(post.title);
   to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
@@ -111,11 +112,50 @@ function createDetailPost(post) {
     to_insert.find(".leave").remove();
   }
 
-  $("#postholder").append(to_insert);
-  $("#template-post").remove();
+  to_insert.find("#comment-text").autogrow();
 
-  applyEditPostHandler();
+  app.comments = {};
+  var queryComments = new Parse.Query(Parse.Object.extend("Comment"));
+  queryComments.equalTo("originalPost", app.thisPost);
+  queryComments.ascending("createdAt");
+  queryComments.find({
+    success: function(comments) {
+      if(comments.length) {
+        $(".no-comments").remove();
+        for(var i = 0; i < comments.length; ++i) {
+          var com_to_insert = $(".template-comment").clone(true);
+          com_to_insert.removeClass("template-comment");
+          com_to_insert.find(".media-heading").text(comments[i].get("author"));
+          com_to_insert.find(".timestamp").html("<i class='fa fa-clock-o'></i> "+
+            prettyTime(comments[i].createdAt));
+          com_to_insert.find("img").attr("src", "assets/"+comments[i].get("pic"));
+          com_to_insert.find(".comment-text").text(comments[i].get("content"));
+          com_to_insert.attr("id", comments[i].id);
+          app.comments[comments[i].id] = {
+            author: comments[i].get("author"),
+            time: comments[i].createdAt,
+            pic: comments[i].get("pic"),
+            content: comments[i].get("content")
+          };
+          $(".comment-holder").append(com_to_insert);
+          $("#postholder .comment-holder").before(to_insert);
+          applyEditPostHandler();
+          //$("#template-post").remove();
+        }
+      } else {
+        $("#postholder .comment-holder").before(to_insert);
+
+        $("#postholder .comment-holder").append("<div class='col-xs-10 col-xs-offset-1 no-comments'><h4>No comments yet. Leave one above!<h4></div>");
+      }
+    }, error: function(error) {console.log(error);}
+  });
+  $("#template-post").remove();
+  
+  
+
+  
 }
+
 
 function setActivePostHandler() {
   $("#active-posts div.row .active-post").click(function (e) {
@@ -135,13 +175,33 @@ function setActivePostHandler() {
 $("form#comment").submit(function (e) {
   e.preventDefault();
   var content = $("#comment-text")[0].value;
-  console.log($("#comment-text"),content, e);
+ // console.log($("#comment-text"),content, e);
   Parse.Cloud.run("makeComment", {
     comment: content,
     postId: app.thisPost
   }, {
     success: function(response) {
+      $(".no-comments").remove();
       console.log(response);
+      var com_to_insert = $(".template-comment").clone(true);
+      console.log(com_to_insert);
+      com_to_insert.removeClass("template-comment");
+      com_to_insert.find(".media-heading").text(app.user.get("name"));
+      com_to_insert.find(".timestamp").html("<i class='fa fa-clock-o'></i> "+
+        prettyTime(new Date()));
+      com_to_insert.find("img").attr("src", "assets/"+app.user.get("pic"));
+      com_to_insert.find(".comment-text").text(content);
+      com_to_insert.attr("id", response.id);
+      console.log(com_to_insert, $(".comment-holder"));
+      $("#postholder .comment-holder").append(com_to_insert);
+      app.comments[response.id] = {
+        author: app.user.get("name"),
+        time: (new Date()),
+        pic: app.user.get("pic"),
+        content: content
+      };
+      $("#comment-text").val("");
+      $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     }, error: function(error) {console.log(error);} 
   });
 });
@@ -193,6 +253,7 @@ $("#leavePostConf .leave").click(function (e) {
 
 function applyEditPostHandler() {
   $(".edit-post").click(function () {
+    console.log("editing a post!");
     $("#editModal .notify").hide();
    // console.log("edit post opened");
     var m = $("#editModal #createpost");
@@ -277,7 +338,7 @@ $("#editModal .save").click(function () {
 });
 
 function runUpdates() {
-
+  console.log("ran update");
   var queryUpdate = new Parse.Query(Parse.Object.extend("Update"));
   queryUpdate.greaterThan("createdAt", app.refreshTime);
   queryUpdate.equalTo("post", app.thisPost);
@@ -285,6 +346,7 @@ function runUpdates() {
     success: function(update) {
       for(var i = 0; i < update.length; ++i) {
         var type = update[i].type;
+        console.log("type");
         if(type == "post-title") {
           app.thisPostData.title = update[i].value;
           $(".post #title h1").text(update[i].value);
@@ -327,6 +389,34 @@ function runUpdates() {
       }
     }, error: function(error) {console.log(error);}
   });
+  var queryComments = new Parse.Query(Parse.Object.extend("Comment"));
+  queryComments.equalTo("originalPost", app.thisPost);
+  queryComments.greaterThan("createdAt", app.refreshTime);
+  queryComments.find({
+    success: function(comments) {
+      if(comments.length) {
+        $(".no-comments").remove();
+        var order = new BST(commentOrdering);
+        for(var i = 0; i < comments.length; ++i) {
+          if(!(comments[i].id in app.comments)) {
+            app.comments[comments[i].id] = {
+              author: comments[i].author,
+              time: comments[i].createdAt,
+              pic: comments[i].pic,
+              content: comments[i].content,
+              commentId: comments[i].id
+            };
+          }
+        }
+        for(var id in app.comments) {
+          order.insert(id);
+        }
+        app.util.lastComment = null;
+        order.doOp(fixComments);
+      } else 
+        $("#postholder .comment-holder").html("<div class='col-xs-10 col-xs-offset-1 no-comments'><h4>No comments yet. Leave one above!<h4></div>");
+    }, error: function(error) {console.log(error);}
+  });
   app.refreshTime = new Date();
   //get update objects and apply changes
   //TO-DO
@@ -334,7 +424,27 @@ function runUpdates() {
   setTimeout(runUpdates, 40000);
 }
 
+function commentOrdering(a,b) {
+  return app.comments[a].time < app.comments[b].time;
+}
 
+function fixComments(id) {
+  if(!$(".comment-holder #"+id).length) {
+    var com_to_insert = $(".template-comment").clone(true);
+    com_to_insert.removeClass("template-comment");
+    com_to_insert.find(".media-heading").text(app.comments[id].author);
+    com_to_insert.find(".timestamp").html("<i class='fa fa-clock-o'></i> "+
+      prettyTime(app.comments[id].createdAt));
+    com_to_insert.find("img").attr("src", "assets/"+app.comments[id].pic);
+    com_to_insert.find(".comment-text").text(app.comments[id].content);
+    com_to_insert.attr("id", id);
+    if(app.util.lastComment)
+      $("#"+app.util.lastComment).after(com_to_insert);
+    else
+      $(".comment-holder").append(com_to_insert);
+  }
+  app.util.lastComment = id;
+}
 
  function handleResize() {
   var w = $(window).width();
