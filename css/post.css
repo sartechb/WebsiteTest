@@ -1,3 +1,4 @@
+
 .blue-bar {
 	display: block;
 	height: 30px;
@@ -294,7 +295,7 @@ div.postInput input {
 
 #postholder .post.detail-post {
 	margin-top: 50px;
-	width: 80%;
+	width: 70%;
 	padding-bottom: 5px;
 }
 
@@ -352,12 +353,56 @@ h3.popover-title {
 textarea{
 	resize:none;
 }
+.comment-holder{
+	padding:0;
+	width:60%;
+}
+.media{
+	padding:0;
+	width:100%;
+	padding:5px;
+	padding-bottom:15px;
+	padding-top:15px;
+	margin-top:0;
+}
+.media-object{
+	width:100px;
+	border-radius:50%;
+}
+.media-heading{
+	color:black;
+	text-align:left;
+}
+.comment-text{
+	font-size:1.2em;
+}
 
+img.img-circle.comment-img {
+    display: block;
+    width: 70%;
+    margin-top: 5px;
+    margin-left: 15%;
+}
+.user-name h3{
+	color:black;
+	padding:0;
+	text-align: center;
+}
+.user-name{
+	margin-bottom: 5px;
+}
+.comment-left{
+	padding:0;
+}
 @media(max-width: 767px)
 {
 	.post{
 		width:100%;
 	}
+	.comment-holder{
+		width:100%;
+	}
+
 }
 
 @media(min-width:2150px)
@@ -365,6 +410,11 @@ textarea{
 	.post{
 		width:50%;
 	}
+	.comment-holder{
+	width:50%;
+}
+}
+
 
 .img-circle {
   margin-left: 30px;
@@ -372,4 +422,5 @@ textarea{
 #comment-text{
 	width:100%;
 }
+
 }
