@@ -13,16 +13,17 @@ $(window).resize(function() {
 });
 
 buildInitialData();
+
 setTimeout(runUpdates, 40000);//run updates in 40 seconds
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
-      console.log(response);
+      //console.log(response);
       //app.joinedPosts = response.joinedPosts;
       app.activePosts = {};
       app.reportedPosts = response.reportedPosts;
-      console.log(response.activePosts);
+      //console.log(response.activePosts);
       for(var j = 0; j < response.activePosts.length; ++j) 
         app.activePosts[response.activePosts[j].postId] = 
           response.activePosts[j].title;
@@ -40,7 +41,9 @@ function buildInitialData() {
         createActiveLink(response.activePosts[i].title, response.activePosts[i].postId);
 
       setActivePostHandler();
-      buildPostFeed(true);
+      buildFilterPosts();
+      //buildPostFeed(true);
+      
       
     }, error: function(error){console.log(error);}
   });
@@ -50,8 +53,25 @@ function buildPostFeed(init) {
   //app.filteringEnabled = false;
   app.refreshTime = new Date();
   var report = app.reportedPosts || [];
-  Parse.Cloud.run("getMorePosts", {timeCutOff:app.refreshTime,update:false}, {
+  var cArray = getPropertyArray(app.filters.c, "filter");
+  var lArray = getPropertyArray(app.filters.l, "filter");
+  var tArray = getPropertyArray(app.filters.t, "filter");
+  if(cArray.length == 0) cArray = [""];
+  if(lArray.length == 0) lArray = [""];
+  if(tArray.length == 0) tArray = ["","",""];
+  if(tArray.length == 1) {tArray.push(""); tArray.push("");}
+  if(tArray.length == 2) tArray.push("");
+  
+
+  Parse.Cloud.run("getMorePosts", {
+    timeCutOff:app.refreshTime,
+    update:false,
+    classFilter:cArray,
+    locationFilter:lArray,
+    textFilter:tArray
+  }, {
     success: function(response) {
+     // console.log(response);
       app.posts = {};
       var order = new BST(postOrdering);
       for(var x = 0; x < response.posts.length; ++x) {
@@ -69,8 +89,13 @@ function buildPostFeed(init) {
       app.areMorePosts = response.areMorePosts;
 
      $("#loader").remove();
+     applyJoinButtonHandler();
+     applyGoToGroupButtonHandler();
+     applyFilterChanges();
+     //$("#empty-feed").hide();
+     //console.log("removed");
     // console.log(init+" yes?");
-      if(init) buildFilterPosts();
+      //if(init) buildFilterPosts();
     }, error: function(error) {console.log(error);}
   });
 }
@@ -95,63 +120,66 @@ function buildFilterPosts() {
 
         buildFilters();
 
-        if(app.filters.c.length) getFilterPosts("c");
-        if(app.filters.l.length) getFilterPosts("l");
-        if(app.filters.t.length) getFilterPosts("t");
+        //if(app.filters.c.length) getFilterPosts("c");
+        //if(app.filters.l.length) getFilterPosts("l");
+        //if(app.filters.t.length) getFilterPosts("t");
 
-
+        //getAggregatePosts();
+        
 
       } else updatePostUI();
+      buildPostFeed(true);
     }, error: function(error) {console.log(error);}
+  });
+}
+
+function getAggregatePosts() {
+  var classes = [];
+  var locations = [];
+  var texts = ["wobetto","",""];
+  classes = getPropertyArray(app.filters.c, "filter");
+  locations = getPropertyArray(app.filters.l, "filter");
+
+  Parse.Cloud.run("getAggregate", {
+    classFilter:classes,
+    locationFilter:locations,
+    textFilter:texts
+  }, {
+    success: function(response) {
+      console.log(response);
+    }, error: function(e) {console.log(e);}
   });
 }
 
 function getFilterPosts(type, addFilter) {
   //console.log("getFilterPosts");
-  var str = {};
-  if(addFilter && app.filters[type].length) {
-    str[type] = [];
-    str[type].push(app.filters.c[app.filters.c.length -1])
-    app.util.totalFilters = type=="t"?app.filters.t.length:1;
-  } else if (!addFilter) {
-     str[type] = getPropertyArray(app.filters[type], "filter");
-     //console.log(str[type]);
-     //str[type] = ["EECS 280"];
-  }
+  //var report = app.reportedPosts || [];
 
-  if(type != "t") {
-    Parse.Cloud.run("getMorePosts", {
-      classFilter: str.c,
-      locationFilter: str.l,
-      timeCutOff: app.refreshTime,
-      update:false
-    }, {
-      success: function(response) {//class & location
-     //   console.log(response);
-        for(var k = 0; k < response.posts.length; ++k) 
-          addToPosts(response.posts[k].postId, response.posts[k]);
-        app.util.totalFilters--;
-        if(app.util.totalFilters==0) 
-          updatePostUI();
-      }, error: function(error) {console.log(error);}
-    });
-  } else {
-    for(var i = 0; i < str.t.length; ++i) {
-      Parse.Cloud.run("getMorePosts", {
-        textFilter: str.t[i],
-        timeCutOff: app.refreshTime,
-        update:false
-      }, {
-        success: function(response) {//text filters
-          for(var j = 0; j < response.posts.length; ++j) 
-            addToPosts(response.posts[j].postId, response.posts[j]);
-          app.util.totalFilters--;
-          if(app.util.totalFilters==0)
-            updatePostUI();
-        }, error: function(error) {console.log(error);}
-      })
-    }
-  }
+  var cArray = [""];
+  var lArray = [""];
+  var tArray = ["","",""];
+
+  if(type == "c") cArray[0] = app.filters.c[app.filters.c.length-1].filter;
+  else if (type == 'l') lArray[0] = app.filters.l[app.filters.l.length-1].filter;
+  else if (type == 't') tArray[0] = app.filters.t[app.filters.t.length-1].filter;
+
+  Parse.Cloud.run("getMorePosts", {
+    classFilter: cArray,
+    locationFilter: lArray,
+    textFilter: tArray,
+    timeCutOff: app.refreshTime,
+    update:false
+  }, {
+    success: function(response) {//class & location
+   //   console.log(response);
+      for(var k = 0; k < response.posts.length; ++k) 
+        addToPosts(response.posts[k].postId, response.posts[k]);
+      app.util.totalFilters--;
+      if(app.util.totalFilters==0) 
+        updatePostUI();
+    }, error: function(error) {console.log(error);}
+  });
+0
 }
 
 function addToPosts(id, post) {
@@ -202,9 +230,22 @@ function buildFilters() {
 function runUpdates() {
   //get the posts that were recently made and order them and build them
   console.log("ran an update");
+  var report = app.reportedPosts || [];
+  var cArray = getPropertyArray(app.filters.c, "filter");
+  var lArray = getPropertyArray(app.filters.l, "filter");
+  var tArray = getPropertyArray(app.filters.t, "filter");
+  if(cArray.length == 0) cArray = [""];
+  if(lArray.length == 0) lArray = [""];
+  if(tArray.length == 0) tArray = ["","",""];
+  if(tArray.length == 1) {tArray.push(""); tArray.push("");}
+  if(tArray.length == 2) tArray.push("");
+
   Parse.Cloud.run("getMorePosts", {
     update: true,
-    timeCutOff: app.refreshTime
+    timeCutOff: app.refreshTime,
+    classFilter:cArray,
+    locationFilter:lArray,
+    textFilter:tArray
   }, {
     success: function (response) {
      // var order = new BST(postOrdering);
@@ -231,30 +272,11 @@ function runUpdates() {
 }
 
 function applyJoinButtonHandler() {
-  //console.log("hi");
+  console.log("hi");
   $("#postfeed .post .btn.join").click(function(e) {
     var post = $(e.target);
     post = post.closest(".post");
     window.location.href = "post.html" + "#" + post.attr("id");
-  //   Parse.Cloud.run("joinPost", {postId:post.attr("id")}, {
-  //     success: function(response) {
-  //       console.log(response);
-  //       if(response.success) {
-  //         var url = 
-  //          // "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-  //         "post.html";
-  //         window.location.href = url + "#" + post.attr("id");
-  //       } else {//member limit reached
-  //         var modal = $("#joinFailure.modal");
-  //         var postData = app.posts[post.attr("id")];
-  //         modal.find("span.post-owner-name").text(postData.author);
-  //         if(postData.memberLimit>1)
-  //           modal.find("span.limit").text(postData.memberLimit+" people");
-  //         else
-  //           modal.find("span.limit").text(postData.memberLimit+" person");
-  //         modal.modal("show");
-  //       }
-  //     }, error: function(error) {console.log(error);}
     });
    
 }

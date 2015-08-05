@@ -32,6 +32,7 @@ $(window).resize(function() {
 //buildPostFeed(true);
 buildInitialData();
 buildDetailView();
+setTimeout(runUpdates, 40000);//run updates in 40 seconds
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
@@ -57,6 +58,7 @@ function buildInitialData() {
 }
 
 function buildDetailView() {
+  app.refreshTime = new Date();
 	Parse.Cloud.run("getDetailView", {postId:app.thisPost}, {
 		success: function (response) {
       $("#loader").remove();
@@ -110,6 +112,7 @@ function createDetailPost(post) {
   }
 
   $("#postholder").append(to_insert);
+  $("#template-post").remove();
 
   applyEditPostHandler();
 }
@@ -127,6 +130,22 @@ function setActivePostHandler() {
    
   });
 }
+
+//COMMENTING LOGIC
+$("form#comment").submit(function (e) {
+  e.preventDefault();
+  var content = $("#comment-text")[0].value;
+  console.log($("#comment-text"),content, e);
+  Parse.Cloud.run("makeComment", {
+    comment: content,
+    postId: app.thisPost
+  }, {
+    success: function(response) {
+      console.log(response);
+    }, error: function(error) {console.log(error);} 
+  });
+});
+
 
 $(".post .join").click(function (e) {
     Parse.Cloud.run("joinPost", {postId:app.thisPost}, {
@@ -255,6 +274,30 @@ $("#editModal .save").click(function () {
     }, error: function(error) {console.log(error);}
   });
 });
+
+function runUpdates() {
+  //get the posts that were recently made and order them and build them
+
+  var queryUpdate = new Parse.Query(Parse.object.extend("Update"));
+  queryUpdate.greaterThan("createdAt", app.refreshTime);
+  queryUpdate.equalTo("post", app.thisPost);
+  queryUpdate.find({
+    success: function(update) {
+      for(var i = 0; i < update.length; ++i) {
+        var type = update[i].type;
+        if(type == "post-title") {
+          
+        }
+      }
+    }, error: function(error) {console.log(error);}
+  });
+
+  //get update objects and apply changes
+  //TO-DO
+
+  setTimeout(runUpdates, 40000);
+}
+
 
 
  function handleResize() {

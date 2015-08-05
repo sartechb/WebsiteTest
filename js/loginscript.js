@@ -14,6 +14,9 @@ Parse.Cloud.run("functionNameHere", {data:here}, {
 });
 */
 
+if(Parse.user)
+  window.location.href = "http://sartechb.github.io/WebsiteTest/index.html";
+
 
 var rand = Math.ceil((1 - Math.random())*7);
 var im = $(".profileSelect img");
