@@ -251,6 +251,7 @@ $("#editModal .save").click(function () {
   $("div.alert").alert("close");
 
   edits.postId = app.thisPost;
+  $("#active-posts #"+app.thisPost+" h3").text(edits.title);
 
   Parse.Cloud.run("editPost", edits, {
     success: function (response) {
@@ -276,9 +277,8 @@ $("#editModal .save").click(function () {
 });
 
 function runUpdates() {
-  //get the posts that were recently made and order them and build them
 
-  var queryUpdate = new Parse.Query(Parse.object.extend("Update"));
+  var queryUpdate = new Parse.Query(Parse.Object.extend("Update"));
   queryUpdate.greaterThan("createdAt", app.refreshTime);
   queryUpdate.equalTo("post", app.thisPost);
   queryUpdate.find({
@@ -286,12 +286,48 @@ function runUpdates() {
       for(var i = 0; i < update.length; ++i) {
         var type = update[i].type;
         if(type == "post-title") {
-          
+          app.thisPostData.title = update[i].value;
+          $(".post #title h1").text(update[i].value);
+        } else if (type == "post-content") {
+          app.thisPostData.content = update[i].value;
+          $(".post #posttext h5").text(update[i].value);
+        } else if (type == "post-location" || type == "post-detailLocation" || 
+          type == "post-classString") {
+          if (type == "post-location") app.thisPostData.location = update[i].value;
+          else if (type == "post-detailLocation") app.thisPostData.detailLocation = update[i].value;
+          else if (type == "post-classString") app.thisPostData.classString = update[i].value;
+          $(".post #lowerDetails h7").html("<i class='fa fa-book'></i> "+
+            app.thisPostData.classString+" | <i class='fa fa-location-arrow'></i> "+
+            app.thisPostData.location+(app.thisPostData.detailLocation.length>0?" ("
+              +app.thisPostData.detailLocation+")":""));
+        } else if (type == "join") {
+          var _name = update[i].value.split("|")[0];
+          var _pic = update[i].value.split("|")[1];
+          app.thisPostData.participants.push({name:_name, pic:_pic});
+          var person = $(".post #parts .template-participant").clone(true);
+          person.find("img").attr("src", "assets/"+_pic);
+          person.find("h3").text(_name);
+          person.removeClass("template-participant");
+          $(".post #parts").append(person);
+        } else if (type == "leave") {
+          for(var j = 0; j < app.thisPostData.participants.length; ++ j) {
+            if(app.thisPostData.participants[j].name == update[i].value) {
+              app.thisPostData.participants.splice(j, 1);
+            }
+            if($(".post #parts .participant").eq(j).find(".caption h7").text() == update[i].value) {
+              $(".post #parts .participant").eq(j).remove();
+            }
+          }
+        } else if (type == "delete") {
+          app.thisPostData = {};
+          $("#"+app.thisPost).remove();
+          $("#empty-feed").fadeIn(200);
+          return;
         }
       }
     }, error: function(error) {console.log(error);}
   });
-
+  app.refreshTime = new Date();
   //get update objects and apply changes
   //TO-DO
 

@@ -272,7 +272,7 @@ function runUpdates() {
 }
 
 function applyJoinButtonHandler() {
-  console.log("hi");
+  //console.log("hi");
   $("#postfeed .post .btn.join").click(function(e) {
     var post = $(e.target);
     post = post.closest(".post");
