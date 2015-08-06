@@ -43,6 +43,8 @@ $("#new-post").submit(function (e) {
     return;
   }
 
+  $(".alert").alert("close");
+
   var classString = $("#new-post-bar #new-post-class").val();
   var locationString = $("#new-post-bar #new-post-place").val();
 
@@ -203,6 +205,7 @@ function createPost(post, set, append, postBefore, glow) {
 
 //Cancel logic for post creation
 $("#post-cancel").click(function (e) {
+  $(".alert").alert("close");
   $("#new-post input, #new-post textarea").val("");
   $("#new-post").children().fadeOut(300, function() {
     $("#new-post-bar").addClass('minimized').removeClass('expanded');
