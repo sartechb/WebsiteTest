@@ -399,6 +399,25 @@ img.img-circle.comment-img {
 .comment-left{
 	padding:0;
 }
+
+.badge{
+	background-color:red;
+	box-shadow: 0;
+	margin-right: -5px;
+	z-index: 3;	
+	padding:1px;
+}
+.notifications{
+	display:inline-block;
+	z-index:3;
+	height:100%;
+	position:relative;
+}
+.links{
+	height:100%;
+	padding-top:17px;
+	display:inline-block;
+}
 @media(max-width: 767px)
 {
 	.post{
