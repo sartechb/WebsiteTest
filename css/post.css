@@ -353,6 +353,28 @@ h3.popover-title {
 textarea{
 	resize:none;
 }
+
+div.template-comment {
+	display: none !important;
+}
+
+div.no-comments {
+	margin-bottom: 50px;
+}
+
+#comment-text {
+	padding-left: 10px; 
+	width: 90%; 
+	height: 2em; 
+	border: 1px solid rgb(223, 223, 223); 
+	box-sizing: border-box; 
+	display: block; 
+	margin-bottom:5px; 
+	margin-left:5%; 
+	font-size:1.2em; 
+	outline:0px
+}
+
 .comment-holder{
 	padding:0;
 	width:60%;
@@ -443,8 +465,8 @@ img.img-circle.comment-img {
 .img-circle {
   margin-left: 30px;
 }
-#comment-text{
+/*#comment-text{
 	width:100%;
-}
+}*/
 
 }

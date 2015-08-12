@@ -152,7 +152,7 @@ $("form#classFilterAdd").submit(function(e) {
   var input = $("#classFilterAddInput");
 
   //check if there are too many filters already
-  if(app.filters.c.length >= 5) {
+  if($("#classFilterMenu .filterMenu .container .row").length > 5 ) {
     $("#classFilterMenu .notice.limit").fadeIn(200);
     setTimeout(function(){$("#classFilterMenu .notice.limit").fadeOut(200);}, 6000);
     input.val("");
@@ -201,6 +201,7 @@ $("form#classFilterAdd").submit(function(e) {
         app.filters.c.push(new filterObject(inputVal, true));
         getFilterPosts("c", true);
         createFilter(inputVal, "|c", true);
+        applyFilterChanges();
         //filt.trigger("click");
       }, error: function(error) {console.log(error);}
     });
@@ -214,7 +215,7 @@ $("form#locFilterAdd").submit(function(e) {
   e.preventDefault();
   var input = $("#locFilterAddInput");
 
-  if(app.filters.l.length >= 5) {
+  if($("#locFilterMenu .filterMenu .container .row").length > 5) {
     $("#locFilterMenu .notice.limit").fadeIn(200);
     setTimeout(function(){$("#locFilterMenu .notice.limit").fadeOut(200);}, 6000);
     input.val("");
@@ -262,6 +263,7 @@ $("form#locFilterAdd").submit(function(e) {
         app.filters.l.push(new filterObject(inputVal, true));
         getFilterPosts("l", true);
         createFilter(inputVal, "|l", true);
+        applyFilterChanges();
         //filt.trigger("click");
       }, error: function(error) {console.log(error);}
     });
@@ -275,7 +277,7 @@ $("form#textFilterAdd").submit(function(e) {
   e.preventDefault();
   var input = $("#textFilterAddInput");
 
-  if(app.filters.t.length >= 3) {
+  if($("#textFilterMenu .filterMenu .container .row").length > 2) {
     $("#textFilterMenu .notice.limit").fadeIn(200);
     setTimeout(function(){$("#textFilterMenu .notice.limit").fadeOut(200);}, 6000);
     input.val("");
@@ -294,9 +296,11 @@ $("form#textFilterAdd").submit(function(e) {
   } else {
     app.filters.t = [];
   }
-
+  console.log(i);
   if(i != -1) {
-    if($("#textFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|l").length > 0) {
+    if($("#textFilterMenu #"+inputVal.replace(/\s+/g,"_")+"\\|t").length > 0) {
+      $("#textFilterMenu .notice.dup").fadeIn(200);
+      setTimeout(function(){$("#textFilterMenu .notice.dup").fadeOut(200);}, 6000);
       input.val("");
       return;
     }
@@ -314,6 +318,7 @@ $("form#textFilterAdd").submit(function(e) {
         app.filters.t.push(new filterObject(inputVal, true));
         getFilterPosts("t", true);
         createFilter(inputVal, "|t", true);
+        applyFilterChanges();
         //filt.trigger("click");
       }, error: function(error) {console.log(error);}
     });
@@ -336,7 +341,8 @@ function saveFilterPhrase(val) {
 
 function subStrMatch(string, sub) {
   var n = string.length - sub.length;
-  if(n <= 0) return false;
+  if(n < 0) return false;
+  else if (n == 0) return string.toUpperCase() == sub.toUpperCase();
   for(var i = 0; i < n; ++i) {
     var test = string.substring(0+i,sub.length+i);
     if(test.toUpperCase() == sub.toUpperCase()) return true;
