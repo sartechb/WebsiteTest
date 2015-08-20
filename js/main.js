@@ -19,7 +19,7 @@ setTimeout(runUpdates, 40000);//run updates in 40 seconds
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
-      //console.log(response);
+      console.log(response);
       //app.joinedPosts = response.joinedPosts;
       app.activePosts = {};
       app.reportedPosts = response.reportedPosts;

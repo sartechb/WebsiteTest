@@ -37,7 +37,7 @@ setTimeout(runUpdates, 40000);//run updates in 40 seconds
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
-      //console.log(response);
+      console.log(response);
       app.locations = response.locations;
       app.classes = response.classes;
       $("#new-post-bar #new-post-place").typeahead({source: response.locations});
@@ -96,6 +96,7 @@ function createDetailPost(post) {
     person.find("img").attr("src", "assets/"+post.participants[i].pic);
     person.find("h3").text(post.participants[i].name);
     person.removeClass("template-participant");
+    person.attr("id", post.participants[i].name.replace(" ","").replace("\.",""));
     to_insert.find("#parts").append(person);
   }
   if(post.hasUserJoined)
@@ -345,44 +346,48 @@ function runUpdates() {
   queryUpdate.find({
     success: function(update) {
       for(var i = 0; i < update.length; ++i) {
-        var type = update[i].type;
-        console.log("type");
+        var type = update[i].get("type");
+        console.log(type);
         if(type == "post-title") {
-          app.thisPostData.title = update[i].value;
-          $(".post #title h1").text(update[i].value);
+          app.thisPostData.title = update[i].get("value");
+          $(".post #title h1").text(update[i].get("value"));
         } else if (type == "post-content") {
-          app.thisPostData.content = update[i].value;
-          $(".post #posttext h5").text(update[i].value);
+          app.thisPostData.content = update[i].get("value");
+          $(".post #posttext h5").text(update[i].get("value"));
         } else if (type == "post-location" || type == "post-detailLocation" || 
           type == "post-classString") {
-          if (type == "post-location") app.thisPostData.location = update[i].value;
-          else if (type == "post-detailLocation") app.thisPostData.detailLocation = update[i].value;
-          else if (type == "post-classString") app.thisPostData.classString = update[i].value;
+          if (type == "post-location") app.thisPostData.location = update[i].get("value");
+          else if (type == "post-detailLocation") app.thisPostData.detailLocation = update[i].get("value");
+          else if (type == "post-classString") app.thisPostData.classString = update[i].get("value");
           $(".post #lowerDetails h7").html("<i class='fa fa-book'></i> "+
             app.thisPostData.classString+" | <i class='fa fa-location-arrow'></i> "+
             app.thisPostData.location+(app.thisPostData.detailLocation.length>0?" ("
               +app.thisPostData.detailLocation+")":""));
         } else if (type == "join") {
-          var _name = update[i].value.split("|")[0];
-          var _pic = update[i].value.split("|")[1];
+          var _name = update[i].get("value").split("|")[0];
+          var _pic = update[i].get("value").split("|")[1];
           app.thisPostData.participants.push({name:_name, pic:_pic});
           var person = $(".post #parts .template-participant").clone(true);
           person.find("img").attr("src", "assets/"+_pic);
           person.find("h3").text(_name);
           person.removeClass("template-participant");
+          person.attr("id", _name.replace(" ","").replace("\.",""));
           $(".post #parts").append(person);
+          $(".post #following h7").text(app.thisPostData.participants.length-1 + " members joined so far");
         } else if (type == "leave") {
           for(var j = 0; j < app.thisPostData.participants.length; ++ j) {
-            if(app.thisPostData.participants[j].name == update[i].value) {
+            if(app.thisPostData.participants[j].name == update[i].get("value")) {
               app.thisPostData.participants.splice(j, 1);
             }
-            if($(".post #parts .participant").eq(j).find(".caption h7").text() == update[i].value) {
-              $(".post #parts .participant").eq(j).remove();
-            }
           }
+          var partId = update[i].get("value").replace(" ", "").replace("\.","");
+          console.log(partId);
+          $(".post #parts .participant#"+partId)[0].remove();
+          $(".post #following h7").text(app.thisPostData.participants.length-1 + " members joined so far");
         } else if (type == "delete") {
           app.thisPostData = {};
-          $("#"+app.thisPost).remove();
+          $(".post").remove();
+          $(".no-comments").remove();
           $("#empty-feed").fadeIn(200);
           return;
         }
@@ -400,10 +405,10 @@ function runUpdates() {
         for(var i = 0; i < comments.length; ++i) {
           if(!(comments[i].id in app.comments)) {
             app.comments[comments[i].id] = {
-              author: comments[i].author,
+              author: comments[i].get("author"),
               time: comments[i].createdAt,
-              pic: comments[i].pic,
-              content: comments[i].content,
+              pic: comments[i].get("pic"),
+              content: comments[i].get("content"),
               commentId: comments[i].id
             };
           }
