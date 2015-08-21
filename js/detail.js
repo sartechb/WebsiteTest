@@ -33,7 +33,7 @@ $(window).resize(function() {
 buildInitialData();
 buildDetailView();
 app.updateTime = new Date();
-setTimeout(runUpdates, 40000);//run updates in 40 seconds
+setTimeout(runUpdates, 3000);//run updates in 40 seconds
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
@@ -455,7 +455,7 @@ function runUpdates() {
   //get update objects and apply changes
   //TO-DO
   app.updateTime = new Date();
-  setTimeout(runUpdates, 40000);
+  setTimeout(runUpdates, 3000);
 }
 
 function commentOrdering(a,b) {
