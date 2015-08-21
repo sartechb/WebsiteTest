@@ -15,14 +15,16 @@ $(window).resize(function() {
 buildInitialData();
 
 setTimeout(runUpdates, 40000);//run updates in 40 seconds
+app.updateTime = new Date();
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
-      console.log(response);
+      //console.log(response);
       //app.joinedPosts = response.joinedPosts;
       app.activePosts = {};
       app.reportedPosts = response.reportedPosts;
+      
       //console.log(response.activePosts);
       for(var j = 0; j < response.activePosts.length; ++j) 
         app.activePosts[response.activePosts[j].postId] = 
@@ -42,6 +44,7 @@ function buildInitialData() {
 
       setActivePostHandler();
       buildFilterPosts();
+      buildNotifications(true, response.notifications);
       //buildPostFeed(true);
       
       
@@ -132,6 +135,9 @@ function buildFilterPosts() {
     }, error: function(error) {console.log(error);}
   });
 }
+
+
+
 
 function getAggregatePosts() {
   var classes = [];
@@ -240,9 +246,36 @@ function runUpdates() {
   if(tArray.length == 1) {tArray.push(""); tArray.push("");}
   if(tArray.length == 2) tArray.push("");
 
+  var queryNotif = new Parse.Query(Parse.Object.extend("Notification"));
+  var time = app.updateTime;
+  queryNotif.equalTo("targetUser", app.user);
+  queryNotif.equalTo("viewed", false);
+  queryNotif.greaterThan("createdAt", time);
+  queryNotif.descending("createdAt");
+
+
+  queryNotif.find({
+    success: function(notes) {
+      notifications = [];
+      for(var i = 0; i < notes.length; ++i) {
+        notifications.push({
+          text: notes[i].get("text"),
+          post: notes[i].get("targetPost"),
+          viewed: notes[i].get("viewed"),
+          time: notes[i].createdAt,
+          id: notes[i].id
+        });
+        //console.log(notes[i].createdAt - time);
+      }
+      //console.log(time);
+     // console.log(notifications);
+      buildNotifications(false, notifications);
+    }, error: function(error){console.log(error);}
+  });
+
   Parse.Cloud.run("getMorePosts", {
     update: true,
-    timeCutOff: app.refreshTime,
+    timeCutOff: app.updateTime,
     classFilter:cArray,
     locationFilter:lArray,
     textFilter:tArray
@@ -264,6 +297,8 @@ function runUpdates() {
 
     }, error: function (error) {console.log(error);}
   });
+
+  app.updateTime = new Date();
 
   //get update objects and apply changes
   //TO-DO

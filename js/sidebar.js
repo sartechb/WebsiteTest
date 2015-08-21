@@ -56,3 +56,61 @@ function setActivePostHandler() {
     window.location.href = url;
   });
 }
+
+function buildNotifications(append,array) {
+  var count = parseInt($(".notifications .badge").text()) || 0;
+  if(array.length) {
+    $("#notificationfeed ul li.noNew").fadeOut(200);
+    for (var i = 0; i < array.length;++i) {
+      var note = $(".template-note").clone(true);
+      note.removeClass("template-note");
+      note.find("a").text(array[i].text+" | "+prettyTime(array[i].time));
+      if(array[i].viewed) 
+        note.removeClass("new");
+      else 
+        count++;
+      note.attr("id", array[i].id);
+      if(append)
+        $("#notificationfeed ul").append(note);
+      else
+        $("#notificationfeed ul").prepend(note);
+    }
+    if(count) {
+      $(".notifications .badge").text(count);
+    }
+  }
+}
+
+$(".notifications").click(function (e) {
+    var feed = $("#notificationfeed");
+    if(feed.hasClass("open")) {
+      feed.fadeOut(200);
+      feed.removeClass("open");
+    } else {
+      feed.addClass("open");
+      feed.fadeIn(200);
+    }
+});
+
+$("#notificationfeed ul li a").click(function (e) {
+  
+  console.log("preventing");
+  var note = $(e.target).parent();
+  console.log(note.attr("id"));
+  var query = new Parse.Query(Parse.Object.extend("Notification"));
+  query.get(note.attr("id"), {
+    success: function(noti) {
+      noti.set("viewed", true);
+      noti.save(null,{
+        success: function(){
+          if(noti.get("targetPost") == app.thisPost)
+            location.reload();
+          window.location = "post.html#"+noti.get("targetPost");
+          if(app.thisPost)
+            location.reload();
+        }
+      });
+      
+    }, error: function(error) {console.log("error");}
+  });
+});

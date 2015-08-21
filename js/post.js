@@ -139,6 +139,7 @@ $("#newClassStringMenu").on("show.bs.modal", function (e){
 
 $("#newClassStringMenu #newClassStringAdd").submit(function (e) {
   e.preventDefault();
+  
   var reqFields = $("#newClassStringAdd #newClassStringLong").val().length > 0 &&
     $("#newClassStringAdd #newClassStringShort").val().length > 0;
   if (!reqFields) {

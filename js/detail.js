@@ -32,6 +32,7 @@ $(window).resize(function() {
 //buildPostFeed(true);
 buildInitialData();
 buildDetailView();
+app.updateTime = new Date();
 setTimeout(runUpdates, 40000);//run updates in 40 seconds
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
@@ -40,6 +41,7 @@ function buildInitialData() {
       console.log(response);
       app.locations = response.locations;
       app.classes = response.classes;
+      
       $("#new-post-bar #new-post-place").typeahead({source: response.locations});
       $("#new-post-bar #new-post-class").typeahead({source: response.classes});
       app.activePosts = {};
@@ -53,6 +55,7 @@ function buildInitialData() {
        $("#user-school h3").html(response.name);
 
       setActivePostHandler();
+      buildNotifications(true, response.notifications);
     }, error: function(error){console.log(error);}
   });
 }
@@ -423,9 +426,35 @@ function runUpdates() {
     }, error: function(error) {console.log(error);}
   });
   app.refreshTime = new Date();
+  var queryNotif = new Parse.Query(Parse.Object.extend("Notification"));
+  var time = app.updateTime;
+  queryNotif.equalTo("targetUser", app.user);
+  queryNotif.equalTo("viewed", false);
+  queryNotif.greaterThan("createdAt", time);
+  queryNotif.descending("createdAt");
+
+
+  queryNotif.find({
+    success: function(notes) {
+      notifications = [];
+      for(var i = 0; i < notes.length; ++i) {
+        notifications.push({
+          text: notes[i].get("text"),
+          post: notes[i].get("targetPost"),
+          viewed: notes[i].get("viewed"),
+          time: notes[i].createdAt,
+          id: notes[i].id
+        });
+        //console.log(notes[i].createdAt - time);
+      }
+      //console.log(time);
+     // console.log(notifications);
+      buildNotifications(false, notifications);
+    }, error: function(error){console.log(error);}
+  });
   //get update objects and apply changes
   //TO-DO
-
+  app.updateTime = new Date();
   setTimeout(runUpdates, 40000);
 }
 

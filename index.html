@@ -233,12 +233,20 @@
  <div class="container">
     <div class = "row">
       <div class="col-md-12" id="this-is-the-navbar">
-        <div style="" id="actions"><h3><div class="notifications"><span class="badge">4</span></div><div class="links"><i class="fa fa-envelope-o"></i>&nbsp<a style="color:white;" href="#">Notifications</a> | <i class="fa fa-sign-out"></i>
+        <div style="" id="actions"><h3><div class="notifications"><span class="badge"></span></div><div class="links"><i class="fa fa-envelope-o"></i>&nbsp<span class="notifications" style="color:white;cursor:pointer" href="#">Notifications</span> | <i class="fa fa-sign-out"></i>
         <a style="color:white;" href="#" id="logout">Log Out</a></div></h3></div>
         <!-- <a href="file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/index.html"> -->
           <a href="index.html"> 
         <img src="assets/wobettologolight.png" style="width:165px; height:55px; margin-top:-3px; margin-left:2%;"></a>
         <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
+        <div id="notificationfeed">
+            <ul class="list-group">
+              <li class="noNew">No Recent Notifications</li>
+              <li class="template-note new"><a style="cursor:pointer"></a></li>
+             <!--  <li class="viewed"><a href="http://www.google.com" target="_blank"> Annette O. commented on Binary Numbers | 2 hours ago </a></li>
+              <li class=""><a href="http://www.google.com" target="_blank"> Issac N. joined on Binary Numbers | 2 hours ago </a></li> -->
+            </ul>
+          </div>
       </div> <!--Navbar-->
     </div>
     <div class ="row" id="body">      
@@ -319,6 +327,7 @@
         <hr align="center" width="95%" color="#AFD1F7">
         
         <div class="row" id="postfeed">
+          
           <div id="postholder" class="col-xs-12 nofilter">
             <div id="loader" class="col-xs-2 col-xs-offset-5 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-6" style="margin-top:50px">
               <!-- <img id="loading" src="assets/loader.gif" class="img-responsive"> -->

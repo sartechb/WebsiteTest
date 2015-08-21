@@ -106,6 +106,85 @@ button.btn-primary, input.btn-primary {
   display: none;
 }
 
+
+#notificationfeed {
+  position: absolute;
+  top:60px;
+  right:20px;
+  /*height: 500px;*/
+  width: 300px;
+  background-color: gray;
+  display: block; 
+  z-index: 8000;
+  border-radius: 4px;
+  border-bottom: 20px solid #0488C3; 
+  display: none;
+}
+
+#notificationfeed ul {
+  margin: 0;
+   max-height: 300px; 
+   overflow-y: scroll; 
+}
+
+#notificationfeed li {
+  color: #777;
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+#notificationfeed li a {
+  color:#777;
+}
+
+#notificationfeed li.new a {
+  color:#31708f;
+}
+
+#notificationfeed li.new {
+  background-color: #fcf8e3;
+  color: #31708f;
+  font-weight: bold;
+}
+
+#notificationfeed li.noNew {
+  text-align: center;
+  border: none;
+  font-size: 1.2em;
+}
+
+#notificationfeed li.template-note {
+  display: none;
+}
+
+
+#notificationfeed:after, #notificationfeed:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  z-index: 8000;
+}
+#notificationfeed:after {
+  border-bottom-color: white;
+  border-width: 10px;
+  margin-left: -10px;
+}
+#notificationfeed:before {
+  border-bottom-color: white;
+  border-width: 16px;
+  margin-left: -16px;
+}
+
+
+
 .spinner {
   -webkit-animation: rotator 1.4s linear infinite;
           animation: rotator 1.4s linear infinite;
