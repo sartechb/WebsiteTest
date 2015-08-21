@@ -86,6 +86,7 @@ $(".notifications").click(function (e) {
     if(feed.hasClass("open")) {
       feed.fadeOut(200);
       feed.removeClass("open");
+      $(".notifications .badge").text("");
     } else {
       feed.addClass("open");
       feed.fadeIn(200);
