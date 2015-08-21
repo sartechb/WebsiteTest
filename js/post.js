@@ -21,6 +21,11 @@ app.newClassString = {val:"",is:false};
 
 $("#new-post").submit(function (e) {
   e.preventDefault();
+  $(this).submit(function() {
+        return false;
+    });
+  $("#new-post button").prop("disabled", true);
+  $("#new-post button[type='submit']").text("POSTING...");
   var errorAlert = "<div class='alert alert-danger col-xs-8 col-xs-offset-2'><a href='#'' "+
     "class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
   var titleLength = $("#new-post-bar #new-post-title").val().length;
@@ -95,6 +100,8 @@ $("#new-post").submit(function (e) {
       createActiveLink(newPost.post.title, newPost.post.postId);
       setActivePostHandler();
       $("#post-cancel").trigger("click");
+      $("#new-post button").prop("disabled", false);
+      $("#new-post button[type='submit']").text("POST");
       
     }, error: function (error) {console.log(error);}
   });
@@ -139,7 +146,7 @@ $("#newClassStringMenu").on("show.bs.modal", function (e){
 
 $("#newClassStringMenu #newClassStringAdd").submit(function (e) {
   e.preventDefault();
-  
+
   var reqFields = $("#newClassStringAdd #newClassStringLong").val().length > 0 &&
     $("#newClassStringAdd #newClassStringShort").val().length > 0;
   if (!reqFields) {

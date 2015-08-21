@@ -60,6 +60,7 @@ function setActivePostHandler() {
 function buildNotifications(append,array) {
   var count = parseInt($(".notifications .badge").text()) || 0;
   if(array.length) {
+    var start = count;
     $("#notificationfeed ul li.noNew").fadeOut(200);
     for (var i = 0; i < array.length;++i) {
       var note = $(".template-note").clone(true);
@@ -74,6 +75,8 @@ function buildNotifications(append,array) {
         $("#notificationfeed ul").append(note);
       else
         $("#notificationfeed ul").prepend(note);
+      if(count - start)
+        document.getElementById('audiotag1').play();
     }
     if(count) {
       $(".notifications .badge").text(count);
