@@ -43,6 +43,8 @@ $('body').scroll(function() {
 function setActivePostHandler() {
   $("#active-posts div.row a").click(function (e) {
     var link = $(e.target);
+    link = link.closest("a");
+    window.location.href = link.attr("href");
     if(app.thisPost)
       location.reload();
 
