@@ -41,19 +41,21 @@ $('body').scroll(function() {
 
 //Active Post things
 function setActivePostHandler() {
-  $("#active-posts div.row .active-post").click(function (e) {
+  $("#active-posts div.row a").click(function (e) {
     var link = $(e.target);
-    if(link.prop("tagName") == "H3")
-      link = link.parent();
+    console.log(link);
+    
+   //  if(link.prop("tagName") == "H3")
+   //    link = link.parent();
 
-    var postId = link.attr("id");
-    var title = app.activePosts[postId];
+   //  var postId = link.attr("id");
+   //  var title = app.activePosts[postId];
 
-    var url = 
-   // "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
-    "post.html";
-    url += "#"+postId;
-    window.location.href = url;
+   //  var url = 
+   // // "file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/post.html";
+   //  "post.html";
+   //  url += "#"+postId;
+   //  window.location.href = url;
   });
 }
 

@@ -161,19 +161,19 @@ function createDetailPost(post) {
 }
 
 
-function setActivePostHandler() {
-  $("#active-posts div.row .active-post").click(function (e) {
-    var link = $(e.target);
-    if(link.prop("tagName") == "H3")
-      link = link.parent();
+// function setActivePostHandler() {
+//   $("#active-posts div.row .active-post").click(function (e) {
+//     var link = $(e.target);
+//     if(link.prop("tagName") == "H3")
+//       link = link.parent().parent();
 
-    var postId = link.attr("id");
-    var title = app.activePosts[postId];
-    window.location.href = "post.html#"+postId;
-    location.reload();
+//     var postId = link.attr("id");
+//     var title = app.activePosts[postId];
+//     window.location.href = "post.html#"+postId;
+//     location.reload();
    
-  });
-}
+//   });
+// }
 
 //COMMENTING LOGIC
 $("form#comment").submit(function (e) {
