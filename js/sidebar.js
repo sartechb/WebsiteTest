@@ -43,8 +43,9 @@ $('body').scroll(function() {
 function setActivePostHandler() {
   $("#active-posts div.row a").click(function (e) {
     var link = $(e.target);
-    console.log(link);
-    
+    if(app.thisPost)
+      location.reload();
+
    //  if(link.prop("tagName") == "H3")
    //    link = link.parent();
 
