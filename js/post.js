@@ -76,8 +76,10 @@ $("#new-post").submit(function (e) {
   newPost.post.classString = $("#new-post-bar #new-post-class").val();
   newPost.post.baseLocation = $("#new-post-bar #new-post-place").val();
   newPost.post.detailLocation = $("#new-post-bar #new-post-detail").val();
-  if($("#new-post-bar #new-post-limit").val().length != 0)
+  if($("#new-post-bar #new-post-limit").val().length != 0) {
     newPost.post.memberLimit = parseInt($("#new-post-bar #new-post-limit").val());
+    console.log(newPost.post.memberLimit);
+  }
   else
     newPost.post.memberLimit = 5;
 
@@ -87,7 +89,7 @@ $("#new-post").submit(function (e) {
       newPost.post.time = response.time;
       newPost.post.authorPic = app.user.get("pic");
       newPost.post.author = app.user.get("name");
-      newPost.post.memberCount = 0;
+      
       //newPost.post.filters = [];
       newPost.post.location = newPost.post.baseLocation;
       newPost.post.hasUserJoined = true;
