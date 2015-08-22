@@ -6,7 +6,7 @@ Parse.initialize("MQvT5Bq6CsU34IQBfop8fPEJLOsLybDgDMBRdFhM", "HNFXaE7aCayggyI8hy
  * state for uses like filtering.
  */
 var app = {};
-
+var refreshLimit = 40000;
 //console.log("here", app);
 
 //Store the current User

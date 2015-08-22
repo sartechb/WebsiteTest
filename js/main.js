@@ -14,7 +14,7 @@ $(window).resize(function() {
 
 buildInitialData();
 
-setTimeout(runUpdates, 5000);//run updates in 40 seconds
+setTimeout(runUpdates, refreshLimit);//run updates in 40 seconds
 app.updateTime = new Date();
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
@@ -303,7 +303,7 @@ function runUpdates() {
   //get update objects and apply changes
   //TO-DO
 
-  setTimeout(runUpdates, 5000);
+  setTimeout(runUpdates, refreshLimit);
 }
 
 function applyJoinButtonHandler() {
