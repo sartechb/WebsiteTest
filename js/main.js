@@ -16,6 +16,8 @@ buildInitialData();
 
 setTimeout(runUpdates, refreshLimit);//run updates in 40 seconds
 app.updateTime = new Date();
+
+
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {

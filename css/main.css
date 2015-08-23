@@ -184,6 +184,23 @@ button.btn-primary, input.btn-primary {
 }
 
 
+.feedback-survey {
+  position: fixed;
+  display: block;
+  right: 0px;
+  top:40%;
+  width: 80px;
+  padding: 10px;
+  background-color: #0488C3;
+  z-index: 1000;
+}
+
+
+.feedback-survey a {
+  color: white;
+  font-size: 12px;
+}
+
 
 .spinner {
   -webkit-animation: rotator 1.4s linear infinite;

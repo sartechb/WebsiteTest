@@ -147,13 +147,15 @@ function createDetailPost(post) {
           //$("#template-post").remove();
         }
       } else {
+        console.log("no-comments");
         $("#postholder .comment-holder").before(to_insert);
+        applyEditPostHandler();
 
         $("#postholder .comment-holder").append("<div class='col-xs-10 col-xs-offset-1 no-comments'><h4>No comments yet. Leave one above!<h4></div>");
       }
     }, error: function(error) {console.log(error);}
   });
-  applyEditPostHandler();
+  
   $("#template-post").remove();
   
   
