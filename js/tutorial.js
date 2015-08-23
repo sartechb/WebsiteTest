@@ -53,7 +53,7 @@ $(".w-start").click(function() {
 			if(user.get("emailVerified"))
 				window.location.href = "index.html";
 			else
-				console.log("Still Not Verified");
+				$("#notify-error").fadeIn(300);
 		}, error: function(error) {console.log(error);}
 	});
 });
