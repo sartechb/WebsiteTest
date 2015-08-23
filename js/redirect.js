@@ -14,5 +14,9 @@ app.user = Parse.User.current();
 
 //check if the user is logged in. Redirect to login if not logged in
 if(app.user == null) {
-	window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
+	window.location.href = "login.html";
+} else {
+	if(!app.user.get("emailVerified"))
+		window.location.href = "welcome.html";
 }
+

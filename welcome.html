@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0488C3">
+    <title>Wobetto</title>
+
+ <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/post.css" rel="stylesheet">
+    <link href="css/filter.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/typeahead.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/welcome.css" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+  </head>
+  <body>
+
+  <script type="text/javascript" src="js/welcome.js"></script>
+
+
+ <div class="container">
+    <div class = "row">
+      <div class="col-md-12" id="this-is-the-navbar">
+        <div style="" id="actions"><h3><div class="notifications"><span class="badge"></span></div><div class="links"><i class="fa fa-envelope-o"></i>&nbsp<span class="notifications" style="color:white;cursor:pointer" href="#">Notifications</span> | <i class="fa fa-sign-out"></i>
+        <a style="color:white;" href="#" id="logout">Log Out</a></div></h3></div>
+        <!-- <a href="file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/index.html"> -->
+          <a href="index.html"> 
+        <img src="assets/wobettologolight.png" style="width:165px; height:55px; margin-top:-3px; margin-left:2%;"></a>
+        <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
+        <div id="notificationfeed">
+            <ul class="list-group">
+              <li class="new"><a style="cursor:pointer" class="note">Webster W. joined "My First Post"</a></li>
+              <li class="new"><a style="cursor:pointer" class="note">Webster W. commented on "My First Post"</a></li>
+              <li class="new"><a style="cursor:pointer" class="note">Matt C. joined "My First Post"</a></li>
+             <!--  <li class="viewed"><a href="http://www.google.com" target="_blank"> Annette O. commented on Binary Numbers | 2 hours ago </a></li>
+              <li class=""><a href="http://www.google.com" target="_blank"> Issac N. joined on Binary Numbers | 2 hours ago </a></li> -->
+            </ul>
+          </div>
+      </div> <!--Navbar-->
+    </div>
+
+    <div class ="row" id="body">      
+      <div class="hidden-xs col-sm-3 col-sm-2" id="sidebar">
+        <div id="holdcontent">
+        <div class = "col-md-12" id="user-photo"><img id="user-photo"src=""/></div> <!--user photo-->
+        <div class = "col-md-12" id="empty"></div>
+        <div class = "col-md-12" id="user-name"><h1 style="color:white;"></h1></div>
+        <div class = "col-md-12" id="user-school"><h3></h3></div>
+        <div class = "col-md-12" id="empty"></div>
+        <hr align="center" width="70%" color="white">
+        <div class = "col-md-12" id="active-posts">
+          <div class ="row">
+            <h3>My Groups</h3>
+            <div class = "col-md-12" id="empty"></div>
+            <a href="" class="template-active-post"><div class = "col-md-12 active-post "><h3></h3></div></a>
+            <a href="" class="template-active-post" id="active-example"><div class ="col-md-12 active-post"><h3>My First Study Group</h3></div></a>
+          </div><!--active posts row-->
+        </div>
+       </div> <!--holdcontent-->
+      </div> <!--sidebar-->
+
+
+      <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xl-10" id="content">
+        
+        <div class="row" id="postfeed">
+          
+          <div id="postholder" class="col-xs-12 nofilter center-me">
+            <div class="row section section-1">
+              <div class="col-sm-4">
+                <img class="img-responsive" src="assets/puppy.png" style="margin:0 auto">
+              </div>
+              <div class="col-sm-8">
+                <h1 class="w-title">Hello! I'm Webster.</h1>
+                <p class="w-subtitle"> Let me introduce you to Wobetto...</p>
+                <button class="btn btn-primary next w-center"><h2>Continue</h2></button>
+              </div>
+            </div> <!-- SECTION 1 -->
+            <div class="row section section-2">
+              <div class="col-sm-12">
+                <p class="w-text">Wobetto allows you to find instant study groups to work with, and create your own study groups. You can find these groups by searching for classes that you're in. Clicking the following button will let you search.</p>
+              </div>
+              <div class="col-sm-12 fp">
+                <div class="col-sm-2 col-sm-offset-5 col-xs-3 col-xs-offset-4 filterIcons">
+                    <i style="margin:0 auto" class="fa fa-book fa-2x fa-border next" data-toggle="tooltip" data-placement="bottom" title="Filter by class"></i>
+                </div>
+              </div>
+            </div> <!-- SECTION 2 -->
+            <div class="row section section-3">
+              <div class="col-sm-5">
+                <div class="modal-body filt filterMenu classFilter">
+                  <p class="w-text"> Your Class filters: </p>
+                  <div class="filterContainer">
+                    <div class="row template-filter w-filter">
+                      <div class="col-xs-10 title"><h4></h4></div>
+                    </div>
+                  </div>
+                  <form id="classFilterAdd">
+                    <input type="text" class="form-control typeahead" id="classFilterAddInput" placeholder="Add a Filter" data-provide="typeahead" autocomplete="off">
+                    <input type="submit" class="btn btn-primary col-xs-12" value="Create Filter" style="margin-top:5px;height:30px"/>
+                  </form>
+                  <p class="notice dne w-white"> We're sorry, you can't make a filter for that class yet because it hasn't been posted about on Wobetto.</p>
+                  <p class="notice dup w-white">You already created that filter! Click on it to turn it on and off.</p>
+                  <p class="notice limit w-white">Sorry, you can only create 5 class filters at time.</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <p class="w-text">Let's start by adding your classes as filters. Click on them to turn them <span class="user-entry">blue</span> That means they're on.</p>
+                <p class="w-text-2">Don't worry if a class isn't available. It just means no one has posted about that class. You can add more class filters later too.</p>
+                <button class="btn btn-primary next"><h2>Continue</h2></button>
+              </div>
+            </div> <!-- SECTION 3 -->
+            <div class="row section section-4">
+              <div class="col-sm-12">
+                <p class="w-text">Wobetto also allows you to find study groups at the locations that you like to study the most. You can find these groups by searching for classes that you're in. Clicking the following button will let you search.</p>
+              </div>
+              <div class="col-sm-12 fp">
+                <div class="col-sm-2 col-sm-offset-5 col-xs-3 col-xs-offset-4 filterIcons">
+                    <i style="margin:0 auto" class="fa fa-location-arrow fa-2x fa-border next" data-toggle="tooltip" data-placement="bottom" title="Filter by location"></i>
+                </div>
+              </div>
+            </div> <!-- SECTION 4 -->
+            <div class="row section section-5">
+              <div class="col-sm-5">
+                <div class="modal-body filt filterMenu locFilter">
+                  <p class="w-text"> Your Location filters: </p>
+                  <div class="filterContainer">
+                    <div class="row template-filter w-filter">
+                      <div class="col-xs-10 title"><h4></h4></div>
+                    </div>
+                  </div>
+                  <form id="locFilterAdd">
+                    <input type="text" class="form-control typeahead" id="locFilterAddInput" placeholder="Add a Filter" data-provide="typeahead" autocomplete="off">
+                    <input type="submit" class="btn btn-primary col-xs-12" value="Create Filter" style="margin-top:5px;height:30px"/>
+                  </form>
+                  <p class="notice dne w-white"> We're sorry, you can't make a filter for that location yet because it hasn't been posted about on Wobetto.</p>
+                  <p class="notice dup w-white">You already created that filter! Click on it to turn it on and off.</p>
+                  <p class="notice limit w-white">Sorry, you can only create 5 location filters at time.</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <p class="w-text">Let's add some of your favorite study places as filters. Click on them to turn them <span class="user-entry">blue</span> That means they're on.</p>
+                <p class="w-text-2">Don't worry if a location isn't available. It just means no one has posted about that location. You can add more location filters later too.</p>
+                <button class="btn btn-primary next"><h2>Continue</h2></button>
+              </div>
+            </div> <!-- SECTION 5 -->
+            <div class="row section section-6">
+              <div class="col-sm-12">
+                <p class="w-text">Wobetto allows you to customize your searches by turning on different filters in any combination, so you find groups for the classes that matter in places that matter. </p>
+                <div class="col-sm-12 fp">
+                  <div class="col-sm-2 col-sm-offset-3 col-xs-3 col-xs-offset-2 filterIcons">
+                      <i style="margin:0 auto" class="fa fa-book fa-2x fa-border next" data-toggle="tooltip" data-placement="bottom" title="Filter by class"></i>
+                  </div>
+                  <div class="col-sm-2 col-xs-3 filterIcons">
+                      <i style="margin:0 auto" class="fa fa-location-arrow fa-2x fa-border next" data-toggle="tooltip" data-placement="bottom" title="Filter by location"></i>
+                  </div>
+                  <div class="col-sm-2 col-xs-3 filterIcons">
+                      <i style="margin:0 auto" class="fa fa-font fa-2x fa-border next" data-toggle="tooltip" data-placement="bottom" title="Filter by a phrase"></i>
+                  </div>
+                </div>
+                <p class="w-text">In additon to class and location filters, you can also create phrase filters.</p>
+                <div class="col-sm-2 col-sm-offset-5">
+                  <button class="btn btn-primary next"><h2>Continue</h2></button>
+                </div>
+              </div>
+            </div> <!-- SECTION 6 -->
+            <div class="row section section-7">
+              <div class="col-sm-12">
+                <p class="w-text">Use this box to create posts for new Study Groups. Clicking on it will open up a blog-style box that allows you to set things like the class you're working on and place you're at. You can also indicate a limit on the number of people to join if you don't have tons of space.</p>
+              </div>
+              <div class="row" id="createpost">
+                <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 blue-bar"></div>
+                <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 well minimized" id="new-post-bar">
+                  <h2 class="text-muted text-left untoggle"> Work Better Together... </h2>
+                </div>
+              </div>
+              <div class="col-sm-offset-5 col-sm-3">
+                <button class="btn btn-primary next"><h2>Continue</h2></button>
+              </div>
+            </div> <!-- SECTION 7 -->
+            <div class="row section section-8">
+              <div class="col-sm-12">
+                <p class="w-text">Study group posts will look like this. You can see basic details about the group, and see the discussion by clicking the blue button. If you're interested, you can join the group or comment on their discussion page.</p>
+                <p class="w-text-2">When you create posts, or join them, you'll see a
+                    <button type="submit" class="btn btn-success toggle goToGroup">View Your Group</button> button instead, and link in your side bar to the left.</p>
+                <button class="btn btn-primary next"><h2>Continue</h2></button>
+                <br>
+              </div>
+              <div class ="col-sm-12" style="margin-top:20px">
+                <div class="post">
+                  <div id="title" class="row">
+                    <div class="col-sm-10 col-xs-10"><h1 style="text-align:left">Learning about Wobetto</h1></div>
+                    <div class="col-sm-2 col-xs-2"><img class="img-responsive img-circle" src=""/></div>
+                  </div> <!--title-->
+                  <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1" id="postDetails">
+                      <div class="col-xs-12"> <h7 id="nametime" data-time="">Webster W. | Just Now</h7></div>
+                      <div class="col-xs-12">
+                        <div id="posttext">
+                           <h5>Woof! Wobetto is an easy way to find people near you who you can study with. Why work alone when we Work Better Together?</h5>
+                        </div> <!--posttext-->
+                        <div id="lowerDetails">
+                          <h7><i class='fa fa-book'></i> Wobetto 101 | <i class='fa fa-location-arrow'></i> Everywhere</h7>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="join" class="row">
+                    <div class="col-sm-4"><button type="submit" class="btn btn-primary toggle join">See Discussion</button></div>
+                  </div>
+                  <div class = "col-md-12" style="height:5px;"></div>
+                </div> <!--/post-->
+              </div>
+            </div> <!-- SECTION 8 -->
+            <div class="row section section-9">
+              <div class="col-sm-12">
+                <p class="w-text" style="margin-top:100px">Keep track of all your activity on Wobetto with the notifications feed on the top left side of the screen. These mini-feed will provide links to group pages so you can easily find important groups again.</p>
+                <button class="btn btn-primary next"><h2>Continue</h2></button>
+              </div>
+            </div> <!-- SECTION 9 -->
+            <div class="row section section-10">
+              <div class="col-sm-12">
+                <p class="w-text">Did you validate your email yet? If not, please go to your email account that you signed up with and click on the link to confirm your email. Then, click the button below to be taken to your account.</p>
+                <div class="col-sm-3 col-sm-offset-4">
+                  <button class="btn btn-primary w-start"><h2>Start Using Wobetto!</h2></button>
+                </div>
+              </div>
+            </div> <!-- SECTION 10 -->
+
+            
+
+          </div>  <!--/postholder-->
+        </div> <!--/postfeed-->
+      </div> <!--/content-->
+
+    </div><!--body-->
+    </div><!-- /.container -->
+
+    <script src="jquery-ui/external/jquery/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/autogrow.min.js"></script>
+    <script src="js/bootstrap3-typeahead.min.js"></script>
+
+    <script type="text/javascript" src="js/tutorial.js"></script>
+    <!--proprietary scripts -->
+    <!-- <script src="js/bst.js"></script> -->
+    <!-- <script src="js/post.js"></script> -->
+    <!--<script src="js/sidebar.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/main.js"></script> -->
+
+  </body>
+</html>

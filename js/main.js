@@ -39,7 +39,8 @@ function buildInitialData() {
       $("input#classFilterAddInput").typeahead({source: response.classes});
       $("#new-post-bar #new-post-class").typeahead({source: response.classes});
 
-      for(var i = 0; i < response.activePosts.length; ++i)
+      
+      for(var i = response.activePosts.length-1; i >= 0; --i)
         createActiveLink(response.activePosts[i].title, response.activePosts[i].postId);
 
       setActivePostHandler();

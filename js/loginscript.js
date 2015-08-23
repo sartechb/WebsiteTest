@@ -13,9 +13,9 @@ Parse.Cloud.run("functionNameHere", {data:here}, {
   }
 });
 */
-
-if(Parse.User.current() != undefined)
-  window.location.href = "http://sartechb.github.io/WebsiteTest/index.html";
+var user = Parse.User.current();
+if(user != null)
+  window.location.href = "index.html";
 
 
 var rand = Math.ceil((1 - Math.random())*7);

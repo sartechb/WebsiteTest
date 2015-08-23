@@ -1,0 +1,40 @@
+.w-subtitle {
+	color:white;
+	font-size:3em;
+}
+
+.w-title {
+	text-align:left;
+	font-size:4em;
+	color:white;
+}
+
+.center-me {
+	margin-top:15%;
+}
+
+.w-text {
+	color:white;
+	font-size: 2em;
+}
+
+.w-text-2 {
+	font-size: 1.5em;
+	color:white;
+}
+
+.w-white {
+	color: white
+}
+
+.section {
+	display: none;
+}
+
+.w-center {
+	margin:0 auto;
+}
+
+.w-filter {
+	background-color: #0488C3;
+}

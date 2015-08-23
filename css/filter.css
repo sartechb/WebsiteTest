@@ -42,7 +42,8 @@ body.lg .modal-dialog, body.md .modal-dialog {
 	outline-width: 0;
 }
 
-.modal-body.filterMenu .container .row {
+.modal-body.filterMenu .container .row,
+.modal-body.filterMenu .filterContainer .row  {
 	background-color: #BEC9D2;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -50,7 +51,12 @@ body.lg .modal-dialog, body.md .modal-dialog {
 	margin-top: 5px;
 	cursor: pointer;
 }
-.modal-body .container .row.active {
+
+.modal-body.filterMenu .filterContainer .row {
+	opacity: 1.0;
+}
+.modal-body .container .row.active,
+.modal-body .filterContainer .row.active {
 	background-color: #0488C3;
 	opacity: 1.0;
 }
@@ -130,7 +136,7 @@ body.xs .modal-body .topitem {
 	margin-top: 10px;
 }
 
-.modal-body.newStr span.user-entry {
+span.user-entry {
 	font-weight: bold;
 	text-decoration: underline;
 	color:white;
