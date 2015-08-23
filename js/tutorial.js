@@ -46,6 +46,24 @@ $(".section-9 .next").click(function () {
 	$("#active-example").fadeOut(300);
 });
 
+$(".section-1 .skipTutorial").click({A:1,B:10}, secA_to_secB);
+$(".section-3 .back").click({A:3,B:2}, secA_to_secB);
+$(".section-5 .back").click({A:5,B:4}, secA_to_secB);
+$(".section-6 .back").click({A:6,B:5}, secA_to_secB);
+$(".section-7 .back").click({A:7,B:6}, secA_to_secB);
+$(".section-8 .back").click(function () {
+	var N = {};
+	N.data = {A:8,B:7};
+	secA_to_secB(N);
+	$("#active-example").addClass("template-active-post");
+});
+$(".section-9 .back").click(function () {
+	var N = {};
+	N.data = {A:9,B:8};
+	secA_to_secB(N);
+	$("#notificationfeed").fadeOut(300);
+});
+
 //Send User to account if validated
 $(".w-start").click(function() {
 	app.user.fetch({

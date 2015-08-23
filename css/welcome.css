@@ -27,6 +27,11 @@
 	color: white
 }
 
+.skipTutorial h2,
+button.back h2 {
+	color: black;
+}
+
 .section {
 	display: none;
 }
