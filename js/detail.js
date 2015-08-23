@@ -153,6 +153,7 @@ function createDetailPost(post) {
       }
     }, error: function(error) {console.log(error);}
   });
+  applyEditPostHandler();
   $("#template-post").remove();
   
   
