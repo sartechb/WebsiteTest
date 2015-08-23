@@ -370,7 +370,7 @@ $("a#logout").click(function (e) {
     //alert("ehh");
     Parse.User.logOut();
     console.log("logging out");
-    window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
+    window.location.href = "login.html";
 });
 
 $('[data-toggle="tooltip"]').tooltip();
