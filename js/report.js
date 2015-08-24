@@ -4,6 +4,7 @@ $(".post .report-me").click(function (e) {
   app.toReport.flaggedPost = post.attr("id");
 }); 
 
+
 $("#reportMenu ul li.bucket").click(function (e) {
   var offense = $(e.target);
   $("#reportMenu ul li").removeClass("selected", 200);

@@ -195,9 +195,9 @@ function createPost(post, set, append, postBefore, glow) {
     to_insert.find(".join").text("View Your Group");
     to_insert.find(".join").removeClass("join btn-primary").addClass("goToGroup btn-success");
   }
-  // if(post.isUserAuthor) {
-  //   to_insert.find("div.report-me").remove();
-  // }
+  if(post.isUserAuthor) {
+    to_insert.find("div#report").remove();
+  }
   if(glow) {
     to_insert.addClass("glow");
     setTimeout(function() {$(".post.glow").removeClass("glow", 1000);}, 3000);
