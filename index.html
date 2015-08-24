@@ -150,7 +150,7 @@
               </form>
             </div>
             <div class="row">
-              <p class="notice text-danger">Oops! You need to fill in all the information to confirm this new location.</p>
+              <p class="notice text-danger">Oops! You need to fill in all of the information to confirm this new location.</p>
             </div>
           </div>
         </div>
@@ -169,7 +169,7 @@
           <div class="container">
             <div class="row">
               <div class="col-xs-12">
-                <p>Hey! Thanks for teaching Wobetto about new a class. There are so many different courses at a school and we're glad to add <span class="user-entry"></span> to our list! We'd just like you to confirm some information so we can get it right:</p>
+                <p>Hey! Thanks for telling Wobetto about new a class. There are so many different courses at a school and we're glad to add <span class="user-entry"></span> to our list! We'd just like you to confirm some information so we can get it right:</p>
               </div>
             </div>
             <div class="row">
@@ -181,7 +181,7 @@
                 </div>
                 <div class="col-sm-6 topitem">
                   <p> A class number or name that people use: </p>
-                  <p class="text-muted"><small>Ex. "101", "281", "Thermodynamics"</small></p>
+                  <p class="text-muted"><small>Ex. “101” for “PSYCH 101”</small></p>
                   <input type="text" id="newClassStringLong" placeholder="Number or Name" class="form-control">
                 </div>
                 <div class="col-sm-4 col-sm-offset-8 topitem">
@@ -193,7 +193,7 @@
               </form>
             </div>
             <div class="row">
-              <p class="notice text-danger">Oops! You need to fill in all the information to confirm this new location.</p>
+              <p class="notice text-danger">Oops! You need to fill in all the information to confirm this new class.</p>
             </div>
           </div>
         </div>
@@ -206,14 +206,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="reportModalTitle">Tell us what's wrong</h4>
+          <h4 class="modal-title" id="reportModalTitle">Tell us what's wrong.</h4>
         </div>
         <div class="modal-body">
-          <p>We try to make your experience on Wobetto focused and effective. But in community settings, unintended situations can arise. Please let us know what's wrong and we'll try to resolve this issue as quickly as possible. Thanks for supporting Wobetto's mission of the community helping itself!</p>
+          <p>We try to make your experience on Wobetto focused and effective. Unfortunately, unintended situations can arise. Please let us know what's wrong and we'll try to resolve this issue as quickly as possible.</p>
           <ul class='list-group'>
-            <li class='list-group-item small offensive bucket'>This post has offensive content</li>
-            <li class='list-group-item small badPost bucket'>This post shouldn't be on Wobetto</li>
-            <li class='list-group-item small user bucket'>This user is posting offensive or annoying things</li>
+            <li class='list-group-item small offensive bucket'>This post has offensive content.</li>
+            <li class='list-group-item small badPost bucket'>This post shouldn't be on Wobetto.</li>
+            <li class='list-group-item small user bucket'>This user is posting offensive or annoying things.</li>
             <li class='list-group-item small other'>Something other than the above:
               <form id="reportMenu-form" class="form-inline" style="min-height:50px">
                 <div class="col-sm-10 col-sm-offset-1">
@@ -223,8 +223,8 @@
               </form>
             </li>
           </ul>
-          <p class="notice text-danger">Take a second to confirm that you really want to report this <button class="btn btn-danger report-confirm">Report</button></p>
-          <p class="success text-success">Your report was filed. <i class="fa fa-check"></i></p>
+          <p class="notice text-danger">Once the report has been filed it can’t be undone.  <button class="btn btn-danger report-confirm">Report</button></p>
+          <p class="success text-success">Thanks! Wobetto has been notified of the issue. <i class="fa fa-check"></i></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
@@ -245,7 +245,7 @@
         <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
         <div id="notificationfeed">
             <ul class="list-group">
-              <li class="noNew">No Recent Notifications</li>
+              <li class="noNew">No recent notifications</li>
               <li class="template-note new"><a style="cursor:pointer"></a></li>
              <!--  <li class="viewed"><a href="http://www.google.com" target="_blank"> Annette O. commented on Binary Numbers | 2 hours ago </a></li>
               <li class=""><a href="http://www.google.com" target="_blank"> Issac N. joined on Binary Numbers | 2 hours ago </a></li> -->
@@ -284,17 +284,17 @@
               <hr class="toggle">
               <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Add a message here"></textarea>
               <hr class="toggle">
-              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="top" title="Let people know what building you want to meet in">
-                <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where to Meet?" autocomplete="off" data-provide="typeahead" id="new-post-place">
+              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="top" title="Let people know what building you want to meet in.">
+                <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where to meet?" autocomplete="off" data-provide="typeahead" id="new-post-place">
               </div>
-              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="top" title="Let people know what class you'd like to meet for">
-                <input type="text" name="post-class" class="typeahead toggle flat form-control" placeholder="Class you're In?" autocomplete="off" data-provide="typeahead" id="new-post-class">
+              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="top" title="Let people know what class you'd like to meet for.">
+                <input type="text" name="post-class" class="typeahead toggle flat form-control" placeholder="Class you're in?" autocomplete="off" data-provide="typeahead" id="new-post-class">
               </div>
-              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="bottom" title="Optional: Add any landmarks to help others find you">
+              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="bottom" title="Optional: Add any landmarks to help others find you.">
                 <input type="text" name="post-detail" class="toggle flat form-control" placeholder="Landmarks?" autocomplete="off" id="new-post-detail">
               </div>
-              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="bottom" title="Optional: if you have limited space, indicate how many can join you">
-                <input type="number" name="post-limit" class="toggle flat form-control" placeholder="How Many?" autocomplete="off" min="1" max="10" id="new-post-limit">
+              <div class="col-xs-12 col-md-6 postInput" data-toggle="tooltip" data-placement="bottom" title="Optional: if you have limited space, indicate how many can join you.">
+                <input type="number" name="post-limit" class="toggle flat form-control" placeholder="How many students?" autocomplete="off" min="1" max="10" id="new-post-limit">
               </div>
               <div class="col-xs-12 col-md-4">
                 <button type="submit" class="btn btn-primary toggle">POST</button>
@@ -324,7 +324,7 @@
           </div>
         </div>
         <div class="row filter-notify">
-          <div class="col-xs-8 col-xs-offset-2"><h4>You're viewing Posts from your school. <span class="leader">They're being filtered by </span><span class="class-leader">the class(es) </span><span class="class-section"></span><span class="and-loc"> and </span><span class="loc-leader">the location(s) </span> <span class="loc-section"></span><span class="and-text"> and </span><span class="text-leader">the phrase(s) </span><span class="text-section"></span></h4></div>
+          <div class="col-xs-8 col-xs-offset-2"><h4>You're viewing Posts from your school <span class="leader">. They're being filtered by </span><span class="class-leader">the class(es) </span><span class="class-section"></span><span class="and-loc"> and </span><span class="loc-leader">the location(s) </span> <span class="loc-section"></span><span class="and-text"> and </span><span class="text-leader">the phrase(s) </span><span class="text-section"></span>.</h4></div>
         </div>
 
 
@@ -340,7 +340,7 @@
               </svg>
             </div>
             <div id="empty-feed" class="col-xs-8 col-xs-offset-2" style="margin-top:50px">
-              <h4>Oops! It seems there aren't any posts that meet your criteria! Your search may be too specific or no posts have been made within the last week that match your search. Try broadening your search, or make your own post!
+              <h4>Oops! It seems there aren't any posts that meet your criteria! Your search may be too specific or no posts have been made within the last week. Try broadening your search, or make your own post!
               </h4>
             </div>
             <!-- POST TEMPLATE MODEL -->

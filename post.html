@@ -73,10 +73,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="joinFailureTitle">Wow this is Popular!</h4>
+          <h4 class="modal-title" id="joinFailureTitle">Wow, this is popular!</h4>
         </div>
         <div class="modal-body">
-          <p>Hey there. It looks like <span class="post-owner-name"></span>'s post was really popular with other Wobetto members. <span class="post-owner-name"></span> only had room for <span class="limit"></span> where he or she was studying. But don't be discouraged - there's a good chance other people wanted to join too, so make a new post and start your own study group where you are to connect with them!</p>
+          <p>Hey there, it looks like <span class="post-owner-name"></span>'s group is full. He or she only had room for <span class="limit"></span> members. Don’t be discouraged, there may be others who still need group members. You can try joining another group, or start your own!</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
@@ -90,14 +90,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="reportModalTitle">Tell us what's wrong</h4>
+          <h4 class="modal-title" id="reportModalTitle">Tell us what's wrong.</h4>
         </div>
         <div class="modal-body">
-          <p>We try to make your experience on Wobetto focused and effective. But in community settings, unintended situations can arise. Please let us know what's wrong and we'll try to resolve this issue as quickly as possible. Thanks for supporting Wobetto's mission of the community helping itself!</p>
+          <p>We try to make your experience on Wobetto focused and effective. Unfortunately, unintended situations can arise. Please let us know what's wrong and we'll try to resolve this issue as quickly as possible.</p>
           <ul class='list-group'>
-            <li class='list-group-item small offensive bucket'>This post has offensive content</li>
-            <li class='list-group-item small badPost bucket'>This post shouldn't be on Wobetto</li>
-            <li class='list-group-item small user bucket'>This user is posting offensive or annoying things</li>
+            <li class='list-group-item small offensive bucket'>This post has offensive content.</li>
+            <li class='list-group-item small badPost bucket'>This post shouldn't be on Wobetto.</li>
+            <li class='list-group-item small user bucket'>This user is posting offensive or annoying things.</li>
             <li class='list-group-item small other'>Something other than the above:
               <form id="reportMenu-form" class="form-inline" style="min-height:50px">
                 <div class="col-sm-10 col-sm-offset-1">
@@ -107,8 +107,8 @@
              </form>
            </li>
          </ul>
-         <p class="notice text-danger">Take a second to confirm that you really want to report this <button class="btn btn-danger report-confirm">Report</button></p>
-         <p class="success text-success">Your report was filed. <i class="fa fa-check"></i></p>
+         <p class="notice text-danger">Once the report has been filed it can’t be undone. <button class="btn btn-danger report-confirm">Report</button></p>
+         <p class="success text-success">Thanks! Wobetto has been notified of the issue.<i class="fa fa-check"></i></p>
        </div>
        <div class="modal-footer">
         <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
@@ -122,7 +122,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="editModalTitle">Edit this Post</h4>
+        <h4 class="modal-title" id="editModalTitle">Edit this post</h4>
       </div>
       <div class="modal-body">
         <h4 style="color:black">Make edits to your post here. Then, click the save button at the bottom to save your changes. To cancel editing and discard any changes, close the dialog without saving.</h4>
@@ -135,10 +135,10 @@
               <textarea type="text" form="new-post" name="post-content" id="new-post-content" class="toggle flat full" placeholder="Add a message here"></textarea>
               <hr class="toggle">
               <div class="col-xs-12 col-md-6 postInput">
-                <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where to Meet?" autocomplete="off" data-provide="typeahead" id="new-post-place">
+                <input type="text" name="post-place" class="typeahead toggle flat form-control" placeholder="Where to meet?" autocomplete="off" data-provide="typeahead" id="new-post-place">
               </div>
               <div class="col-xs-12 col-md-6 postInput">
-                <input type="text" name="post-class" class="typeahead toggle flat form-control" placeholder="Class you're In?" autocomplete="off" data-provide="typeahead" id="new-post-class">
+                <input type="text" name="post-class" class="typeahead toggle flat form-control" placeholder="Class you're in?" autocomplete="off" data-provide="typeahead" id="new-post-class">
               </div>
               <div class="col-xs-12 col-md-6 postInput">
                 <input type="text" name="post-detail" class="toggle flat form-control" placeholder="Landmarks?" autocomplete="off" id="new-post-detail">
@@ -169,7 +169,7 @@
         <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
         <div id="notificationfeed">
             <ul class="list-group">
-              <li class="noNew">No Recent Notifications</li>
+              <li class="noNew">No recent notifications</li>
               <li class="template-note new"><a style="cursor:pointer"></a></li>
              <!--  <li class="viewed"><a href="http://www.google.com" target="_blank"> Annette O. commented on Binary Numbers | 2 hours ago </a></li>
               <li class=""><a href="http://www.google.com" target="_blank"> Issac N. joined on Binary Numbers | 2 hours ago </a></li> -->
@@ -208,7 +208,7 @@
                 </svg>
               </div>
               <div id="empty-feed" class="col-xs-8 col-xs-offset-2" style="margin-top:50px">
-                <h4>Oops! It seems that the post you're looking for has been deleted, or doesn't exist anymore :( We're really sorry about this. You can return to browsing more posts by clicking Wobetto logo at the top of the page.</h4>
+                <h4>Oops! It seems that the post you're looking for has been deleted or doesn't exist anymore :( You can return to the post feed by clicking the Wobetto logo at the top of the page.</h4>
               </div>
               <!-- POST TEMPLATE MODEL -->
               <div class="post template-post" id="template-post">
