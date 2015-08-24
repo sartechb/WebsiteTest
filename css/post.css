@@ -141,7 +141,7 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
 #report {
 	cursor: pointer;
 	padding: 0;
-	margin-left: px;
+	
 }
 
 #report:hover {
@@ -153,9 +153,7 @@ box-shadow: 0px 0px 31px 10px rgba(255,255,255,0.85);
 	font-size: 1.4em;
 }
 
-#join #report {
-	margin-left: 50px;
-}
+
 
 #reportMenu ul li:hover, 
 #reportMenu ul li.selected {
