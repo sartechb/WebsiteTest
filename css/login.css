@@ -88,13 +88,14 @@ footer h3, p {
 }
 
 #login-box{
-    margin-top:0%;
+    margin-top:25px;
     /* background-color: white; */
     /* border-radius: 0; */
 }
 #signup-box{
     padding-bottom:0;
     margin-bottom:25px;
+    margin-top:25px;
 }
 #divider{
 height:;
@@ -158,7 +159,7 @@ box-shadow: 3px 3px 8px -3px rgba(87,70,87,0.75);
 .form-control{
     text-align:center;
     float: right;
-    width: 75%;
+    width: 70%;
 }
 html{
     overflow: scroll;
