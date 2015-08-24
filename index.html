@@ -298,7 +298,7 @@
               </div>
               <div class="col-xs-12 col-md-4">
                 <button type="submit" class="btn btn-primary toggle">POST</button>
-                <button type="button" class="btn btn-default toggle" id="post-cancel">NVM</button>
+                <button type="button" class="btn btn-default toggle" id="post-cancel">CANCEL</button>
               </div>
             </form>
           </div>
@@ -363,7 +363,11 @@
                 </div>
               </div>
       			  <div id="join" class="row">
-                <div class="col-sm-4"><button type="submit" class="btn btn-primary toggle join">See Discussion</button></div>
+                <div class="col-sm-4"><button type="submit" class="btn btn-primary toggle join">See Discussion</button>
+                </div>
+                <div class="col-xs-4 col-md-3 text-muted" style="margin-top:7px;cursor:pointer" id="report" >
+                  <div class="report-me" data-toggle="modal" data-target="#reportMenu"><i class="fa fa-flag"></i> Report</div>
+                </div>
               </div>
       			  <!-- <div id="following" class="row">
                 <div class="col-xs-3 text-muted" style="text-align:left" id="report" >
@@ -392,6 +396,7 @@
     <script src="js/post.js"></script>
     <script src="js/sidebar.js"></script>
     <script src="js/filter.js"></script>
+    <script type="js/report.js"></script>
     <script src="js/main.js"></script>
 
   </body>
