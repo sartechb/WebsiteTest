@@ -13,7 +13,7 @@ Parse.Cloud.run("functionNameHere", {data:here}, {
 */
 var user = Parse.User.current();
 if(user != null)
-  window.location.href = "index.html";
+  window.location.href = "home.html";
 
 
 var rand = Math.ceil((1 - Math.random())*7);

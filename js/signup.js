@@ -2,7 +2,7 @@ var app = {};
 app.user = Parse.User.current();
 
 if(app.user != null)
-	window.location.href = "login.html";
+	window.location.href = "home.html";
 
 
 Parse.Cloud.run("getSchoolNames", {}, {
@@ -80,7 +80,7 @@ $("form#signup").submit(function (e) {
         user.signUp(null, {
           success: function (user) { 
             resp = user;
-            window.location.href ="index.html";
+            window.location.href ="home.html";
            // console.log("Did it!");
            // alert("did it");
           },
