@@ -2,7 +2,7 @@ var app = {};
 app.user = Parse.User.current();
 
 if(app.user != null)
-	window.location.href = "login.html";
+	window.location.href = "home.html";
 
 $("form#login").submit(function (e) {
 	e.preventDefault();
