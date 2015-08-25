@@ -1,4 +1,3 @@
-
 /*
  * The app variable will be a global application variable.
  * One can use the app variable to save debug data and
