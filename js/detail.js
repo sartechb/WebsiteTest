@@ -8,7 +8,7 @@ console.log(window.location.hash.substr(1));
 if(app.user == null) {
 	window.location.href = "login.html";
 } else if (!window.location.hash.length) {
-	window.location.href = "index.html";
+	window.location.href = "home.html";
 } 
 
 app.thisPost = window.location.hash.substr(1);
@@ -237,7 +237,7 @@ $("#deletePostConf .delete").click(function (e) {
   Parse.Cloud.run("deletePost", {postId:app.thisPost}, {
       success: function (response) {
         if(response.success) {
-          window.location.href = "index.html";
+          window.location.href = "home.html";
         } else {
           console.log("an error occurred when deleting the post");
         }
@@ -248,9 +248,7 @@ $("#deletePostConf .delete").click(function (e) {
 $("#leavePostConf .leave").click(function (e) {
   Parse.Cloud.run("leavePost", {postId:app.thisPost}, {
       success: function (response) {
-        var url = 
-          //"file:///Users/gapoorva/Documents/sandbox/trunk/Dev/StudybuddyTest/WebsiteTest/index.html";
-           "index.html";
+        var url = "home.html";
         window.location.href = url;
       }, error: function(error) {console.log(error);}
     });
