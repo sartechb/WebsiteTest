@@ -140,6 +140,8 @@ $("#newLocationStringMenu #newLocationStringCancel").click(function() {
   $("#newLocationStringMenu input[type='text']").val("");
   app.newClassString.is = false;
   $('#newLocationStringMenu').modal('hide');
+  $("#new-post button").prop("disabled", false);
+  $("#new-post button[type='submit']").text("POST");
 });
 
 $("#newClassStringMenu").on("show.bs.modal", function (e){
@@ -173,6 +175,8 @@ $("#newClassStringMenu #newClassStringCancel").click(function() {
   $("#newClassStringMenu input[type='text']").val("");
   app.newClassString.is = false;
   $('#newClassStringMenu').modal('hide');
+  $("#new-post button").prop("disabled", false);
+  $("#new-post button[type='submit']").text("POST");
 });
 
 function createPost(post, set, append, postBefore, glow) {
