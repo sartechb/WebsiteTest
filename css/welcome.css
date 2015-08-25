@@ -44,6 +44,15 @@ button.back h2 {
 	background-color: #0488C3;
 }
 
+.w-inactive {
+	font-weight: bold;
+	text-decoration: underline;
+	color:white;
+	background-color: #BEC9D2;
+	border-radius: 3px;
+	padding: 2px 5px;
+}
+
 #notify-error {
 	color: white;
 	font-size: 1.2em;

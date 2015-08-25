@@ -41,9 +41,9 @@
         <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
         <div id="notificationfeed">
             <ul class="list-group">
-              <li class="new"><a style="cursor:pointer" class="note">Webster W. joined "My First Post"</a></li>
-              <li class="new"><a style="cursor:pointer" class="note">Webster W. commented on "My First Post"</a></li>
-              <li class="new"><a style="cursor:pointer" class="note">Matt C. joined "My First Post"</a></li>
+              <li class="new"><a style="cursor:pointer" class="note" style="cursor:default">Webster W. joined "My First Post"</a></li>
+              <li class="new"><a style="cursor:pointer" class="note" style="cursor:default">Webster W. commented on "My First Post"</a></li>
+              <li class="new"><a style="cursor:pointer" class="note" style="cursor:default">Matt C. joined "My First Post"</a></li>
              <!--  <li class="viewed"><a href="http://www.google.com" target="_blank"> Annette O. commented on Binary Numbers | 2 hours ago </a></li>
               <li class=""><a href="http://www.google.com" target="_blank"> Issac N. joined on Binary Numbers | 2 hours ago </a></li> -->
             </ul>
@@ -65,7 +65,7 @@
             <h3>My Groups</h3>
             <div class = "col-md-12" id="empty"></div>
             <a href="" class="template-active-post"><div class = "col-md-12 active-post "><h3></h3></div></a>
-            <a href="" class="template-active-post" id="active-example"><div class ="col-md-12 active-post"><h3>My First Post</h3></div></a>
+            <a href="" class="template-active-post" id="active-example" style="cursor:default"><div class ="col-md-12 active-post"><h3>My First Post</h3></div></a>
           </div><!--active posts row-->
         </div>
        </div> <!--holdcontent-->
@@ -117,7 +117,7 @@
                 </div>
               </div>
               <div class="col-sm-6">
-                <p class="w-text">LLet's start by adding your classes as filters. Click on a filter to turn it on. Active class filters show up <span class="user-entry">blue</span>.</p>
+                <p class="w-text">Let's start by adding your classes as filters. Click on a filter to turn it on. Active class filters show up <span class="user-entry">blue</span>. Inactive ones will be <span class="w-inactive">gray</span>.</p>
                 <p class="w-text-2">Don't worry if a class isn't available. It just means no one has posted about that class yet. You can add more class filters later.</p>
                 <button class="btn btn-default back w-center"><h2>Back</h2></button>
                 <button class="btn btn-primary next"><h2>Continue</h2></button>
@@ -152,7 +152,7 @@
                 </div>
               </div>
               <div class="col-sm-6">
-                <p class="w-text">Let's start by adding your locations as filters. Click on a filter to turn it on. Active location filters show up <span class="user-entry">blue</span>.</p>
+                <p class="w-text">Let's start by adding your locations as filters. Click on a filter to turn it on. Active location filters show up <span class="user-entry">blue</span>. Inactive ones will be <span class="w-inactive">gray</span>.</p>
                 <p class="w-text-2">Don't worry if a location isn't available, it just means no one has posted about that location yet. You can add more location filters later.</p>
                 <button class="btn btn-default back w-center"><h2>Back</h2></button>
                 <button class="btn btn-primary next"><h2>Continue</h2></button>
@@ -175,7 +175,7 @@
                   </div></div>
 
                 <p class="w-text">In additon to class and location filters, you can also create phrase filters.</p>
-                <div class="col-sm-2 col-sm-offset-5">
+                <div class="col-sm-4 col-sm-offset-4">
                   <button class="btn btn-default back w-center"><h2>Back</h2></button>
                   <button class="btn btn-primary next"><h2>Continue</h2></button>
                 </div>
@@ -183,7 +183,7 @@
             </div> <!-- SECTION 6 -->
             <div class="row section section-7">
               <div class="col-sm-12">
-                <p class="w-text">Use this box to create posts for new study groups. Clicking on it will open up a blog-style layout that allows you to specify various things, such as classes, where you’re working, and how many people you’d like to join you.</p>
+                <p class="w-text">Use this box to create posts for new study groups. In the app, clicking on it will open up a blog-style layout that allows you to specify various things, such as classes, where you’re working, and how many people you’d like to join you.</p>
               </div>
               <div class="row" id="createpost">
                 <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1 blue-bar"></div>
@@ -191,18 +191,16 @@
                   <h2 class="text-muted text-left untoggle"> Work Better Together... </h2>
                 </div>
               </div>
-              <div class="col-sm-offset-4 col-sm-4">
-                <button class="btn btn-default back w-center"><h2>Back</h2></button>
-                <button class="btn btn-primary next"><h2>Continue</h2></button>
+              <div class="col-sm-4 col-sm-offset-4">
+                  <button class="btn btn-default back w-center"><h2>Back</h2></button>
+                  <button class="btn btn-primary next"><h2>Continue</h2></button>
               </div>
             </div> <!-- SECTION 7 -->
             <div class="row section section-8">
               <div class="col-sm-12">
                 <p class="w-text">Study group posts will look like this. You can see basic details about the group and view the discussion by clicking the blue button. If you're interested, you can join the group or comment on the discussion page.</p>
                 <p class="w-text-2">When you create posts, or join them, you'll see a
-                    <button type="submit" class="btn btn-success toggle goToGroup">View Your Group</button> button instead, and link in your sidebar to the left.</p>
-                  <button class="btn btn-default back w-center"><h2>Back</h2></button>
-                  <button class="btn btn-primary next"><h2>Continue</h2></button>
+                    <button type="submit" class="btn btn-success toggle goToGroup" style="cursor:default">View Your Group</button> button instead, and link in your sidebar to the left.</p>
                 <br>
               </div>
               <div class ="col-sm-12" style="margin-top:20px">
@@ -225,15 +223,20 @@
                     </div>
                   </div>
                   <div id="join" class="row">
-                    <div class="col-sm-4"><button type="submit" class="btn btn-primary toggle join">See Discussion</button></div>
+                    <div class="col-sm-4"><button type="submit" class="btn btn-primary toggle join" style="cursor:default">See Discussion</button></div>
                   </div>
                   <div class = "col-md-12" style="height:5px;"></div>
                 </div> <!--/post-->
               </div>
+              <div class="col-sm-offset-4 col-sm-4">
+                <button class="btn btn-default back w-center"><h2>Back</h2></button>
+                <button class="btn btn-primary next"><h2>Continue</h2></button>
+              </div>
             </div> <!-- SECTION 8 -->
             <div class="row section section-9">
               <div class="col-sm-12">
-                <p class="w-text" style="margin-top:100px">Keep track of all your activity on Wobetto with the notifications feed on the top left side of the screen. This mini-feed will provide links to group pages so you can easily find important groups again.</p>
+                <p class="w-text" style="margin-top:100px">Keep track of all your activity on Wobetto with the notifications feed on the top right side of the screen. This mini-feed will provide links to group pages so you can easily find important groups again.</p>
+                <p class="w-text">If you want to return to the homescreen later, click the Wobetto Logo in the top left corner.</p>
                 <button class="btn btn-default back w-center"><h2>Back</h2></button>
                 <button class="btn btn-primary next"><h2>Continue</h2></button>
               </div>
