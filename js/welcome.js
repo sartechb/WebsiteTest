@@ -8,5 +8,5 @@ if(app.user == null)
 else
 	if(app.user.emailVerified)
 		window.location.href = "index.html";
-
+console.log("Please stop poking around");
 
