@@ -1,3 +1,5 @@
+
+
 var app = {};
 app.user = Parse.User.current();
 
@@ -10,7 +12,7 @@ $("form#login").submit(function (e) {
 	var password = $("input#password").val();
 	Parse.User.logIn(email, password, {
 		success: function (s) {
-			window.location.href="home.html";
+			window.location.href="index.html";
 		}, error: function(error) {
 			$("div.card").effect("shake", {direction:"left"}, 250);
 			$("input#email").val("");

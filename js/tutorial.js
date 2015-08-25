@@ -69,7 +69,7 @@ $(".w-start").click(function() {
 	app.user.fetch({
 		success: function(user) {
 			if(user.get("emailVerified"))
-				window.location.href = "home.html";
+				window.location.href = "index.html";
 			else
 				$("#notify-error").fadeIn(300);
 		}, error: function(error) {console.log(error);}
