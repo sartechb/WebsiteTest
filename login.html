@@ -1,0 +1,96 @@
+<html lang="en"><head>
+   <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+   <meta name="theme-color" content="#0488C3">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wobetto</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/login-new.css" rel="stylesheet">
+    <link href="css/typeahead.css" rel="stylesheet">
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <meta property="og:title" content="Wobetto"/> 
+    <meta property="og:image" content="static-assets/puppy"/> 
+    <meta property="og:description" content="We're an app to help you work better together with the people around you, and to make your life
+      less stressful"/> 
+    <meta property="og:url" content="http://www.wobetto.com"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+    <script src="jquery-ui/external/jquery/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
+    
+  </head>
+  <body>
+    <div class="modal fade" id="forgot-pass" tabindex="-1" role="dialog" aria-labelledby="forgotpassword">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            
+            <h4 class="modal-title" id="forgotpassword">Recover your password</h4>
+          </div>
+          <div class="modal-body">
+            <form id="forgot-pass-form">
+              <div class="container">
+                <p>Please enter the email address that you signed up with:</p>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <input type="text" id="forgot-email" class="form-control" placeholder="Email" style="width:100%">
+                  </div>
+                  <div class="form-group">
+                   <button type="submit" class="btn btn-primary form-control" style="margin-top:10px;width:100%">Submit</button>
+                  </div>
+                  
+                  <p class="text-danger notice">You need to enter an email</p>
+                  <p class="text-success success">We sent you an email to reset your password! Please check your inbox. Refresh this page and try again after reseting.</p>
+                  <p class="text-danger error">We didn't recognize that email address. Please be sure that it's the email you signed up with. If you keep having problems, <a href="mailto:getastudybuddy@gmail.com">shoot us an email.</a></p>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="form-group">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 top-bar">
+          <div class="access-links"><a href="login.html"> Log In </a>|<a href="signup.html"> Register </a></div>
+          <div class="social"><i class="fa fa-envelope-square"></i><i class="fa fa-facebook-square"></i><i class="fa fa-twitter-square"></i><i class="fa fa-tumblr-square"></i></div>
+        </div> <!--Navbar-->
+      </div>
+      <div class="row">
+        <a href="http://www.wobetto.com"><img class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 img-responsive mast-image" src="assets/wobettologolight.png"></a>
+      </div>
+      <div class="row">
+        <div class="card col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+          <form id="login">
+            <div class="form-group" style="margin-top:40px;">
+              <input type="email" class="form-control text-input" id="email" placeholder="email" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control text-input" id="password" placeholder="password" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <p class="text-center forgot-password" data-toggle="modal" data-target="#forgot-pass">Forgot Password?</p>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary log-in">Log In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/login.js"></script>
+  </body>
