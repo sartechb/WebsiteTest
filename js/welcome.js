@@ -1,4 +1,4 @@
-Parse.initialize("OIxxnQzpNgYpAMGuPjTjpsQaMVHsIKqUuAf28doO", "3FC4ECnN2TUrD5tFWdQIBAnyyOm9BAQ4O1GeVeIs");
+Parse.initialize("MQvT5Bq6CsU34IQBfop8fPEJLOsLybDgDMBRdFhM", "HNFXaE7aCayggyI8hyUvbk5kG2sWXH2FpMirSNyC");
 
 var app = {};
 app.user = Parse.User.current();
