@@ -1,5 +1,3 @@
-Parse.initialize("MQvT5Bq6CsU34IQBfop8fPEJLOsLybDgDMBRdFhM", "HNFXaE7aCayggyI8hyUvbk5kG2sWXH2FpMirSNyC");
-
 var app = {};
 
 //Store the current User
@@ -8,9 +6,9 @@ app.user = Parse.User.current();
 console.log(window.location.hash.substr(1));
 
 if(app.user == null) {
-	window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
+	window.location.href = "login.html";
 } else if (!window.location.hash.length) {
-	window.location.href = "http://sartechb.github.io/WebsiteTest/index.html";
+	window.location.href = "index.html";
 } 
 
 app.thisPost = window.location.hash.substr(1);

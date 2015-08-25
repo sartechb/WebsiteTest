@@ -1,5 +1,3 @@
-Parse.initialize("hkAI1bVuw3lirFps0pvRPyBGFSa7TjKJOEjYXbkF", "DtCJuQjyXYA9rMTASQc55f4ik0ixCg6KHk5iiok1");
-
 var app = {};
 app.user = Parse.User.current();
 
@@ -77,7 +75,7 @@ $("form#signup").submit(function (e) {
         user.set("username", em);
         user.set("password", pw);
         user.set("school", response);
-        user.set("pic", "assets/profile2.png");
+        user.set("pic", "profile2.png");
 
         user.signUp(null, {
           success: function (user) { 
