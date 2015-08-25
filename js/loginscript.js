@@ -1,5 +1,5 @@
 //Using Tharun's account:
-Parse.initialize("OIxxnQzpNgYpAMGuPjTjpsQaMVHsIKqUuAf28doO", "kUK3ReRjKgxRNUlpfLjn06DCvKchXfCQEcvLTOad");
+Parse.initialize("OIxxnQzpNgYpAMGuPjTjpsQaMVHsIKqUuAf28doO", "3FC4ECnN2TUrD5tFWdQIBAnyyOm9BAQ4O1GeVeIs");
 var resp;
 var errorAlert = "<div class='alert alert-danger'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
 
