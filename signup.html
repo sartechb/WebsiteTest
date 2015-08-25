@@ -28,36 +28,20 @@
     
   </head>
   <body>
-    <div class="modal fade" id="forgot-pass" tabindex="-1" role="dialog" aria-labelledby="forgotpassword">
-      <div class="modal-dialog modal-sm shift-me" role="document">
+    <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            
-            <h4 class="modal-title" id="forgotpassword">Recover your password</h4>
+            <h4 class="modal-title" id="myModalLabel">How We Use Your Information</h4>
+            <h6 class="modal-title">A Note About Privacy</h6>
           </div>
           <div class="modal-body">
-            <form id="forgot-pass-form">
-              <div class="container">
-                <p>Please enter the email address that you signed up with:</p>
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <input type="text" id="forgot-email" class="form-control" placeholder="Email" style="width:100%">
-                  </div>
-                  <div class="form-group">
-                   <button type="submit" class="btn btn-primary form-control" style="margin-top:10px;width:100%">Submit</button>
-                  </div>
-                  
-                  <p class="text-danger notice">You need to enter an email</p>
-                  <p class="text-success success">We sent you an email to reset your password! Please check your inbox. Refresh this page and try again after reseting.</p>
-                  <p class="text-danger error">We didn't recognize that email address. Please be sure that it's the email you signed up with. If you keep having problems, <a href="mailto:getastudybuddy@gmail.com">shoot us an email.</a></p>
-                </div>
-              </div>
-            </form>
+            <p>The Wobetto Team believes in keep our user's information safe, secure, and anonymous as possible. We only use your email to verify your idenity as a student within the app. We promise to never send you spam, because we don't have time for that either.</p>
+            <p>We require that you sign up for Wobetto with your first and last name, an email, and the school that you attend. In the app, we only display your name on posts and comments you make.</p>
+            <p>Basically, we keep it simple and safe. Information we collect and display is just enough for what you need find other students and collaborate. Happy Studying!</p>
           </div>
           <div class="modal-footer">
-            <div class="form-group">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -74,23 +58,40 @@
       </div>
       <div class="row">
         <div class="card col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4" style="margin-bottom:200px">
-          <form id="login">
-            <div class="form-group" style="margin-top:40px;">
+          <form id="signup">
+            <div class="form-group" style="">
+              <p class="text-center privacy" data-toggle="modal" data-target="#info">Privacy Matters</p>
+              <p class="text-center text-danger bg-danger missing">Oops! Looks like you missed something below.</p>
+              <p class="text-center text-danger bg-danger miss-match">Oops! Your passwords did not match.</p>
+              <p class="text-center text-danger bg-danger non-edu">Sorry, to preserve a great user experience, we require that you use your school email (ending in "edu") to join Wobetto. Please see "Privacy Matters".</p>
+              <p class="text-center text-danger bg-danger new-school">Sorry, Wobetto hasn't made it to your school yet! Let us know that you're interested at: <a href="mailto:wobetto@gmail.com" class="text-danger">wobetto@gmail.com</a></p>
+              <p class="text-center text-danger bg-danger signup-error">We're sorry. There was either an error registering your email, or that email was taken. Please try again later or with a different email.</p>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control text-input" id="firstName" placeholder="first name" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control text-input" id="lastName" placeholder="last name" autocomplete="off">
+            </div>
+            <div class="form-group">
               <input type="email" class="form-control text-input" id="email" placeholder="email" autocomplete="off">
             </div>
             <div class="form-group">
               <input type="password" class="form-control text-input" id="password" placeholder="password" autocomplete="off">
             </div>
             <div class="form-group">
-              <p class="text-center forgot-password" data-toggle="modal" data-target="#forgot-pass">Forgot Password?</p>
+              <input type="password" class="form-control text-input" id="confirm" placeholder="confirm password" autocomplete="off">
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary log-in">Log In</button>
+              <input type="text" class="form-control text-input typehead" id="school" placeholder="school" autocomplete="off" data-provide="typeahead">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary register">Register</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/bootstrap3-typeahead.min.js"></script>
+    <script type="text/javascript" src="js/signup.js"></script>
   </body>

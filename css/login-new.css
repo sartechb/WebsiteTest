@@ -28,6 +28,10 @@ i {
 	
 }
 
+.social a {
+	color: white;
+}
+
 .socialink{
 	display:inline-block;
 	color:#0488C3;
@@ -87,7 +91,8 @@ input.form-control.text-input {
 	color: white;
 }
 
-button.log-in {
+button.log-in,
+button.register {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	margin-top: 10px;
@@ -95,15 +100,24 @@ button.log-in {
 	font-size: 1.2em;
 }
 
-.forgot-password {
+.forgot-password,
+.privacy {
 	color:white;
 }
-.forgot-password:hover {
+.forgot-password:hover,
+.privacy:hover {
 	text-decoration: underline;
 	cursor: pointer;
 }
 
-.notice, .success, .error {
+.notice, 
+.success, 
+.error, 
+.missing,
+.miss-match,
+.non-edu,
+.new-school,
+.signup-error {
 	display: none;
 }
 
@@ -125,13 +139,13 @@ button.log-in {
 
 @media (max-width: 767px)
 {
-	.modal-dialog {
+	.shift-me {
 		margin-top: 10px;
 	}
 }
 @media (max-width: 2150px)
 {
-	.modal-dialog {
+	.shift-me {
 		margin-top: 200px;
 	}
 }
