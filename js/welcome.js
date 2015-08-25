@@ -1,5 +1,3 @@
-
-
 var app = {};
 app.user = Parse.User.current();
 
