@@ -99,7 +99,7 @@ body{
 .intro{
 	position:absolute;
 	z-index:0;
-	background-image:url("static-assets/wobettologo.png");
+	background-image:url("wobettologo.png");
 	background-attachment: fixed;
 	background-size:80vw;
 	background-repeat:no-repeat;
