@@ -47,7 +47,7 @@
             <div class="col-xs-4 col-xs-offset-2 col-sm-2 col-sm-offset-0"><a href="team.html">The Team</a></div>
           </div>
         </div>
-        <div class="row section1"><!--Be Flexible-->
+        <div class="row section1 section"><!--Be Flexible-->
           <div class="col-xs-12 col-sm-5 col-lg-6 screengrab">
             <img class="img-responsive" src="assets/puppy.png">
           </div>
@@ -58,7 +58,7 @@
             <p style="font-size:26px">Wobetto is available on any platform where a web browser is available. In the future we plan to launch dedicated mobile apps. Creating an account takes only a minute, and we’ll keep you updated on any new features to make your studying experiences as simple as possible!</p>
           </div>
         </div>
-        <div class="row section2"><!--Keep it Personal-->
+        <div class="row section2 section"><!--Keep it Personal-->
           <div class="col-xs-12 col-sm-5 col-lg-6 screengrab">
             <img class="img-responsive" src="assets/puppy.png">
           </div>
@@ -69,7 +69,7 @@
             <p style="font-size:26px">Need to find your class information ASAP, but don’t want to search through different conversation threads? Have no fear. You can search easier by simply using our class filters. Keep the clutter in your dorm room, not in your courses.</p>
           </div>
         </div>
-        <div class="row section3"><!--Instant Collaboration-->
+        <div class="row section3 section"><!--Instant Collaboration-->
           <div class="col-xs-12 col-sm-5 col-lg-6 screengrab">
             <img class="img-responsive" src="assets/puppy.png">
           </div>
@@ -80,7 +80,7 @@
             <p style="font-size:26px">Each thread has a focused class and assignment. Once you’ve found your peers, you can decide on the best location to meet and study. We help you start the conversation online, allowing your peers to become more accessible and communicating in person is easier.</p>
           </div>
         </div>
-        <div class="row section4"><!--Working Smarter-->
+        <div class="row section4 section"><!--Working Smarter-->
           <div class="col-xs-12 col-sm-5 col-lg-6 screengrab">
             <img class="img-responsive" src="assets/puppy.png">
           </div>
@@ -91,7 +91,7 @@
             <p style="font-size:26px">Let’s defeat the passive process of reading and rereading a textbook. Studies show that working in small groups, or “cooperative learning” allows students to invent new ways of learning and understanding concepts that otherwise would be lost in a lecture. Our app is designed so you can work outside of your hastily scribbled notes.</p>
           </div>
         </div>
-        <div class="row section5"><!--Build a Network-->
+        <div class="row section5 section"><!--Build a Network-->
           <div class="col-xs-12 col-sm-5 col-lg-6 screengrab">
             <img class="img-responsive" src="assets/puppy.png">
           </div>
@@ -109,9 +109,24 @@
     <footer class="footer">
       <div class="container bottom-bar">
         <div class="col-sm-5 footer-content">© 2015 Wobetto Team, All Rights Reserved</div>
-        <div class="col-sm-4 footer-content links"><a href="" target="_blank">Privacy Policy</a> | <a href="" target="_blank">Mailing List</a> | <a href="mailto:wobetto@gmail.com" target="_blank">Contact Us</a></div>
+        <div class="col-sm-4 footer-content links"><a href="privacy.html" target="_blank">Privacy Policy</a> | <a href="http://getastudybuddy.us10.list-manage2.com/subscribe?u=0e611ff45b6ebdffb95e26bfe&id=5e646ed57a" target="_blank">Mailing List</a> | <a href="mailto:wobetto@gmail.com" target="_blank">Contact Us</a></div>
         <div class="col-sm-3 footer-content social icons"><a href="mailto:wobetto@gmail.com"><i class="fa fa-envelope-square"></i></a><a href="https://www.facebook.com/Wobetto" target="_blank"><i class="fa fa-facebook-square"></i></a><a href="http://www.twitter.com/wobetto" target="_blank"><i class="fa fa-twitter-square"></i><a href="http://wobetto.tumblr.com/" target="_blank"><i class="fa fa-tumblr-square"></i></a></div>
       </div>
     </footer>
   </body>
+  <script src="jquery-ui/external/jquery/jquery.js"></script>
+  <script src="jquery-ui/jquery-ui.min.js"></script>
+  <script type="text/javascript">
+  $(".section1").fadeIn(300);
+  var section = 1;
+  setTimeout(cycle, 6000);
+  function cycle() {
+    $(".section"+section).fadeOut(300);
+    if(section < 5)++section;
+    else section = 1;
+    console.log("section"+section);
+    $(".section"+section).delay(300).fadeIn(300);
+    setTimeout(cycle, 6000);
+  }
+  </script>
   </html>

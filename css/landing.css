@@ -91,3 +91,7 @@ div.row.body {
 	width:120px;
 	margin-left:-5%;
 }
+
+.section {
+	display: none;
+}
