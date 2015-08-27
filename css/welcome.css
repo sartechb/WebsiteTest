@@ -58,3 +58,9 @@ button.back h2 {
 	font-size: 1.2em;
 	display: none;
 }
+
+@media (max-width: 500px){
+	.access-links a {
+		font-size: 0.8em
+	}
+}
