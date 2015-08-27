@@ -365,7 +365,7 @@ function filterObject(s, _on) {
   this.on = _on;
 }
 
-$("a#logout").click(function (e) {
+$("a#logout, i.fa-sign-out").click(function (e) {
     e.preventDefault();
     //alert("ehh");
     Parse.User.logOut();

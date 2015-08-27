@@ -124,7 +124,6 @@
     $(".section"+section).fadeOut(300);
     if(section < 5)++section;
     else section = 1;
-    console.log("section"+section);
     $(".section"+section).delay(300).fadeIn(300);
     setTimeout(cycle, 6000);
   }
