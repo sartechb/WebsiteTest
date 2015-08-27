@@ -138,6 +138,12 @@ button.register {
 	font-size: 1.0em;
 }
 
+@media (max-width: 500px) {
+	.social a {
+		margin-left: -5px;
+	}
+}
+
 @media (max-width: 767px)
 {
 	.shift-me {
