@@ -63,6 +63,9 @@ div.row.body {
 	.block p {
 		font-size: 1.0em !important;
 	}
+	.footer-content a {
+		margin-right: 0px;
+	}
 }
 
 .footer-content {
