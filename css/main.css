@@ -70,7 +70,8 @@ button.btn-primary, input.btn-primary {
 	float:right;	
 }
 
-#actions{
+
+/*#actions{
     position: absolute;
     margin-top: calc(100vh - 30px);
     background-color: rgb(4, 136, 195);
@@ -79,7 +80,7 @@ button.btn-primary, input.btn-primary {
     font-size: 1.12em;
     padding-top: 2px;
     display:none;
-}
+}*/
 
 #user-photo{
 	width: 70%;
@@ -181,6 +182,35 @@ button.btn-primary, input.btn-primary {
   border-bottom-color: white;
   border-width: 16px;
   margin-left: -16px;
+}
+@media (max-width: 776px) {
+  #user-name h1 {
+    font-size: 1.5em;
+  }
+  #user-school h3 {
+    font-size: 1em;
+  }
+  .active-post h3 {
+    font-size: 1em;
+  }
+  #active-posts h3 {
+    font-size: 1em;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .feedback-survey {
+    width: 76px;
+    line-height: 1.1;
+    z-index: 2;
+  }
+  .feedback-survey a {
+    font-size: 11px;
+  }
+  #notificationfeed:after, #notificationfeed:before {
+    left:69%;
+  }
 }
 
 

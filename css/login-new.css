@@ -143,6 +143,20 @@ button.register {
 	.shift-me {
 		margin-top: 10px;
 	}
+	.access-links {
+		font-size: 1.3em;
+		margin-top: 15px;
+		width: 44%;
+	}
+	.social {
+		font-size: 1.1em;
+		margin-top: 7px;
+		width: 30%;
+	}
+	.social a {
+		margin-right: -20px;
+	}
+
 }
 @media (max-width: 2150px)
 {
