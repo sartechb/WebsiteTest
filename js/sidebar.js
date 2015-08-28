@@ -100,18 +100,30 @@ $(".notifications, i.fa-envelope-o").click(function (e) {
     if(feed.hasClass("open")) {
       feed.fadeOut(200);
       feed.removeClass("open");
-      $(".notifications .badge").text("");
+      //$(".notifications .badge").text("");
     } else {
       feed.addClass("open");
       feed.fadeIn(200);
+      var notifications = $("#notificationfeed ul li.new");
+      for(var i = 0; i < notifications.length; ++i) {
+        var query = new Parse.Query(Parse.Object.extend("Notification"));
+        query.get($(notifications[i]).attr("id"), {
+          success: function(noti) {
+            noti.set("viewed", true);
+            noti.save();
+          }, error: function(error) {console.log(error);}
+        });
+      }
+      $(".badge").text("");
     }
 });
 
 $("#notificationfeed ul li a").click(function (e) {
   
-  console.log("preventing");
+  //console.log("preventing");
   var note = $(e.target).parent();
-  console.log(note.attr("id"));
+  //console.log(note.attr("id"));
+
   var query = new Parse.Query(Parse.Object.extend("Notification"));
   query.get(note.attr("id"), {
     success: function(noti) {
