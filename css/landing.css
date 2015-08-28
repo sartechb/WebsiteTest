@@ -1,5 +1,5 @@
 body.body {
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(251, 251, 251);
 }
 
 .bottom-bar {
@@ -88,13 +88,25 @@ div.row.body {
 }
 
 .page-links {
-	margin-top: 70px;
+	margin-top: 50px;
+	text-align: center;
+	margin-bottom: 20px;
+	color: white;
+	background-color: #56ACDB;
+	padding-top: 15px;
+	padding-bottom: 10px;
 }
 
 .page-links a {
-	color: black;
+	color: white;
 	text-decoration: none;
 	font-size: 1.5em;
+}
+
+.link{
+	/* border: 1px solid #0488C3; */
+	/* border-top:none; */
+	/* border-bottom:none; */
 }
 
 .signup-button {
