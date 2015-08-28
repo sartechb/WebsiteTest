@@ -75,6 +75,7 @@ $("form#signup").submit(function (e) {
         user.set("username", em);
         user.set("password", pw);
         user.set("school", response);
+        user.set("survey", false);
         var number = Math.ceil(Math.random()*9);
         user.set("pic", "profile"+number+".png");
 

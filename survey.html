@@ -52,6 +52,9 @@
     <script type="text/javascript">
       if(!Parse.User.current())
         window.location.href = "login.html";
+      var user = Parse.User.current();
+      if(user.get("survey"))
+        window.location.href = "home.html";
     </script>
     <div class="container">
       <div class="row">
