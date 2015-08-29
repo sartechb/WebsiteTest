@@ -198,10 +198,10 @@ $("#active-example, a.note").click(function (e) {
 });
 
 //Log out Functionality
-$("a#logout").click(function (e) {
+$("a#logout, i.fa-sign-out").click(function (e) {
     e.preventDefault();
     //alert("ehh");
     Parse.User.logOut();
     console.log("logging out");
-    window.location.href = "http://sartechb.github.io/WebsiteTest/login.html";
+    window.location.href = "login.html";
 });

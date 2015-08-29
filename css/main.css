@@ -2,6 +2,15 @@
     font-family: Freestyle;
     src: url("../fonts/FREESCPT.TTF");
 }
+.up-button {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  color: #0488C3;
+  cursor: pointer;
+  display: none;
+  z-index: 100;
+}
 
 /*span{
 	font-family: Freestyle, "Freestyle", Freestyle, serif; 
