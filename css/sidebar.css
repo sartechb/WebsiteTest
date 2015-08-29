@@ -17,18 +17,7 @@
 }
 
 .feedback{
-	padding-right: 5%;
-	padding-left: 5%;
-	text-align:center;
-	color: white;
-	margin: 0 auto 20% auto;
-	background-color: #0488C3;
-}
-.feedback a {
-	color: white
-}
-.feedback a:hover {
-	color: white;
+	display:none;
 }
 
 #sidebar{
@@ -149,4 +138,22 @@ h6:hover{
 }
 h7{
 	color:gray;
+}
+/* MOBILE CSS */
+@media (max-width: 767px) {
+ .feedback{
+	padding-right: 5%;
+	padding-left: 5%;
+	text-align:center;
+	color: white;
+	margin: 0 auto 20% auto;
+	background-color: #0488C3;
+	display:block;
+}
+.feedback a {
+	color: white
+}
+.feedback a:hover {
+	color: white;
+}  	
 }
