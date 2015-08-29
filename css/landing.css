@@ -95,12 +95,21 @@ div.row.body {
 	background-color: #56ACDB;
 	padding-top: 15px;
 	padding-bottom: 10px;
+	height: 55px;
 }
 
 .page-links a {
 	color: white;
 	text-decoration: none;
 	font-size: 1.5em;
+}
+
+.block a{
+	color:black;
+}
+
+.page-links a:hover {
+	text-decoration: underline;
 }
 
 .link{
@@ -124,9 +133,9 @@ div.row.body {
 }
 
 .title-img {
-	margin-top: 5px;
-	height:40px;
-	width:120px;
+	margin-top: 0;
+	/* height:40px; */
+	width: 100px;
 	margin-left:-5%;
 }
 

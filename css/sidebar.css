@@ -55,9 +55,10 @@ border-color: #AFD1F7;
 
 body.lg #this-is-the-navbar img,
 body.md #this-is-the-navbar img {
-	width: 165px !important;
-	height: 55px !important;
+	width: 110px !important;
+	/* height: 55px !important; */
 	margin-left: 0px !important;
+	margin-top: 0px !important;
 }
 
 body.sm #this-is-the-navbar img,
