@@ -1,0 +1,144 @@
+body.body {
+	background-color: rgb(251, 251, 251);
+}
+
+.bottom-bar {
+	height: 55px;
+	background-color: rgb(235, 235, 235);
+}
+
+div.row.body {
+	height: 100%;
+	width: 100%;
+	margin-bottom: -55px;
+	position: relative;
+}
+
+@media (max-width: 767px)
+{
+	.bottom-bar {
+		height: 165px;
+		text-align: center;
+	}
+	.social {
+		float: left;
+		width: 100%;
+		text-align: center;
+	}
+	.title-img {
+		float:right;
+		margin-left: 0;
+		margin-right: -20px;
+	}
+	.team-page.title-img {
+		float: none;
+		margin-right: 0px;
+		margin-left: 12%;
+	}
+	.access-links {
+		font-size: 1.3em;
+		margin-top: 15px;
+	}
+	.row .page-links a {
+		font-size: 1.0em;
+	}
+	.screengrab {
+		margin-top: 0;
+	}
+}
+@media (max-width: 500px)
+{
+	.access-links {
+		font-size: 1.0em
+	}
+	.row .page-links a {
+		font-size: 0.9em;
+	}
+	h1 {
+		font-size: 2.0em;
+	}
+	p {
+		font-size: 1.5em !important;
+	}
+	.block p {
+		font-size: 1.0em !important;
+	}
+	.footer-content a {
+		margin-right: 0px;
+	}
+}
+
+.footer-content {
+	color: rgb(200, 200, 200);
+	margin-top: 15px;
+	font-size: 1.0em;
+}
+
+.footer-content.links a {
+	color: rgb(200, 200, 200);
+}
+
+.icons {
+	font-size: 2.0em;
+	margin-top: 0px;
+}
+
+.footer-content i:hover {
+	color: #0488C3;
+}
+
+.page-links {
+	margin-top: 50px;
+	text-align: center;
+	margin-bottom: 20px;
+	color: white;
+	background-color: #56ACDB;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	height: 55px;
+}
+
+.page-links a {
+	color: white;
+	text-decoration: none;
+	font-size: 1.5em;
+}
+
+.block a{
+	color:black;
+}
+
+.page-links a:hover {
+	text-decoration: underline;
+}
+
+.link{
+	/* border: 1px solid #0488C3; */
+	/* border-top:none; */
+	/* border-bottom:none; */
+}
+
+.signup-button {
+	margin-top: 30px; 
+	margin-bottom: 20px;
+}
+
+.signup-button button {
+	height: 55px;
+	font-size: 2em;
+}
+
+.screengrab {
+	margin-top: 60px;
+}
+
+.title-img {
+	margin-top: 0;
+	/* height:40px; */
+	width: 100px;
+	margin-left:-5%;
+}
+
+.section {
+	display: none;
+}

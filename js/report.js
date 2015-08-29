@@ -43,7 +43,7 @@ $("#reportMenu .report-confirm").click(function (e){
       $("#postfeed #"+app.toReport.flaggedPost).remove();
       setTimeout(function() {
         $("#reportMenu .cancel").trigger("click");
-        window.location.href = "index.html";
+        window.location.href = "home.html";
       }, 1000);
      // var reports = app.user.get("reportedPosts") || [];
      // reports.push(app.toReport.flaggedPost);

@@ -1,0 +1,171 @@
+<html lang="en"><head>
+   <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+   <meta name="theme-color" content="#0488C3">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wobetto</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/login-new.css" rel="stylesheet">
+    <link href="css/typeahead.css" rel="stylesheet">
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <meta property="og:title" content="Wobetto"/> 
+    <meta property="og:image" content="assets/puppy.png"/> 
+    <meta property="og:description" content="We're an app to help you work better together with the people around you, and to make your life
+      less stressful"/> 
+    <meta property="og:url" content="http://www.wobetto.com"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+    <script src="jquery-ui/external/jquery/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
+    <style type="text/css">
+    .option {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      font-size: 1em;
+      white-space: normal;
+    }
+    i.italic {
+      display: inline;
+      width: inherit;
+      font-size: 1em;
+      margin-left: 0;
+      margin-top: 0;
+    }
+    .section {
+      display: none;
+      text-align:center;
+    }
+    </style>
+    
+  </head>
+  <body>
+    <script type="text/javascript" src="js/security.js"></script>
+    <script type="text/javascript">
+      if(!Parse.User.current())
+        window.location.href = "login.html";
+      var user = Parse.User.current();
+      if(user.get("survey"))
+        window.location.href = "home.html";
+    </script>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 top-bar">
+          <div class="access-links"><a href="login.html"> Log In </a>|<a href="signup.html"> Register </a></div>
+          <div class="social">
+          <a href="mailto:wobetto@gmail.com"><i class="fa fa-envelope-square"></i></a>
+          <a href="https://www.facebook.com/Wobetto" target="_blank"><i class="fa fa-facebook-square"></i></a>
+          <a href="http://www.twitter.com/wobetto" target="_blank"><i class="fa fa-twitter-square"></i></a>
+          <a href="http://wobetto.tumblr.com/" target="_blank"><i class="fa fa-tumblr-square"></i></a></div>
+        </div> <!--Navbar-->
+      </div>
+      <div class="row">
+        <a href="index.html"><img class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 img-responsive mast-image" src="assets/wobettologolight.png"></a>
+      </div>
+      <div class="row">
+        <div class="card col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4" style="margin-bottom:200px;color:white">
+          <div class="section section1">
+            <p class="" style="margin-top:20px;">Welcome new Wobetto user! We assign each member thier user icon dog based on thier personality. We just need to ask a few questions...</p>
+            
+            <p class="">Ready to begin?</p>
+            <button class="btn btn-primary register next">Get my Dog!</button>
+          </div>
+          <div class="section section2">
+            <p class="" style="margin-top:20px;">Click on the option that best describes you:</p>
+            
+            <p class="">When studying in a group you...</p>
+            <button class="btn btn-primary option next" data-points="1">Maintain focus and don't talk a lot. You listen to what people say around you and only ask a question or answer something if necessary.</button>
+            <button class="btn btn-primary option next" data-points="2">Actively listen to the group work around you, even if you don't contribute much. You tend to do your work after some questions have been answered or even after the group session because you try to absorb what you can.</button>
+            <button class="btn btn-primary option next" data-points="3">Both listen and contribute to the group. Even if you don't have a ton of questions or a ton of answers, you retain information best when actively participating.</button>
+            <button class="btn btn-primary option next" data-points="4">Always have the answers. Teaching others is the best way for you to retain the information you already have, and you learn the material better when trying to explain it to someone.</button>
+          </div>
+          <div class="section section3">
+            <p class="" style="margin-top:20px;">Click on the option that best describes you:</p>
+            
+            <p class=""><i  class="italic">You</i> would classify yourself as...</p>
+            <button class="btn btn-primary option next" data-points="1">An introvert</button>
+            <button class="btn btn-primary option next" data-points="3">An extrovert</button>
+            <button class="btn btn-primary option next" data-points="2">In between the two</button>
+          </div>
+          <div class="section section4">
+            <p class="" style="margin-top:20px;">Click on the option that best describes you:</p>
+            
+            <p class=""><i class="italic">Others</i> would classify you as...</p>
+            <button class="btn btn-primary option next" data-points="1">An introvert</button>
+            <button class="btn btn-primary option next" data-points="3">An extrovert</button>
+            <button class="btn btn-primary option next" data-points="2">In between the two</button>
+          </div>
+          <div class="section section5">
+            <p class="" style="margin-top:20px;">Click on the option that best describes you:</p>
+            
+            <p class="">What's your relationship with extracurricular activities?</p>
+            <button class="btn btn-primary option next" data-points="1"> I have other things I'd rather be doing with my free time.</button>
+            <button class="btn btn-primary option next" data-points="2">I'm in one/a few, but only participate a bit.</button>
+            <button class="btn btn-primary option next" data-points="3">I have one that I am completely dedicated to, but that's it.</button>
+            <button class="btn btn-primary option next" data-points="4">I lead more than one or I funnel most of my free time into them.</button>
+          </div>
+          <div class="section section6">
+            <p class="" style="margin-top:20px;">Click on the option that best describes you:</p>
+            
+            <p class="">What do you like to do with your friends?</p>
+            <button class="btn btn-primary option next" data-points="4"> Live it UP</button>
+            <button class="btn btn-primary option next" data-points="3">Video games or just snacking and chatting.</button>
+            <button class="btn btn-primary option next" data-points="1">I don't hang out with them a ton, I like my alone time.</button>
+            <button class="btn btn-primary option next" data-points="2">Something pretty chill or passive like studying together or getting coffee.</button>
+          </div>
+          <div class="section section7">
+            <p class="" style="margin-top:20px;">Click on the option that best describes you:</p>
+            
+            <p class="">In what way do you prefer to learn? </p>
+            <button class="btn btn-primary option next" data-points="2"> I like to write things down and  use examples to remember things easily.</button>
+            <button class="btn btn-primary option next" data-points="1">I like seeing pictures and videos.</button>
+            <button class="btn btn-primary option next" data-points="3">I like to just listen to a professor, minimal notes.</button>
+            <button class="btn btn-primary option next" data-points="4">It really depends- different things on different days.</button>
+          </div>
+          <div class="section section8">
+            <p class="" style="margin-top:20px;">Click on the option that best describes you:</p>
+            
+            <p class="">What would others agree is at the core of your personality?</p>
+            <button class="btn btn-primary option next" data-points="2">Ability to listen and understand.</button>
+            <button class="btn btn-primary option next" data-points="3">Charisma and ability to have <i class="italic">others</i> understand.</button>
+            <button class="btn btn-primary option next" data-points="1">Studiousnessness.</button>
+            <button class="btn btn-primary option next" data-points="4">Being a free-spirit</button>
+          </div>
+          <div class="section section9">
+            <p class="" style="margin-top:20px;">Click on the option that best describes you:</p>
+            
+            <p class="">Do you like dogs?</p>
+            <button class="btn btn-primary option next" data-points="2">Yes.</button>
+            <button class="btn btn-primary option next" data-points="3">OMG DOGS</button>
+            <button class="btn btn-primary option next" data-points="1">Meh.</button>
+            <button class="btn btn-primary option next" data-points="-2">Not one bit</button>
+          </div>
+          <div class="section section10">
+            <p class="" style="margin-top:20px;">Click on the option that best describes you:</p>
+            
+            <p class="">What do you hope to get out of Wobetto?</p>
+            <button class="btn btn-primary option next" data-points="2">Better grades.</button>
+            <button class="btn btn-primary option next" data-points="3">New friends in my classes.</button>
+            <button class="btn btn-primary option next" data-points="1">People who can help me.</button>
+            <button class="btn btn-primary option next" data-points="4">All of the above.</button>
+          </div>
+          <div class="section section11">
+            <p class="" style="margin-top:20px;">Okay, it's pretty obvious. You're this one:</p>
+            <img class="img-responsive result img-circle" src="">
+            <button class="btn btn-primary register finish">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/bootstrap3-typeahead.min.js"></script>
+    <script type="text/javascript" src="js/survey.js"></script>
+  </body>

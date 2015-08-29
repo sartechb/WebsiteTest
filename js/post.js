@@ -37,14 +37,20 @@ $("#new-post").submit(function (e) {
   if(titleLength > 150) {
    if($("#createpost").find("div.alert.alert-danger").length == 0)
       $("#createpost").append(errorAlert+"Your title is too long! Try to make it more concise.</div>");
+      $("#new-post button").prop("disabled", false);
+      $("#new-post button[type='submit']").text("POST");
     return;
   } else if(contentLength > 450) {
     if($("#createpost").find("div.alert.alert-danger").length == 0)
       $("#createpost").append(errorAlert+"Your message is too long! Try to make it more concise.</div>");
+      $("#new-post button").prop("disabled", false);
+      $("#new-post button[type='submit']").text("POST");
     return;
   } else if (!reqFields) {
     if($("#createpost").find("div.alert.alert-danger").length == 0)
       $("#createpost").append(errorAlert+"Whoops you missed something above! Try again.</div>");
+      $("#new-post button").prop("disabled", false);
+      $("#new-post button[type='submit']").text("POST");
     return;
   }
 
@@ -58,12 +64,16 @@ $("#new-post").submit(function (e) {
     app.newLocationString.is = false;
     $("#newLocationStringMenu span.user-entry").html(locationString);
     $("#newLocationStringMenu").modal("show");
+    $("#new-post button").prop("disabled", false);
+    $("#new-post button[type='submit']").text("POST");
     return;
-  }else if(app.classes.indexOf(classString) == -1) {
+  } else if(app.classes.indexOf(classString) == -1) {
     app.newClassString.val = "";
     app.newClassString.is = false;
     $("#newClassStringMenu span.user-entry").html(classString);
     $("#newClassStringMenu").modal("show");
+    $("#new-post button").prop("disabled", false);
+    $("#new-post button[type='submit']").text("POST");
     return;
   }
 

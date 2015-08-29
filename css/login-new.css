@@ -14,6 +14,7 @@ body {
 i {
 	display:inline-block;
 	width:30px;
+	font-size: 2em;
 	margin-left:10px;
 	margin-top:12.5px;
 }
@@ -22,7 +23,7 @@ i {
 	text-align: right;
 	color:white;
 	font-size:2em;
-	width: 50%;
+	width: 25%;
 	float: right;
 	display: inline-block;
 	
@@ -134,7 +135,13 @@ button.register {
 .access-links a {
 	color:white;
 	text-decoration: none;
-	font-size: 1.2em;
+	font-size: 1.0em;
+}
+
+@media (max-width: 500px) {
+	.social a {
+		margin-left: -5px;
+	}
 }
 
 @media (max-width: 767px)
@@ -142,6 +149,20 @@ button.register {
 	.shift-me {
 		margin-top: 10px;
 	}
+	.access-links {
+		font-size: 1.0em;
+		margin-top: 20px;
+		width: 44%;
+	}
+	.social {
+		font-size: 1.1em;
+		margin-top: 7px;
+		width: 30%;
+	}
+	.social a {
+		margin-right: -20px;
+	}
+
 }
 @media (max-width: 2150px)
 {
