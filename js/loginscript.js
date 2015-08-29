@@ -1,3 +1,5 @@
+//Using Tharun's account:
+
 var resp;
 var errorAlert = "<div class='alert alert-danger'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
 
@@ -13,7 +15,7 @@ Parse.Cloud.run("functionNameHere", {data:here}, {
 */
 var user = Parse.User.current();
 if(user != null)
-  window.location.href = "home.html";
+  window.location.href = "index.html";
 
 
 var rand = Math.ceil((1 - Math.random())*7);
