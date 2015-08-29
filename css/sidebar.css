@@ -16,6 +16,20 @@
 	height:100%;
 }
 
+.feedback{
+	padding-right: 5%;
+	padding-left: 5%;
+	text-align:center;
+	color: white;
+	margin: 0 auto 20% auto;
+}
+.feedback a {
+	color: white
+}
+.feedback a:hover {
+	color: white;
+}
+
 #sidebar{
 background-color: #56ACDB;
 position:fixed;
