@@ -42,6 +42,25 @@ $("#dropdown").click(function (e) {
 //allows for separate scrolling or side bar and body
 $('body').scroll(function() { 
   $('#sidebar').css('top', $(this).scrollTop());
+  
+});
+
+$(window).scroll(function () {
+  $(".up-button").fadeIn(500);
+  app.upTimer = new Date();
+  setTimeout(fadeUpButton, 5000);
+  console.log(scroll);
+});
+
+function fadeUpButton() {
+  var now = new Date();
+  if(now - app.upTimer > 4000)
+    $(".up-button").fadeOut(500);
+}
+
+$(".up-button").click(function() {
+  $("html, body").animate({ scrollTop: 0}, "slow");
+  $(".up-button").fadeOut(500);
 });
 
 

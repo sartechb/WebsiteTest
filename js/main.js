@@ -373,5 +373,7 @@ $("a#logout, i.fa-sign-out").click(function (e) {
     window.location.href = "login.html";
 });
 
+
+
 $('[data-toggle="tooltip"]').tooltip();
 
