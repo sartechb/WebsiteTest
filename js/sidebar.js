@@ -60,6 +60,7 @@ function fadeUpButton() {
 
 $(".up-button").click(function() {
   $("html, body").animate({ scrollTop: 0}, "slow");
+  $(".up-button").fadeOut(500);
 });
 
 
