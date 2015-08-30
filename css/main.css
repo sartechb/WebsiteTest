@@ -251,6 +251,10 @@ button.btn-primary, input.btn-primary {
   margin-left: calc(50% - 65px);
 }
 
+.spinnerpost{
+      margin-left: calc(50vw - 65px);
+}
+
 @-webkit-keyframes rotator {
   0% {
     -webkit-transform: rotate(0deg);
