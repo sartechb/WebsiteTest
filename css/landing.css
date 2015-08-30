@@ -149,6 +149,10 @@ div.row.body {
 	margin-bottom:5%;
 }
 
+#loader{
+	margin-left:calc(50vw - 65px);
+}
+
 /* MOBILE CSS */
 @media (max-width: 767px) {
    .page-links{
