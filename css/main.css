@@ -63,6 +63,9 @@ button.btn-primary, input.btn-primary {
 	margin-top:3px;
 }
 
+#loader{
+  margin-left:calc(50% - 65px);
+}
  
 
 /* MOBILE CSS */
