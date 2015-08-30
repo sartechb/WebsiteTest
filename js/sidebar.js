@@ -115,6 +115,7 @@ function buildNotifications(append,array) {
 }
 
 $(".notifications, i.fa-envelope-o").click(function (e) {
+
     var feed = $("#notificationfeed");
     if(feed.hasClass("open")) {
       feed.fadeOut(200);
@@ -159,4 +160,15 @@ $("#notificationfeed ul li a").click(function (e) {
       
     }, error: function(error) {console.log("error");}
   });
+});
+
+$(".container:not(.notifications), .container:not(i.fa-envelope-o)").click(function (e) {
+  var el = $(e.target);
+  //console.log(el);
+  if(el.hasClass("notifications") || el.hasClass("fa-envelope-o")) return;
+  var feed = $("#notificationfeed");
+    if(feed.hasClass("open")) {
+      feed.fadeOut(200);
+      feed.removeClass("open");
+    }
 });
