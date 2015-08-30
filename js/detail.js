@@ -179,7 +179,7 @@ function createDetailPost(post) {
 // }
 
 //COMMENTING LOGIC
-$("#"+app.thisPost+" .submit-comment").click(function () {
+$(".submit-comment").click(function () {
   $("form#comment").trigger("submit");
 });
 
