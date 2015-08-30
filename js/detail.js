@@ -20,10 +20,7 @@ $("#user-name h1").html(app.user.get("name"));
 $("img#user-photo").attr("src", "assets/"+app.user.get("pic"));
 
 app.util = {};
-if(window.navigator.userAgent.indexOf("MSIE") || window.navigator.userAgent.indexOf("EDGE")){
-  $("#loader *").remove();
-  $("#loader").html("<span style='color:white;text-align:center;font-size:1.2em'>LOADING</span>");
-}
+
   
 
 handleResize();
@@ -182,7 +179,11 @@ function createDetailPost(post) {
 // }
 
 //COMMENTING LOGIC
-$("#"+app.thisPost" form#comment").submit(function (e) {
+$("#"+app.thisPost+" .submit-comment").click(function () {
+  $("form#comment").trigger("submit");
+});
+
+$("form#comment").submit(function (e) {
   e.preventDefault();
   var content = $("form#comment #comment-text").val();
   //console.log(content);

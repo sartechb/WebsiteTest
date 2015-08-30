@@ -17,10 +17,6 @@ buildInitialData();
 setTimeout(runUpdates, refreshLimit);//run updates in 40 seconds
 app.updateTime = new Date();
 
-if(window.navigator.userAgent.indexOf("MSIE") || window.navigator.userAgent.indexOf("EDGE")){
-  $("#loader *").remove();
-  $("#loader").html("<span style='color:white;text-align:center;font-size:1.2em'>LOADING</span>");
-}
   
 
 
