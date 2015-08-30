@@ -17,6 +17,12 @@ buildInitialData();
 setTimeout(runUpdates, refreshLimit);//run updates in 40 seconds
 app.updateTime = new Date();
 
+if(window.navigator.userAgent.indexOf("MSIE") || window.navigator.userAgent.indexOf("EDGE")){
+  $("#loader *").remove();
+  $("#loader").html("LOADING");
+}
+  
+
 
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
