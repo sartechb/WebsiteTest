@@ -19,7 +19,7 @@ app.updateTime = new Date();
 
 if(window.navigator.userAgent.indexOf("MSIE") || window.navigator.userAgent.indexOf("EDGE")){
   $("#loader *").remove();
-  $("#loader").html("LOADING");
+  $("#loader").html("<span style='color:white;text-align:center;font-size:1.2em'>LOADING</span>");
 }
   
 
