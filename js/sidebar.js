@@ -49,7 +49,7 @@ $(window).scroll(function () {
   $(".up-button").fadeIn(500);
   app.upTimer = new Date();
   setTimeout(fadeUpButton, 5000);
-  console.log(scroll);
+  //console.log(scroll);
 });
 
 function fadeUpButton() {
