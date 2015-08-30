@@ -150,7 +150,7 @@ div.row.body {
 }
 
 #loader{
-	margin-left:calc(50vw - 65px);
+	margin-left:calc(100% - 65px);
 }
 
 /* MOBILE CSS */
