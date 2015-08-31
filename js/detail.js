@@ -419,7 +419,8 @@ function runUpdates() {
               time: comments[i].createdAt,
               pic: comments[i].get("pic"),
               content: comments[i].get("content"),
-              commentId: comments[i].id
+              commentId: comments[i].id,
+              createdAt: comments[i].createdAt
             };
           }
         }
