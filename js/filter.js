@@ -225,7 +225,7 @@ $("form#locFilterAdd").submit(function(e) {
 
   //check if exists
   
-  var inputVal = input.val().trim().toUpperCase();
+  var inputVal = input.val().trim();
   if(app.locations.indexOf(inputVal) == -1) {
     $("#locFilterMenu .notice.dne").fadeIn(200);
     setTimeout(function(){$("#locFilterMenu .notice.dne").fadeOut(200);}, 6000);
