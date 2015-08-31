@@ -91,7 +91,7 @@ $("#new-post").submit(function (e) {
     console.log(newPost.post.memberLimit);
   }
   else
-    newPost.post.memberLimit = 5;
+    newPost.post.memberLimit = 10;
 
   Parse.Cloud.run("createPost", newPost, {
     success: function (response) {

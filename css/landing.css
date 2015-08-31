@@ -141,4 +141,21 @@ div.row.body {
 
 .section {
 	display: none;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.desc{
+	margin-bottom:5%;
+}
+
+#loader{
+	margin-left:calc(100% - 65px);
+}
+
+/* MOBILE CSS */
+@media (max-width: 767px) {
+   .page-links{
+   	margin-bottom:20%;
+   }
 }

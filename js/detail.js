@@ -21,6 +21,8 @@ $("img#user-photo").attr("src", "assets/"+app.user.get("pic"));
 
 app.util = {};
 
+  
+
 handleResize();
 var resizeTimer;
 $(window).resize(function() {
@@ -145,7 +147,7 @@ function createDetailPost(post) {
           //$("#template-post").remove();
         }
       } else {
-        console.log("no-comments");
+        //console.log("no-comments");
         $("#postholder .comment-holder").before(to_insert);
         applyEditPostHandler();
 
@@ -177,9 +179,14 @@ function createDetailPost(post) {
 // }
 
 //COMMENTING LOGIC
+$(".submit-comment").click(function () {
+  $("form#comment").trigger("submit");
+});
+
 $("form#comment").submit(function (e) {
   e.preventDefault();
-  var content = $("#comment-text")[0].value;
+  var content = $("form#comment #comment-text").val();
+  //console.log(content);
   if(!content.length) return;
  // console.log($("#comment-text"),content, e);
   Parse.Cloud.run("makeComment", {
@@ -198,7 +205,7 @@ $("form#comment").submit(function (e) {
       com_to_insert.find("img").attr("src", "assets/"+app.user.get("pic"));
       com_to_insert.find(".comment-text").text(content);
       com_to_insert.attr("id", response.id);
-      console.log(com_to_insert, $(".comment-holder"));
+      //console.log(com_to_insert, $(".comment-holder"));
       $("#postholder .comment-holder").append(com_to_insert);
       app.comments[response.id] = {
         author: app.user.get("name"),
@@ -412,7 +419,8 @@ function runUpdates() {
               time: comments[i].createdAt,
               pic: comments[i].get("pic"),
               content: comments[i].get("content"),
-              commentId: comments[i].id
+              commentId: comments[i].id,
+              createdAt: comments[i].createdAt
             };
           }
         }

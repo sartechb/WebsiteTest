@@ -35,9 +35,9 @@
   <script type="text/javascript" src="js/security.js"></script>
   <script type="text/javascript" src="js/redirect.js"></script>
 
-  <!-- <div class="feedback-survey side">
+  <div class="feedback-survey side hidden-xs">
     <a href="https://docs.google.com/forms/d/1E1LCIJCfAy6TmxZxSuXL1EtcX-8qQPEqz76VCaah_X8/viewform?usp=send_form" target="_blank">Thoughts? We'd be happy to hear them.</a>
-  </div> -->
+  </div>
 
   <div class="modal fade" id="deletePostConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -168,7 +168,7 @@
 <div class="container">
   <div class = "row">
     <div class="col-md-12" id="this-is-the-navbar">
-        <div style="" id="actions" class="hidden-xs"><h3><div class="notifications"><span class="badge"></span></div><div class="links" style="cursor:pointer"><i class="fa fa-envelope-o"></i>&nbsp<span class="notifications" style="color:white;cursor:pointer" href="#">Notifications</span> | <i class="fa fa-sign-out"></i>
+        <div style="" id="actions" class="hidden-xs"><h3><div class="notifications"><span class="badge"></span></div><div class="links" style="cursor:pointer"><i class="fa fa-envelope-o"></i><span class="notifications" style="color:white;cursor:pointer" href="#">&nbsp;Notifications</span> | <i class="fa fa-sign-out"></i>
         <a style="color:white;" href="#" id="logout">Log Out</a></div></h3></div>
           <a href="home.html"> 
         <img src="assets/wobettolight.png" style="width:125px; height:55px; margin-top:-3px; margin-left:2%;"></a>
@@ -186,7 +186,7 @@
       <div class ="row" id="body">      
         <div class="hidden-xs col-sm-3 col-sm-2" id="sidebar">
           <div id="holdcontent">
-            <div class = "col-md-12" id="user-photo"><img id="user-photo"src=""/></div> <!--user photo-->
+            <div class = "col-md-12" id="user-photo"><img id="user-photo" src=""/></div> <!--user photo-->
             <div class = "col-md-12" id="empty"></div>
             <div class = "col-md-12" id="user-name"><h1 style="color:white;"></h1></div>
             <div class = "col-md-12" id="user-school"><h3></h3></div>
@@ -199,7 +199,6 @@
                 <a href="" class="template-active-post"><div class = "col-md-12 active-post "><h3></h3></div></a>
               </div><!--active posts row-->
             </div>
-            <a href="https://docs.google.com/forms/d/1E1LCIJCfAy6TmxZxSuXL1EtcX-8qQPEqz76VCaah_X8/viewform?usp=send_form" target="_blank" class="feedback">Thoughts? We'd be happy to hear them.</a>
           </div> <!--holdcontent-->
         </div> <!--sidebar-->
 
@@ -208,9 +207,9 @@
 
           <div class="row" id="postfeed">
             <div id="postholder" class="col-xs-12 nofilter">
-              <div id="loader" class="col-xs-2 col-xs-offset-6 col-sm-2 col-sm-offset-6 col-md-2 col-md-offset-6" style="margin-top:50px">
+              <div id="loader" class="col-xs-2 col-xs-offset-6 col-sm-2 col-sm-offset-6 col-md-2 col-md-offset-6" style="margin-top:50px;margin-right:auto;margin-left:auto">
                 <!-- <img id="loading" src="assets/loader.gif" class="img-responsive"> -->
-                <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <svg class="spinner spinnerpost" width="65px" height="65px" margin-left="calc(50vw - 65px)" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                   <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                 </svg>
               </div>
@@ -266,13 +265,14 @@
                 ">
                <form id="comment">
               <textarea type="text" form="comment" name="comment-text" id="comment-text" class="flat full" placeholder="Comment on this post" style=""></textarea>
-              
-            </form>
+              </form>
+            
           </div>
           <div class="col-xs-12" style="
           text-align: center;
           ">
-          <button type="submit" class="btn btn-primary toggle" style="float:left; margin-left:5%; margin-bottom:10px; width:90px;" form="comment">COMMENT</button>
+          <button class="btn btn-primary toggle submit-comment" style="float:left; margin-left:5%; margin-bottom:10px; width:90px;">COMMENT</button>
+          
         </div>
         
       </div>
