@@ -252,7 +252,18 @@ button.btn-primary, input.btn-primary {
 }
 
 .spinnerpost{
+  margin-left: calc(40vw - 65px);
+}
+
+
+@media (max-width: 767px)
+{
+  .spinner{
+    margin-left: calc(60%  - 65px);
+  }
+  .spinnerpost{
       margin-left: calc(50vw - 65px);
+    }
 }
 
 @-webkit-keyframes rotator {
