@@ -161,7 +161,7 @@ $("form#classFilterAdd").submit(function(e) {
 
   //check if exists
   
-  var inputVal = input.val().trim();
+  var inputVal = input.val().trim().toUpperCase();
   if(app.classes.indexOf(inputVal) == -1) {
     $("#classFilterMenu .notice.dne").fadeIn(200);
     setTimeout(function(){$("#classFilterMenu .notice.dne").fadeOut(200);}, 6000);

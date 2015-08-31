@@ -75,12 +75,14 @@ $("form#signup").submit(function (e) {
         user.set("username", em);
         user.set("password", pw);
         user.set("school", response);
-        user.set("pic", "profile2.png");
+        user.set("survey", false);
+        var number = Math.ceil(Math.random()*9);
+        user.set("pic", "profile"+number+".png");
 
         user.signUp(null, {
           success: function (user) { 
             resp = user;
-            window.location.href ="home.html";
+            window.location.href ="survey.html";
            // console.log("Did it!");
            // alert("did it");
           },

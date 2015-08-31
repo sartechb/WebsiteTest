@@ -20,7 +20,7 @@
     <link href="css/welcome.css" rel="stylesheet">
 
     <meta property="og:title" content="Wobetto"/> 
-    <meta property="og:image" content="static-assets/puppy"/> 
+    <meta property="og:image" content="assets/puppy.png"/> 
     <meta property="og:description" content="We're an app to help you work better together with the people around you, and to make your life
       less stressful"/> 
     <meta property="og:url" content="http://www.wobetto.com"/>
@@ -32,28 +32,35 @@
     <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
   </head>
   <body>
-
+  <script type="text/javascript" src="js/security.js"></script>
   <script type="text/javascript" src="js/welcome.js"></script>
 
 
  <div class="container">
     <div class = "row">
       <div class="col-md-12" id="this-is-the-navbar">
-        <div style="" id="actions"><h3><div class="notifications"><span class="badge"></span></div><div class="links"><i class="fa fa-envelope-o"></i>&nbsp<span class="notifications" style="color:white;cursor:pointer" href="#">Notifications</span> | <i class="fa fa-sign-out"></i>
-        <a style="color:white;" href="#" id="logout">Log Out</a></div></h3></div>
-          <a href="home.html"> 
-        <img src="assets/wobettologolight.png" style="width:165px; height:55px; margin-top:-3px; margin-left:2%;"></a>
-        <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
-        <div id="notificationfeed">
-            <ul class="list-group">
-              <li class="new"><a style="cursor:pointer" class="note" style="cursor:default">Webster W. joined "My First Post"</a></li>
-              <li class="new"><a style="cursor:pointer" class="note" style="cursor:default">Webster W. commented on "My First Post"</a></li>
-              <li class="new"><a style="cursor:pointer" class="note" style="cursor:default">Matt C. joined "My First Post"</a></li>
-             <!--  <li class="viewed"><a href="http://www.google.com" target="_blank"> Annette O. commented on Binary Numbers | 2 hours ago </a></li>
-              <li class=""><a href="http://www.google.com" target="_blank"> Issac N. joined on Binary Numbers | 2 hours ago </a></li> -->
-            </ul>
+      <div class="" id="dropdown"></div>
+      <div style="" id="actions">
+        <h3>
+          <div class="notifications">
+            <span class="badge"></span>
+            </div><div class="links" style="cursor:pointer">
+            <i class="fa fa-envelope-o"></i>&nbsp
+            <span class="notifications" style="color:white;cursor:pointer" href="#"></span> | <i class="fa fa-sign-out"></i>
+            <a style="color:white;" href="#" id="logout"></a>
           </div>
-      </div> <!--Navbar-->
+        </h3>
+      </div>
+      <a href="home.html"> 
+      <img src="assets/wobettolight.png" style="width:125px; height:55px; margin-top:-3px; margin-left:2%;"></a>
+      
+      <div id="notificationfeed">
+          <ul class="list-group">
+            <li class="noNew">No recent notifications</li>
+            <li class="template-note new"><a style="cursor:pointer"></a></li>
+          </ul>
+      </div>
+    </div> <!--Navbar-->
     </div>
 
     <div class ="row" id="body">      
@@ -95,7 +102,7 @@
             </div> <!-- SECTION 1 -->
             <div class="row section section-2">
               <div class="col-sm-12">
-                <p class="w-text">Wobetto helps you find study groups to work with and lets create your own groups. You can filter these groups by searching for classes that you're in. Click the button below to start your search.</p>
+                <p class="w-text">Wobetto helps you find study groups to work with and lets you create your own groups. You can filter these groups by searching for classes that you're in. Click the button below to start your search.</p>
               </div>
               <div class="col-sm-12 fp">
                 <div class="col-sm-2 col-sm-offset-5 col-xs-3 col-xs-offset-4 filterIcons">
@@ -205,7 +212,7 @@
               <div class="col-sm-12">
                 <p class="w-text">Study group posts will look like this. You can see basic details about the group and view the discussion by clicking the blue button. If you're interested, you can join the group or comment on the discussion page.</p>
                 <p class="w-text-2">When you create posts, or join them, you'll see a
-                    <button type="submit" class="btn btn-success toggle goToGroup" style="cursor:default">View Your Group</button> button instead, and link in your sidebar to the left.</p>
+                    <button type="submit" class="btn btn-success toggle goToGroup" style="cursor:default">View Your Group</button> button instead, and a link in your sidebar to the left.</p>
                 <br>
               </div>
               <div class ="col-sm-12" style="margin-top:20px">
@@ -272,6 +279,7 @@
     <script src="js/bootstrap3-typeahead.min.js"></script>
 
     <script type="text/javascript" src="js/tutorial.js"></script>
+    <script type="text/javascript" src="js/sidebar.js"></script>
     <!--proprietary scripts -->
     <!-- <script src="js/bst.js"></script> -->
     <!-- <script src="js/post.js"></script> -->

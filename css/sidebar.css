@@ -1,5 +1,5 @@
 #dropdown{
-	float:left;
+	float:right;
 	width:50px;
 	height:50px;
 	background-image: url("../assets/navlines.png");
@@ -8,11 +8,16 @@
 	padding:10px;
 	background-position: center;
 	margin-right: 12px;
+	cursor: pointer;
 }
 
 #actions{
 	float:right;
 	height:100%;
+}
+
+.feedback{
+	display:none;
 }
 
 #sidebar{
@@ -54,14 +59,15 @@ border-color: #AFD1F7;
 
 body.lg #this-is-the-navbar img,
 body.md #this-is-the-navbar img {
-	width: 165px !important;
-	height: 55px !important;
+	width: 110px !important;
+	/* height: 55px !important; */
 	margin-left: 0px !important;
+	margin-top: 0px !important;
 }
 
 body.sm #this-is-the-navbar img,
 body.xs #this-is-the-navbar img {
-	width: 145px !important;
+	width: 125px !important;
 	height: 55px !important;
 	margin-left: 2% !important;
 	margin-top: -3px;
@@ -132,4 +138,22 @@ h6:hover{
 }
 h7{
 	color:gray;
+}
+/* MOBILE CSS */
+@media (max-width: 767px) {
+ .feedback{
+	padding-right: 5%;
+	padding-left: 5%;
+	text-align:center;
+	color: white;
+	margin: 0 auto 20% auto;
+	background-color: #0488C3;
+	display:block;
+}
+.feedback a {
+	color: white
+}
+.feedback a:hover {
+	color: white;
+}  	
 }

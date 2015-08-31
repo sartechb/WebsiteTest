@@ -3,7 +3,7 @@ var app = {};
 //Store the current User
 app.user = Parse.User.current();
 
-console.log(window.location.hash.substr(1));
+//console.log(window.location.hash.substr(1));
 
 if(app.user == null) {
 	window.location.href = "login.html";
@@ -13,13 +13,15 @@ if(app.user == null) {
 
 app.thisPost = window.location.hash.substr(1);
 
-console.log(app.user);
+//console.log(app.user);
 
 $("#user-name h1").html(app.user.get("name"));
 
 $("img#user-photo").attr("src", "assets/"+app.user.get("pic"));
 
 app.util = {};
+
+  
 
 handleResize();
 var resizeTimer;
@@ -36,7 +38,7 @@ setTimeout(runUpdates, refreshLimit);//run updates in 40 seconds
 function buildInitialData() {
   Parse.Cloud.run("getInitialData", {}, {
     success: function (response) {
-      console.log(response);
+      ////console.log(response);
       app.locations = response.locations;
       app.classes = response.classes;
       
@@ -77,7 +79,7 @@ function buildDetailView() {
 
 function createDetailPost(post) {
   var to_insert = $("#template-post").clone(true);
-  console.log(to_insert);
+  //console.log(to_insert);
   to_insert.removeClass("template-post").addClass("detail-post");
   to_insert.find("#title h1").html(post.title);
   to_insert.find("#title img").attr("src", "assets/"+post.authorPic);
@@ -145,7 +147,7 @@ function createDetailPost(post) {
           //$("#template-post").remove();
         }
       } else {
-        console.log("no-comments");
+        //console.log("no-comments");
         $("#postholder .comment-holder").before(to_insert);
         applyEditPostHandler();
 
@@ -177,9 +179,15 @@ function createDetailPost(post) {
 // }
 
 //COMMENTING LOGIC
+$(".submit-comment").click(function () {
+  $("form#comment").trigger("submit");
+});
+
 $("form#comment").submit(function (e) {
   e.preventDefault();
-  var content = $("#comment-text")[0].value;
+  var content = $("form#comment #comment-text").val();
+  //console.log(content);
+  if(!content.length) return;
  // console.log($("#comment-text"),content, e);
   Parse.Cloud.run("makeComment", {
     comment: content,
@@ -187,9 +195,9 @@ $("form#comment").submit(function (e) {
   }, {
     success: function(response) {
       $(".no-comments").remove();
-      console.log(response);
+      //console.log(response);
       var com_to_insert = $(".template-comment").clone(true);
-      console.log(com_to_insert);
+      //console.log(com_to_insert);
       com_to_insert.removeClass("template-comment");
       com_to_insert.find(".media-heading").text(app.user.get("name"));
       com_to_insert.find(".timestamp").html("<i class='fa fa-clock-o'></i> "+
@@ -197,7 +205,7 @@ $("form#comment").submit(function (e) {
       com_to_insert.find("img").attr("src", "assets/"+app.user.get("pic"));
       com_to_insert.find(".comment-text").text(content);
       com_to_insert.attr("id", response.id);
-      console.log(com_to_insert, $(".comment-holder"));
+      //console.log(com_to_insert, $(".comment-holder"));
       $("#postholder .comment-holder").append(com_to_insert);
       app.comments[response.id] = {
         author: app.user.get("name"),
@@ -215,7 +223,7 @@ $("form#comment").submit(function (e) {
 $(".post .join").click(function (e) {
     Parse.Cloud.run("joinPost", {postId:app.thisPost}, {
       success: function(response) {
-        console.log(response);
+        //console.log(response);
         if(response.success) {
           location.reload();
         } else {//member limit reached
@@ -383,7 +391,7 @@ function runUpdates() {
             }
           }
           var partId = update[i].get("value").replace(" ", "").replace("\.","");
-          console.log(partId);
+          //console.log(partId);
           $(".post #parts .participant#"+partId)[0].remove();
           $(".post #following h7").text(app.thisPostData.participants.length-1 + " members joined so far");
         } else if (type == "delete") {
@@ -411,7 +419,8 @@ function runUpdates() {
               time: comments[i].createdAt,
               pic: comments[i].get("pic"),
               content: comments[i].get("content"),
-              commentId: comments[i].id
+              commentId: comments[i].id,
+              createdAt: comments[i].createdAt
             };
           }
         }
@@ -510,7 +519,7 @@ function prettyTime(time) {
   }
 }
 
-$("a#logout").click(function (e) {
+$("a#logout, i.fa-sign-out").click(function (e) {
     e.preventDefault();
     //alert("ehh");
     Parse.User.logOut();

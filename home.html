@@ -12,7 +12,7 @@
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <meta property="og:title" content="Wobetto"/> 
-    <meta property="og:image" content="static-assets/puppy"/> 
+    <meta property="og:image" content="assets/puppy.png"/> 
     <meta property="og:description" content="We're an app to help you work better together with the people around you, and to make your life
       less stressful"/> 
     <meta property="og:url" content="http://www.wobetto.com"/>
@@ -35,10 +35,10 @@
   <script type="text/javascript" src="js/security.js"></script>
   <script type="text/javascript" src="js/redirect.js"></script>
 
-  <div class="feedback-survey side">
+  <div class="feedback-survey side hidden-xs">
     <a href="https://docs.google.com/forms/d/1E1LCIJCfAy6TmxZxSuXL1EtcX-8qQPEqz76VCaah_X8/viewform?usp=send_form" target="_blank">Thoughts? We'd be happy to hear them.</a>
   </div>
-  
+  <div class="up-button"><i class="fa fa-arrow-up fa-3x"></i></div>
   
   <div class="modal fade" id="classFilterMenu" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
@@ -105,6 +105,7 @@
         </div>
         <div class="modal-body filt filterMenu">
           <p> Your phrase filters: </p>
+          <p>Note: You can only search phrases in titles.</p>
           <div class="container">
             
           </div>
@@ -244,11 +245,11 @@
  <div class="container">
     <div class = "row">
       <div class="col-md-12" id="this-is-the-navbar">
-        <div style="" id="actions"><h3><div class="notifications"><span class="badge"></span></div><div class="links"><i class="fa fa-envelope-o"></i>&nbsp<span class="notifications" style="color:white;cursor:pointer" href="#">Notifications</span> | <i class="fa fa-sign-out"></i>
-        <a style="color:white;" href="#" id="logout">Log Out</a></div></h3></div>
+        <div style="" id="actions" class="hidden-xs"><h3><div class="notifications"><span class="badge"></span></div><div class="links" style="cursor:pointer"><i class="fa fa-envelope-o"></i>&nbsp<span class="notifications" style="color:white;cursor:pointer" href="#">&nbsp;Notifications</span> | <i class="fa fa-sign-out"></i>
+        <a style="color:white;" href="#" id="logout"> Log Out</a></div></h3></div>
           <a href="home.html"> 
-        <img src="assets/wobettologolight.png" style="width:165px; height:55px; margin-top:-3px; margin-left:2%;"></a>
-        <div class="hidden-md hidden-lg hidden-xl" id="dropdown"></div>
+        <img src="assets/wobettolight.png" style="width:125px; height:55px; margin-top:-3px; margin-left:2%;"></a>
+        <div class="hidden-md hidden-lg hidden-xl hidden-sm" id="dropdown"><span class="badge"></span></div>
         <div id="notificationfeed">
             <ul class="list-group">
               <li class="noNew">No recent notifications</li>
@@ -275,6 +276,7 @@
             <a href="" class="template-active-post"><div class = "col-md-12 active-post "><h3></h3></div></a>
           </div><!--active posts row-->
         </div>
+
        </div> <!--holdcontent-->
       </div> <!--sidebar-->
 
@@ -330,7 +332,7 @@
           </div>
         </div>
         <div class="row filter-notify">
-          <div class="col-xs-8 col-xs-offset-2"><h4>You're viewing posts from your school.<span class="leader">. They're being filtered by</span><span class="class-leader"> the class(es) </span><span class="class-section"></span><span class="and-loc"> and </span><span class="loc-leader">the location(s) </span> <span class="loc-section"></span><span class="and-text"> and </span><span class="text-leader">the phrase(s) </span><span class="text-section"></span></h4></div>
+          <div class="col-sm-8 col-sm-offset-2"><h4>You're viewing posts from your school.<span class="leader">. They're being filtered by</span><span class="class-leader"> the class(es) </span><span class="class-section"></span><span class="and-loc"> and </span><span class="loc-leader"> the location(s) </span> <span class="loc-section"></span><span class="and-text"> and </span><span class="text-leader"> the phrase(s) </span><span class="text-section"></span></h4></div>
         </div>
 
 
@@ -339,7 +341,7 @@
         <div class="row" id="postfeed">
           
           <div id="postholder" class="col-xs-12 nofilter">
-            <div id="loader" class="col-xs-2 col-xs-offset-5 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-6" style="margin-top:50px">
+            <div id="loader" style="margin-top:50px; margin-right:auto;margin-left:auto">
               <!-- <img id="loading" src="assets/loader.gif" class="img-responsive"> -->
               <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                 <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>

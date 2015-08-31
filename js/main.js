@@ -17,6 +17,8 @@ buildInitialData();
 setTimeout(runUpdates, refreshLimit);//run updates in 40 seconds
 app.updateTime = new Date();
 
+  
+
 
 //Get the activePosts, and locations/classes for post create autocomplete 
 function buildInitialData() {
@@ -365,13 +367,15 @@ function filterObject(s, _on) {
   this.on = _on;
 }
 
-$("a#logout").click(function (e) {
+$("a#logout, i.fa-sign-out").click(function (e) {
     e.preventDefault();
     //alert("ehh");
     Parse.User.logOut();
     console.log("logging out");
     window.location.href = "login.html";
 });
+
+
 
 $('[data-toggle="tooltip"]').tooltip();
 

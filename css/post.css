@@ -14,6 +14,8 @@
 .participant{
 	/* background-color:red; */
 	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	/* margin-left: 15px; */
 }
 #createpost .well,
@@ -442,6 +444,47 @@ img.img-circle.comment-img {
 	padding-top:17px;
 	display:inline-block;
 }
+
+@media (max-width: 500px) {
+	#title h1 {
+		font-size: 1.3em;
+	}
+	#new-post-bar h2 {
+		font-size: 1.2em;
+	}
+
+	#posttext h5 {
+		font-size: 1.0em;
+	}
+	#nametime, #lowerDetails {
+		font-size: 0.8em;
+	}
+	.report-me {
+		font-size: 0.8em;
+	}
+	#join button {
+		font-size: 0.8em;
+	}
+	.caption h3 {
+		font-size: 0.8em;
+	}
+	#following h7 {
+		font-size: 0.8em;
+	}
+	.comment h4 {
+		font-size: 0.9em;
+	}
+	.timestamp {
+		font-size: 0.7em;
+	}
+	.comment-text {
+		font-size: 0.8em;
+	}
+	.comment img.media-object {
+		width: 45px;
+	}
+}
+
 @media(max-width: 767px)
 {
 	.post{
@@ -450,7 +493,6 @@ img.img-circle.comment-img {
 	.comment-holder{
 		width:100%;
 	}
-
 }
 
 @media(min-width:2150px)
