@@ -16,11 +16,11 @@ $(".section .next").click(function (e) {
 });
 
 function calculateScore(i) {
-	if(i > 29) profile = "profile5.png";
-	else if(i > 26) profile = "profile5.png";
-	else if(i > 23) profile = "profile6.png";
-	else if(i > 20) profile = "profile2.png";
-	else if(i > 17) profile = "profile7.png";
+	if(i > 27) profile = "profile5.png";
+	else if(i > 22) profile = "profile8.png";
+	else if(i > 20) profile = "profile6.png";
+	else if(i > 18) profile = "profile2.png";
+	else if(i > 16) profile = "profile7.png";
 	else if(i > 14) profile = "profile3.png";
 	else if(i > 11) profile = "profile1.png";
 	else if(i > 8) profile = "profile4.png";
