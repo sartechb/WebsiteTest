@@ -56,6 +56,15 @@
             <br>
             <h1 style="color:#0488C3">Be Flexible.</h1>
             <p style="font-size:26px">Wobetto is available on any platform where a web browser is available. In the future we plan to launch dedicated mobile apps. Creating an account takes only a minute, and we’ll keep you updated on any new features to make your studying experiences as simple as possible!</p>
+            <p style="text-align:center">
+              <span>
+                <i class="fa fa-circle active" data-slide="1"></i>
+                <i class="fa fa-circle" data-slide="2"></i>
+                <i class="fa fa-circle" data-slide="3"></i>
+                <i class="fa fa-circle" data-slide="4"></i>
+                <i class="fa fa-circle" data-slide="5"></i>
+              </span>
+            </p>
           </div>
         </div>
         <div class="row section2 section"><!--Keep it Personal-->
@@ -67,6 +76,15 @@
             <br>
             <h1 style="color:#0488C3">Keep it Personal.</h1>
             <p style="font-size:26px">Need to find your class information ASAP, but don’t want to search through different conversation threads? Have no fear. You can search easier by simply using our class filters. Keep the clutter in your dorm room, not in your courses.</p>
+            <p style="text-align:center">
+              <span>
+                <i class="fa fa-circle" data-slide="1"></i>
+                <i class="fa fa-circle active" data-slide="2"></i>
+                <i class="fa fa-circle" data-slide="3"></i>
+                <i class="fa fa-circle" data-slide="4"></i>
+                <i class="fa fa-circle" data-slide="5"></i>
+              </span>
+            </p>
           </div>
         </div>
         <div class="row section3 section"><!--Instant Collaboration-->
@@ -78,6 +96,15 @@
             <br>
             <h1 style="color:#0488C3">Instant Collaboration.</h1>
             <p style="font-size:26px">Each thread has a focused class and assignment. Once you’ve found your peers, you can decide on the best location to meet and study. We help you start the conversation online, allowing your peers to become more accessible and communicating in person is easier.</p>
+            <p style="text-align:center">
+              <span>
+                <i class="fa fa-circle" data-slide="1"></i>
+                <i class="fa fa-circle" data-slide="2"></i>
+                <i class="fa fa-circle active" data-slide="3"></i>
+                <i class="fa fa-circle" data-slide="4"></i>
+                <i class="fa fa-circle" data-slide="5"></i>
+              </span>
+            </p>
           </div>
         </div>
         <div class="row section4 section"><!--Working Smarter-->
@@ -89,6 +116,15 @@
             <br>
             <h1 style="color:#0488C3">Working Smarter.</h1>
             <p style="font-size:26px">Let’s defeat the passive process of reading and rereading a textbook. Studies show that working in small groups, or “cooperative learning” allows students to invent new ways of learning and understanding concepts that otherwise would be lost in a lecture. Our app is designed so you can work outside of your hastily scribbled notes.</p>
+            <p style="text-align:center">
+              <span>
+                <i class="fa fa-circle" data-slide="1"></i>
+                <i class="fa fa-circle" data-slide="2"></i>
+                <i class="fa fa-circle" data-slide="3"></i>
+                <i class="fa fa-circle active" data-slide="4"></i>
+                <i class="fa fa-circle" data-slide="5"></i>
+              </span>
+            </p>
           </div>
         </div>
         <div class="row section5 section"><!--Build a Network-->
@@ -100,9 +136,19 @@
             <br>
             <h1 style="color:#0488C3">Build a Network.</h1>
             <p style="font-size:26px">New classes? New peers? Each semester is a different challenge, but no one should go through it alone. Our app allows you to meet new people and become exposed to fresh ideas and perspectives. The teamwork skills you build now can reflect in your ability to collaborate with coworkers in the real-world. Together we can turn stress into success.</p>
+            <p style="text-align:center">
+              <span>
+                <i class="fa fa-circle" data-slide="1"></i>
+                <i class="fa fa-circle" data-slide="2"></i>
+                <i class="fa fa-circle" data-slide="3"></i>
+                <i class="fa fa-circle" data-slide="4"></i>
+                <i class="fa fa-circle active" data-slide="5"></i>
+              </span>
+            </p>
           </div>
         </div>
       </div>
+      
       
       
     </div>
@@ -119,13 +165,24 @@
   <script type="text/javascript">
   $(".section1").fadeIn(300);
   var section = 1;
-  setTimeout(cycle, 6000);
+  var timeoutID = setTimeout(cycle, 6000);
   function cycle() {
     $(".section"+section).fadeOut(300);
     if(section < 5)++section;
     else section = 1;
     $(".section"+section).delay(300).fadeIn(300);
-    setTimeout(cycle, 10000);
+    timeoutID = setTimeout(cycle, 11000);
   }
+  $(".section i").click(function (e) {
+    var crumb = $(e.target);
+    var next = crumb.data("slide");
+    var page = crumb.closest(".section");
+    console.log(page);
+    clearTimeout(timeoutID);
+    page.fadeOut(300);
+    $(".section"+next).delay(300).fadeIn(300);
+    timeoutID = setTimeout(cycle, 11000);
+    section = next;
+  });
   </script>
   </html>

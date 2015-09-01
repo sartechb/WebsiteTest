@@ -14,6 +14,19 @@ div.row.body {
 	position: relative;
 }
 
+.section span {
+	cursor: pointer;
+}
+
+.section i {
+	color: #AAA;
+	cursor: pointer;
+}
+
+.section i.active {
+	color: #0488C3;
+}
+
 @media (max-width: 767px)
 {
 	.bottom-bar {
