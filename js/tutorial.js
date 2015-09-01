@@ -197,6 +197,13 @@ $("#active-example, a.note").click(function (e) {
 	return false;
 });
 
+//Resend verification Email
+$(".resend").click(function() {
+	var email = app.user.get("email");
+	app.user.set("email", email);
+	app.user.save();
+});
+
 //Log out Functionality
 $("a#logout, i.fa-sign-out").click(function (e) {
     e.preventDefault();
