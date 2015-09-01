@@ -198,10 +198,12 @@ $("#active-example, a.note").click(function (e) {
 });
 
 //Resend verification Email
-$(".resend").click(function() {
+$(".resend").click( function (e) {
+	var span = $(e.target);
 	var email = app.user.get("email");
 	app.user.set("email", email);
 	app.user.save();
+	span.text("We sent it! Please remember to check spam!");
 });
 
 //Log out Functionality
