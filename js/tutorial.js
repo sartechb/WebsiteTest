@@ -85,27 +85,27 @@ $("#classFilterAdd").submit(function (e) {
 	var text = input.val();
 	if(app.classes.indexOf(text) == -1) {
 		//user entered a class that doesn't exist yet.
-		$("#classFilter .notice.dup").fadeOut(200);
-		$("#classFilter .notice.limit").fadeOut(200);
+		$(".classFilter .notice.dup").fadeOut(200);
+		$(".classFilter .notice.limit").fadeOut(200);
 		$(".classFilter .notice.dne").fadeIn(200);
-	    setTimeout(function(){$("#classFilter .notice.dne").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".classFilter .notice.dne").fadeOut(200);}, 2000);
 	    input.val("");
 	    return false;
 	}
 	if(app.user_classes.indexOf(text) != -1) {
 		//user enter a duplicate
-		$("#classFilter .notice.dne").fadeOut(200);
-		$("#classFilter .notice.limit").fadeOut(200);
+		$(".classFilter .notice.dne").fadeOut(200);
+		$(".classFilter .notice.limit").fadeOut(200);
 		$(".classFilter .notice.dup").fadeIn(200);
-	    setTimeout(function(){$("#classFilter .notice.dup").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".classFilter .notice.dup").fadeOut(200);}, 2000);
 	    input.val("");
 	    return false;
 	}
 	if(app.user_classes.length >= 5) {
-		$("#classFilter .notice.dne").fadeOut(200);
-		$("#classFilter .notice.dup").fadeOut(200);
+		$(".classFilter .notice.dne").fadeOut(200);
+		$(".classFilter .notice.dup").fadeOut(200);
 		$(".classFilter .notice.limit").fadeIn(200);
-	    setTimeout(function(){$("#classFilter .notice.limit").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".classFilter .notice.limit").fadeOut(200);}, 2000);
 	    input.val("");
 	    return false;
 	}
@@ -131,27 +131,27 @@ $("#locFilterAdd").submit(function (e) {
 	var text = input.val();
 	if(app.locations.indexOf(text) == -1) {
 		//user entered a class that doesn't exist yet.
-		$("#locFilter .notice.dup").fadeOut(200);
-		$("#locFilter .notice.limit").fadeOut(200);
+		$(".locFilter .notice.dup").fadeOut(200);
+		$(".locFilter .notice.limit").fadeOut(200);
 		$(".locFilter .notice.dne").fadeIn(200);
-	    setTimeout(function(){$("#locFilter .notice.dne").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".locFilter .notice.dne").fadeOut(200);}, 2000);
 	    input.val("");
 	    return false;
 	}
 	if(app.user_locations.indexOf(text) != -1) {
 		//user enter a duplicate
-		$("#locFilter .notice.dne").fadeOut(200);
-		$("#locFilter .notice.limit").fadeOut(200);
+		$(".locFilter .notice.dne").fadeOut(200);
+		$(".locFilter .notice.limit").fadeOut(200);
 		$(".locFilter .notice.dup").fadeIn(200);
-	    setTimeout(function(){$("#locFilter .notice.dup").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".locFilter .notice.dup").fadeOut(200);}, 2000);
 	    input.val("");
 	    return false;
 	}
 	if(app.user_locations.length >= 5) {
-		$("#locFilter .notice.dne").fadeOut(200);
-		$("#locFilter .notice.dup").fadeOut(200);
+		$(".locFilter .notice.dne").fadeOut(200);
+		$(".locFilter .notice.dup").fadeOut(200);
 		$(".locFilter .notice.limit").fadeIn(200);
-	    setTimeout(function(){$("#locFilter .notice.limit").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".locFilter .notice.limit").fadeOut(200);}, 2000);
 	    input.val("");
 	    return false;
 	}
