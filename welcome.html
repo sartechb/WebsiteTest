@@ -39,28 +39,20 @@
  <div class="container">
     <div class = "row">
       <div class="col-md-12" id="this-is-the-navbar">
-      <div class="" id="dropdown"></div>
-      <div style="" id="actions">
-        <h3>
-          <div class="notifications">
-            <span class="badge"></span>
-            </div><div class="links" style="cursor:pointer">
-            <i class="fa fa-envelope-o"></i>&nbsp
-            <span class="notifications" style="color:white;cursor:pointer" href="#"></span> | <i class="fa fa-sign-out"></i>
-            <a style="color:white;" href="#" id="logout"></a>
+        <div style="" id="actions" class="hidden-xs"><h3><div class="notifications"><span class="badge"></span></div><div class="links" style="cursor:pointer"><i class="fa fa-envelope-o"></i>&nbsp<span class="notifications" style="color:white;cursor:pointer" href="#">&nbsp;Notifications</span> | <i class="fa fa-sign-out"></i>
+        <a style="color:white;" href="#" id="logout"> Log Out</a></div></h3></div>
+          <a href="home.html"> 
+        <img src="assets/wobettolight.png" style="width:125px; height:55px; margin-top:-3px; margin-left:2%;"></a>
+        <div class="hidden-md hidden-lg hidden-xl hidden-sm" id="dropdown"><span class="badge"></span></div>
+        <div id="notificationfeed">
+            <ul class="list-group">
+              <li class="noNew">No recent notifications</li>
+              <li class="template-note new"><a style="cursor:pointer"></a></li>
+             <!--  <li class="viewed"><a href="http://www.google.com" target="_blank"> Annette O. commented on Binary Numbers | 2 hours ago </a></li>
+              <li class=""><a href="http://www.google.com" target="_blank"> Issac N. joined on Binary Numbers | 2 hours ago </a></li> -->
+            </ul>
           </div>
-        </h3>
-      </div>
-      <a href="home.html"> 
-      <img src="assets/wobettolight.png" style="width:125px; height:55px; margin-top:-3px; margin-left:2%;"></a>
-      
-      <div id="notificationfeed">
-          <ul class="list-group">
-            <li class="noNew">No recent notifications</li>
-            <li class="template-note new"><a style="cursor:pointer"></a></li>
-          </ul>
-      </div>
-    </div> <!--Navbar-->
+      </div> <!--Navbar-->
     </div>
 
     <div class ="row" id="body">      
