@@ -88,7 +88,7 @@ $("#classFilterAdd").submit(function (e) {
 		$(".classFilter .notice.dup").fadeOut(200);
 		$(".classFilter .notice.limit").fadeOut(200);
 		$(".classFilter .notice.dne").fadeIn(200);
-	    setTimeout(function(){$(".classFilter .notice.dne").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".classFilter .notice.dne").fadeOut(200);}, 5000);
 	    input.val("");
 	    return false;
 	}
@@ -97,7 +97,7 @@ $("#classFilterAdd").submit(function (e) {
 		$(".classFilter .notice.dne").fadeOut(200);
 		$(".classFilter .notice.limit").fadeOut(200);
 		$(".classFilter .notice.dup").fadeIn(200);
-	    setTimeout(function(){$(".classFilter .notice.dup").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".classFilter .notice.dup").fadeOut(200);}, 5000);
 	    input.val("");
 	    return false;
 	}
@@ -105,7 +105,7 @@ $("#classFilterAdd").submit(function (e) {
 		$(".classFilter .notice.dne").fadeOut(200);
 		$(".classFilter .notice.dup").fadeOut(200);
 		$(".classFilter .notice.limit").fadeIn(200);
-	    setTimeout(function(){$(".classFilter .notice.limit").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".classFilter .notice.limit").fadeOut(200);}, 5000);
 	    input.val("");
 	    return false;
 	}
@@ -134,7 +134,7 @@ $("#locFilterAdd").submit(function (e) {
 		$(".locFilter .notice.dup").fadeOut(200);
 		$(".locFilter .notice.limit").fadeOut(200);
 		$(".locFilter .notice.dne").fadeIn(200);
-	    setTimeout(function(){$(".locFilter .notice.dne").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".locFilter .notice.dne").fadeOut(200);}, 5000);
 	    input.val("");
 	    return false;
 	}
@@ -143,7 +143,7 @@ $("#locFilterAdd").submit(function (e) {
 		$(".locFilter .notice.dne").fadeOut(200);
 		$(".locFilter .notice.limit").fadeOut(200);
 		$(".locFilter .notice.dup").fadeIn(200);
-	    setTimeout(function(){$(".locFilter .notice.dup").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".locFilter .notice.dup").fadeOut(200);}, 5000);
 	    input.val("");
 	    return false;
 	}
@@ -151,7 +151,7 @@ $("#locFilterAdd").submit(function (e) {
 		$(".locFilter .notice.dne").fadeOut(200);
 		$(".locFilter .notice.dup").fadeOut(200);
 		$(".locFilter .notice.limit").fadeIn(200);
-	    setTimeout(function(){$(".locFilter .notice.limit").fadeOut(200);}, 2000);
+	    setTimeout(function(){$(".locFilter .notice.limit").fadeOut(200);}, 5000);
 	    input.val("");
 	    return false;
 	}
